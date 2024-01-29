@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://23buby1ymt3d"]
+
+[ext_resource type="Script" path="res://TestScript.cs" id="1_ci8oi"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_v0r6j"]
+
+[node name="Game" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(481.615, 230.135)
+scale = Vector2(202.77, 185.73)
+mesh = SubResource("QuadMesh_v0r6j")
+script = ExtResource("1_ci8oi")
