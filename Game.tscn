@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://23buby1ymt3d"]
 
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_wai16"]
+[ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_wai16"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_v0r6j"]
 

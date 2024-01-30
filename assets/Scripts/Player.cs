@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace FireWARks.assets.Scripts;
 
 public partial class Player : Area2D
 {
