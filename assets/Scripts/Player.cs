@@ -17,22 +17,23 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsKeyPressed(Key.W))
+		
+		if (Input.IsActionPressed("Up"))
 		{
-			Translate(new Vector2(0.0f, -1.0f));
+			//Translate(new Vector2(0.0f, -1.0f));
 		}
 		
-		if (Input.IsKeyPressed(Key.A))
+		if (Input.IsActionPressed("Left"))
 		{
 			Translate(new Vector2(-1.0f, 0.0f));
 		}
 		
-		if (Input.IsKeyPressed(Key.S))
+		if (Input.IsActionPressed("Down"))
 		{
 			Translate(new Vector2(0.0f, 1.0f));
 		}
 		
-		if (Input.IsKeyPressed(Key.D))
+		if (Input.IsActionPressed("Right"))
 		{
 			Translate(new Vector2(1.0f, 0.0f));
 		}
@@ -41,5 +42,6 @@ public partial class Player : Area2D
 		{
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
+		Translate(Input.GetVector("Left", "Right", "Up", "Down"));
 	}
 }
