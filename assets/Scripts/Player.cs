@@ -25,23 +25,24 @@ public partial class Player : Area2D
 		
 		if (Input.IsActionPressed("Left"))
 		{
-			Translate(new Vector2(-1.0f, 0.0f));
+			//Translate(new Vector2(-1.0f, 0.0f));
 		}
 		
 		if (Input.IsActionPressed("Down"))
 		{
-			Translate(new Vector2(0.0f, 1.0f));
+			//Translate(new Vector2(0.0f, 1.0f));
 		}
 		
 		if (Input.IsActionPressed("Right"))
 		{
-			Translate(new Vector2(1.0f, 0.0f));
+			//Translate(new Vector2(1.0f, 0.0f));
 		}
 
 		if (GetOverlappingAreas().Count != 0)
 		{
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
-		Translate(Input.GetVector("Left", "Right", "Up", "Down"));
+
+		Translate(Input.GetVector("Left", "Right", "Up", "Down").Normalized());
 	}
 }
