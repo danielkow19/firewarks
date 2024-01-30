@@ -33,6 +33,6 @@ public partial class Player : Area2D
 			//Translate(new Vector2(1.0f, 0.0f));
 		//}
 		
-		Translate(Input.GetVector("Left", "Right", "Up", "Down"));
+		Translate(Input.GetVector("Left", "Right", "Up", "Down").Normalized());
 	}
 }
