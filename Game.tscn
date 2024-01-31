@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=10 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_wai16"]
 [ext_resource type="Texture2D" uid="uid://dgteu3kikcie8" path="res://assets/sprites/2MinuteToken-Phoenix.png" id="2_j7nd3"]
+[ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="3_33ecd"]
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="3_ty6at"]
 [ext_resource type="Texture2D" uid="uid://cap2aeeb156qt" path="res://assets/sprites/quick bullet.png" id="4_7nvjo"]
 
@@ -41,15 +42,22 @@ mesh = SubResource("BoxMesh_ttfpx")
 position = Vector2(479, 330)
 shape = SubResource("RectangleShape2D_xxtae")
 
-[node name="Area2D_Bullet" type="Area2D" parent="."]
+[node name="Node2D_Bullet_Pattern" type="Node2D" parent="."]
+script = ExtResource("3_33ecd")
+
+[node name="Area2D_Bullet" type="Area2D" parent="Node2D_Bullet_Pattern"]
 script = ExtResource("3_ty6at")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Bullet"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D_Bullet_Pattern/Area2D_Bullet"]
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
 shape = SubResource("CapsuleShape2D_nsf2p")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D_Bullet"]
+[node name="Sprite2D" type="Sprite2D" parent="Node2D_Bullet_Pattern/Area2D_Bullet"]
 rotation = -1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("4_7nvjo")
 
-[node name="Timer" type="Timer" parent="Area2D_Bullet"]
+[node name="Timer" type="Timer" parent="Node2D_Bullet_Pattern/Area2D_Bullet"]
+
+[node name="Node2D_Bullet_Manager" type="Node2D" parent="."]
