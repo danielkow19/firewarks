@@ -9,6 +9,9 @@ public partial class Bullet : Area2D
 	private string[] tags;
 
 	//constructor
+	public Bullet(){
+
+	}
 	public Bullet(Vector2 position, Vector2 direction){
 
 	}

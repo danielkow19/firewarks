@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=9 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_wai16"]
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="2_36qam"]
 [ext_resource type="Texture2D" uid="uid://dgteu3kikcie8" path="res://assets/sprites/2MinuteToken-Phoenix.png" id="2_j7nd3"]
+[ext_resource type="Texture2D" uid="uid://b166333ijtik1" path="res://assets/sprites/quick bullet.png" id="4_xl4uw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fwhj"]
 size = Vector2(108, 103)
@@ -47,5 +48,8 @@ script = ExtResource("2_36qam")
 shape = SubResource("CapsuleShape2D_wc1pr")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D_Bullet"]
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("4_xl4uw")
 
 [node name="Timer" type="Timer" parent="Area2D_Bullet"]
