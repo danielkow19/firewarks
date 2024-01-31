@@ -11,6 +11,8 @@ size = Vector2(108, 103)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxtae"]
 size = Vector2(146, 180)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5kcey"]
+
 [node name="Game" type="Node2D"]
 
 [node name="Player" type="Area2D" parent="."]
