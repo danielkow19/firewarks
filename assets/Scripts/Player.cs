@@ -14,6 +14,11 @@ public partial class Player : Area2D
 	private float _targetRotation;
 	private float _rotationSpeed;
 
+	
+	[Export]
+	private int player_id = 0; //Player ID is what makes the different players have separate controls
+
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -29,43 +34,61 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// if (Input.IsActionPressed("Up"))
-		// {
-		// 	Translate(new Vector2(0.0f, -1.0f));
-		// }
-
-		// if (Input.IsActionPressed("Left"))
-		// {
-		// 	Translate(new Vector2(-1.0f, 0.0f));
-		// }
-
-		// if (Input.IsActionPressed("Down"))
-		// {
-		// 	Translate(new Vector2(0.0f, 1.0f));
-		// }
-
-		// if (Input.IsActionPressed("Right"))
-		// {
-		// 	Translate(new Vector2(1.0f, 0.0f));
-		// }
+		// We use string concatination to splice in the player ID for the input system
+		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
+		if (Input.IsActionPressed($"Up_{player_id}"))
+		{
+			//Translate(new Vector2(0.0f, -1.0f));
+			Debug.Print($"Up_${player_id}");
+		}
+		
+		if (Input.IsActionPressed($"Left_{player_id}"))
+		{
+			//Translate(new Vector2(-1.0f, 0.0f));
+			Debug.Print($"Left_${player_id}");
+		}
+		
+		if (Input.IsActionPressed($"Down_{player_id}"))
+		{
+			//Translate(new Vector2(0.0f, 1.0f));
+			Debug.Print($"Down_${player_id}");
+		}
+		
+		if (Input.IsActionPressed($"Right_{player_id}"))
+		{
+			//Translate(new Vector2(1.0f, 0.0f));
+			Debug.Print($"Right_${player_id}");
+		}
 
 		if (GetOverlappingAreas().Count != 0)
 		{
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
 
-		_direction = Input.GetVector("Left", "Right", "Up", "Down").Normalized();
+		// We use string concatination to splice in the player ID for the input system
+        // The controls will have a naming convetion of Action_{player_id}, player ID starts from 0 and goes up to 3
+		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
+		
+		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_aimDirection = Input.GetVector("AimLeft", "AimRight", "AimUp", "AimDown").Normalized();
+
+		if (Input.IsKeyPressed(Key.Space))
+		{
+			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+			var instance = pattern.Instantiate();			
+			AddSibling(instance);
+			instance.Set("position", Position); 
+		}
 
 		if (_aimDirection != Vector2.Zero)
 		{
 			if (_aimDirection.Y > 0)
 			{
-				_targetRotation = MathF.Acos(_aimDirection.X);
+				_targetRotation = MathF.Acos(_aimDirection.X) * (float)delta;
 			}
 			else
 			{
-				_targetRotation = MathF.PI * 2 - MathF.Acos(_aimDirection.X);
+				_targetRotation = MathF.PI * 2 - MathF.Acos(_aimDirection.X) * (float)delta;
 			}
 		}
 		Debug.Print("{0}", Rotation - _targetRotation);
@@ -90,11 +113,11 @@ public partial class Player : Area2D
 
 		if (Input.IsActionPressed("Slow"))
 		{
-			Translate(_direction * _slowedSpeed);
+			Translate(_direction * _slowedSpeed * (float)delta);
 		}
 		else
 		{
-			Translate(_direction * _speed);
+			Translate(_direction * _speed * (float)delta);
 		}
 
 	}
