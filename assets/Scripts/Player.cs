@@ -57,6 +57,25 @@ public partial class Player : Area2D
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
 
         Vector2 movement = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized() * (float)delta * 100f;
+		if (Input.IsKeyPressed(Key.Space))
+		{
+			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+			var instance = pattern.Instantiate();			
+			AddSibling(instance);
+			instance.Set("position", Position);
+			 
+		}
+
+		if (Input.IsKeyPressed(Key.Space))
+		{
+			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+			var instance = pattern.Instantiate();			
+			AddSibling(instance);
+			instance.Set("position", Position);
+			 
+		}
+
+		Vector2 movement = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized() * (float)delta * 100f;
 		Translate(movement);
 	}
 }
