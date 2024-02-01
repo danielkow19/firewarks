@@ -23,12 +23,12 @@ public partial class Player : Area2D
 	public override void _Ready()
 	{
 		_collider = GetNode<CollisionShape2D>("%Collider");
-		_speed = 6;
-		_slowedSpeed = 3;
+		_speed = 100;
+		_slowedSpeed = 50;
 		_direction = new Vector2(0, 0);
 		_aimDirection = new Vector2(0, 0);
 		_targetRotation = 0;
-		_rotationSpeed = 0.1f;
+		_rotationSpeed = 1f;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
