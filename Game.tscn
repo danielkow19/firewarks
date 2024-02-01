@@ -6,8 +6,9 @@
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="3_ty6at"]
 [ext_resource type="Texture2D" uid="uid://cap2aeeb156qt" path="res://assets/sprites/quick bullet.png" id="4_7nvjo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fwhj"]
-size = Vector2(108, 103)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1p6qy"]
+radius = 40.5
+height = 83.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_ttfpx"]
 
@@ -21,25 +22,25 @@ size = Vector2(146, 180)
 [node name="Player" type="Area2D" parent="."]
 script = ExtResource("1_wai16")
 
+[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player"]
+position = Vector2(-319.5, -72)
+texture = ExtResource("2_j7nd3")
+
 [node name="Collider" type="CollisionShape2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(163, 343.5)
-shape = SubResource("RectangleShape2D_2fwhj")
-
-[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player"]
-position = Vector2(162, 336)
-texture = ExtResource("2_j7nd3")
+position = Vector2(-318.5, -64.5)
+shape = SubResource("CapsuleShape2D_1p6qy")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Obstacle" type="MeshInstance2D" parent="Area2D"]
-position = Vector2(478, 328)
+position = Vector2(278, 148)
 rotation = 3.14159
 scale = Vector2(146, 180)
 mesh = SubResource("BoxMesh_ttfpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(479, 330)
+position = Vector2(279, 150)
 shape = SubResource("RectangleShape2D_xxtae")
 
 [node name="Node2D_Bullet_Pattern" type="Node2D" parent="."]

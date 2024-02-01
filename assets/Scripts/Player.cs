@@ -43,6 +43,7 @@ public partial class Player : Area2D
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
 
-		Translate(Input.GetVector("Left", "Right", "Up", "Down").Normalized());
+		Vector2 movement = Input.GetVector("Left", "Right", "Up", "Down").Normalized() * (float)delta * 100f;
+		Translate(movement);
 	}
 }
