@@ -90,3 +90,18 @@ offset_right = -327.0
 offset_bottom = -251.0
 text = "Test"
 script = ExtResource("6_rl52b")
+
+[node name="PlayerHUD" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -528.0
+offset_top = -263.0
+offset_right = -359.0
+offset_bottom = -223.0
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHUD"]
+layout_mode = 0
+offset_right = 125.0
+offset_bottom = 60.0
+texture = ExtResource("2_j7nd3")
