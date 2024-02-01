@@ -7,8 +7,10 @@ namespace FireWARks.assets.Scripts;
 public partial class Player : Area2D
 {
 	private CollisionShape2D _collider;
+	
 	[Export]
-	private int player_id = 1;
+	private int player_id = 0; //Player ID is what makes the different players have separate controls
+
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -19,7 +21,8 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		// We use string concatination to splice in the player ID for the input system
+		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
 		if (Input.IsActionPressed($"Up_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, -1.0f));
@@ -49,7 +52,11 @@ public partial class Player : Area2D
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
 
-		Vector2 movement = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized() * (float)delta * 100f;
+        // We use string concatination to splice in the player ID for the input system
+        // The controls will have a naming convetion of Action_{player_id}, player ID starts from 0 and goes up to 3
+		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
+
+        Vector2 movement = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized() * (float)delta * 100f;
 		Translate(movement);
 	}
 }
