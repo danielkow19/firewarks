@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Linq;
+using Godot.Collections;
 
 public partial class Bullet : Area2D
 {
@@ -45,8 +47,8 @@ public partial class Bullet : Area2D
 		delay -= delta;
 		if(delay <= 0)
 		{
-		Translate(speed.Rotated(Rotation) * (float)delta);
-		lifetime -= delta;
+			Translate(speed.Rotated(Rotation) * (float)delta);
+			lifetime -= delta;
 		}
 		if(lifetime <= 0)
 		{
@@ -59,8 +61,17 @@ public partial class Bullet : Area2D
 		//	CalculateVectors(1, delta);
 		//}
 
-		
 
+		Array<Area2D> collisions = GetOverlappingAreas();
+		
+		// Collision Checking, might move to new method if it gets more complicated
+		// Linq statement is a for loop that loops through non bullet objects
+		if (collisions.Count != 0 && collisions.Any(t => t is not Bullet))
+		{
+			lifetime = 0;
+			QueueFree();
+			return;
+		}
 	}
 	// Called in process. Updates vectors based on given pattern.
 	private void CalculateVectors(int pattern, double delta)

@@ -34,21 +34,19 @@ shape = SubResource("CapsuleShape2D_1p6qy")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Obstacle" type="MeshInstance2D" parent="Area2D"]
-position = Vector2(278, 148)
 rotation = 3.14159
 scale = Vector2(146, 180)
 mesh = SubResource("BoxMesh_ttfpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(279, 150)
 shape = SubResource("RectangleShape2D_xxtae")
 
 [node name="Node2D_Bullet_Pattern" type="Node2D" parent="."]
-position = Vector2(100, 200)
+position = Vector2(-236, 75)
 script = ExtResource("3_33ecd")
 
 [node name="Node2D_Bullet_Manager" type="Node2D" parent="."]
-position = Vector2(100, 100)
+position = Vector2(-236, -25)
 
 [node name="Area2D_Bullet" type="Area2D" parent="Node2D_Bullet_Manager"]
 script = ExtResource("3_ty6at")
@@ -64,3 +62,5 @@ scale = Vector2(2, 2)
 texture = ExtResource("4_7nvjo")
 
 [node name="Timer" type="Timer" parent="Node2D_Bullet_Manager/Area2D_Bullet"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
