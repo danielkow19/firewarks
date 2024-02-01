@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=11 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_wai16"]
 [ext_resource type="Texture2D" uid="uid://dgteu3kikcie8" path="res://assets/sprites/2MinuteToken-Phoenix.png" id="2_j7nd3"]
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="3_33ecd"]
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="3_ty6at"]
 [ext_resource type="Texture2D" uid="uid://cap2aeeb156qt" path="res://assets/sprites/quick bullet.png" id="4_7nvjo"]
+[ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1p6qy"]
 radius = 40.5
@@ -19,34 +20,33 @@ size = Vector2(146, 180)
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" type="Area2D" parent="."]
+[node name="Player_1" type="Area2D" parent="."]
 script = ExtResource("1_wai16")
 
-[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player"]
+[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_1"]
+position = Vector2(-319.5, -72)
 texture = ExtResource("2_j7nd3")
 
-[node name="Collider" type="CollisionShape2D" parent="Player"]
+[node name="Collider" type="CollisionShape2D" parent="Player_1"]
 unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_1p6qy")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Obstacle" type="MeshInstance2D" parent="Area2D"]
-position = Vector2(278, 148)
 rotation = 3.14159
 scale = Vector2(146, 180)
 mesh = SubResource("BoxMesh_ttfpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(279, 150)
 shape = SubResource("RectangleShape2D_xxtae")
 
 [node name="Node2D_Bullet_Pattern" type="Node2D" parent="."]
-position = Vector2(100, 200)
+position = Vector2(-236, 75)
 script = ExtResource("3_33ecd")
 
 [node name="Node2D_Bullet_Manager" type="Node2D" parent="."]
-position = Vector2(100, 100)
+position = Vector2(-236, -25)
 
 [node name="Area2D_Bullet" type="Area2D" parent="Node2D_Bullet_Manager"]
 script = ExtResource("3_ty6at")
@@ -62,3 +62,31 @@ scale = Vector2(2, 2)
 texture = ExtResource("4_7nvjo")
 
 [node name="Timer" type="Timer" parent="Node2D_Bullet_Manager/Area2D_Bullet"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player_2" type="Area2D" parent="."]
+script = ExtResource("1_wai16")
+
+[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_2"]
+position = Vector2(-319.5, -72)
+texture = ExtResource("2_j7nd3")
+
+[node name="Collider" type="CollisionShape2D" parent="Player_2"]
+position = Vector2(-318.5, -64.5)
+shape = SubResource("CapsuleShape2D_1p6qy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FPS" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -554.0
+offset_top = -313.0
+offset_right = -327.0
+offset_bottom = -251.0
+text = "Test"
+script = ExtResource("6_rl52b")
