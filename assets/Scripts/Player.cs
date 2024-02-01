@@ -7,6 +7,7 @@ namespace FireWARks.assets.Scripts;
 public partial class Player : Area2D
 {
 	private CollisionShape2D _collider;
+	[Export]
 	private int player_id = 1;
 	
 	// Called when the node enters the scene tree for the first time.

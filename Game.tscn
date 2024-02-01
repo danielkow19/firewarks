@@ -19,14 +19,14 @@ size = Vector2(146, 180)
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" type="Area2D" parent="."]
+[node name="Player_1" type="Area2D" parent="."]
 script = ExtResource("1_wai16")
 
-[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player"]
+[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_1"]
 position = Vector2(-319.5, -72)
 texture = ExtResource("2_j7nd3")
 
-[node name="Collider" type="CollisionShape2D" parent="Player"]
+[node name="Collider" type="CollisionShape2D" parent="Player_1"]
 unique_name_in_owner = true
 position = Vector2(-318.5, -64.5)
 shape = SubResource("CapsuleShape2D_1p6qy")
@@ -64,3 +64,15 @@ texture = ExtResource("4_7nvjo")
 [node name="Timer" type="Timer" parent="Node2D_Bullet_Manager/Area2D_Bullet"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player_2" type="Area2D" parent="."]
+script = ExtResource("1_wai16")
+player_id = 2
+
+[node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_2"]
+position = Vector2(-319.5, -72)
+texture = ExtResource("2_j7nd3")
+
+[node name="Collider" type="CollisionShape2D" parent="Player_2"]
+position = Vector2(-318.5, -64.5)
+shape = SubResource("CapsuleShape2D_1p6qy")
