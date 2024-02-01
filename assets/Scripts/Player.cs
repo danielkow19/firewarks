@@ -43,6 +43,15 @@ public partial class Player : Area2D
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
 
+		if (Input.IsKeyPressed(Key.Space))
+		{
+			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+			var instance = pattern.Instantiate();			
+			AddSibling(instance);
+			instance.Set("position", Position);
+			 
+		}
+
 		Vector2 movement = Input.GetVector("Left", "Right", "Up", "Down").Normalized() * (float)delta * 100f;
 		Translate(movement);
 	}

@@ -23,12 +23,10 @@ size = Vector2(146, 180)
 script = ExtResource("1_wai16")
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player"]
-position = Vector2(-319.5, -72)
 texture = ExtResource("2_j7nd3")
 
 [node name="Collider" type="CollisionShape2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(-318.5, -64.5)
 shape = SubResource("CapsuleShape2D_1p6qy")
 
 [node name="Area2D" type="Area2D" parent="."]
