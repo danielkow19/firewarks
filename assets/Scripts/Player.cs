@@ -7,6 +7,7 @@ namespace FireWARks.assets.Scripts;
 public partial class Player : Area2D
 {
 	private CollisionShape2D _collider;
+	private int player_id = 1;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -18,24 +19,28 @@ public partial class Player : Area2D
 	public override void _Process(double delta)
 	{
 		
-		if (Input.IsActionPressed("Up"))
+		if (Input.IsActionPressed($"Up_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, -1.0f));
+			Debug.Print($"Up_${player_id}");
 		}
 		
-		if (Input.IsActionPressed("Left"))
+		if (Input.IsActionPressed($"Left_{player_id}"))
 		{
 			//Translate(new Vector2(-1.0f, 0.0f));
+			Debug.Print($"Left_${player_id}");
 		}
 		
-		if (Input.IsActionPressed("Down"))
+		if (Input.IsActionPressed($"Down_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, 1.0f));
+			Debug.Print($"Down_${player_id}");
 		}
 		
-		if (Input.IsActionPressed("Right"))
+		if (Input.IsActionPressed($"Right_{player_id}"))
 		{
 			//Translate(new Vector2(1.0f, 0.0f));
+			Debug.Print($"Right_${player_id}");
 		}
 
 		if (GetOverlappingAreas().Count != 0)
@@ -43,7 +48,7 @@ public partial class Player : Area2D
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
 
-		Vector2 movement = Input.GetVector("Left", "Right", "Up", "Down").Normalized() * (float)delta * 100f;
+		Vector2 movement = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized() * (float)delta * 100f;
 		Translate(movement);
 	}
 }
