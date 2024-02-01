@@ -67,7 +67,6 @@ texture = ExtResource("4_7nvjo")
 
 [node name="Player_2" type="Area2D" parent="."]
 script = ExtResource("1_wai16")
-player_id = 1
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_2"]
 position = Vector2(-319.5, -72)
