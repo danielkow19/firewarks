@@ -23,11 +23,10 @@ script = ExtResource("1_wai16")
 
 [node name="Collider" type="CollisionShape2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(163, 343.5)
 shape = SubResource("RectangleShape2D_2fwhj")
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player"]
-position = Vector2(162, 336)
+rotation = -1.5708
 texture = ExtResource("2_j7nd3")
 
 [node name="Area2D" type="Area2D" parent="."]
