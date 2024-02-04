@@ -16,6 +16,10 @@ public partial class Player : Area2D
 	private Vector2 _aimDirection;
 	private float _targetRotation;
 	private float _rotationSpeed;
+	
+	// Energy variables
+	private Timer freeze;
+	private float energy;
 
 	
 	[Export]
@@ -34,12 +38,18 @@ public partial class Player : Area2D
 		_aimDirection = new Vector2(0, 0);
 		_targetRotation = 0;
 		_rotationSpeed = 3f;
+
+		energy = 1000;
+		freeze = GetNode<Timer>("%Freeze");
+		freeze.OneShot = true;
+		freeze.WaitTime = 5;
+		freeze.Start();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// We use string concatination to splice in the player ID for the input system
+		// We use string concatenation to splice in the player ID for the input system
 		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
 		if (Input.IsActionPressed($"Up_{player_id}"))
 		{
@@ -70,8 +80,8 @@ public partial class Player : Area2D
 			Debug.Print(GetOverlappingAreas().ToString());
 		}
 
-		// We use string concatination to splice in the player ID for the input system
-		// The controls will have a naming convetion of Action_{player_id}, player ID starts from 0 and goes up to 3
+		// We use string concatenation to splice in the player ID for the input system
+		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
 		
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
@@ -83,6 +93,7 @@ public partial class Player : Area2D
 			var instance = pattern.Instantiate();			
 			AddSibling(instance);
 			instance.Set("position", Position); 
+			DrainEnergy(100, .15f);
 		}
 
 		if (_aimDirection != Vector2.Zero)
@@ -127,6 +138,21 @@ public partial class Player : Area2D
 			Translate(_direction * _speed * (float)delta);
 		}
 
+		Debug.Print("Time:" + freeze.TimeLeft.ToString());
+		Debug.Print("Energy: " + energy);
+
+		if (freeze.TimeLeft == 0)
+		{
+			energy += 100 * (float)delta;
+
+			if (energy > 1000)
+			{
+				energy = 1000;
+			}
+		}
+
+
+		freeze.GetParent<ProgressBar>().Value = energy;
 
 		// Can't Hide and Show the objects unless I have access to the node
 		Array<Node> lives = healthBar.GetChildren();
@@ -141,5 +167,22 @@ public partial class Player : Area2D
 	public void DamagePlayer(int amount)
 	{
 		health -= amount;
+	}
+
+	public void DrainEnergy(int amount, float delayTime = 0)
+	{
+		energy -= amount;
+		if (energy < 0)
+		{
+			// Potential increase in delay if the energy goes negative
+			energy = 0;
+		}
+
+
+		if (delayTime > 0)
+		{
+			freeze.WaitTime = freeze.TimeLeft + delayTime;
+			freeze.Start();
+		}
 	}
 }
