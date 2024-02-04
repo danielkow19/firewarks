@@ -94,6 +94,8 @@ public partial class Player : Area2D
 			{
 				_targetRotation = MathF.PI * 2 - MathF.Acos(_aimDirection.X);
 			}
+		} else {
+			_targetRotation = Rotation;
 		}
 		Debug.Print("{0}", Rotation - _targetRotation);
 		if (Mathf.Abs(Rotation - _targetRotation) <= _rotationSpeed * (float)delta)
