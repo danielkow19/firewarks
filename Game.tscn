@@ -21,10 +21,11 @@ size = Vector2(146, 180)
 [node name="Game" type="Node2D"]
 
 [node name="Player_1" type="Area2D" parent="."]
+position = Vector2(-300, 100)
 script = ExtResource("1_wai16")
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_1"]
-position = Vector2(-319.5, -72)
+rotation = -1.5708
 texture = ExtResource("2_j7nd3")
 
 [node name="Collider" type="CollisionShape2D" parent="Player_1"]
@@ -66,15 +67,15 @@ texture = ExtResource("4_7nvjo")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player_2" type="Area2D" parent="."]
+position = Vector2(-300, -100)
 script = ExtResource("1_wai16")
 player_id = 1
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_2"]
-position = Vector2(-319.5, -72)
+rotation = -1.5708
 texture = ExtResource("2_j7nd3")
 
 [node name="Collider" type="CollisionShape2D" parent="Player_2"]
-position = Vector2(-318.5, -64.5)
 shape = SubResource("CapsuleShape2D_1p6qy")
 
 [node name="Control" type="Control" parent="."]

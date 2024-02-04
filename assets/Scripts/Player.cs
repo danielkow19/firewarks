@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Godot;
+using Godot.Collections;
 
 namespace FireWARks.assets.Scripts;
 
@@ -32,7 +33,7 @@ public partial class Player : Area2D
 		_direction = new Vector2(0, 0);
 		_aimDirection = new Vector2(0, 0);
 		_targetRotation = 0;
-		_rotationSpeed = 1f;
+		_rotationSpeed = 3f;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -96,24 +97,26 @@ public partial class Player : Area2D
 		{
 			if (_aimDirection.Y > 0)
 			{
-				_targetRotation = MathF.Acos(_aimDirection.X) * (float)delta;
+				_targetRotation = MathF.Acos(_aimDirection.X);
 			}
 			else
 			{
-				_targetRotation = MathF.PI * 2 - MathF.Acos(_aimDirection.X) * (float)delta;
+				_targetRotation = MathF.PI * 2 - MathF.Acos(_aimDirection.X);
 			}
+		} else {
+			_targetRotation = Rotation;
 		}
 		Debug.Print("{0}", Rotation - _targetRotation);
-		if (Mathf.Abs(Rotation - _targetRotation) <= _rotationSpeed)
+		if (Mathf.Abs(Rotation - _targetRotation) <= _rotationSpeed * (float)delta)
 		{
 			Rotation = _targetRotation;
 		}
 		else if (MathF.Abs(Rotation - _targetRotation) > MathF.PI)
 		{
-			Rotation += _rotationSpeed * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
+			Rotation += _rotationSpeed * (float)delta * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 		else {
-			Rotation += _rotationSpeed * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
+			Rotation += _rotationSpeed * (float)delta * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 
 		if(Rotation > MathF.PI * 2) {
@@ -133,18 +136,14 @@ public partial class Player : Area2D
 		}
 
 
+		// Can't Hide and Show the objects unless I have access to the node
+		Array<Node> lives = healthBar.GetChildren();
+		
 		// Change Health bar display
-		/*for (int i = 2; i >= 0; i--)
+		for (int i = 2; i >= 0; i--)
 		{
-			if (health >= i)
-			{
-				healthBar.GetChild<Texture2D>(i).Set("Visible", true);
-			}
-			else
-			{
-				healthBar.GetChild<Texture2D>(i).Set("Visible", false);
-			}
-		}*/
+			lives[i].Set("visible", health >= i);
+		}
 	}
 
 	public void DamagePlayer(int amount)
