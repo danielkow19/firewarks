@@ -75,7 +75,7 @@ public partial class Player : Area2D
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
 		
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
-		_aimDirection = Input.GetVector("AimLeft", "AimRight", "AimUp", "AimDown").Normalized();
+		_aimDirection = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
 		if (Input.IsActionPressed($"Shoot_L_{player_id}"))
 		{
