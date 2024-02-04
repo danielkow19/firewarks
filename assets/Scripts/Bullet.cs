@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Linq;
+using FireWARks.assets.Scripts;
 using Godot.Collections;
 
 public partial class Bullet : Area2D
@@ -65,12 +66,21 @@ public partial class Bullet : Area2D
 		Array<Area2D> collisions = GetOverlappingAreas();
 		
 		// Collision Checking, might move to new method if it gets more complicated
-		// Linq statement is a for loop that loops through non bullet objects
-		if (collisions.Count != 0 && collisions.Any(t => t is not Bullet))
+		if (collisions.Count != 0)
 		{
-			lifetime = 0;
-			QueueFree();
-			return;
+			foreach (Area2D area in collisions)
+			{
+				if (area is not Bullet)
+				{
+					lifetime = 0;
+					QueueFree();
+
+					if (area is Player player)
+					{
+						player.DamagePlayer(1);
+					}
+				}
+			}
 		}
 	}
 	// Called in process. Updates vectors based on given pattern.

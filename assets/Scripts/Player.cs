@@ -7,6 +7,8 @@ namespace FireWARks.assets.Scripts;
 public partial class Player : Area2D
 {
 	private CollisionShape2D _collider;
+	private int health;
+	private HBoxContainer healthBar;
 	private float _speed;
 	private float _slowedSpeed;
 	private Vector2 _direction;
@@ -23,6 +25,8 @@ public partial class Player : Area2D
 	public override void _Ready()
 	{
 		_collider = GetNode<CollisionShape2D>("%Collider");
+		healthBar = GetNode<HBoxContainer>("%Lives");
+		health = 2;
 		_speed = 100;
 		_slowedSpeed = 50;
 		_direction = new Vector2(0, 0);
@@ -66,7 +70,7 @@ public partial class Player : Area2D
 		}
 
 		// We use string concatination to splice in the player ID for the input system
-        // The controls will have a naming convetion of Action_{player_id}, player ID starts from 0 and goes up to 3
+		// The controls will have a naming convetion of Action_{player_id}, player ID starts from 0 and goes up to 3
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
 		
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
@@ -120,5 +124,23 @@ public partial class Player : Area2D
 			Translate(_direction * _speed * (float)delta);
 		}
 
+
+		// Change Health bar display
+		/*for (int i = 2; i >= 0; i--)
+		{
+			if (health >= i)
+			{
+				healthBar.GetChild<Texture2D>(i).Set("Visible", true);
+			}
+			else
+			{
+				healthBar.GetChild<Texture2D>(i).Set("Visible", false);
+			}
+		}*/
+	}
+
+	public void DamagePlayer(int amount)
+	{
+		health -= amount;
 	}
 }
