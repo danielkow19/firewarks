@@ -43,25 +43,25 @@ public partial class Player : Area2D
 		if (Input.IsActionPressed($"Up_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, -1.0f));
-			Debug.Print($"Up_${player_id}");
+			//Debug.Print($"Up_${player_id}");
 		}
 		
 		if (Input.IsActionPressed($"Left_{player_id}"))
 		{
 			//Translate(new Vector2(-1.0f, 0.0f));
-			Debug.Print($"Left_${player_id}");
+			//Debug.Print($"Left_${player_id}");
 		}
 		
 		if (Input.IsActionPressed($"Down_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, 1.0f));
-			Debug.Print($"Down_${player_id}");
+			//Debug.Print($"Down_${player_id}");
 		}
 		
 		if (Input.IsActionPressed($"Right_{player_id}"))
 		{
 			//Translate(new Vector2(1.0f, 0.0f));
-			Debug.Print($"Right_${player_id}");
+			//Debug.Print($"Right_${player_id}");
 		}
 
 		if (GetOverlappingAreas().Count != 0)
@@ -76,12 +76,20 @@ public partial class Player : Area2D
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_aimDirection = Input.GetVector("AimLeft", "AimRight", "AimUp", "AimDown").Normalized();
 
-		if (Input.IsKeyPressed(Key.Space))
+		if (Input.IsActionPressed($"Shoot_L_{player_id}"))
 		{
 			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
 			var instance = pattern.Instantiate();			
 			AddSibling(instance);
 			instance.Set("position", Position); 
+			Debug.Print($"Shoot Left P{player_id}");
+		}
+		if (Input.IsActionPressed($"Shoot_R_{player_id}")){
+			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+			var instance = pattern.Instantiate();			
+			AddSibling(instance);
+			instance.Set("position", Position);
+			Debug.Print($"Shoot Right P{player_id}");
 		}
 
 		if (_aimDirection != Vector2.Zero)
