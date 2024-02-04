@@ -69,6 +69,7 @@ texture = ExtResource("4_7nvjo")
 [node name="Player_2" type="Area2D" parent="."]
 position = Vector2(-300, -100)
 script = ExtResource("1_wai16")
+player_id = 1
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="Player_2"]
 rotation = -1.5708
