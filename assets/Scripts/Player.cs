@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Godot;
+using Godot.Collections;
 
 namespace FireWARks.assets.Scripts;
 
@@ -125,18 +126,14 @@ public partial class Player : Area2D
 		}
 
 
+		// Can't Hide and Show the objects unless I have access to the node
+		Array<Node> lives = healthBar.GetChildren();
+		
 		// Change Health bar display
-		/*for (int i = 2; i >= 0; i--)
+		for (int i = 2; i >= 0; i--)
 		{
-			if (health >= i)
-			{
-				healthBar.GetChild<Texture2D>(i).Set("Visible", true);
-			}
-			else
-			{
-				healthBar.GetChild<Texture2D>(i).Set("Visible", false);
-			}
-		}*/
+			lives[i].Set("visible", health >= i);
+		}
 	}
 
 	public void DamagePlayer(int amount)
