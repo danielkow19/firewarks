@@ -34,11 +34,12 @@ public partial class Bullet : Area2D
 		//LookAt(this.Position + direction);
 		//this.AddChild(collider);
 		//this.AddChild(sprite);
+		
 	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
-
+		this.id = (int)Owner.Get("player_id");
 		//second = 0;
 		
 	}
