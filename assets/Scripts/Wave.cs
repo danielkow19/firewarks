@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class BulletManager : Node
+public partial class Wave : Node
 {
-	//unsure what should be handled here created as an assigned task but will discuss what/if to utilize
-
+	private int numOfBullet;
+	private int spread;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
