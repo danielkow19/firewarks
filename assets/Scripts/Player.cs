@@ -53,7 +53,7 @@ public partial class Player : Area2D
 		_targetRotation = 0;
 		_rotationSpeed = 3f;
 
-		energy = 1000;
+		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
 		freeze.WaitTime = 5;
@@ -123,11 +123,11 @@ public partial class Player : Area2D
 			instance.Set("position", Position);
 			instance.Set("player_id", player_id);
 			DrainEnergy(100, .15f);
-			Debug.Print($"Shoot Left P{player_id}");
+			//Debug.Print($"Shoot Left P{player_id}");
 			_leftCooldown = 0.0;
 		}
 		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
-			Debug.Print($"P{player_id} Left on Cooldown");
+			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
 			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
@@ -135,11 +135,11 @@ public partial class Player : Area2D
 			AddSibling(instance);
 			instance.Set("position", Position);
 			instance.Set("player_id", player_id);
-			Debug.Print($"Shoot Right P{player_id}");
+			//Debug.Print($"Shoot Right P{player_id}");
 			_rightCooldown = 0.0;
 		}
 		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
-			Debug.Print($"P{player_id} Right on Cooldown");
+			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
 
 		if (_rightStickInput != Vector2.Zero)
@@ -156,7 +156,7 @@ public partial class Player : Area2D
 		} else {
 			_targetRotation = Rotation;
 		}
-		Debug.Print("{0}", Rotation - _targetRotation);
+		//Debug.Print("{0}", Rotation - _targetRotation);
 		if (Mathf.Abs(Rotation - _targetRotation) <= _rotationSpeed * (float)delta)
 		{
 			Rotation = _targetRotation;
@@ -187,18 +187,18 @@ public partial class Player : Area2D
 
 		if (freeze.TimeLeft == 0)
 		{
-			energy += 100 * (float)delta;
+			energy += 10 * (float)delta;
 
-			if (energy > 1000)
+			if (energy > 100)
 			{
-				energy = 1000;
+				energy = 100;
 			}
 		}
 
 		// Temp solution so this works for player one
 
-			Debug.Print("Time:" + freeze.TimeLeft.ToString());
-			Debug.Print("Energy: " + energy);
+			//Debug.Print("Time:" + freeze.TimeLeft.ToString());
+			//Debug.Print("Energy: " + energy);
 			freeze.GetParent<ProgressBar>().Value = energy;
 			
 			// Can't Hide and Show the objects unless I have access to the node
@@ -230,6 +230,17 @@ public partial class Player : Area2D
 		{
 			freeze.WaitTime = freeze.TimeLeft + delayTime;
 			freeze.Start();
+		}
+	}
+
+	public void RewardEnergy(int amount)
+	{
+		GD.Print("Rewarded energy");
+		energy += amount;
+
+		if (energy > 100)
+		{
+			energy = 100;
 		}
 	}
 }

@@ -77,8 +77,13 @@ public partial class Bullet : Area2D
 				{
 					if (area is Player player)
 					{
+						//GD.Print(this.id);
 						if(player.player_id != this.id)
-						{						
+						{					
+							// Reward other player for hitting
+							/*string playerName = "%Player_" + id;
+							GetNode<Player>(playerName).RewardEnergy(15);*/
+								
 							player.DamagePlayer(1);
 							lifetime = 0;
 							QueueFree();
