@@ -23,7 +23,7 @@ offset_right = -423.0
 offset_bottom = -242.0
 
 [node name="Player_2" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(-156, 193)
+position = Vector2(-166, 192)
 player_id = 1
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -35,10 +35,6 @@ mesh = SubResource("BoxMesh_ttfpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xxtae")
-
-[node name="Node2D_Bullet_Pattern" type="Node2D" parent="."]
-position = Vector2(-236, 75)
-script = ExtResource("3_33ecd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx5660n6vooik"]
+[gd_scene load_steps=6 format=3 uid="uid://dx5660n6vooik"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_23242"]
+[ext_resource type="Script" path="res://assets/Scripts/Wave.cs" id="2_brtrt"]
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="2_mahga"]
 [ext_resource type="Texture2D" uid="uid://colenu8fb8b1f" path="res://assets/sprites/firework-spark.png" id="3_pdpkk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sk8uo"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-3, 1)
 script = ExtResource("1_23242")
 
 [node name="Wave1" type="Node2D" parent="."]
+script = ExtResource("2_brtrt")
 
 [node name="Bullet6" type="Area2D" parent="Wave1"]
 script = ExtResource("2_mahga")
@@ -53,6 +56,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_pdpkk")
 
 [node name="Wave2" type="Node2D" parent="."]
+script = ExtResource("2_brtrt")
 
 [node name="Bullet4" type="Area2D" parent="Wave2"]
 rotation = 0.349066
@@ -85,6 +89,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_pdpkk")
 
 [node name="Wave3" type="Node2D" parent="."]
+script = ExtResource("2_brtrt")
 
 [node name="Bullet" type="Area2D" parent="Wave3"]
 script = ExtResource("2_mahga")

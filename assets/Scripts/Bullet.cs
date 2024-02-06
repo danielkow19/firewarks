@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using FireWARks.assets.Scripts;
 using Godot.Collections;
+using System.Diagnostics;
 
 public partial class Bullet : Area2D
 {
@@ -14,7 +15,7 @@ public partial class Bullet : Area2D
 	private double lifetime = 10;
 	[Export]
 	public double delay = 0;
-	public int id;
+	public int player_id;
 
 	//private CollisionShape2D collider;
 	//public Sprite2D sprite ;
@@ -22,26 +23,27 @@ public partial class Bullet : Area2D
 	private string[] tags;
 
 	//constructor
-	public Bullet(){
-		//collider = new CollisionShape2D();
-		//collider.Shape = new CapsuleShape2D();
-		//collider.ApplyScale(new Vector2(3/4,3/4));
-		//collider.Rotate((float)Math.PI/2);
-		//sprite = new Sprite2D();
-		//sprite.Texture = GD.Load<Texture2D>("res://.godot/imported/quick bullet.png");
+	// public Bullet(){
+	// 	//collider = new CollisionShape2D();
+	// 	//collider.Shape = new CapsuleShape2D();
+	// 	//collider.ApplyScale(new Vector2(3/4,3/4));
+	// 	//collider.Rotate((float)Math.PI/2);
+	// 	//sprite = new Sprite2D();
+	// 	//sprite.Texture = GD.Load<Texture2D>("res://.godot/imported/quick bullet.png");
 		
-		//sprite.Texture;
-		//LookAt(this.Position + direction);
-		//this.AddChild(collider);
-		//this.AddChild(sprite);
+	// 	//sprite.Texture;
+	// 	//LookAt(this.Position + direction);
+	// 	//this.AddChild(collider);
+	// 	//this.AddChild(sprite);
 		
-	}
+	// }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
-		this.id = (int)Owner.Get("player_id");
 		//second = 0;
-		
+		var parent = this.GetParent();
+		player_id = (int)parent.Get("player_id");
+		Debug.Print($"{player_id}, bullet");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -78,7 +80,7 @@ public partial class Bullet : Area2D
 					if (area is Player player)
 					{
 						//GD.Print(this.id);
-						if(player.player_id != this.id)
+						if(player.player_id != this.player_id)
 						{					
 							// Reward other player for hitting
 							/*string playerName = "%Player_" + id;
