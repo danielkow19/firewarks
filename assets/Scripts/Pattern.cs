@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Pattern : Node
 {
@@ -11,6 +12,8 @@ public partial class Pattern : Node
 	public Pattern(){
 		bullets = new Bullet[3];
 	}
+
+	private int player_id;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

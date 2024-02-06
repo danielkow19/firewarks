@@ -105,7 +105,8 @@ public partial class Player : Area2D
 			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
 			var instance = pattern.Instantiate();			
 			AddSibling(instance);
-			instance.Set("position", Position); 
+			instance.Set("position", Position);
+			instance.Set("player_id", player_id);
 			DrainEnergy(100, .15f);
 			Debug.Print($"Shoot Left P{player_id}");
 			_leftCooldown = 0.0;
@@ -118,6 +119,7 @@ public partial class Player : Area2D
 			var instance = pattern.Instantiate();			
 			AddSibling(instance);
 			instance.Set("position", Position);
+			instance.Set("player_id", player_id);
 			Debug.Print($"Shoot Right P{player_id}");
 			_rightCooldown = 0.0;
 		}
