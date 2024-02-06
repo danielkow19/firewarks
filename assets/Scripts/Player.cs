@@ -7,9 +7,15 @@ namespace FireWARks.assets.Scripts;
 
 public partial class Player : Area2D
 {
+	
+	private Control Hud;
+	
+	// Consider just accessing instead of saving
 	private CollisionShape2D _collider;
 	private int health;
 	private HBoxContainer healthBar;
+	
+	
 	private float _speed;
 	private float _slowedSpeed;
 	private Vector2 _direction;
@@ -18,7 +24,7 @@ public partial class Player : Area2D
 	private float _targetRotation;
 	private float _rotationSpeed;
 	
-	// Energy variables
+	// Energy variables, also consider just accessing
 	private Timer freeze;
 	private float energy;
 
@@ -33,11 +39,14 @@ public partial class Player : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Hud = GetNode<Control>("%PlayerHUD");
+		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
-		healthBar = GetNode<HBoxContainer>("%Lives");
+
+		
 		health = 2;
-		_speed = 100;
-		_slowedSpeed = 50;
+		_speed = 200;
+		_slowedSpeed = _speed / 2;
 		_direction = Vector2.Zero;
 		_rightStickInput = Vector2.Zero;
 		_aimDirection = Vector2.Right;
@@ -45,12 +54,18 @@ public partial class Player : Area2D
 		_rotationSpeed = 3f;
 
 		energy = 1000;
-		freeze = GetNode<Timer>("%Freeze");
+		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
 		freeze.WaitTime = 5;
 		freeze.Start();
 		_leftCooldown = COOLDOWN_MAX;
 		_rightCooldown = COOLDOWN_MAX;
+
+		// Idea for placement, UI may have something bettter
+		/*if (player_id == 0)
+		{
+			Hud.Position = new Vector2(-250f, 500f);
+		}*/
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -181,8 +196,7 @@ public partial class Player : Area2D
 		}
 
 		// Temp solution so this works for player one
-		if (GetChildren().Contains(_collider))
-		{
+
 			Debug.Print("Time:" + freeze.TimeLeft.ToString());
 			Debug.Print("Energy: " + energy);
 			freeze.GetParent<ProgressBar>().Value = energy;
@@ -195,7 +209,6 @@ public partial class Player : Area2D
 			{
 				lives[i].Set("visible", health >= i);
 			}
-		}
 	}
 
 	public void DamagePlayer(int amount)
