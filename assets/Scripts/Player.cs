@@ -165,9 +165,6 @@ public partial class Player : Area2D
 			Translate(_direction * _speed * (float)delta);
 		}
 
-		Debug.Print("Time:" + freeze.TimeLeft.ToString());
-		Debug.Print("Energy: " + energy);
-
 		if (freeze.TimeLeft == 0)
 		{
 			energy += 100 * (float)delta;
@@ -178,16 +175,21 @@ public partial class Player : Area2D
 			}
 		}
 
-
-		freeze.GetParent<ProgressBar>().Value = energy;
-
-		// Can't Hide and Show the objects unless I have access to the node
-		Array<Node> lives = healthBar.GetChildren();
-		
-		// Change Health bar display
-		for (int i = 2; i >= 0; i--)
+		// Temp solution so this works for player one
+		if (GetChildren().Contains(_collider))
 		{
-			lives[i].Set("visible", health >= i);
+			Debug.Print("Time:" + freeze.TimeLeft.ToString());
+			Debug.Print("Energy: " + energy);
+			freeze.GetParent<ProgressBar>().Value = energy;
+			
+			// Can't Hide and Show the objects unless I have access to the node
+			Array<Node> lives = healthBar.GetChildren();
+		
+			// Change Health bar display
+			for (int i = 2; i >= 0; i--)
+			{
+				lives[i].Set("visible", health >= i);
+			}
 		}
 	}
 
