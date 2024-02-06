@@ -53,7 +53,7 @@ public partial class Player : Area2D
 		_targetRotation = 0;
 		_rotationSpeed = 3f;
 
-		energy = 1000;
+		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
 		freeze.WaitTime = 5;
@@ -119,11 +119,11 @@ public partial class Player : Area2D
 		{
 			FirePattern("res://Pattern1.tscn");
 			DrainEnergy(100, .15f);
-			Debug.Print($"Shoot Left P{player_id}");
+			//Debug.Print($"Shoot Left P{player_id}");
 			_leftCooldown = 0.0;
 		}
 		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
-			Debug.Print($"P{player_id} Left on Cooldown");
+			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
 			FirePattern("res://Pattern1.tscn");
@@ -132,7 +132,7 @@ public partial class Player : Area2D
 			_rightCooldown = 0.0;
 		}
 		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
-			Debug.Print($"P{player_id} Right on Cooldown");
+			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
 
 		if (_rightStickInput != Vector2.Zero)
@@ -180,11 +180,11 @@ public partial class Player : Area2D
 
 		if (freeze.TimeLeft == 0)
 		{
-			energy += 100 * (float)delta;
+			energy += 10 * (float)delta;
 
-			if (energy > 1000)
+			if (energy > 100)
 			{
-				energy = 1000;
+				energy = 100;
 			}
 		}
 
@@ -225,7 +225,17 @@ public partial class Player : Area2D
 			freeze.Start();
 		}
 	}
+	
+	public void RewardEnergy(int amount)
+	{
+		GD.Print("Rewarded energy");
+		energy += amount;
 
+		if (energy > 100)
+		{
+			energy = 100;
+		}
+	}
 	public void FirePattern(string sceneToFire){
 		PackedScene pattern = GD.Load<PackedScene>(sceneToFire);
 		var instance = pattern.Instantiate();

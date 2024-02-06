@@ -37,7 +37,6 @@ expand_mode = 3
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
 layout_mode = 2
-max_value = 1000.0
 
 [node name="Freeze" type="Timer" parent="VBoxContainer/ProgressBar"]
 unique_name_in_owner = true
