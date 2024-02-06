@@ -118,10 +118,15 @@ public partial class Player : Area2D
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= COOLDOWN_MAX)
 		{
 			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+			pattern._Set("player_id", player_id);
 			var instance = pattern.Instantiate();			
-			AddSibling(instance);
 			instance.Set("position", Position);
 			instance.Set("player_id", player_id);
+			foreach (var child in instance.GetChildren())
+			{
+				child.Set("player_id", player_id);
+			}
+			AddSibling(instance);
 			DrainEnergy(100, .15f);
 			Debug.Print($"Shoot Left P{player_id}");
 			_leftCooldown = 0.0;
@@ -131,10 +136,15 @@ public partial class Player : Area2D
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
 			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
-			var instance = pattern.Instantiate();			
-			AddSibling(instance);
-			instance.Set("position", Position);
+			var instance = pattern.Instantiate();
+			instance.Set("position", Position);	
 			instance.Set("player_id", player_id);
+			foreach (var child in instance.GetChildren())
+			{
+				child.Set("player_id", player_id);
+			}
+			AddSibling(instance);
+			Debug.Print($"{player_id}");
 			Debug.Print($"Shoot Right P{player_id}");
 			_rightCooldown = 0.0;
 		}
@@ -156,7 +166,7 @@ public partial class Player : Area2D
 		} else {
 			_targetRotation = Rotation;
 		}
-		Debug.Print("{0}", Rotation - _targetRotation);
+		//Debug.Print("{0}", Rotation - _targetRotation);
 		if (Mathf.Abs(Rotation - _targetRotation) <= _rotationSpeed * (float)delta)
 		{
 			Rotation = _targetRotation;
@@ -197,8 +207,8 @@ public partial class Player : Area2D
 
 		// Temp solution so this works for player one
 
-			Debug.Print("Time:" + freeze.TimeLeft.ToString());
-			Debug.Print("Energy: " + energy);
+			//Debug.Print("Time:" + freeze.TimeLeft.ToString());
+			//Debug.Print("Energy: " + energy);
 			freeze.GetParent<ProgressBar>().Value = energy;
 			
 			// Can't Hide and Show the objects unless I have access to the node

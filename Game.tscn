@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=5 format=3 uid="uid://23buby1ymt3d"]
 
-[ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
-[ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="3_33ecd"]
+[ext_resource type="PackedScene" path="res://Player.tscn" id="1_yrali"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ttfpx"]
@@ -21,7 +20,7 @@ offset_right = -423.0
 offset_bottom = -242.0
 
 [node name="Player_2" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(-156, 193)
+position = Vector2(-166, 192)
 player_id = 1
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -33,10 +32,6 @@ mesh = SubResource("BoxMesh_ttfpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xxtae")
-
-[node name="Node2D_Bullet_Pattern" type="Node2D" parent="."]
-position = Vector2(-236, 75)
-script = ExtResource("3_33ecd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
