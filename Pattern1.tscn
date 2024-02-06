@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_23242"]
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="2_mahga"]
-[ext_resource type="Texture2D" uid="uid://cap2aeeb156qt" path="res://assets/sprites/quick bullet.png" id="3_mp3uu"]
+[ext_resource type="Texture2D" uid="uid://colenu8fb8b1f" path="res://assets/sprites/firework-spark.png" id="3_pdpkk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sk8uo"]
 
@@ -17,8 +17,8 @@ lifetime = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Wave1/Bullet6"]
 rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave1/Bullet6"]
 rotation = 1.5708
@@ -29,62 +29,60 @@ rotation = 0.523599
 script = ExtResource("2_mahga")
 lifetime = 20.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wave1/Bullet7"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave1/Bullet7"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave1/Bullet7"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
 
 [node name="Bullet8" type="Area2D" parent="Wave1"]
 rotation = -0.523599
 script = ExtResource("2_mahga")
 lifetime = 20.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wave1/Bullet8"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave1/Bullet8"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave1/Bullet8"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
 
 [node name="Wave2" type="Node2D" parent="."]
 
 [node name="Bullet4" type="Area2D" parent="Wave2"]
 rotation = 0.349066
-scale = Vector2(1, 1)
 script = ExtResource("2_mahga")
 lifetime = 20.0
 delay = 1.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Wave2/Bullet4"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave2/Bullet4"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
 
+[node name="Sprite2D" type="Sprite2D" parent="Wave2/Bullet4"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
+
 [node name="Bullet5" type="Area2D" parent="Wave2"]
 rotation = -0.261799
-scale = Vector2(1, 1)
 script = ExtResource("2_mahga")
 lifetime = 20.0
 delay = 1.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wave2/Bullet5"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave2/Bullet5"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave2/Bullet5"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
 
 [node name="Wave3" type="Node2D" parent="."]
 
@@ -93,14 +91,14 @@ script = ExtResource("2_mahga")
 lifetime = 20.0
 delay = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wave3/Bullet"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave3/Bullet"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave3/Bullet"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
 
 [node name="Bullet2" type="Area2D" parent="Wave3"]
 rotation = 0.523599
@@ -108,14 +106,14 @@ script = ExtResource("2_mahga")
 lifetime = 20.0
 delay = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wave3/Bullet2"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave3/Bullet2"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave3/Bullet2"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
 
 [node name="Bullet3" type="Area2D" parent="Wave3"]
 rotation = -0.523599
@@ -123,11 +121,11 @@ script = ExtResource("2_mahga")
 lifetime = 20.0
 delay = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Wave3/Bullet3"]
-rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("3_mp3uu")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wave3/Bullet3"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sk8uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wave3/Bullet3"]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_pdpkk")
