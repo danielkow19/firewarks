@@ -14,6 +14,7 @@ public partial class Player : Area2D
 	private float _slowedSpeed;
 	private Vector2 _direction;
 	private Vector2 _aimDirection;
+	private Vector2 _rightStickInput;
 	private float _targetRotation;
 	private float _rotationSpeed;
 	
@@ -37,8 +38,9 @@ public partial class Player : Area2D
 		health = 2;
 		_speed = 100;
 		_slowedSpeed = 50;
-		_direction = new Vector2(0, 0);
-		_aimDirection = new Vector2(0, 0);
+		_direction = Vector2.Zero;
+		_rightStickInput = Vector2.Zero;
+		_aimDirection = Vector2.Right;
 		_targetRotation = 0;
 		_rotationSpeed = 3f;
 
@@ -96,14 +98,15 @@ public partial class Player : Area2D
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
 		
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
-		_aimDirection = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
+		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= COOLDOWN_MAX)
 		{
 			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
 			var instance = pattern.Instantiate();			
 			AddSibling(instance);
-			instance.Set("position", Position); 
+			instance.Set("position", Position);
+			instance.Set("player_id", player_id);
 			DrainEnergy(100, .15f);
 			Debug.Print($"Shoot Left P{player_id}");
 			_leftCooldown = 0.0;
@@ -116,6 +119,7 @@ public partial class Player : Area2D
 			var instance = pattern.Instantiate();			
 			AddSibling(instance);
 			instance.Set("position", Position);
+			instance.Set("player_id", player_id);
 			Debug.Print($"Shoot Right P{player_id}");
 			_rightCooldown = 0.0;
 		}
@@ -123,8 +127,9 @@ public partial class Player : Area2D
 			Debug.Print($"P{player_id} Right on Cooldown");
 		}
 
-		if (_aimDirection != Vector2.Zero)
+		if (_rightStickInput != Vector2.Zero)
 		{
+			_aimDirection = _rightStickInput;
 			if (_aimDirection.Y > 0)
 			{
 				_targetRotation = MathF.Acos(_aimDirection.X);
@@ -165,9 +170,6 @@ public partial class Player : Area2D
 			Translate(_direction * _speed * (float)delta);
 		}
 
-		Debug.Print("Time:" + freeze.TimeLeft.ToString());
-		Debug.Print("Energy: " + energy);
-
 		if (freeze.TimeLeft == 0)
 		{
 			energy += 100 * (float)delta;
@@ -178,16 +180,21 @@ public partial class Player : Area2D
 			}
 		}
 
-
-		freeze.GetParent<ProgressBar>().Value = energy;
-
-		// Can't Hide and Show the objects unless I have access to the node
-		Array<Node> lives = healthBar.GetChildren();
-		
-		// Change Health bar display
-		for (int i = 2; i >= 0; i--)
+		// Temp solution so this works for player one
+		if (GetChildren().Contains(_collider))
 		{
-			lives[i].Set("visible", health >= i);
+			Debug.Print("Time:" + freeze.TimeLeft.ToString());
+			Debug.Print("Energy: " + energy);
+			freeze.GetParent<ProgressBar>().Value = energy;
+			
+			// Can't Hide and Show the objects unless I have access to the node
+			Array<Node> lives = healthBar.GetChildren();
+		
+			// Change Health bar display
+			for (int i = 2; i >= 0; i--)
+			{
+				lives[i].Set("visible", health >= i);
+			}
 		}
 	}
 
