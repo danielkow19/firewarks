@@ -36,8 +36,8 @@ public partial class Player : Area2D
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		healthBar = GetNode<HBoxContainer>("%Lives");
 		health = 2;
-		_speed = 100;
-		_slowedSpeed = 50;
+		_speed = 200;
+		_slowedSpeed = _speed / 2;
 		_direction = Vector2.Zero;
 		_rightStickInput = Vector2.Zero;
 		_aimDirection = Vector2.Right;
