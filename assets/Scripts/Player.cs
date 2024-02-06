@@ -27,7 +27,7 @@ public partial class Player : Area2D
 	private const double COOLDOWN_MAX = 2.0f;
 	
 	[Export]
-	private int player_id = 0; //Player ID is what makes the different players have separate controls
+	public int player_id = 0; //Player ID is what makes the different players have separate controls
 
 	
 	// Called when the node enters the scene tree for the first time.
