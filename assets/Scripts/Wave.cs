@@ -7,6 +7,7 @@ public partial class Wave : Node
 {
 	private int numOfBullet = 4;
 	private int spread = 90;
+	public int speed = 40;
 	public int wait;
 
 	public int player_id;
@@ -23,6 +24,7 @@ public partial class Wave : Node
 				instance.Set("player_id", player_id);
 				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180));
 				instance.Set("delay", wait);
+				instance.Set("speed", new Vector2(speed, 0));
 				AddChild(instance);
 			}
 		}
@@ -33,6 +35,7 @@ public partial class Wave : Node
 			instance.Set("position", Get("position"));
 			instance.Set("player_id", player_id);
 			instance.Set("delay", wait);
+			instance.Set("speed", new Vector2(speed, 0));			
 			AddChild(instance);
 		}
 	}

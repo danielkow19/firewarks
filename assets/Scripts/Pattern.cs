@@ -13,6 +13,10 @@ public partial class Pattern : Node
 	public int waves = 3;
 	[Export]
 	public int[] bulletPerWave = {3,4,3};
+	[Export]
+	public int[] spreadPerWave = {80,80,80};
+	[Export]
+	public int[] speedPerWave = {40,40,40};
 	public Pattern(){
 	}
 
@@ -32,6 +36,32 @@ public partial class Pattern : Node
 			}
 			bulletPerWave = waveUpdate;
 		}
+		if(spreadPerWave.Length < waves)
+		{
+			int[] waveUpdate = new int[waves];
+			for (int i = 0; i < waveUpdate.Length; i++)
+			{
+				if(i < spreadPerWave.Length)
+				{
+					waveUpdate[i] = spreadPerWave[i];
+				}
+				else{waveUpdate[i]= 80;}
+			}
+			spreadPerWave = waveUpdate;
+		}
+		if(speedPerWave.Length < waves)
+		{
+			int[] waveUpdate = new int[waves];
+			for (int i = 0; i < waveUpdate.Length; i++)
+			{
+				if(i < speedPerWave.Length)
+				{
+					waveUpdate[i] = speedPerWave[i];
+				}
+				else{waveUpdate[i]= 40;}
+			}
+			speedPerWave = waveUpdate;
+		}
 		for (int i = 0; i < waves; i++)
 		{
 			
@@ -41,6 +71,8 @@ public partial class Pattern : Node
 			instance.Set("player_id", player_id);
 			instance.Set("wait", 2*i);
 			instance.Set("numOfBullet", bulletPerWave[i]);
+			instance.Set("spread", spreadPerWave[i]);
+			instance.Set("speed", speedPerWave[i]);
 			AddChild(instance);
 		}
 	}
