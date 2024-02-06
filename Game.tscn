@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=7 format=3 uid="uid://23buby1ymt3d"]
 
+[ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" path="res://Player.tscn" id="1_yrali"]
+[ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="3_33ecd"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ttfpx"]
@@ -9,6 +11,7 @@
 size = Vector2(146, 180)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_py270")
 
 [node name="Player_1" parent="." instance=ExtResource("1_yrali")]
 position = Vector2(-309, -73)

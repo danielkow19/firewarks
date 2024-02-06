@@ -186,7 +186,7 @@ public partial class Player : Area2D
 			Rotation += MathF.PI * 2;
 		}
 
-		if (Input.IsActionPressed("Slow"))
+		if (Input.IsActionPressed($"Slow_{player_id}"))
 		{
 			Translate(_direction * _slowedSpeed * (float)delta);
 		}
