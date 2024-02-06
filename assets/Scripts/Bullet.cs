@@ -43,7 +43,6 @@ public partial class Bullet : Area2D
 		//second = 0;
 		var parent = this.GetParent();
 		player_id = (int)parent.Get("player_id");
-		Debug.Print($"{player_id}, bullet");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
