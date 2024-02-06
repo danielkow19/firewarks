@@ -14,6 +14,7 @@ public partial class Bullet : Area2D
 	private double lifetime = 10;
 	[Export]
 	public double delay = 0;
+	public int id;
 
 	//private CollisionShape2D collider;
 	//public Sprite2D sprite ;
@@ -33,11 +34,12 @@ public partial class Bullet : Area2D
 		//LookAt(this.Position + direction);
 		//this.AddChild(collider);
 		//this.AddChild(sprite);
+		
 	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
-
+		this.id = (int)Owner.Get("player_id");
 		//second = 0;
 		
 	}
@@ -70,15 +72,25 @@ public partial class Bullet : Area2D
 		{
 			foreach (Area2D area in collisions)
 			{
+				
 				if (area is not Bullet)
 				{
-					lifetime = 0;
-					QueueFree();
-
 					if (area is Player player)
 					{
-						player.DamagePlayer(1);
+						if(player.player_id != this.id)
+						{						
+							player.DamagePlayer(1);
+							lifetime = 0;
+							QueueFree();
+						}
 					}
+					else
+					{
+						lifetime = 0;
+						QueueFree();
+					}
+					
+					
 				}
 			}
 		}
