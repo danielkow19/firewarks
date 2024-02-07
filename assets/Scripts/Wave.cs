@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using FireWARks.assets.Scripts;
 
 public partial class Wave : Node
 {
@@ -10,6 +11,7 @@ public partial class Wave : Node
 	public int speed = 40;
 	public int wait;
 
+	private Player owner;
 	public int player_id;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

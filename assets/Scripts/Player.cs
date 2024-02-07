@@ -56,7 +56,7 @@ public partial class Player : Area2D
 		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
-		freeze.WaitTime = 5;
+		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
 		freeze.Start();
 		_leftCooldown = COOLDOWN_MAX;
 		_rightCooldown = COOLDOWN_MAX;
@@ -103,9 +103,10 @@ public partial class Player : Area2D
 			//Debug.Print($"Right_${player_id}");
 		}
 
+		// If something extra is done with collisions in this class
 		if (GetOverlappingAreas().Count != 0)
 		{
-			Debug.Print(GetOverlappingAreas().ToString());
+			//Debug.Print(GetOverlappingAreas().ToString());
 		}
 
 		// We use string concatenation to splice in the player ID for the input system
@@ -117,19 +118,25 @@ public partial class Player : Area2D
 
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= COOLDOWN_MAX)
 		{
-			FirePattern("res://Pattern1.tscn");
-			DrainEnergy(100, .15f);
-			//Debug.Print($"Shoot Left P{player_id}");
-			_leftCooldown = 0.0;
+			if (energy >= 60)
+			{
+				FirePattern("res://Pattern1.tscn");
+				DrainEnergy(60, .15f);
+				//Debug.Print($"Shoot Left P{player_id}");
+				_leftCooldown = 0.0;
+			}
 		}
 		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
-			FirePattern("res://Pattern1.tscn");
-			Debug.Print($"{player_id}");
-			Debug.Print($"Shoot Right P{player_id}");
-			_rightCooldown = 0.0;
+			if (energy >= 40)
+			{
+				FirePattern("res://Pattern1.tscn");
+				//Debug.Print($"{player_id}");
+				//Debug.Print($"Shoot Right P{player_id}");
+				_rightCooldown = 0.0;
+			}
 		}
 		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
 			//Debug.Print($"P{player_id} Right on Cooldown");
@@ -219,16 +226,14 @@ public partial class Player : Area2D
 		}
 
 
-		if (delayTime > 0)
-		{
-			freeze.WaitTime = freeze.TimeLeft + delayTime;
-			freeze.Start();
-		}
+		// Add the extra delay to the timer
+		if (!(delayTime > 0)) return;
+		freeze.WaitTime = freeze.TimeLeft + delayTime;
+		freeze.Start();
 	}
 	
 	public void RewardEnergy(int amount)
 	{
-		GD.Print("Rewarded energy");
 		energy += amount;
 
 		if (energy > 100)
@@ -236,15 +241,18 @@ public partial class Player : Area2D
 			energy = 100;
 		}
 	}
-	public void FirePattern(string sceneToFire){
+	private void FirePattern(string sceneToFire){
 		PackedScene pattern = GD.Load<PackedScene>(sceneToFire);
 		var instance = pattern.Instantiate();
 		instance.Set("position", this.Position);	
 		instance.Set("player_id", player_id);
 		instance.Set("rotation", this.Rotation);
+		instance.Set("owner", this);
 		foreach (var child in instance.GetChildren())
 		{
+			// May only need one of these variables
 			child.Set("player_id", player_id);
+			child.Set("owner", this);
 		}
 		AddSibling(instance);
 	}

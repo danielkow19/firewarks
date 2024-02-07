@@ -16,6 +16,11 @@ public partial class Bullet : Area2D
 	[Export]
 	public double delay = 0;
 	public int player_id;
+	
+	// Might not be required. Couldn't figure out a way to reference the player who
+	// fired through code. Unique names don't work if built through a string (apparently)
+	// and I couldn't make relative paths work. This might make player_id obsolete
+	private Player owner;
 
 	//private CollisionShape2D collider;
 	//public Sprite2D sprite ;
@@ -43,6 +48,7 @@ public partial class Bullet : Area2D
 		//second = 0;
 		var parent = this.GetParent();
 		player_id = (int)parent.Get("player_id");
+		owner = (Player) parent.Get("owner");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,18 +79,16 @@ public partial class Bullet : Area2D
 		{
 			foreach (Area2D area in collisions)
 			{
-				
 				if (area is not Bullet)
 				{
 					if (area is Player player)
 					{
 						//GD.Print(this.id);
-						if(player.player_id != this.player_id)
-						{					
-							// Reward other player for hitting
-							/*string playerName = "%Player_" + id;
-							GetNode<Player>(playerName).RewardEnergy(15);*/
-								
+						if(player != owner)
+						{
+							// Attempt to reward player the bullet came from
+							owner.RewardEnergy(15);
+							
 							player.DamagePlayer(1);
 							lifetime = 0;
 							QueueFree();

@@ -2,11 +2,14 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using FireWARks.assets.Scripts;
 
 public partial class Pattern : Node
 {
 
 	public int player_id;
+	private Player owner;
+	
 	//base class for a bullet pattern, returns function or path for x bullet in pattern at y time
 	//creates UI warning for bullet paths etc
 	[Export]
@@ -69,6 +72,7 @@ public partial class Pattern : Node
 			var instance = pattern.Instantiate();
 			//instance.Set("position", Get("position"));	
 			instance.Set("player_id", player_id);
+			instance.Set("owner", owner);
 			instance.Set("wait", 2*i);
 			instance.Set("numOfBullet", bulletPerWave[i]);
 			instance.Set("spread", spreadPerWave[i]);
