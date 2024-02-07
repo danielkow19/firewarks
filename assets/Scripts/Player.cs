@@ -241,19 +241,13 @@ public partial class Player : Area2D
 			energy = 100;
 		}
 	}
+	//takes in pattern and sets properties then spawns
 	private void FirePattern(string sceneToFire){
 		PackedScene pattern = GD.Load<PackedScene>(sceneToFire);
 		var instance = pattern.Instantiate();
-		instance.Set("position", this.Position);	
-		instance.Set("player_id", player_id);
+		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);
 		instance.Set("owner", this);
-		foreach (var child in instance.GetChildren())
-		{
-			// May only need one of these variables
-			child.Set("player_id", player_id);
-			child.Set("owner", this);
-		}
 		AddSibling(instance);
 	}
 }

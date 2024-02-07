@@ -6,12 +6,7 @@ using FireWARks.assets.Scripts;
 
 public partial class Pattern : Node
 {
-
-	public int player_id;
 	private Player owner;
-	
-	//base class for a bullet pattern, returns function or path for x bullet in pattern at y time
-	//creates UI warning for bullet paths etc
 	[Export]
 	public int waves = 3;
 	[Export]
@@ -26,6 +21,36 @@ public partial class Pattern : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		PopulateWaves();
+		SpawnWaves();
+		
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		if(GetChildCount() < 1)
+		{
+			QueueFree();
+		}
+	}
+	//instantiates each wave setting variables
+	public void SpawnWaves(){
+		for (int i = 0; i < waves; i++)
+		{
+			
+			PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
+			var instance = pattern.Instantiate();
+			instance.Set("owner", owner);
+			instance.Set("wait", 2*i);
+			instance.Set("numOfBullet", bulletPerWave[i]);
+			instance.Set("spread", spreadPerWave[i]);
+			instance.Set("speed", speedPerWave[i]);
+			AddChild(instance);
+		}
+	}
+	//checks arrays for wave values before spawning waves, setting unfilled values to a default
+	public void PopulateWaves(){
 		if(bulletPerWave.Length < waves)
 		{
 			int[] waveUpdate = new int[waves];
@@ -65,28 +90,5 @@ public partial class Pattern : Node
 			}
 			speedPerWave = waveUpdate;
 		}
-		for (int i = 0; i < waves; i++)
-		{
-			
-			PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
-			var instance = pattern.Instantiate();
-			//instance.Set("position", Get("position"));	
-			instance.Set("player_id", player_id);
-			instance.Set("owner", owner);
-			instance.Set("wait", 2*i);
-			instance.Set("numOfBullet", bulletPerWave[i]);
-			instance.Set("spread", spreadPerWave[i]);
-			instance.Set("speed", speedPerWave[i]);
-			AddChild(instance);
-		}
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
-	public void PopulateBullets(){
-
 	}
 }

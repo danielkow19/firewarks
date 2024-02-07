@@ -15,39 +15,12 @@ public partial class Bullet : Area2D
 	private double lifetime = 10;
 	[Export]
 	public double delay = 0;
-	public int player_id;
-	
-	// Might not be required. Couldn't figure out a way to reference the player who
-	// fired through code. Unique names don't work if built through a string (apparently)
-	// and I couldn't make relative paths work. This might make player_id obsolete
 	private Player owner;
-
-	//private CollisionShape2D collider;
-	//public Sprite2D sprite ;
-	//private double second;
 	private string[] tags;
-
-	//constructor
-	// public Bullet(){
-	// 	//collider = new CollisionShape2D();
-	// 	//collider.Shape = new CapsuleShape2D();
-	// 	//collider.ApplyScale(new Vector2(3/4,3/4));
-	// 	//collider.Rotate((float)Math.PI/2);
-	// 	//sprite = new Sprite2D();
-	// 	//sprite.Texture = GD.Load<Texture2D>("res://.godot/imported/quick bullet.png");
-		
-	// 	//sprite.Texture;
-	// 	//LookAt(this.Position + direction);
-	// 	//this.AddChild(collider);
-	// 	//this.AddChild(sprite);
-		
-	// }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
-		//second = 0;
 		var parent = this.GetParent();
-		player_id = (int)parent.Get("player_id");
 		owner = (Player) parent.Get("owner");
 	}
 
@@ -64,14 +37,11 @@ public partial class Bullet : Area2D
 		{
 			this.QueueFree();
 		}
-		//second += delta;
-		//if(second >= 1)
-		//{
-		//	second = 0;
-		//	CalculateVectors(1, delta);
-		//}
+		CheckCollisions();
+	}
 
-
+	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
+	private void CheckCollisions(){
 		Array<Area2D> collisions = GetOverlappingAreas();
 		
 		// Collision Checking, might move to new method if it gets more complicated
@@ -98,17 +68,9 @@ public partial class Bullet : Area2D
 					{
 						lifetime = 0;
 						QueueFree();
-					}
-					
-					
+					}		
 				}
 			}
 		}
-	}
-	// Called in process. Updates vectors based on given pattern.
-	private void CalculateVectors(int pattern, double delta)
-	{	 	
-		//Rotate((float)Math.PI/45 * (float)delta);
-		//speed.Y = Mathf.Sin(Position.X * 1/20) * 50;
 	}
 }
