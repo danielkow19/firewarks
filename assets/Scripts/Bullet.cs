@@ -17,6 +17,7 @@ public partial class Bullet : Area2D
 	public double delay = 0;
 	private Player owner;
 	private string[] tags;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
@@ -43,8 +44,6 @@ public partial class Bullet : Area2D
 	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
 	private void CheckCollisions(){
 		Array<Area2D> collisions = GetOverlappingAreas();
-		
-		// Collision Checking, might move to new method if it gets more complicated
 		if (collisions.Count != 0)
 		{
 			foreach (Area2D area in collisions)
@@ -53,7 +52,6 @@ public partial class Bullet : Area2D
 				{
 					if (area is Player player)
 					{
-						//GD.Print(this.id);
 						if(player != owner)
 						{
 							// Attempt to reward player the bullet came from
