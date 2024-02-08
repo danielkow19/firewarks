@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ma03tm36hd1w"]
+
+[ext_resource type="Texture2D" uid="uid://cap2aeeb156qt" path="res://assets/sprites/quick bullet.png" id="1_5msln"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcuqv"]
+
+[node name="Area2D" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pcuqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5msln")
