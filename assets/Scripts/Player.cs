@@ -31,6 +31,14 @@ public partial class Player : Area2D
 	private bool _damageable;
 	private float _invTimeMax;
 	private float _invTime;
+	private Sprite2D _playerSprite;
+	private Color _initialColor;
+	private Color _alternateColor;
+
+	// How long a single color of the invulnerability display lasts before flashing back to the other color
+	private float _singleColorTime;
+	// Double the value of _singleColorTime, the time a cycle including both colors takes
+	private float _doubleColorTime;
 	
 	// Energy variables, also consider just accessing
 	private Timer freeze;
@@ -65,6 +73,11 @@ public partial class Player : Area2D
 		_damageable = true;
 		_invTimeMax = 3;
 		_invTime = _invTimeMax;
+		_playerSprite = this.GetChild<Sprite2D>(0);
+		_initialColor = _playerSprite.Modulate;
+		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 256);
+		_singleColorTime = 0.5f;
+		_doubleColorTime = 1f;
 
 		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
@@ -81,6 +94,40 @@ public partial class Player : Area2D
 		{
 			Hud.Position = new Vector2(-250f, 500f);
 		}*/
+		
+		// Can't Hide and Show the objects unless I have access to the node
+		Array<Node> lives = healthBar.GetChildren();
+		
+		
+
+		Color set;
+		switch (player_id)
+		{
+			case 0:
+				set = Colors.Aquamarine;
+				break;
+			case 1:
+				set = Colors.RebeccaPurple;
+				break;
+			case 2:
+				set = Colors.Firebrick;
+				break;
+			case 3:
+				set = Colors.Lime;
+				break;
+			default:
+				set = Colors.White;
+				break;
+		}
+
+		// Change Phoenix color
+		Modulate = set;
+		
+		// Change lives color
+		for (int i = 2; i >= 0; i--)
+		{
+			((TextureRect)lives[i]).Modulate = set;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -233,14 +280,21 @@ public partial class Player : Area2D
 			// Change Health bar display
 			for (int i = 2; i >= 0; i--)
 			{
-				lives[i].Set("visible", health >= i);
+				((TextureRect)lives[i]).Visible = (health >= i);
 			}
 
+		// Invulnerability logic
 		if(_invTime >= _invTimeMax) {
 			_damageable = true;
 		} else {
 			_invTime += (float)delta;
 		}
+		if(_invTime % _doubleColorTime <= _singleColorTime && _invTime < _invTimeMax && _playerSprite.Modulate != _alternateColor) {
+			_playerSprite.Modulate = _alternateColor;
+		} else if(_invTime % _doubleColorTime > _singleColorTime || _invTime >= _invTimeMax) {
+			_playerSprite.Modulate = _initialColor;
+		}
+		
 	}
 
 	public void DamagePlayer(int amount)
