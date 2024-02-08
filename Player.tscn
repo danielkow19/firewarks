@@ -40,9 +40,10 @@ offset_right = 68.0
 offset_bottom = 130.0
 metadata/_edit_use_anchors_ = true
 
-[connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [node name="LeftTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
 [node name="RightTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]

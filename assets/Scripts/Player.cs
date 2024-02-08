@@ -85,10 +85,10 @@ public partial class Player : Area2D
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
 		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
-        freeze.Start();
+		freeze.Start();
 
 		_leftCooldown = GetNode<Timer>("%LeftTimer");
-        _leftCooldown.OneShot = true;
+		_leftCooldown.OneShot = true;
 		_rightCooldown = GetNode<Timer>("%RightTimer");
 		_rightCooldown.OneShot = true;
 		_leftCooldown.WaitTime = .1f;
@@ -154,11 +154,11 @@ public partial class Player : Area2D
 			return;
 		}
 
-        // We use string concatination to splice in the player ID for the input system
-        // The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
+		// We use string concatination to splice in the player ID for the input system
+		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
 
-        // Deprecated
-        if (Input.IsActionPressed($"Up_{player_id}"))
+		// Deprecated
+		if (Input.IsActionPressed($"Up_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, -1.0f));
 			//Debug.Print($"Up_${player_id}");
@@ -196,7 +196,7 @@ public partial class Player : Area2D
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
 		// Update cool down timers
-        if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
+		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
 			if (energy >= 60)
 			{
@@ -214,7 +214,7 @@ public partial class Player : Area2D
 			if (energy >= 40)
 			{
 				FirePattern("res://Pattern1.tscn");
-                DrainEnergy(60, .15f);
+				DrainEnergy(60, .15f);
 				//Debug.Print($"{player_id}");
 				//Debug.Print($"Shoot Right P{player_id}");
 				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
