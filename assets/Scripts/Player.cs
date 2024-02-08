@@ -15,7 +15,7 @@ public partial class Player : Area2D
 	private int health;
 	private HBoxContainer healthBar;
 	
-	
+	// Movement and Aiming Variables
 	private float _speed;
 	private float _slowedSpeed;
 	private Vector2 _direction;
@@ -23,6 +23,11 @@ public partial class Player : Area2D
 	private Vector2 _rightStickInput;
 	private float _targetRotation;
 	private float _rotationSpeed;
+
+	// Invincibility frames variables
+	private bool _damageable;
+	private float _invTimeMax;
+	private float _invTime;
 	
 	// Energy variables, also consider just accessing
 	private Timer freeze;
@@ -52,6 +57,10 @@ public partial class Player : Area2D
 		_aimDirection = Vector2.Right;
 		_targetRotation = 0;
 		_rotationSpeed = 3f;
+
+		_damageable = true;
+		_invTimeMax = 3;
+		_invTime = _invTimeMax;
 
 		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
@@ -243,11 +252,21 @@ public partial class Player : Area2D
 			{
 				((TextureRect)lives[i]).Visible = (health >= i);
 			}
+
+		if(_invTime >= _invTimeMax) {
+			_damageable = true;
+		} else {
+			_invTime += (float)delta;
+		}
 	}
 
 	public void DamagePlayer(int amount)
 	{
-		health -= amount;
+		if(_damageable) {
+			health -= amount;
+			_damageable = false;
+			_invTime = 0;
+		}
 	}
 
 	public void DrainEnergy(int amount, float delayTime = 0)
