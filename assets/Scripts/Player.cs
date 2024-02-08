@@ -270,7 +270,7 @@ public partial class Player : Area2D
 
 		if (freeze.TimeLeft == 0)
 		{
-			energy += 10 * (float)delta;
+			energy += 1 * (float)delta;
 
 			if (energy > 100)
 			{
@@ -356,10 +356,12 @@ public partial class Player : Area2D
 	// This is an event/signal function
 	private void _on_graze(Area2D area)
 	{
-		GD.Print("Grazed");
 		if (area is not Bullet bullet) return;
-		if (bullet.owner != this && !GetOverlappingAreas().Contains(area))
+		if (bullet.owner != this && bullet.RewardsAvailable)
 		{
+			// TODO: note that this will be a problem with more than two players where only one player can graze this bullet
+			// Prevents double dipping on grazing
+			bullet.RewardsAvailable = false;
 			RewardEnergy(30);
 		}
 	}
