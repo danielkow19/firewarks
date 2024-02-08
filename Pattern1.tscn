@@ -8,7 +8,7 @@ script = ExtResource("1_23242")
 waves = 5
 bulletPerWave = PackedInt32Array(30, 30, 15, 20, 20)
 spreadPerWave = PackedInt32Array(360, 360, 180, 360, 360)
-speedPerWave = PackedInt32Array(80, 80, 160, 80, 80)
+speedPerWave = PackedInt32Array(100, 100, 200, 100, 100)
 offsetPerWave = PackedInt32Array(0, 6, 0, 9, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

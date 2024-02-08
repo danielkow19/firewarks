@@ -10,6 +10,8 @@ public partial class Pattern : Node
 	[Export]
 	public int waves = 3;
 	[Export]
+	public double delay = 1;
+	[Export]
 	public int[] bulletPerWave = {3,4,3};
 	[Export]
 	public int[] spreadPerWave = {80,80,80};
@@ -45,7 +47,7 @@ public partial class Pattern : Node
 			PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
 			var instance = pattern.Instantiate();
 			instance.Set("owner", owner);
-			instance.Set("wait", 2*i);
+			instance.Set("wait", i*delay);
 			instance.Set("numOfBullet", bulletPerWave[i]);
 			instance.Set("spread", spreadPerWave[i]);
 			instance.Set("speed", speedPerWave[i]);

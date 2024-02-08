@@ -21,25 +21,28 @@ public partial class Bullet : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
+		this.Hide();	
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
-		
-		switch (owner.player_id)
-		{
-			case 0:
-				Modulate = Colors.Aquamarine;
-				break;
-			case 1:
-				Modulate = Colors.RebeccaPurple;
-				break;
-			case 2:
-				Modulate = Colors.Firebrick;
-				break;
-			case 3:
-				Modulate = Colors.Lime;
-				break;
+		if(owner != null){			
+			switch (owner.player_id)
+			{
+				case 0:
+					Modulate = Colors.Aquamarine;
+					break;
+				case 1:
+					Modulate = Colors.RebeccaPurple;
+					break;
+				case 2:
+					Modulate = Colors.Firebrick;
+					break;
+				case 3:
+					Modulate = Colors.Lime;
+					break;
+			}
 		}
-		this.Hide();
+		
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,7 +73,7 @@ public partial class Bullet : Area2D
 		{
 			foreach (Area2D area in collisions)
 			{
-				if (area is not Bullet)
+				if (area is not Bullet && area is not Resource)
 				{
 					if (area is Player player)
 					{
