@@ -66,6 +66,40 @@ public partial class Player : Area2D
 		{
 			Hud.Position = new Vector2(-250f, 500f);
 		}*/
+		
+		// Can't Hide and Show the objects unless I have access to the node
+		Array<Node> lives = healthBar.GetChildren();
+		
+		
+
+		Color set;
+		switch (player_id)
+		{
+			case 0:
+				set = Colors.Aquamarine;
+				break;
+			case 1:
+				set = Colors.RebeccaPurple;
+				break;
+			case 2:
+				set = Colors.Firebrick;
+				break;
+			case 3:
+				set = Colors.Lime;
+				break;
+			default:
+				set = Colors.White;
+				break;
+		}
+
+		// Change Phoenix color
+		Modulate = set;
+		
+		// Change lives color
+		for (int i = 2; i >= 0; i--)
+		{
+			((TextureRect)lives[i]).Modulate = set;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -207,7 +241,7 @@ public partial class Player : Area2D
 			// Change Health bar display
 			for (int i = 2; i >= 0; i--)
 			{
-				lives[i].Set("visible", health >= i);
+				((TextureRect)lives[i]).Visible = (health >= i);
 			}
 	}
 

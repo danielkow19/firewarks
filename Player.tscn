@@ -24,8 +24,8 @@ shape = SubResource("CapsuleShape2D_rcfy7")
 [node name="PlayerHUD" parent="." instance=ExtResource("3_r83a8")]
 unique_name_in_owner = true
 top_level = true
-offset_left = -552.0
-offset_top = -303.0
-offset_right = -423.0
-offset_bottom = -242.0
+offset_left = -61.0
+offset_top = 69.0
+offset_right = 68.0
+offset_bottom = 130.0
 metadata/_edit_use_anchors_ = true
