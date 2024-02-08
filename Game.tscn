@@ -16,7 +16,7 @@ script = ExtResource("1_py270")
 [node name="Player_1" parent="." instance=ExtResource("1_yrali")]
 position = Vector2(-309, -73)
 
-[node name="PlayerHUD" parent="Player_1" index="2"]
+[node name="PlayerHUD" parent="Player_1" index="3"]
 offset_left = -784.0
 offset_top = -400.0
 offset_right = -655.0

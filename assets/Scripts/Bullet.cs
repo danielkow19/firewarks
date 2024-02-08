@@ -15,7 +15,7 @@ public partial class Bullet : Area2D
 	private double lifetime = 10;
 	[Export]
 	public double delay = 0;
-	private Player owner;
+	public Player owner;
 	private string[] tags;
 	
 	// Called when the node enters the scene tree for the first time.
