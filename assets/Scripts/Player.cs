@@ -52,6 +52,7 @@ public partial class Player : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Fetch Children
 		Hud = GetNode<Control>("%PlayerHUD");
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
@@ -75,6 +76,7 @@ public partial class Player : Area2D
 		_singleColorTime = 0.5f;
 		_doubleColorTime = 1f;
 
+		// UI and Cool downs
 		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
@@ -322,5 +324,16 @@ public partial class Player : Area2D
 		instance.Set("rotation", this.Rotation);
 		instance.Set("owner", this);
 		AddSibling(instance);
+	}
+	
+	// This is an event/signal function
+	private void _on_graze(Area2D area)
+	{
+		GD.Print("Grazed");
+		if (area is not Bullet bullet) return;
+		if (bullet.owner != this && !GetOverlappingAreas().Contains(area))
+		{
+			RewardEnergy(30);
+		}
 	}
 }
