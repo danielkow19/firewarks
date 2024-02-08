@@ -272,7 +272,7 @@ public partial class Player : Area2D
 
 		if (freeze.TimeLeft == 0)
 		{
-			energy += 1 * (float)delta;
+			energy += 10 * (float)delta;
 
 			if (energy > 100)
 			{
