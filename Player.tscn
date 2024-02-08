@@ -1,29 +1,31 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_vgjtl"]
-[ext_resource type="Texture2D" uid="uid://dgteu3kikcie8" path="res://assets/sprites/2MinuteToken-Phoenix.png" id="2_mf1ms"]
+[ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://Player_HUD.tscn" id="3_r83a8"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1p6qy"]
-radius = 40.5
-height = 83.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
+radius = 4.0
+height = 14.0
 
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_vgjtl")
 
 [node name="2MinuteToken-phoenix" type="Sprite2D" parent="."]
-rotation = -1.5708
-texture = ExtResource("2_mf1ms")
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ogaot")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-shape = SubResource("CapsuleShape2D_1p6qy")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rcfy7")
 
 [node name="PlayerHUD" parent="." instance=ExtResource("3_r83a8")]
 unique_name_in_owner = true
 top_level = true
-offset_left = -60.0
-offset_top = 60.0
-offset_right = 69.0
-offset_bottom = 121.0
+offset_left = -552.0
+offset_top = -303.0
+offset_right = -423.0
+offset_bottom = -242.0
 metadata/_edit_use_anchors_ = true

@@ -62,10 +62,10 @@ public partial class Player : Area2D
 		_invTimeMax = 3;
 		_invTime = _invTimeMax;
 
-		energy = 1000;
+		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
-		freeze.WaitTime = 5;
+		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
 		freeze.Start();
 		_leftCooldown = COOLDOWN_MAX;
 		_rightCooldown = COOLDOWN_MAX;
@@ -112,9 +112,10 @@ public partial class Player : Area2D
 			//Debug.Print($"Right_${player_id}");
 		}
 
+		// If something extra is done with collisions in this class
 		if (GetOverlappingAreas().Count != 0)
 		{
-			Debug.Print(GetOverlappingAreas().ToString());
+			//Debug.Print(GetOverlappingAreas().ToString());
 		}
 
 		// We use string concatenation to splice in the player ID for the input system
@@ -126,29 +127,28 @@ public partial class Player : Area2D
 
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= COOLDOWN_MAX)
 		{
-			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
-			var instance = pattern.Instantiate();			
-			AddSibling(instance);
-			instance.Set("position", Position);
-			instance.Set("player_id", player_id);
-			DrainEnergy(100, .15f);
-			Debug.Print($"Shoot Left P{player_id}");
-			_leftCooldown = 0.0;
+			if (energy >= 60)
+			{
+				FirePattern("res://Pattern1.tscn");
+				DrainEnergy(60, .15f);
+				//Debug.Print($"Shoot Left P{player_id}");
+				_leftCooldown = 0.0;
+			}
 		}
 		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
-			Debug.Print($"P{player_id} Left on Cooldown");
+			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
-			PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
-			var instance = pattern.Instantiate();			
-			AddSibling(instance);
-			instance.Set("position", Position);
-			instance.Set("player_id", player_id);
-			Debug.Print($"Shoot Right P{player_id}");
-			_rightCooldown = 0.0;
+			if (energy >= 40)
+			{
+				FirePattern("res://Pattern1.tscn");
+				//Debug.Print($"{player_id}");
+				//Debug.Print($"Shoot Right P{player_id}");
+				_rightCooldown = 0.0;
+			}
 		}
 		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
-			Debug.Print($"P{player_id} Right on Cooldown");
+			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
 
 		if (_rightStickInput != Vector2.Zero)
@@ -165,7 +165,7 @@ public partial class Player : Area2D
 		} else {
 			_targetRotation = Rotation;
 		}
-		Debug.Print("{0}", Rotation - _targetRotation);
+		//Debug.Print("{0}", Rotation - _targetRotation);
 		if (Mathf.Abs(Rotation - _targetRotation) <= _rotationSpeed * (float)delta)
 		{
 			Rotation = _targetRotation;
@@ -196,18 +196,18 @@ public partial class Player : Area2D
 
 		if (freeze.TimeLeft == 0)
 		{
-			energy += 100 * (float)delta;
+			energy += 10 * (float)delta;
 
-			if (energy > 1000)
+			if (energy > 100)
 			{
-				energy = 1000;
+				energy = 100;
 			}
 		}
 
 		// Temp solution so this works for player one
 
-			Debug.Print("Time:" + freeze.TimeLeft.ToString());
-			Debug.Print("Energy: " + energy);
+			//Debug.Print("Time:" + freeze.TimeLeft.ToString());
+			//Debug.Print("Energy: " + energy);
 			freeze.GetParent<ProgressBar>().Value = energy;
 			
 			// Can't Hide and Show the objects unless I have access to the node
@@ -245,10 +245,28 @@ public partial class Player : Area2D
 		}
 
 
-		if (delayTime > 0)
+		// Add the extra delay to the timer
+		if (!(delayTime > 0)) return;
+		freeze.WaitTime = freeze.TimeLeft + delayTime;
+		freeze.Start();
+	}
+	
+	public void RewardEnergy(int amount)
+	{
+		energy += amount;
+
+		if (energy > 100)
 		{
-			freeze.WaitTime = freeze.TimeLeft + delayTime;
-			freeze.Start();
+			energy = 100;
 		}
+	}
+	//takes in pattern and sets properties then spawns
+	private void FirePattern(string sceneToFire){
+		PackedScene pattern = GD.Load<PackedScene>(sceneToFire);
+		var instance = pattern.Instantiate();
+		instance.Set("position", this.Position);
+		instance.Set("rotation", this.Rotation);
+		instance.Set("owner", this);
+		AddSibling(instance);
 	}
 }
