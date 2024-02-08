@@ -4,3 +4,8 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_23242")
+waves = 5
+bulletPerWave = PackedInt32Array(30, 30, 15, 20, 20)
+spreadPerWave = PackedInt32Array(360, 360, 180, 360, 360)
+speedPerWave = PackedInt32Array(80, 80, 160, 80, 80)
+offsetPerWave = PackedInt32Array(0, 6, 0, 9, 0)

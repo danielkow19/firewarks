@@ -14,6 +14,9 @@ public partial class Player : Area2D
 	private CollisionShape2D _collider;
 	private int health;
 	private HBoxContainer healthBar;
+
+	// Player sprite for death
+	private Sprite2D mySprite;
 	
 	// Movement and Aiming Variables
 	private float _speed;
@@ -41,13 +44,15 @@ public partial class Player : Area2D
 	private Timer freeze;
 	private float energy;
 
-	private double _leftCooldown;
-	private double _rightCooldown;
-	private const double COOLDOWN_MAX = 2.0f;
+	private Timer _leftCooldown;
+	private Timer _rightCooldown;
+	private const double LEFT_COOLDOWN_MAX = 2.0f;
+	private const double RIGHT_COOLDOWN_MAX = 4.0f;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
-
+	[Export]
+	public bool isDead;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -56,7 +61,6 @@ public partial class Player : Area2D
 		Hud = GetNode<Control>("%PlayerHUD");
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
-
 		
 		health = 2;
 		_speed = 200;
@@ -72,7 +76,7 @@ public partial class Player : Area2D
 		_invTime = _invTimeMax;
 		_playerSprite = this.GetChild<Sprite2D>(0);
 		_initialColor = _playerSprite.Modulate;
-		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 256);
+		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 255);
 		_singleColorTime = 0.5f;
 		_doubleColorTime = 1f;
 
@@ -81,9 +85,18 @@ public partial class Player : Area2D
 		freeze = Hud.GetNode<Timer>("%Freeze");
 		freeze.OneShot = true;
 		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
-		freeze.Start();
-		_leftCooldown = COOLDOWN_MAX;
-		_rightCooldown = COOLDOWN_MAX;
+        freeze.Start();
+
+		_leftCooldown = GetNode<Timer>("%LeftTimer");
+        _leftCooldown.OneShot = true;
+		_rightCooldown = GetNode<Timer>("%RightTimer");
+		_rightCooldown.OneShot = true;
+		_leftCooldown.WaitTime = .1f;
+		_rightCooldown.WaitTime = .1f; 
+		_leftCooldown.Start();
+		_rightCooldown.Start(); 
+
+		isDead = false;
 
 		// Idea for placement, UI may have something bettter
 		/*if (player_id == 0)
@@ -130,14 +143,22 @@ public partial class Player : Area2D
 	public override void _Process(double delta)
 	{
 		// We use string concatenation to splice in the player ID for the input system
-		// Update the Bullet Cooldowns, add the delta time to the current value
-		_leftCooldown += delta;
-		_rightCooldown += delta;
-		
-		
-		// We use string concatination to splice in the player ID for the input system
-		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
-		if (Input.IsActionPressed($"Up_{player_id}"))
+
+		if (isDead)
+		{
+			healthBar.Hide();
+			freeze.GetParent<ProgressBar>().Hide();
+			_collider.Disabled = true;
+			_playerSprite.Hide();
+
+			return;
+		}
+
+        // We use string concatination to splice in the player ID for the input system
+        // The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
+
+        // Deprecated
+        if (Input.IsActionPressed($"Up_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, -1.0f));
 			//Debug.Print($"Up_${player_id}");
@@ -174,26 +195,30 @@ public partial class Player : Area2D
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
-		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= COOLDOWN_MAX)
+		// Update cool down timers
+        if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
 			if (energy >= 60)
 			{
 				FirePattern("res://Pattern1.tscn");
 				DrainEnergy(60, .15f);
 				//Debug.Print($"Shoot Left P{player_id}");
-				_leftCooldown = 0.0;
+				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
+				_leftCooldown.Start();
 			}
 		}
 		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
-		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
+		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
 			if (energy >= 40)
 			{
 				FirePattern("res://Pattern1.tscn");
+                DrainEnergy(60, .15f);
 				//Debug.Print($"{player_id}");
 				//Debug.Print($"Shoot Right P{player_id}");
-				_rightCooldown = 0.0;
+				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
+				_rightCooldown.Start();
 			}
 		}
 		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
@@ -288,6 +313,8 @@ public partial class Player : Area2D
 			health -= amount;
 			_damageable = false;
 			_invTime = 0;
+
+			if(health < 0) { isDead = true; }
 		}
 	}
 
