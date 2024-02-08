@@ -14,6 +14,9 @@ public partial class Player : Area2D
 	private CollisionShape2D _collider;
 	private int health;
 	private HBoxContainer healthBar;
+
+	// Player sprite for death
+	private Sprite2D mySprite;
 	
 	// Movement and Aiming Variables
 	private float _speed;
@@ -43,11 +46,13 @@ public partial class Player : Area2D
 
 	private double _leftCooldown;
 	private double _rightCooldown;
-	private const double COOLDOWN_MAX = 2.0f;
+	private const double LEFT_COOLDOWN_MAX = 2.0f;
+	private const double RIGHT_COOLDOWN_MAX = 4.0f;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
-
+	[Export]
+	public bool isDead;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -55,7 +60,6 @@ public partial class Player : Area2D
 		Hud = GetNode<Control>("%PlayerHUD");
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
-
 		
 		health = 2;
 		_speed = 200;
@@ -80,14 +84,50 @@ public partial class Player : Area2D
 		freeze.OneShot = true;
 		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
 		freeze.Start();
-		_leftCooldown = COOLDOWN_MAX;
-		_rightCooldown = COOLDOWN_MAX;
+		_leftCooldown = LEFT_COOLDOWN_MAX;
+		_rightCooldown = RIGHT_COOLDOWN_MAX;
+
+		isDead = false;
 
 		// Idea for placement, UI may have something bettter
 		/*if (player_id == 0)
 		{
 			Hud.Position = new Vector2(-250f, 500f);
 		}*/
+		
+		// Can't Hide and Show the objects unless I have access to the node
+		Array<Node> lives = healthBar.GetChildren();
+		
+		
+
+		Color set;
+		switch (player_id)
+		{
+			case 0:
+				set = Colors.Aquamarine;
+				break;
+			case 1:
+				set = Colors.RebeccaPurple;
+				break;
+			case 2:
+				set = Colors.Firebrick;
+				break;
+			case 3:
+				set = Colors.Lime;
+				break;
+			default:
+				set = Colors.White;
+				break;
+		}
+
+		// Change Phoenix color
+		Modulate = set;
+		
+		// Change lives color
+		for (int i = 2; i >= 0; i--)
+		{
+			((TextureRect)lives[i]).Modulate = set;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,11 +137,21 @@ public partial class Player : Area2D
 		// Update the Bullet Cooldowns, add the delta time to the current value
 		_leftCooldown += delta;
 		_rightCooldown += delta;
-		
-		
-		// We use string concatination to splice in the player ID for the input system
-		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
-		if (Input.IsActionPressed($"Up_{player_id}"))
+
+		if (isDead)
+		{
+			healthBar.Hide();
+			freeze.GetParent<ProgressBar>().Hide();
+			_collider.Disabled = true;
+
+			return;
+		}
+
+        // We use string concatination to splice in the player ID for the input system
+        // The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
+
+        // Deprecated
+        if (Input.IsActionPressed($"Up_{player_id}"))
 		{
 			//Translate(new Vector2(0.0f, -1.0f));
 			//Debug.Print($"Up_${player_id}");
@@ -138,7 +188,7 @@ public partial class Player : Area2D
 		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
-		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= COOLDOWN_MAX)
+		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown >= LEFT_COOLDOWN_MAX)
 		{
 			if (energy >= 60)
 			{
@@ -151,13 +201,14 @@ public partial class Player : Area2D
 		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
-		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= COOLDOWN_MAX){
+		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown >= RIGHT_COOLDOWN_MAX){
 			if (energy >= 40)
 			{
 				FirePattern("res://Pattern1.tscn");
-				//Debug.Print($"{player_id}");
-				//Debug.Print($"Shoot Right P{player_id}");
-				_rightCooldown = 0.0;
+                DrainEnergy(60, .15f);
+                //Debug.Print($"{player_id}");
+                //Debug.Print($"Shoot Right P{player_id}");
+                _rightCooldown = 0.0;
 			}
 		}
 		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
@@ -229,7 +280,7 @@ public partial class Player : Area2D
 			// Change Health bar display
 			for (int i = 2; i >= 0; i--)
 			{
-				lives[i].Set("visible", health >= i);
+				((TextureRect)lives[i]).Visible = (health >= i);
 			}
 
 		// Invulnerability logic
@@ -252,6 +303,8 @@ public partial class Player : Area2D
 			health -= amount;
 			_damageable = false;
 			_invTime = 0;
+
+			if(health < 0) { isDead = true; }
 		}
 	}
 

@@ -23,6 +23,22 @@ public partial class Bullet : Area2D
 	{		
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
+		
+		switch (owner.player_id)
+		{
+			case 0:
+				Modulate = Colors.Aquamarine;
+				break;
+			case 1:
+				Modulate = Colors.RebeccaPurple;
+				break;
+			case 2:
+				Modulate = Colors.Firebrick;
+				break;
+			case 3:
+				Modulate = Colors.Lime;
+				break;
+		}
 		this.Hide();
 	}
 
