@@ -8,6 +8,8 @@ public partial class Wave : Node
 {
 	private int numOfBullet = 4;
 	private int spread = 90;
+
+	public int offset = 0;
 	public int speed = 40;
 	public int wait;
 	private Player owner;
@@ -38,7 +40,7 @@ public partial class Wave : Node
 				PackedScene pattern = GD.Load<PackedScene>("res://Bullet.tscn");
 				var instance = pattern.Instantiate();
 				instance.Set("position", Get("position"));
-				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180));
+				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180) + (offset * Math.PI/180));
 				instance.Set("delay", wait);
 				instance.Set("speed", new Vector2(speed, 0));
 				AddChild(instance);
