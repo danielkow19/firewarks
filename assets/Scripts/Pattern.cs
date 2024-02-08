@@ -32,7 +32,7 @@ public partial class Pattern : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(GetChildCount() < 1)
+		if(GetChildCount() < 2)
 		{
 			QueueFree();
 		}
