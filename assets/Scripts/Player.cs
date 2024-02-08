@@ -71,7 +71,7 @@ public partial class Player : Area2D
 		_invTime = _invTimeMax;
 		_playerSprite = this.GetChild<Sprite2D>(0);
 		_initialColor = _playerSprite.Modulate;
-		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 256);
+		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 255);
 		_singleColorTime = 0.5f;
 		_doubleColorTime = 1f;
 
