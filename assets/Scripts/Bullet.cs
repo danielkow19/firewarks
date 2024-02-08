@@ -14,7 +14,7 @@ public partial class Bullet : Area2D
 	[Export]
 	private double lifetime = 10;
 	[Export]
-	public double delay = 0;
+	public double delay = 1;
 	public Player owner;
 	private string[] tags;
 

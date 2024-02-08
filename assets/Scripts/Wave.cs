@@ -13,6 +13,7 @@ public partial class Wave : Node
 	public int speed = 40;
 	public int wait;
 	private Player owner;
+	PackedScene pattern = GD.Load<PackedScene>("res://Bullet.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -36,8 +37,7 @@ public partial class Wave : Node
 		if(numOfBullet > 1)
 		{
 			for (int i = 0; i < numOfBullet; i++)
-			{
-				PackedScene pattern = GD.Load<PackedScene>("res://Bullet.tscn");
+			{				
 				var instance = pattern.Instantiate();
 				instance.Set("position", Get("position"));
 				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180) + (offset * Math.PI/180));

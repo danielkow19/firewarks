@@ -20,6 +20,7 @@ public partial class Pattern : Node
 
 	[Export]
 	public int[] offsetPerWave = {0,0,0};
+	PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
 	public Pattern(){
 	}
 
@@ -42,9 +43,8 @@ public partial class Pattern : Node
 	//instantiates each wave setting variables
 	public void SpawnWaves(){
 		for (int i = 0; i < waves; i++)
-		{
+		{		
 			
-			PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
 			var instance = pattern.Instantiate();
 			instance.Set("owner", owner);
 			instance.Set("wait", i*delay);

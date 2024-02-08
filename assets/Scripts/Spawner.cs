@@ -5,6 +5,7 @@ public partial class Spawner : Node2D
 {
 	private double timer = 0;
 	private RandomNumberGenerator rng;
+	PackedScene resource = GD.Load<PackedScene>("res://Resource.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -17,7 +18,6 @@ public partial class Spawner : Node2D
 		timer+=delta;
 		if (timer>10){
 			timer = 0;
-			PackedScene resource = GD.Load<PackedScene>("res://Resource.tscn");
 			var instance = resource.Instantiate();
 			instance.Set("position", new Vector2(rng.RandfRange(-500,500),rng.RandfRange(-500,500)));
 			AddChild(instance);

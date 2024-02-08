@@ -53,6 +53,8 @@ public partial class Player : Area2D
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
 	[Export]
 	public bool isDead;
+
+	PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -200,7 +202,7 @@ public partial class Player : Area2D
 		{
 			if (energy >= 60)
 			{
-				FirePattern("res://Pattern1.tscn");
+				FirePattern();
 				DrainEnergy(60, .15f);
 				//Debug.Print($"Shoot Left P{player_id}");
 				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
@@ -213,7 +215,7 @@ public partial class Player : Area2D
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
 			if (energy >= 40)
 			{
-				FirePattern("res://Pattern1.tscn");
+				FirePattern();
 				DrainEnergy(60, .15f);
 				//Debug.Print($"{player_id}");
 				//Debug.Print($"Shoot Right P{player_id}");
@@ -344,8 +346,7 @@ public partial class Player : Area2D
 		}
 	}
 	//takes in pattern and sets properties then spawns
-	private void FirePattern(string sceneToFire){
-		PackedScene pattern = GD.Load<PackedScene>(sceneToFire);
+	private void FirePattern(){		
 		var instance = pattern.Instantiate();
 		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);
