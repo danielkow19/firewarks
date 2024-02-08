@@ -39,6 +39,7 @@ public partial class Bullet : Area2D
 				Modulate = Colors.Lime;
 				break;
 		}
+		this.Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,14 +48,19 @@ public partial class Bullet : Area2D
 		delay -= delta;
 		if(delay <= 0)
 		{
+			if(!this.Visible)
+			{
+				this.Visible = true;
+			}
 			Translate(speed.Rotated(Rotation) * (float)delta);
-			lifetime -= delta;
+			lifetime -= delta;	
+			if(lifetime <= 0)
+			{
+				this.QueueFree();
+			}		
+			CheckCollisions();
 		}
-		if(lifetime <= 0)
-		{
-			this.QueueFree();
-		}
-		CheckCollisions();
+		
 	}
 
 	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
