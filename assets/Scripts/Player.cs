@@ -156,40 +156,6 @@ public partial class Player : Area2D
 			return;
 		}
 
-		// We use string concatination to splice in the player ID for the input system
-		// The controls will be uniform ACTION_{player_id}, player ID starts from 0 and goes up to 3
-
-		// Deprecated
-		if (Input.IsActionPressed($"Up_{player_id}"))
-		{
-			//Translate(new Vector2(0.0f, -1.0f));
-			//Debug.Print($"Up_${player_id}");
-		}
-		
-		if (Input.IsActionPressed($"Left_{player_id}"))
-		{
-			//Translate(new Vector2(-1.0f, 0.0f));
-			//Debug.Print($"Left_${player_id}");
-		}
-		
-		if (Input.IsActionPressed($"Down_{player_id}"))
-		{
-			//Translate(new Vector2(0.0f, 1.0f));
-			//Debug.Print($"Down_${player_id}");
-		}
-		
-		if (Input.IsActionPressed($"Right_{player_id}"))
-		{
-			//Translate(new Vector2(1.0f, 0.0f));
-			//Debug.Print($"Right_${player_id}");
-		}
-
-		// If something extra is done with collisions in this class
-		if (GetOverlappingAreas().Count != 0)
-		{
-			//Debug.Print(GetOverlappingAreas().ToString());
-		}
-
 		// We use string concatenation to splice in the player ID for the input system
 		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)

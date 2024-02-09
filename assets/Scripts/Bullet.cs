@@ -77,7 +77,7 @@ public partial class Bullet : Area2D
 		{
 			foreach (Area2D area in collisions)
 			{
-				if (area is not Bullet && area is not Resource)
+				if (area is not Resource)
 				{
 					// A collision happened
 					RewardsAvailable = false;
