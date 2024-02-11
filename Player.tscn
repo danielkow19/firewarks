@@ -62,5 +62,8 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
+[node name="GrazeCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
