@@ -27,6 +27,7 @@ position = Vector2(-166, 192)
 player_id = 1
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="Obstacle" type="MeshInstance2D" parent="Area2D"]
 rotation = 3.14159
@@ -55,5 +56,11 @@ script = ExtResource("6_rl52b")
 
 [node name="Spawner_Resource" type="Node2D" parent="."]
 script = ExtResource("4_3o8fl")
+
+[node name="WorldBorder" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+scale = Vector2(0.9, 0.9)
+polygon = PackedVector2Array(-1200, -675, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -1200, -675, 1200, -675, 1200, 675, -1200, 675)
 
 [editable path="Player_1"]
