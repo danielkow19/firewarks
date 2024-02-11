@@ -15,18 +15,22 @@ offset_bottom = 40.0
 script = ExtResource("1_83si7")
 
 [node name="Button" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 828.0
-offset_top = 511.0
-offset_right = 916.0
-offset_bottom = 542.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 20.725
+anchor_top = 12.275
+anchor_right = 24.225
+anchor_bottom = 13.05
+offset_left = 25.0
+offset_right = 205.0
+offset_bottom = 62.0
 text = "Play Again"
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 693.0
-offset_top = 273.0
-offset_right = 1058.0
-offset_bottom = 361.0
+offset_left = 832.0
+offset_top = 233.0
+offset_right = 1197.0
+offset_bottom = 321.0
 text = "Game Over!"
 label_settings = SubResource("LabelSettings_uw0au")
