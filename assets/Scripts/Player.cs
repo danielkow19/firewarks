@@ -35,6 +35,11 @@ public partial class Player : Area2D
 	private Color _initialColor;
 	private Color _alternateColor;
 
+	// Burst Variables
+	private Area2D _burstArea;
+	private Timer _burstTimer;
+	private float _burstCD;
+
 	// How long a single color of the invulnerability display lasts before flashing back to the other color
 	private float _singleColorTime;
 	// Double the value of _singleColorTime, the time a cycle including both colors takes
@@ -81,6 +86,13 @@ public partial class Player : Area2D
 		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 255);
 		_singleColorTime = 0.5f;
 		_doubleColorTime = 1f;
+
+		_burstArea = GetNode<Area2D>("BurstArea");
+		_burstTimer = GetNode<Timer>("%BurstCD");
+		_burstTimer.OneShot = true;
+		_burstTimer.WaitTime = 0.1f;
+		_burstTimer.Start();
+		_burstCD = 0.5f;
 
 		// UI and Cool downs
 		energy = 100;
@@ -144,6 +156,8 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		_burstArea.Monitoring = false;
+
 		// We use string concatenation to splice in the player ID for the input system
 
 		if (isDead)
@@ -273,6 +287,13 @@ public partial class Player : Area2D
 			_playerSprite.Modulate = _initialColor;
 		}
 		
+		// Burst Logic
+		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && _burstTimer.TimeLeft == 0) {
+			_burstArea.Monitoring = true;
+			DrainEnergy(50);
+			_burstTimer.WaitTime = _burstCD;
+			_burstTimer.Start();
+		}
 	}
 
 	public void DamagePlayer(int amount)
@@ -330,6 +351,14 @@ public partial class Player : Area2D
 			// Prevents double dipping on grazing
 			bullet.RewardsAvailable = false;
 			RewardEnergy(30);
+		}
+	}
+
+	private void _on_burst_area_entered(Area2D area) {
+		Debug.Print("Area Entered");
+		if (area is not Bullet bullet) return;
+		if(bullet.owner != this) {
+			area.Owner.Free();
 		}
 	}
 }
