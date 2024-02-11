@@ -8,6 +8,7 @@ public partial class GameOverButton : Node
 	{
 		Button button = GetNode<Button>("Button");
 		button.Pressed += OnButtonPressed;
+		button.GrabFocus();
 	}
 
 	private void OnButtonPressed()

@@ -8,6 +8,7 @@ public partial class StartButton : Node
 	{
 		Button button = GetNode<Button>("StartButton");
 		button.Pressed += OnStartButtonPressed;
+		button.GrabFocus();
 	}
 
 	private void OnStartButtonPressed()
