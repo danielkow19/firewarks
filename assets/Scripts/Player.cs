@@ -46,6 +46,7 @@ public partial class Player : Area2D
 
 	private Timer _leftCooldown;
 	private Timer _rightCooldown;
+	private Timer _grazeCooldown;
 	private const double LEFT_COOLDOWN_MAX = 2.0f;
 	private const double RIGHT_COOLDOWN_MAX = 4.0f;
 	
@@ -93,10 +94,14 @@ public partial class Player : Area2D
 		_leftCooldown.OneShot = true;
 		_rightCooldown = GetNode<Timer>("%RightTimer");
 		_rightCooldown.OneShot = true;
+		_grazeCooldown = GetNode<Timer>("%GrazeCooldown");
+		_grazeCooldown.OneShot = true;
 		_leftCooldown.WaitTime = .1f;
-		_rightCooldown.WaitTime = .1f; 
+		_rightCooldown.WaitTime = .1f;
+		_grazeCooldown.WaitTime = .1f;
 		_leftCooldown.Start();
 		_rightCooldown.Start(); 
+		_grazeCooldown.Start();
 
 		isDead = false;
 
@@ -323,13 +328,12 @@ public partial class Player : Area2D
 	// This is an event/signal function
 	private void _on_graze(Area2D area)
 	{
+		if (_grazeCooldown.TimeLeft > 0) return;
 		if (area is not Bullet bullet) return;
-		if (bullet.owner != this && bullet.RewardsAvailable)
+		if (bullet.owner != this)
 		{
-			// TODO: note that this will be a problem with more than two players where only one player can graze this bullet
-			// Prevents double dipping on grazing
-			bullet.RewardsAvailable = false;
-			RewardEnergy(30);
+			_grazeCooldown.Start(1.25f);
+			RewardEnergy(10);
 		}
 	}
 }
