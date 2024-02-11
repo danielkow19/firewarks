@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using Godot.Collections;
@@ -39,6 +40,7 @@ public partial class Player : Area2D
 	private Area2D _burstArea;
 	private Timer _burstTimer;
 	private float _burstCD;
+	private List<Bullet> _burstableBullets;
 
 	// How long a single color of the invulnerability display lasts before flashing back to the other color
 	private float _singleColorTime;
@@ -94,6 +96,8 @@ public partial class Player : Area2D
 		_burstTimer.WaitTime = 0.1f;
 		_burstTimer.Start();
 		_burstCD = 0.5f;
+		_burstableBullets = new List<Bullet>();
+		_burstArea.Monitoring = false;
 
 		// UI and Cool downs
 		energy = 100;
@@ -161,7 +165,7 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		_burstArea.Monitoring = false;
+		//_burstArea.Monitoring = false;
 
 		// We use string concatenation to splice in the player ID for the input system
 
@@ -298,6 +302,8 @@ public partial class Player : Area2D
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
 			_burstTimer.Start();
+		} else if(_burstTimer.TimeLeft < 0.1f) {
+			_burstArea.Monitoring = false;
 		}
 	}
 
@@ -359,10 +365,18 @@ public partial class Player : Area2D
 	}
 
 	private void _on_burst_area_entered(Area2D area) {
-		Debug.Print("Area Entered");
-		if (area is not Bullet bullet) return;
+
+		if (area is not Bullet bullet || area.Visible == false) return;
 		if(bullet.owner != this) {
-			area.Owner.Free();
+			bullet.Free();
+			//_burstableBullets.Add(bullet);
 		}
 	}
+
+	// private void _on_burst_area_exited(Area2D area) {
+	// 	if (area is not Bullet bullet) return;
+	// 	if(bullet.owner != this) {
+	// 		_burstableBullets.Remove(bullet);
+	// 	}
+	// }
 }

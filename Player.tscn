@@ -51,7 +51,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="BurstArea" type="Area2D" parent="."]
-monitoring = false
+collision_layer = 2
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BurstArea"]
 scale = Vector2(25, 25)
@@ -67,3 +69,4 @@ unique_name_in_owner = true
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
+[connection signal="area_exited" from="BurstArea" to="." method="_on_burst_area_exited"]
