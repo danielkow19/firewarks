@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using Godot.Collections;
@@ -34,6 +35,12 @@ public partial class Player : Area2D
 	private Sprite2D _playerSprite;
 	private Color _initialColor;
 	private Color _alternateColor;
+
+	// Burst Variables
+	private Area2D _burstArea;
+	private Timer _burstTimer;
+	private float _burstCD;
+	private List<Bullet> _burstableBullets;
 
 	// How long a single color of the invulnerability display lasts before flashing back to the other color
 	private float _singleColorTime;
@@ -82,6 +89,15 @@ public partial class Player : Area2D
 		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 255);
 		_singleColorTime = 0.5f;
 		_doubleColorTime = 1f;
+
+		_burstArea = GetNode<Area2D>("BurstArea");
+		_burstTimer = GetNode<Timer>("%BurstCD");
+		_burstTimer.OneShot = true;
+		_burstTimer.WaitTime = 0.1f;
+		_burstTimer.Start();
+		_burstCD = 0.5f;
+		_burstableBullets = new List<Bullet>();
+		_burstArea.Monitoring = false;
 
 		// UI and Cool downs
 		energy = 100;
@@ -149,6 +165,8 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//_burstArea.Monitoring = false;
+
 		// We use string concatenation to splice in the player ID for the input system
 
 		if (isDead)
@@ -278,6 +296,15 @@ public partial class Player : Area2D
 			_playerSprite.Modulate = _initialColor;
 		}
 		
+		// Burst Logic
+		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && _burstTimer.TimeLeft == 0) {
+			_burstArea.Monitoring = true;
+			DrainEnergy(50);
+			_burstTimer.WaitTime = _burstCD;
+			_burstTimer.Start();
+		} else if(_burstTimer.TimeLeft < 0.1f) {
+			_burstArea.Monitoring = false;
+		}
 	}
 
 	public void DamagePlayer(int amount)
@@ -336,4 +363,20 @@ public partial class Player : Area2D
 			RewardEnergy(10);
 		}
 	}
+
+	private void _on_burst_area_entered(Area2D area) {
+
+		if (area is not Bullet bullet || area.Visible == false) return;
+		if(bullet.owner != this) {
+			bullet.Free();
+			//_burstableBullets.Add(bullet);
+		}
+	}
+
+	// private void _on_burst_area_exited(Area2D area) {
+	// 	if (area is not Bullet bullet) return;
+	// 	if(bullet.owner != this) {
+	// 		_burstableBullets.Remove(bullet);
+	// 	}
+	// }
 }

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs6dbil364eee"]
+
+[ext_resource type="Script" path="res://assets/Scripts/GameOverButton.cs" id="1_83si7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
+font_size = 64
+
+[node name="GameOver" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_83si7")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 20.725
+anchor_top = 12.275
+anchor_right = 24.225
+anchor_bottom = 13.05
+offset_left = 25.0
+offset_right = 205.0
+offset_bottom = 62.0
+text = "Play Again"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 233.0
+offset_right = 1197.0
+offset_bottom = 321.0
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_uw0au")
