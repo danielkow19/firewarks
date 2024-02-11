@@ -17,9 +17,6 @@ public partial class Bullet : Area2D
 	public double delay = 1;
 	public Player owner;
 	private string[] tags;
-
-	// This is to prevent collisions or time from giving graze awards
-	public bool RewardsAvailable = true;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -62,7 +59,6 @@ public partial class Bullet : Area2D
 			lifetime -= delta;	
 			if(lifetime <= 0)
 			{
-				RewardsAvailable = false;
 				this.QueueFree();
 			}		
 			CheckCollisions();
@@ -79,9 +75,6 @@ public partial class Bullet : Area2D
 			{
 				if (area is not Resource)
 				{
-					// A collision happened
-					RewardsAvailable = false;
-
 					if (area is Player player)
 					{
 						if(player != owner)

@@ -48,4 +48,7 @@ unique_name_in_owner = true
 [node name="RightTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
+[node name="GrazeCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
