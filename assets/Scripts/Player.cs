@@ -193,7 +193,7 @@ public partial class Player : Area2D
 		// Update cool down timers
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
-			if (energy >= 60)
+			if (energy >= 60 && !inCloud)
 			{
 				FirePattern();
 				DrainEnergy(60, .15f);
@@ -206,7 +206,7 @@ public partial class Player : Area2D
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
-			if (energy >= 40)
+			if (energy >= 40 && !inCloud)
 			{
 				FirePattern();
 				DrainEnergy(60, .15f);
@@ -256,11 +256,11 @@ public partial class Player : Area2D
 
 		if (Input.IsActionPressed($"Slow_{player_id}"))
 		{
-			Translate(_direction * _slowedSpeed * (float)delta);
+			Translate(_direction * _slowedSpeed * (inCloud ? .25f : 1) * (float)delta);
 		}
 		else
 		{
-			Translate(_direction * _speed * (float)delta);
+			Translate(_direction * _speed * (inCloud ? .25f : 1) * (float)delta);
 		}
 
 		#region Energy
@@ -272,7 +272,7 @@ public partial class Player : Area2D
 			if (energy < 0)
 			{
 				energy = 0;
-				DamagePlayer(3);
+				DamagePlayer(1);
 			}
 		}
 		else if (freeze.TimeLeft == 0)
@@ -312,7 +312,7 @@ public partial class Player : Area2D
 		}
 		
 		// Burst Logic
-		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && _burstTimer.TimeLeft == 0) {
+		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !inCloud && _burstTimer.TimeLeft == 0) {
 			_burstArea.Monitoring = true;
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
@@ -366,7 +366,8 @@ public partial class Player : Area2D
 	}
 	
 	//takes in pattern and sets properties then spawns
-	private void FirePattern(){		
+	private void FirePattern()
+	{
 		var instance = pattern.Instantiate();
 		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);

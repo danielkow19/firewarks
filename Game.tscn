@@ -23,9 +23,6 @@ offset_bottom = -339.0
 position = Vector2(-166, 192)
 player_id = 1
 
-[node name="Cloud" parent="." instance=ExtResource("3_ra8m4")]
-position = Vector2(388, -195)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Control" type="Control" parent="."]
@@ -51,6 +48,9 @@ script = ExtResource("4_3o8fl")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
 scale = Vector2(0.9, 0.9)
 polygon = PackedVector2Array(-1200, -675, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -1200, -675, 1200, -675, 1200, 675, -1200, 675)
+
+[node name="Cloud" parent="." instance=ExtResource("3_ra8m4")]
+position = Vector2(388, -195)
 
 [node name="Cloud2" parent="." instance=ExtResource("3_ra8m4")]
 position = Vector2(570, 278)
