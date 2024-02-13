@@ -57,6 +57,9 @@ public partial class Player : Area2D
 	private const double LEFT_COOLDOWN_MAX = 2.0f;
 	private const double RIGHT_COOLDOWN_MAX = 4.0f;
 	
+	// Interaction variable
+	public bool inCloud;
+	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
 	[Export]
@@ -122,8 +125,9 @@ public partial class Player : Area2D
 
 		_isDead = false;
 		_canMove = true;
+		inCloud = false;
 
-		// Idea for placement, UI may have something bettter
+		// Idea for placement, UI may have something better
 		/*if (player_id == 0)
 		{
 			Hud.Position = new Vector2(-250f, 500f);
@@ -195,7 +199,7 @@ public partial class Player : Area2D
 		// Update cool down timers
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
-			if (energy >= 60)
+			if (energy >= 60 && !inCloud)
 			{
 				FirePattern();
 				DrainEnergy(60, .15f);
@@ -208,7 +212,7 @@ public partial class Player : Area2D
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
-			if (energy >= 40)
+			if (energy >= 40 && !inCloud)
 			{
 				FirePattern();
 				DrainEnergy(60, .15f);
@@ -258,14 +262,26 @@ public partial class Player : Area2D
 
 		if (Input.IsActionPressed($"Slow_{player_id}"))
 		{
-			Translate(_direction * _slowedSpeed * (float)delta);
+			Translate(_direction * _slowedSpeed * (inCloud ? .25f : 1) * (float)delta);
 		}
 		else
 		{
-			Translate(_direction * _speed * (float)delta);
+			Translate(_direction * _speed * (inCloud ? .25f : 1) * (float)delta);
 		}
 
-		if (freeze.TimeLeft == 0)
+		#region Energy
+		if (inCloud)
+		{
+			// Energy drains while in cloud
+			energy -= 10 * (float)delta;
+			
+			if (energy < 0)
+			{
+				energy = 0;
+				DamagePlayer(1);
+			}
+		}
+		else if (freeze.TimeLeft == 0)
 		{
 			energy += 10 * (float)delta;
 
@@ -275,21 +291,20 @@ public partial class Player : Area2D
 			}
 		}
 
-		// Temp solution so this works for player one
-
-			//Debug.Print("Time:" + freeze.TimeLeft.ToString());
-			//Debug.Print("Energy: " + energy);
-			freeze.GetParent<ProgressBar>().Value = energy;
-			
-			// Can't Hide and Show the objects unless I have access to the node
-			Array<Node> lives = healthBar.GetChildren();
+		#region UI
+		freeze.GetParent<ProgressBar>().Value = energy;
 		
-			// Change Health bar display
-			for (int i = 2; i >= 0; i--)
-			{
-				((TextureRect)lives[i]).Visible = (health >= i);
-			}
-
+		// Can't Hide and Show the objects unless I have access to the node
+		Array<Node> lives = healthBar.GetChildren();
+	
+		// Change Health bar display
+		for (int i = 2; i >= 0; i--)
+		{
+			((TextureRect)lives[i]).Visible = (health >= i);
+		}
+		#endregion // UI
+		#endregion // Energy, technically ended after freeze set
+		
 		// Invulnerability logic
 		if(_invTime >= _invTimeMax) {
 			_damageable = true;
@@ -303,7 +318,7 @@ public partial class Player : Area2D
 		}
 		
 		// Burst Logic
-		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && _burstTimer.TimeLeft == 0) {
+		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !inCloud && _burstTimer.TimeLeft == 0) {
 			_burstArea.Monitoring = true;
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
@@ -349,8 +364,16 @@ public partial class Player : Area2D
 			energy = 100;
 		}
 	}
+
+	public bool HasEnergy()
+	{
+		// Because it works on float it isn't ==0
+		return energy >=1;
+	}
+	
 	//takes in pattern and sets properties then spawns
-	private void FirePattern(){		
+	private void FirePattern()
+	{
 		var instance = pattern.Instantiate();
 		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);
