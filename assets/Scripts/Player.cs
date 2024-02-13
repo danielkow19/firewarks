@@ -60,7 +60,8 @@ public partial class Player : Area2D
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
 	[Export]
-	public bool isDead;
+	public bool _isDead; // Whether or not the player is alive, referenced in class and by the game manager
+	public bool _canMove; // Used within class and by game manager for pausing
 
 	PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
 	
@@ -119,7 +120,8 @@ public partial class Player : Area2D
 		_rightCooldown.Start(); 
 		_grazeCooldown.Start();
 
-		isDead = false;
+		_isDead = false;
+		_canMove = true;
 
 		// Idea for placement, UI may have something bettter
 		/*if (player_id == 0)
@@ -169,15 +171,19 @@ public partial class Player : Area2D
 
 		// We use string concatenation to splice in the player ID for the input system
 
-		if (isDead)
+		if (_isDead)
 		{
+			_canMove = false;
 			healthBar.Hide();
 			freeze.GetParent<ProgressBar>().Hide();
 			_collider.Disabled = true;
 			_playerSprite.Hide();
-
-			return;
 		}
+		if (!_canMove)
+        {
+			// Stops the player inputs from effecting the player object
+            return;
+        }
 
 		// We use string concatenation to splice in the player ID for the input system
 		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
@@ -314,7 +320,7 @@ public partial class Player : Area2D
 			_damageable = false;
 			_invTime = 0;
 
-			if(health < 0) { isDead = true; }
+			if(health < 0) { _isDead = true; }
 		}
 	}
 
