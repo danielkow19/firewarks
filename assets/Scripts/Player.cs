@@ -184,10 +184,10 @@ public partial class Player : Area2D
 			_playerSprite.Hide();
 		}
 		if (!_canMove)
-        {
+		{
 			// Stops the player inputs from effecting the player object
-            return;
-        }
+			return;
+		}
 
 		// We use string concatenation to splice in the player ID for the input system
 		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
