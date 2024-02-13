@@ -260,14 +260,27 @@ public partial class Player : Area2D
 			Rotation += MathF.PI * 2;
 		}
 
-		if (Input.IsActionPressed($"Slow_{player_id}"))
+		
+		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") ? _slowedSpeed : _speed) * (inCloud ? .25f : 1) * (float)delta);
+
+		// Force player to stay in the world, will probably be changed
+		if (Position.X < -960)
 		{
-			Translate(_direction * _slowedSpeed * (inCloud ? .25f : 1) * (float)delta);
+			Translate(new Vector2((float)Math.Abs(Position.X + 960f), 0));
 		}
-		else
+		if (Position.X > 960)
 		{
-			Translate(_direction * _speed * (inCloud ? .25f : 1) * (float)delta);
+			Translate(new Vector2(-1 * (float)Math.Abs(Position.X - 960f), 0));
 		}
+		if (Position.Y < -540)
+		{
+			Translate(new Vector2(0, (float)Math.Abs(Position.Y + 540f)));
+		}
+		if (Position.Y > 540)
+		{
+			Translate(new Vector2(0, -1 * (float)Math.Abs(Position.Y - 540f)));
+		}
+		
 
 		#region Energy
 		if (inCloud)
