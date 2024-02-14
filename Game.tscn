@@ -11,16 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://c0ltjtdxvm5fm" path="res://Pattern2.tscn" id="6_motgg"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
-[ext_resource type="PackedScene" path="res://Pause.tscn" id="7_wexeu"]
+[ext_resource type="PackedScene" uid="uid://ci7xsdajbu5b2" path="res://Pause.tscn" id="7_wexeu"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
 _players = [NodePath("Player_1"), NodePath("Player_2")]
 
 [node name="Player_1" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(-309, -73)
-patternLeft = ExtResource("3_h57t8")
-patternRight = ExtResource("4_fgd5p")
+position = Vector2(-609, -230)
 
 [node name="PlayerHUD" parent="Player_1" index="3"]
 offset_left = -784.0
@@ -29,7 +27,7 @@ offset_right = -655.0
 offset_bottom = -339.0
 
 [node name="Player_2" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(263, 167)
+position = Vector2(604, -226)
 player_id = 1
 patternLeft = ExtResource("5_q4elx")
 patternRight = ExtResource("6_motgg")
@@ -66,10 +64,14 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("6_pm6ws")
 
 [node name="Cloud" parent="." instance=ExtResource("3_ra8m4")]
-position = Vector2(388, -195)
+position = Vector2(-600, 275)
 
 [node name="Cloud2" parent="." instance=ExtResource("3_ra8m4")]
-position = Vector2(570, 278)
+position = Vector2(600, 275)
+
+[node name="Cloud3" parent="." instance=ExtResource("3_ra8m4")]
+position = Vector2(0, -300)
+scale = Vector2(1, 2)
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("7_wexeu")]
 unique_name_in_owner = true
