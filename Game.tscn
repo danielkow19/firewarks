@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=9 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
@@ -7,14 +7,14 @@
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="5_u8a8j"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
-[ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
+[ext_resource type="PackedScene" uid="uid://ci7xsdajbu5b2" path="res://Pause.tscn" id="7_wexeu"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
 _players = [NodePath("Player_1"), NodePath("Player_2")]
 
 [node name="Player_1" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(-309, -73)
+position = Vector2(-609, -230)
 
 [node name="PlayerHUD" parent="Player_1" index="3"]
 offset_left = -784.0
@@ -23,7 +23,7 @@ offset_right = -655.0
 offset_bottom = -339.0
 
 [node name="Player_2" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(263, 167)
+position = Vector2(604, -226)
 player_id = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -58,10 +58,14 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("6_pm6ws")
 
 [node name="Cloud" parent="." instance=ExtResource("3_ra8m4")]
-position = Vector2(388, -195)
+position = Vector2(-600, 275)
 
 [node name="Cloud2" parent="." instance=ExtResource("3_ra8m4")]
-position = Vector2(570, 278)
+position = Vector2(600, 275)
+
+[node name="Cloud3" parent="." instance=ExtResource("3_ra8m4")]
+position = Vector2(0, -300)
+scale = Vector2(1, 2)
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("7_wexeu")]
 unique_name_in_owner = true
