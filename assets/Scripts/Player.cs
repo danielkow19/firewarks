@@ -69,13 +69,28 @@ public partial class Player : Area2D
 	[Export]
 	public bool _isDead; // Whether or not the player is alive, referenced in class and by the game manager
 	public bool _canMove; // Used within class and by game manager for pausing
+	[Export]
+	PackedScene patternLeft = null;
+	[Export]
+	PackedScene patternRight = null;
 
 	PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+	PackedScene pattern1 = GD.Load<PackedScene>("res://Pattern2.tscn");
+	PackedScene pattern2 = GD.Load<PackedScene>("res://Pattern3.tscn");
+	PackedScene pattern3 = GD.Load<PackedScene>("res://Pattern4.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://TrailBullet.tscn");
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if(patternLeft == null)
+		{
+			patternLeft = pattern1;
+		}
+		if(patternRight == null)
+		{
+			patternRight = pattern1;
+		}
 		// Fetch Children
 		Hud = GetNode<Control>("%PlayerHUD");
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
@@ -211,7 +226,7 @@ public partial class Player : Area2D
 		{
 			if (energy >= 60 && !InCloud())
 			{
-				FirePattern();
+				FirePattern(patternLeft);
 				DrainEnergy(60, .15f);
 				//Debug.Print($"Shoot Left P{player_id}");
 				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
@@ -224,7 +239,7 @@ public partial class Player : Area2D
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
 			if (energy >= 40 && !InCloud())
 			{
-				FirePattern();
+				FirePattern(patternRight);
 				DrainEnergy(60, .15f);
 				//Debug.Print($"{player_id}");
 				//Debug.Print($"Shoot Right P{player_id}");
@@ -407,9 +422,9 @@ public partial class Player : Area2D
 	}
 	
 	//takes in pattern and sets properties then spawns
-	private void FirePattern()
+	private void FirePattern(PackedScene pToFire)
 	{		
-		var instance = pattern.Instantiate();
+		var instance = pToFire.Instantiate();
 		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);
 		instance.Set("owner", this);
