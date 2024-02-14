@@ -62,7 +62,7 @@ public partial class Player : Area2D
 	private const double RIGHT_COOLDOWN_MAX = 4.0f;
 
 	// Interaction variable
-	public bool inCloud;
+	public int numClouds;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
@@ -135,7 +135,7 @@ public partial class Player : Area2D
 
 		_isDead = false;
 		_canMove = true;
-		inCloud = false;
+		numClouds = 0;
 
 		// Idea for placement, UI may have something better
 		/*if (player_id == 0)
@@ -172,7 +172,7 @@ public partial class Player : Area2D
 		Modulate = set;
 		
 		// Change lives color
-		for (int i = 2; i >= 0; i--)
+		for (int i = 2; i >= 0; i--) // TODO: This should be counting upwards to a max lives value in order to support potential changing of the max lives number.
 		{
 			((TextureRect)lives[i]).Modulate = set;
 		}
@@ -195,7 +195,7 @@ public partial class Player : Area2D
 }
 		if (!_canMove)
 		{
-			// Stops the player inputs from effecting the player object
+			// Stops the player inputs from affecting the player object
 			return;
 		}
 
@@ -209,7 +209,7 @@ public partial class Player : Area2D
 		// Update cool down timers
 		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
-			if (energy >= 60 && !inCloud)
+			if (energy >= 60 && !InCloud())
 			{
 				FirePattern();
 				DrainEnergy(60, .15f);
@@ -222,7 +222,7 @@ public partial class Player : Area2D
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
-			if (energy >= 40 && !inCloud)
+			if (energy >= 40 && !InCloud())
 			{
 				FirePattern();
 				DrainEnergy(60, .15f);
@@ -271,7 +271,7 @@ public partial class Player : Area2D
 		}
 
 		
-		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") ? _slowedSpeed : _speed) * (inCloud ? .25f : 1) * (float)delta);
+		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
 
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)
@@ -293,7 +293,7 @@ public partial class Player : Area2D
 		
 
 		#region Energy
-		if (inCloud)
+		if (InCloud())
 		{
 			// Energy drains while in cloud
 			energy -= 10 * (float)delta;
@@ -341,7 +341,7 @@ public partial class Player : Area2D
 		}
 		
 		// Burst Logic
-		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !inCloud && _burstTimer.TimeLeft == 0) {
+		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0) {
 			_burstArea.Monitoring = true;
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
@@ -399,6 +399,11 @@ public partial class Player : Area2D
 	{
 		// Because it works on float it isn't ==0
 		return energy >=1;
+	}
+	
+	private bool InCloud()
+	{
+		return numClouds > 0;
 	}
 	
 	//takes in pattern and sets properties then spawns

@@ -19,7 +19,7 @@ public partial class Clouds : Area2D
 	{
 		if (area is Player player)
 		{
-			player.inCloud = true;
+			player.numClouds++;
 		}
 	}
 	
@@ -27,7 +27,7 @@ public partial class Clouds : Area2D
 	{
 		if (area is Player player)
 		{
-			player.inCloud = false;
+			player.numClouds--;
 		}
 	}
 }
