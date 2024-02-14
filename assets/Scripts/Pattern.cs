@@ -27,12 +27,14 @@ public partial class Pattern : Node
 	[Export]
 	public bool swirl = false;
 	PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
+	PackedScene sfx = GD.Load<PackedScene>("res://SFXFW1.tscn");
 	public Pattern(){
 	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		AddChild(sfx.Instantiate());
 		PopulateWaves();
 		SpawnWaves();
 		
@@ -41,7 +43,7 @@ public partial class Pattern : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(GetChildCount() < 2)
+		if(GetChildCount() < 3)
 		{
 			QueueFree();
 		}
