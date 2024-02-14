@@ -454,10 +454,10 @@ public partial class Player : Area2D
 	}
 
 	// Signal for burst area being entered
-	private void _on_burst_area_entered(Area2D area) {
+	public void _on_burst_area_entered(Area2D area) {
 		if (area is not Bullet bullet || area.Visible == false) return;
 		if(bullet.owner != this) {
-			bullet.Free();
+			bullet.QueueFree();
 		}
 	}
 }
