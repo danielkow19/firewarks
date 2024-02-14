@@ -11,11 +11,15 @@ public partial class GameManager : Node2D
 	private int _playersCount;
 
 	private string[] scenePaths = { "res://StartMenu.tscn", "res://Game.tscn", "res://GameOver.tscn" };
+	private Control _pauseMenu;
+	private bool _paused;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_playersCount = _players.Length;
+		_pauseMenu = GetNode<Control>("%PauseMenu");
+		_paused = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +27,10 @@ public partial class GameManager : Node2D
 	{
 		if(Input.IsActionPressed("Exit")) {
 			GetTree().Quit();
+		}
+		if (Input.IsActionJustPressed("Pause"))
+		{
+			PauseMenu();
 		}
 
 		if (Input.IsKeyPressed(Key.Key1))
@@ -70,5 +78,19 @@ public partial class GameManager : Node2D
 
 		if (deathCount >= _playersCount - 1) { return true; }
 		else { return false; }
+	}
+	public void PauseMenu()
+	{
+		if (_paused)
+		{
+			_pauseMenu.Hide();
+			Engine.TimeScale = 1;
+		}
+		else
+		{
+			_pauseMenu.Show();
+			Engine.TimeScale = 0;
+		}
+		_paused = !_paused;
 	}
 }
