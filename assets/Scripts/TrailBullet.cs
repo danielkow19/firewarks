@@ -5,28 +5,16 @@ using FireWARks.assets.Scripts;
 using Godot.Collections;
 using System.Diagnostics;
 
-public partial class Bullet : Area2D
+public partial class TrailBullet : Area2D
 {
-	private Vector2 direction = new Vector2(0, 0);
-	[Export]
-	private Vector2 speed = new Vector2(40, 0);
-	private Vector2 acceleration = new Vector2(0,1);
-	private float spin = 0;
-	private float spinAccel = 0;
-	[Export]
 	private double lifetime = 10;
 	[Export]
-	public double delay = 1;
 	public Player owner;
-	private string[] tags;
-	private bool swirl = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
-	{		
-		this.Hide();	
-		var parent = this.GetParent();
-		owner = (Player) parent.Get("owner");
+	{			
+		//owner = (Player) this.GetParent();
 		if(owner != null){			
 			switch (owner.player_id)
 			{
@@ -50,30 +38,13 @@ public partial class Bullet : Area2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
-		delay -= delta;
-		if(delay <= 0)
-		{
-			if (swirl && delay <= -1)
-			{
-				speed = speed.Rotated((float)Math.PI/3);
-				swirl = false;			
-			}
-			if(!this.Visible)
-			{
-				this.Visible = true;
-			}
-			Translate(speed.Rotated(Rotation) * (float)delta);
-			Rotate((float)(Math.PI*spin*delta/180));
-			spin += (float)(spinAccel*delta);		
+	{		
 			lifetime -= delta;	
 			if(lifetime <= 0)
 			{
 				this.QueueFree();
 			}		
-			CheckCollisions();
-		}
-		
+			CheckCollisions();	
 	}
 
 	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner

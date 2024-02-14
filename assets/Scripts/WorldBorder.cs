@@ -37,7 +37,7 @@ public partial class WorldBorder : Area2D
 	{
 		if (area is Player player)
 		{
-			player.inCloud = true;
+			player.numClouds++;
 		}
 	}
 	
@@ -45,7 +45,7 @@ public partial class WorldBorder : Area2D
 	{
 		if (area is Player player)
 		{
-			player.inCloud = false;
+			player.numClouds--;
 		}
 	}
 }

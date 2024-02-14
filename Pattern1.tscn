@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ciy4kb8jrvum0" path="res://assets/sprites/warning mockup.png" id="2_yxo8c"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(140, 188)
 script = ExtResource("1_23242")
 bulletPerWave = PackedInt32Array(30, 30, 15)
 spreadPerWave = PackedInt32Array(348, 348, 336)

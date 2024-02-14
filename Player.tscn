@@ -53,7 +53,6 @@ unique_name_in_owner = true
 [node name="BurstArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BurstArea"]
 scale = Vector2(25, 25)
@@ -67,6 +66,8 @@ one_shot = true
 [node name="GrazeCooldown" type="Timer" parent="."]
 unique_name_in_owner = true
 
+[node name="TrailCD" type="Timer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
-[connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
-[connection signal="area_exited" from="BurstArea" to="." method="_on_burst_area_exited"]
+[connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered" binds= [0, NodePath("/root/@EditorNode@17164/@Panel@13/@VBoxContainer@14/@HSplitContainer@17/@HSplitContainer@25/@HSplitContainer@33/@VBoxContainer@34/@VSplitContainer@36/@VSplitContainer@62/@VBoxContainer@63/@PanelContainer@110/MainScreen/@CanvasItemEditor@9462/@VSplitContainer@9281/@HSplitContainer@9283/@HSplitContainer@9285/@Control@9286/@SubViewportContainer@9287/@SubViewport@9288/Player_1")]]
