@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci7xsdajbu5b2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o76b4"]
+font_size = 80
+
+[node name="Pause" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_o76b4")

@@ -2,13 +2,10 @@
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
+[ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://Cloud.tscn" id="3_ra8m4"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="4_3o8fl"]
+[ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="5_u8a8j"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ttfpx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxtae"]
-size = Vector2(146, 180)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
@@ -24,19 +21,8 @@ offset_right = -655.0
 offset_bottom = -339.0
 
 [node name="Player_2" parent="." instance=ExtResource("1_yrali")]
-position = Vector2(-166, 192)
+position = Vector2(263, 167)
 player_id = 1
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="Obstacle" type="MeshInstance2D" parent="Area2D"]
-rotation = 3.14159
-scale = Vector2(146, 180)
-mesh = SubResource("BoxMesh_ttfpx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_xxtae")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -58,10 +44,20 @@ script = ExtResource("6_rl52b")
 [node name="Spawner_Resource" type="Node2D" parent="."]
 script = ExtResource("4_3o8fl")
 
-[node name="WorldBorder" type="Area2D" parent="."]
+[node name="CloudBorder" type="Area2D" parent="."]
+script = ExtResource("5_u8a8j")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
 scale = Vector2(0.9, 0.9)
-polygon = PackedVector2Array(-1200, -675, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -1200, -675, 1200, -675, 1200, 675, -1200, 675)
+polygon = PackedVector2Array(-6000, -3375, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -6000, -3375, 6000, -3375, 6000, 3375, -6000, 3375)
+
+[node name="Cloud" parent="." instance=ExtResource("3_ra8m4")]
+position = Vector2(388, -195)
+
+[node name="Cloud2" parent="." instance=ExtResource("3_ra8m4")]
+position = Vector2(570, 278)
+
+[connection signal="area_entered" from="CloudBorder" to="CloudBorder" method="_on_area_entered"]
+[connection signal="area_exited" from="CloudBorder" to="CloudBorder" method="_on_area_exited"]
 
 [editable path="Player_1"]

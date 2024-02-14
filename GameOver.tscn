@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cs6dbil364eee"]
 
-[ext_resource type="Script" path="res://assets/Scripts/GameOverButton.cs" id="1_83si7"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_lxktc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
 font_size = 64
@@ -12,9 +12,10 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_83si7")
+script = ExtResource("1_lxktc")
+scenePath = "res://StartMenu.tscn"
 
-[node name="Button" type="Button" parent="Control"]
+[node name="PlayButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 20.725

@@ -8,7 +8,6 @@
 [node name="Area2D" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_a8lq4")
-lifetime = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
