@@ -162,7 +162,7 @@ public partial class Player : Area2D
 		Modulate = set;
 		
 		// Change lives color
-		for (int i = 2; i >= 0; i--)
+		for (int i = 2; i >= 0; i--) // TODO: This should be counting upwards to a max lives value in order to support potential changing of the max lives number.
 		{
 			((TextureRect)lives[i]).Modulate = set;
 		}
@@ -185,7 +185,7 @@ public partial class Player : Area2D
 		}
 		if (!_canMove)
 		{
-			// Stops the player inputs from effecting the player object
+			// Stops the player inputs from affecting the player object
 			return;
 		}
 
@@ -261,7 +261,7 @@ public partial class Player : Area2D
 		}
 
 		
-		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") ? _slowedSpeed : _speed) * (inCloud ? .25f : 1) * (float)delta);
+		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") ? _slowedSpeed : _speed) * ((inCloud && _damageable) ? .25f : 1) * (float)delta);
 
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)
