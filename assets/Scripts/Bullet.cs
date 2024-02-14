@@ -19,6 +19,7 @@ public partial class Bullet : Area2D
 	public double delay = 1;
 	public Player owner;
 	private string[] tags;
+	private bool swirl = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -53,13 +54,18 @@ public partial class Bullet : Area2D
 		delay -= delta;
 		if(delay <= 0)
 		{
+			if (swirl && delay <= -1)
+			{
+				speed = speed.Rotated((float)Math.PI/3);
+				swirl = false;			
+			}
 			if(!this.Visible)
 			{
 				this.Visible = true;
 			}
 			Translate(speed.Rotated(Rotation) * (float)delta);
 			Rotate((float)(Math.PI*spin*delta/180));
-			spin += (float)(spinAccel*delta);			
+			spin += (float)(spinAccel*delta);		
 			lifetime -= delta;	
 			if(lifetime <= 0)
 			{

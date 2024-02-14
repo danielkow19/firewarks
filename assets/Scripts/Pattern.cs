@@ -12,18 +12,20 @@ public partial class Pattern : Node
 	[Export]
 	public double delay = 1;
 	[Export]
-	public int[] bulletPerWave = {3,4,3};
+	public int[] bulletPerWave = {1};
 	[Export]
-	public int[] spreadPerWave = {80,80,80};
+	public int[] spreadPerWave = {0};
 	[Export]
-	public int[] speedPerWave = {40,40,40};
+	public int[] speedPerWave = {0};
 
 	[Export]
-	public int[] offsetPerWave = {0,0,0};
+	public int[] offsetPerWave = {0};
 	[Export]
-	public float[] spinPerWave = {0,0,0};
+	public float[] spinPerWave = {0};
 	[Export]
 	public float[] spinAccelPerWave = {0,0,0};
+	[Export]
+	public bool swirl = false;
 	PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
 	public Pattern(){
 	}
@@ -58,6 +60,7 @@ public partial class Pattern : Node
 			instance.Set("offset",offsetPerWave[i]);
 			instance.Set("spin",spinPerWave[i]);
 			instance.Set("spinAccel",spinAccelPerWave[i]);
+			instance.Set("swirl", swirl);
 			AddChild(instance);
 		}
 	}

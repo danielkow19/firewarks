@@ -4,14 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://ciy4kb8jrvum0" path="res://assets/sprites/warning mockup.png" id="2_upuj8"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(305, 323)
 script = ExtResource("1_mitdc")
 waves = 10
 bulletPerWave = PackedInt32Array(5, 5, 5, 5, 5, 5, 5, 5, 5, 5)
 spreadPerWave = PackedInt32Array(75, 75, 75, 75, 75, 75, 75, 75, 75, 75)
 speedPerWave = PackedInt32Array(400)
 offsetPerWave = PackedInt32Array(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)
-spinPerWave = PackedInt32Array(7)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(60, 0)
