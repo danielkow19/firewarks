@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://eyxvn7yqditg"]
 
-[ext_resource type="Script" path="res://assets/Scripts/StartButton.cs" id="1_twqmu"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_twqmu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
 font_size = 128
@@ -15,6 +15,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_twqmu")
+scenePath = "res://Game.tscn"
 
 [node name="Title" type="Label" parent="Menu"]
 layout_mode = 0
@@ -26,7 +27,7 @@ text = "FireWARks"
 label_settings = SubResource("LabelSettings_43tf6")
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Menu"]
+[node name="PlayButton" type="Button" parent="Menu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 20.725
@@ -34,8 +35,8 @@ anchor_top = 12.275
 anchor_right = 24.225
 anchor_bottom = 13.05
 offset_left = 25.0
-offset_right = -25.0
+offset_right = 65.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Play Game"
-metadata/_edit_use_anchors_ = true
