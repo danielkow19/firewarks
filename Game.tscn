@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=8 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
-[ext_resource type="PackedScene" path="res://Cloud.tscn" id="3_ra8m4"]
+[ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://Cloud.tscn" id="3_ra8m4"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="4_3o8fl"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="5_u8a8j"]
+[ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
@@ -50,6 +51,10 @@ script = ExtResource("5_u8a8j")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
 scale = Vector2(0.9, 0.9)
 polygon = PackedVector2Array(-6000, -3375, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -6000, -3375, 6000, -3375, 6000, 3375, -6000, 3375)
+
+[node name="Temp-world-border" type="Sprite2D" parent="CloudBorder"]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("6_pm6ws")
 
 [node name="Cloud" parent="." instance=ExtResource("3_ra8m4")]
 position = Vector2(388, -195)

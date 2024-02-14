@@ -14,7 +14,7 @@ public partial class WorldBorder : Area2D
 		countDown = new Timer();
 		AddChild(countDown);
 		countDown.OneShot = true;
-		countDown.Start(5);
+		countDown.Start(300); // TODO: Make this a public variable that can be changed in the inspector. Currently is 5 minutes.
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
