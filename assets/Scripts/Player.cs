@@ -42,6 +42,10 @@ public partial class Player : Area2D
 	private Timer _burstTimer;
 	private float _burstCD;
 
+	// Trail Variables
+	private Timer _trailTimer;
+	private float _trailCD;
+
 	// How long a single color of the invulnerability display lasts before flashing back to the other color
 	private float _singleColorTime;
 	// Double the value of _singleColorTime, the time a cycle including both colors takes
@@ -56,7 +60,7 @@ public partial class Player : Area2D
 	private Timer _grazeCooldown;
 	private const double LEFT_COOLDOWN_MAX = 2.0f;
 	private const double RIGHT_COOLDOWN_MAX = 4.0f;
-	
+
 	// Interaction variable
 	public bool inCloud;
 	
@@ -67,7 +71,7 @@ public partial class Player : Area2D
 	public bool _canMove; // Used within class and by game manager for pausing
 
 	PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
-	PackedScene bullet = GD.Load<PackedScene>("res://Bullet.tscn");
+	PackedScene trailBullet = GD.Load<PackedScene>("res://TrailBullet.tscn");
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -102,6 +106,12 @@ public partial class Player : Area2D
 		_burstTimer.Start();
 		_burstCD = 0.5f;
 		_burstArea.Monitoring = false;
+
+		_trailTimer = GetNode<Timer>("%TrailCD");
+		_trailTimer.OneShot = true;
+		_trailTimer.WaitTime = 0.1f;
+		_trailTimer.Start();
+		_trailCD = 0.25f;
 
 		// UI and Cool downs
 		energy = 100;
@@ -182,7 +192,7 @@ public partial class Player : Area2D
 			freeze.GetParent<ProgressBar>().Hide();
 			_collider.Disabled = true;
 			_playerSprite.Hide();
-		}
+}
 		if (!_canMove)
 		{
 			// Stops the player inputs from effecting the player object
@@ -293,7 +303,7 @@ public partial class Player : Area2D
 				energy = 0;
 				DamagePlayer(1);
 			}
-		}
+}
 		else if (freeze.TimeLeft == 0)
 		{
 			energy += 10 * (float)delta;
@@ -305,19 +315,19 @@ public partial class Player : Area2D
 		}
 
 		#region UI
-		freeze.GetParent<ProgressBar>().Value = energy;
+			freeze.GetParent<ProgressBar>().Value = energy;
+			
+			// Can't Hide and Show the objects unless I have access to the node
+			Array<Node> lives = healthBar.GetChildren();
 		
-		// Can't Hide and Show the objects unless I have access to the node
-		Array<Node> lives = healthBar.GetChildren();
-	
-		// Change Health bar display
-		for (int i = 2; i >= 0; i--)
-		{
-			((TextureRect)lives[i]).Visible = (health >= i);
-		}
+			// Change Health bar display
+			for (int i = 2; i >= 0; i--)
+			{
+				((TextureRect)lives[i]).Visible = (health >= i);
+			}
 		#endregion // UI
 		#endregion // Energy, technically ended after freeze set
-		
+
 		// Invulnerability logic
 		if(_invTime >= _invTimeMax) {
 			_damageable = true;
@@ -341,10 +351,10 @@ public partial class Player : Area2D
 		}
 
 		// Trails
-		if(health == 1) {
+		if(health == 1 && _trailTimer.TimeLeft == 0) {
 			MakeTrail();
-		} else if (health == 0) {
-
+		} else if (health == 0 && _trailTimer.TimeLeft == 0) {
+			MakeTrail(2f);
 		}
 	}
 
@@ -393,7 +403,7 @@ public partial class Player : Area2D
 	
 	//takes in pattern and sets properties then spawns
 	private void FirePattern()
-	{
+	{		
 		var instance = pattern.Instantiate();
 		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);
@@ -401,12 +411,13 @@ public partial class Player : Area2D
 		AddSibling(instance);
 	}
 
-	private void MakeTrail() {
-		var instance = bullet.Instantiate();
-		instance.Set("position", this.Position - _aimDirection * 1);
-		instance.Set("rotation", this.Rotation);
+	private void MakeTrail(float lifetime = 1f) {
+		_trailTimer.WaitTime = _trailCD;
+		_trailTimer.Start();
+		var instance = trailBullet.Instantiate();
+		instance.Set("position", this.Position);
+		instance.Set("lifetime", lifetime);
 		instance.Set("owner", this);
-		instance.Set("speed", Vector2.Zero);
 		AddSibling(instance);
 	}
 	
