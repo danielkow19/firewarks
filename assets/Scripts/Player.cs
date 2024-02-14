@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using Godot;
 using Godot.Collections;
@@ -40,7 +41,6 @@ public partial class Player : Area2D
 	private Area2D _burstArea;
 	private Timer _burstTimer;
 	private float _burstCD;
-	private List<Bullet> _burstableBullets;
 
 	// How long a single color of the invulnerability display lasts before flashing back to the other color
 	private float _singleColorTime;
@@ -63,6 +63,7 @@ public partial class Player : Area2D
 	public bool isDead;
 
 	PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
+	PackedScene bullet = GD.Load<PackedScene>("res://Bullet.tscn");
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -96,7 +97,6 @@ public partial class Player : Area2D
 		_burstTimer.WaitTime = 0.1f;
 		_burstTimer.Start();
 		_burstCD = 0.5f;
-		_burstableBullets = new List<Bullet>();
 		_burstArea.Monitoring = false;
 
 		// UI and Cool downs
@@ -305,6 +305,13 @@ public partial class Player : Area2D
 		} else if(_burstTimer.TimeLeft < 0.1f) {
 			_burstArea.Monitoring = false;
 		}
+
+		// Trails
+		if(health == 1) {
+			MakeTrail();
+		} else if (health == 0) {
+
+		}
 	}
 
 	public void DamagePlayer(int amount)
@@ -351,6 +358,15 @@ public partial class Player : Area2D
 		instance.Set("owner", this);
 		AddSibling(instance);
 	}
+
+	private void MakeTrail() {
+		var instance = bullet.Instantiate();
+		instance.Set("position", this.Position - _aimDirection * 1);
+		instance.Set("rotation", this.Rotation);
+		instance.Set("owner", this);
+		instance.Set("speed", Vector2.Zero);
+		AddSibling(instance);
+	}
 	
 	// This is an event/signal function
 	private void _on_graze(Area2D area)
@@ -364,19 +380,11 @@ public partial class Player : Area2D
 		}
 	}
 
+	// Signal for burst area being entered
 	private void _on_burst_area_entered(Area2D area) {
-
 		if (area is not Bullet bullet || area.Visible == false) return;
 		if(bullet.owner != this) {
 			bullet.Free();
-			//_burstableBullets.Add(bullet);
 		}
 	}
-
-	// private void _on_burst_area_exited(Area2D area) {
-	// 	if (area is not Bullet bullet) return;
-	// 	if(bullet.owner != this) {
-	// 		_burstableBullets.Remove(bullet);
-	// 	}
-	// }
 }
