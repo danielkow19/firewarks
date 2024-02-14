@@ -15,6 +15,7 @@ public partial class Wave : Node
 	public int offset = 0;
 	public int speed = 40;
 	public int wait;
+	private int swirl;
 	private Player owner;
 	PackedScene pattern = GD.Load<PackedScene>("res://Bullet.tscn");
 	// Called when the node enters the scene tree for the first time.
@@ -48,6 +49,7 @@ public partial class Wave : Node
 				instance.Set("speed", new Vector2(speed, 0));
 				instance.Set("spin",spin);
 				instance.Set("spinAccel",spinAccel);
+				instance.Set("swirl",swirl);
 				AddChild(instance);
 			}
 		}
