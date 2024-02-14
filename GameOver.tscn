@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs6dbil364eee"]
+[gd_scene load_steps=5 format=3 uid="uid://cs6dbil364eee"]
 
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_lxktc"]
+[ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
+[ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
 font_size = 64
 
-[node name="GameOver" type="Node2D"]
+[node name="GameOver" type="Node2D" node_paths=PackedStringArray("_players")]
+script = ExtResource("1_wioir")
+_players = []
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -35,3 +39,7 @@ offset_right = 1197.0
 offset_bottom = 321.0
 text = "Game Over!"
 label_settings = SubResource("LabelSettings_uw0au")
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_2c1t3")]
+unique_name_in_owner = true
+visible = false

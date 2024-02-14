@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
-[ext_resource type="PackedScene" path="res://Cloud.tscn" id="3_ra8m4"]
+[ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://Cloud.tscn" id="3_ra8m4"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="4_3o8fl"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="5_u8a8j"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]

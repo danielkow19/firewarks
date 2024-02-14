@@ -33,19 +33,19 @@ public partial class GameManager : Node2D
 			PauseMenu();
 		}
 
-		if (Input.IsKeyPressed(Key.Key1))
+		if (Input.IsKeyPressed(Key.Key8))
 		{
 			// Change to Start Screen
 			GetTree().ChangeSceneToFile(scenePaths[0]);
 		}
 
-		if (Input.IsKeyPressed(Key.Key2))
+		if (Input.IsKeyPressed(Key.Key9))
 		{
 			// Change to Gameplay Scene
 			GetTree().ChangeSceneToFile(scenePaths[1]);
 		}
 
-		if (Input.IsKeyPressed(Key.Key3))
+		if (Input.IsKeyPressed(Key.Key0))
 		{
 			// Change to GameOver Scene
 			GetTree().ChangeSceneToFile(scenePaths[2]);
@@ -53,6 +53,11 @@ public partial class GameManager : Node2D
 
 		if (Input.IsKeyPressed(Key.P))
 		{
+			// Empty Player protection
+			if(_players.Length <= 0)
+			{
+				return;
+			}
 			// Kill a player
 			// Hard code for now, Want to make a menu that pops up show you can select a player number
 			_players[0]._isDead = true;
@@ -70,7 +75,12 @@ public partial class GameManager : Node2D
 	}
 	private bool PlayersDead()
 	{
-		int deathCount = 0;
+        if (_playersCount <= 0)
+        {
+			return false;
+        }
+
+        int deathCount = 0;
 		for(int i  = 0; i < _playersCount; i++)
 		{
 			if (_players[i]._isDead) { deathCount++; }
