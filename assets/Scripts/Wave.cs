@@ -9,6 +9,9 @@ public partial class Wave : Node
 	private int numOfBullet = 4;
 	private int spread = 90;
 
+	private float spin = 0;
+	private float spinAccel = 0;
+
 	public int offset = 0;
 	public int speed = 40;
 	public int wait;
@@ -43,6 +46,8 @@ public partial class Wave : Node
 				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180) + (offset * Math.PI/180));
 				instance.Set("delay", wait);
 				instance.Set("speed", new Vector2(speed, 0));
+				instance.Set("spin",spin);
+				instance.Set("spinAccel",spinAccel);
 				AddChild(instance);
 			}
 		}
@@ -53,7 +58,9 @@ public partial class Wave : Node
 			var instance = pattern.Instantiate();
 			instance.Set("position", Get("position"));
 			instance.Set("delay", wait);
-			instance.Set("speed", new Vector2(speed, 0));			
+			instance.Set("speed", new Vector2(speed, 0));
+			instance.Set("spin",spin);		
+			instance.Set("spinAccel",spinAccel);	
 			AddChild(instance);
 		}
 	}

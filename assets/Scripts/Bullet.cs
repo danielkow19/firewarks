@@ -11,6 +11,8 @@ public partial class Bullet : Area2D
 	[Export]
 	private Vector2 speed = new Vector2(40, 0);
 	private Vector2 acceleration = new Vector2(0,1);
+	private float spin = 0;
+	private float spinAccel = 0;
 	[Export]
 	private double lifetime = 10;
 	[Export]
@@ -56,6 +58,8 @@ public partial class Bullet : Area2D
 				this.Visible = true;
 			}
 			Translate(speed.Rotated(Rotation) * (float)delta);
+			Rotate((float)(Math.PI*spin*delta/180));
+			spin += (float)(spinAccel*delta);			
 			lifetime -= delta;	
 			if(lifetime <= 0)
 			{

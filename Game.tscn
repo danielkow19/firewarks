@@ -12,7 +12,7 @@ size = Vector2(146, 180)
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
-_players = [NodePath("Player_1"), NodePath("Player_2")]
+_players = []
 
 [node name="Player_1" parent="." instance=ExtResource("1_yrali")]
 position = Vector2(-309, -73)

@@ -20,6 +20,10 @@ public partial class Pattern : Node
 
 	[Export]
 	public int[] offsetPerWave = {0,0,0};
+	[Export]
+	public float[] spinPerWave = {0,0,0};
+	[Export]
+	public float[] spinAccelPerWave = {0,0,0};
 	PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
 	public Pattern(){
 	}
@@ -52,6 +56,8 @@ public partial class Pattern : Node
 			instance.Set("spread", spreadPerWave[i]);
 			instance.Set("speed", speedPerWave[i]);
 			instance.Set("offset",offsetPerWave[i]);
+			instance.Set("spin",spinPerWave[i]);
+			instance.Set("spinAccel",spinAccelPerWave[i]);
 			AddChild(instance);
 		}
 	}
@@ -66,7 +72,11 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = bulletPerWave[i];
 				}
-				else{waveUpdate[i]= 1;}
+				else{if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];}
 			}
 			bulletPerWave = waveUpdate;
 		}
@@ -79,7 +89,11 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = spreadPerWave[i];
 				}
-				else{waveUpdate[i]= 80;}
+				else{if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];}
 			}
 			spreadPerWave = waveUpdate;
 		}
@@ -92,7 +106,11 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = speedPerWave[i];
 				}
-				else{waveUpdate[i]= 40;}
+				else{if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];}
 			}
 			speedPerWave = waveUpdate;
 		}
@@ -105,9 +123,52 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = offsetPerWave[i];
 				}
-				else{waveUpdate[i]= 40;}
+				else{if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];;}
 			}
 			offsetPerWave = waveUpdate;
 		}
+		if(spinPerWave.Length < waves)
+		{
+			float[] waveUpdate = new float[waves];
+			for (int i = 0; i < waveUpdate.Length; i++)
+			{
+				if(i < spinPerWave.Length)
+				{
+					waveUpdate[i] = spinPerWave[i];
+				}
+				else{
+					if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];
+					}
+			}
+			spinPerWave = waveUpdate;
+		}
+		if(spinAccelPerWave.Length < waves)
+		{
+			float[] waveUpdate = new float[waves];
+			for (int i = 0; i < waveUpdate.Length; i++)
+			{
+				if(i < spinAccelPerWave.Length)
+				{
+					waveUpdate[i] = spinAccelPerWave[i];
+				}
+				else{
+					if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];
+					}
+			}
+			spinAccelPerWave = waveUpdate;
+		}
+		//initial bullet rotation not wave rotation needs to be added here
 	}
 }
