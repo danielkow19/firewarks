@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=8 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="4_3o8fl"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="5_u8a8j"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
+[ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
@@ -56,6 +57,16 @@ position = Vector2(388, -195)
 
 [node name="Cloud2" parent="." instance=ExtResource("3_ra8m4")]
 position = Vector2(570, 278)
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("7_wexeu")]
+unique_name_in_owner = true
+visible = false
+offset_left = -90.0
+offset_top = -80.0
+offset_right = -90.0
+offset_bottom = -80.0
+scale = Vector2(3, 3)
+_gameManager = NodePath("..")
 
 [connection signal="area_entered" from="CloudBorder" to="CloudBorder" method="_on_area_entered"]
 [connection signal="area_exited" from="CloudBorder" to="CloudBorder" method="_on_area_exited"]
