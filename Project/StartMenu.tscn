@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://eyxvn7yqditg"]
+
+[ext_resource type="Script" path="res://GameManager.cs" id="1_7du7k"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_twqmu"]
+[ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_h1xvh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
+font_size = 128
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_players")]
+script = ExtResource("1_7du7k")
+_players = []
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_twqmu")
+scenePath = "res://Game.tscn"
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 218.0
+offset_right = 1221.0
+offset_bottom = 393.0
+text = "FireWARks"
+label_settings = SubResource("LabelSettings_43tf6")
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 20.725
+anchor_top = 12.275
+anchor_right = 24.225
+anchor_bottom = 13.05
+offset_left = 25.0
+offset_right = 65.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Play Game"
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
+unique_name_in_owner = true
+visible = false

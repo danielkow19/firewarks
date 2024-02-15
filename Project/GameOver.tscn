@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs6dbil364eee"]
+
+[ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_lxktc"]
+[ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
+[ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
+font_size = 64
+
+[node name="GameOver" type="Node2D" node_paths=PackedStringArray("_players")]
+script = ExtResource("1_wioir")
+_players = []
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lxktc")
+scenePath = "res://StartMenu.tscn"
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 20.725
+anchor_top = 12.275
+anchor_right = 24.225
+anchor_bottom = 13.05
+offset_left = 25.0
+offset_right = 205.0
+offset_bottom = 62.0
+text = "Play Again"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 233.0
+offset_right = 1197.0
+offset_bottom = 321.0
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_uw0au")
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_2c1t3")]
+unique_name_in_owner = true
+visible = false
