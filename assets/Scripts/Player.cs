@@ -78,6 +78,7 @@ public partial class Player : Area2D
 	PackedScene pattern1 = GD.Load<PackedScene>("res://Pattern2.tscn");
 	PackedScene pattern2 = GD.Load<PackedScene>("res://Pattern3.tscn");
 	PackedScene pattern3 = GD.Load<PackedScene>("res://Pattern4.tscn");
+	PackedScene hitFX = GD.Load<PackedScene>("res://SFXHit.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://TrailBullet.tscn");
 	
 	// Called when the node enters the scene tree for the first time.
@@ -376,6 +377,7 @@ public partial class Player : Area2D
 	public void DamagePlayer(int amount)
 	{
 		if(_damageable) {
+			AddSibling(hitFX.Instantiate());
 			health -= amount;
 			_damageable = false;
 			_invTime = 0;
