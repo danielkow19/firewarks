@@ -87,7 +87,7 @@ public partial class Bullet : Area2D
 				{
 					if (area is Player player)
 					{
-						if(player != owner)
+						if(player != owner && player.Damageable)
 						{
 							// Attempt to reward player the bullet came from
 							owner.RewardEnergy(15);

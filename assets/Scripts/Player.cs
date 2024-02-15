@@ -80,6 +80,8 @@ public partial class Player : Area2D
 	PackedScene pattern3 = GD.Load<PackedScene>("res://Pattern4.tscn");
 	PackedScene hitFX = GD.Load<PackedScene>("res://SFXHit.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://TrailBullet.tscn");
+
+	public bool Damageable{ get => _damageable;}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
