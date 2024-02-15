@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1rsifuaq4gih"]
+
+[ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_vgjtl"]
+[ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/Phoenix Sketch D.png" id="2_ogaot"]
+[ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://Player_HUD.tscn" id="3_r83a8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16ydk"]
+radius = 75.4255
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbp86"]
+
+[node name="Player_1" type="Area2D"]
+script = ExtResource("1_vgjtl")
+
+[node name="2MinuteToken-phoenix" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ogaot")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rcfy7")
+
+[node name="GrazeBox" type="Area2D" parent="."]
+position = Vector2(-1, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrazeBox"]
+shape = SubResource("CircleShape2D_16ydk")
+debug_color = Color(0.980392, 0.0588235, 0.329412, 0.419608)
+
+[node name="PlayerHUD" parent="." instance=ExtResource("3_r83a8")]
+unique_name_in_owner = true
+top_level = true
+offset_left = -61.0
+offset_top = 69.0
+offset_right = 68.0
+offset_bottom = 130.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="RightTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="BurstArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurstArea"]
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_sbp86")
+
+[node name="BurstCD" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="GrazeCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="TrailCD" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
+[connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
