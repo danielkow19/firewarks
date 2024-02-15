@@ -75,12 +75,12 @@ public partial class GameManager : Node2D
 	}
 	private bool PlayersDead()
 	{
-        if (_playersCount <= 0)
-        {
+		if (_playersCount <= 0)
+		{
 			return false;
-        }
+		}
 
-        int deathCount = 0;
+		int deathCount = 0;
 		for(int i  = 0; i < _playersCount; i++)
 		{
 			if (_players[i]._isDead) { deathCount++; }
