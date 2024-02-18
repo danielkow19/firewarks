@@ -16,7 +16,7 @@ public partial class GameManager : Node2D
 	private bool _paused;
 
 	[Export]
-	private string currentScene;
+	public string currentScene;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
