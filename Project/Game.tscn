@@ -17,6 +17,7 @@
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
 _players = [NodePath("Player_1"), NodePath("Player_2")]
+currentScene = "res://Game.tscn"
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 texture = ExtResource("2_imqba")
