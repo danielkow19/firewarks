@@ -96,24 +96,24 @@ public partial class GameManager : Node2D
 	public void PauseMenu()
 	{
 		if (!_paused)
-        {
-            _pauseMenu.Show();
-            Engine.TimeScale = 0;
-        }
-        else
+		{
+			_pauseMenu.Show();
+			Engine.TimeScale = 0;
+		}
+		else
 		{
 			_pauseMenu.Hide();
 			Engine.TimeScale = 1;	
 		}
-        if (_playersCount > 0)
-        {
-            foreach (var player in _players)
-            {
-                player.ToggleHUD();
-            }
-        }
+		if (_playersCount > 0)
+		{
+			foreach (var player in _players)
+			{
+				player.ToggleHUD();
+			}
+		}
 
-        Debug.Print($"{_paused}");
+		Debug.Print($"{_paused}");
 		_paused = !_paused;
 	}
 }

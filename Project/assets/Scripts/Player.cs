@@ -103,6 +103,7 @@ public partial class Player : Area2D
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
+		Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		
 		health = 2;
 		_speed = 200;
@@ -117,7 +118,7 @@ public partial class Player : Area2D
 		_invTimeMax = 3;
 		_invTime = _invTimeMax;
 		_playerSprite = this.GetChild<Sprite2D>(0);
-		_initialColor = _playerSprite.Modulate;
+		_initialColor = _playerSprite.SelfModulate;
 		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 255);
 		_singleColorTime = 0.5f;
 		_doubleColorTime = 1f;
@@ -193,7 +194,8 @@ public partial class Player : Area2D
 		}
 
 		// Change Phoenix color
-		Modulate = set;
+		SelfModulate = set;
+		playerSprite.Modulate = set;
 		
 		// Change lives color
 		for (int i = 2; i >= 0; i--) // TODO: This should be counting upwards to a max lives value in order to support potential changing of the max lives number.
@@ -358,10 +360,10 @@ public partial class Player : Area2D
 		} else {
 			_invTime += (float)delta;
 		}
-		if(_invTime % _doubleColorTime <= _singleColorTime && _invTime < _invTimeMax && _playerSprite.Modulate != _alternateColor) {
-			_playerSprite.Modulate = _alternateColor;
+		if(_invTime % _doubleColorTime <= _singleColorTime && _invTime < _invTimeMax && _playerSprite.SelfModulate != _alternateColor) {
+			_playerSprite.SelfModulate = _alternateColor;
 		} else if(_invTime % _doubleColorTime > _singleColorTime || _invTime >= _invTimeMax) {
-			_playerSprite.Modulate = _initialColor;
+			_playerSprite.SelfModulate = _initialColor;
 		}
 		
 		// Burst Logic
@@ -482,14 +484,14 @@ public partial class Player : Area2D
 	{
 		if (_uiVisible)
 		{
-            healthBar.Hide();
-            freeze.GetParent<ProgressBar>().Hide();
-        }
+			healthBar.Hide();
+			freeze.GetParent<ProgressBar>().Hide();
+		}
 		else
 		{
 			healthBar.Show();
 			freeze.GetParent<ProgressBar>().Show();
 		}
-        _uiVisible = !_uiVisible;
-    }
+		_uiVisible = !_uiVisible;
+	}
 }
