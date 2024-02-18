@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=12 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_vgjtl"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/Phoenix Sketch D.png" id="2_ogaot"]
@@ -13,10 +13,39 @@ radius = 75.4255
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbp86"]
 
+[sub_resource type="Gradient" id="Gradient_8hlya"]
+offsets = PackedFloat32Array(0, 0.813988)
+colors = PackedColorArray(1, 1, 1, 1, 0.849559, 8.42288e-06, 2.21401e-06, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l3dgi"]
+gradient = SubResource("Gradient_8hlya")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_4wmcr"]
+_data = [Vector2(0.0271429, 0), 0.0, 0.0, 0, 0, Vector2(0.394286, 0.338643), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xi30q"]
+curve = SubResource("Curve_4wmcr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_siffb"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_xi30q")
+color_ramp = SubResource("GradientTexture1D_l3dgi")
+turbulence_enabled = true
+turbulence_noise_strength = 13.43
+
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_vgjtl")
 
-[node name="2MinuteToken-phoenix" type="Sprite2D" parent="."]
+[node name="PlayerTexture" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_ogaot")
@@ -68,6 +97,16 @@ unique_name_in_owner = true
 
 [node name="TrailCD" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="PlayerDamaged" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(3, 3)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_siffb")
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
