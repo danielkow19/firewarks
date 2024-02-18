@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=14 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
+[ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/temp-bkg-city1.JPG" id="2_imqba"]
 [ext_resource type="PackedScene" uid="uid://dotdtw8pnxfsl" path="res://Pattern3.tscn" id="3_h57t8"]
-[ext_resource type="PackedScene" path="res://Cloud.tscn" id="3_ra8m4"]
+[ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://Cloud.tscn" id="3_ra8m4"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="4_3o8fl"]
 [ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://Pattern4.tscn" id="4_fgd5p"]
 [ext_resource type="PackedScene" uid="uid://dx5660n6vooik" path="res://Pattern1.tscn" id="5_q4elx"]
@@ -16,6 +17,9 @@
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
 _players = [NodePath("Player_1"), NodePath("Player_2")]
+
+[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+texture = ExtResource("2_imqba")
 
 [node name="Player_1" parent="." instance=ExtResource("1_yrali")]
 position = Vector2(-609, -230)
