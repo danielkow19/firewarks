@@ -41,6 +41,9 @@ public partial class Player : Area2D
 	private Area2D _burstArea;
 	private Timer _burstTimer;
 	private float _burstCD;
+	
+	// Particles
+	private GpuParticles2D playerDamaged;
 
 	// Trail Variables
 	private Timer _trailTimer;
@@ -98,6 +101,7 @@ public partial class Player : Area2D
 		Hud = GetNode<Control>("%PlayerHUD");
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
+		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
 		
 		health = 2;
 		_speed = 200;
@@ -384,7 +388,14 @@ public partial class Player : Area2D
 			_damageable = false;
 			_invTime = 0;
 
-			if(health < 0) { _isDead = true; }
+			if (health < 0)
+			{
+				_isDead = true;
+			}
+			else
+			{
+				playerDamaged.Emitting = true;
+			}
 		}
 	}
 
