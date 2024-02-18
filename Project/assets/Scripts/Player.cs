@@ -72,6 +72,7 @@ public partial class Player : Area2D
 	[Export]
 	public bool _isDead; // Whether or not the player is alive, referenced in class and by the game manager
 	public bool _canMove; // Used within class and by game manager for pausing
+	private bool _uiVisible;
 	[Export]
 	PackedScene patternLeft = null;
 	[Export]
@@ -141,6 +142,7 @@ public partial class Player : Area2D
 		freeze.OneShot = true;
 		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
 		freeze.Start();
+		_uiVisible = true;
 
 		_leftCooldown = GetNode<Timer>("%LeftTimer");
 		_leftCooldown.OneShot = true;
@@ -475,4 +477,19 @@ public partial class Player : Area2D
 			bullet.QueueFree();
 		}
 	}
+
+	public void ToggleHUD()
+	{
+		if (_uiVisible)
+		{
+            healthBar.Hide();
+            freeze.GetParent<ProgressBar>().Hide();
+        }
+		else
+		{
+			healthBar.Show();
+			freeze.GetParent<ProgressBar>().Show();
+		}
+        _uiVisible = !_uiVisible;
+    }
 }

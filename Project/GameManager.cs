@@ -2,6 +2,7 @@ using FireWARks.assets.Scripts;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class GameManager : Node2D
 {
@@ -13,6 +14,9 @@ public partial class GameManager : Node2D
 	private string[] scenePaths = { "res://StartMenu.tscn", "res://Game.tscn", "res://GameOver.tscn" };
 	private Control _pauseMenu;
 	private bool _paused;
+
+	[Export]
+	private string currentScene;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,7 +34,7 @@ public partial class GameManager : Node2D
 		}
 		if (Input.IsActionJustPressed("Pause"))
 		{
-			PauseMenu();
+			if(currentScene == scenePaths[1]) { PauseMenu(); }
 		}
 
 		if (Input.IsKeyPressed(Key.Key8))
@@ -91,16 +95,25 @@ public partial class GameManager : Node2D
 	}
 	public void PauseMenu()
 	{
-		if (_paused)
+		if (!_paused)
+        {
+            _pauseMenu.Show();
+            Engine.TimeScale = 0;
+        }
+        else
 		{
 			_pauseMenu.Hide();
-			Engine.TimeScale = 1;
+			Engine.TimeScale = 1;	
 		}
-		else
-		{
-			_pauseMenu.Show();
-			Engine.TimeScale = 0;
-		}
+        if (_playersCount > 0)
+        {
+            foreach (var player in _players)
+            {
+                player.ToggleHUD();
+            }
+        }
+
+        Debug.Print($"{_paused}");
 		_paused = !_paused;
 	}
 }
