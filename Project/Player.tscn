@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=14 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_vgjtl"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/temp-sprite-bullet-trail.png" id="4_he0d1"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_qt5bg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -111,8 +112,10 @@ trail_enabled = true
 
 [node name="PlayerTrail" type="Line2D" parent="."]
 points = PackedVector2Array(-66, 0, -1, 0)
+width = 30.0
 texture = ExtResource("4_he0d1")
 texture_mode = 2
+script = ExtResource("5_qt5bg")
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
