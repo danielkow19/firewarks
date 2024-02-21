@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://d7tsg8t1h4h8"]
+
+[ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/Phoenix Sketch D.png" id="1_byecr"]
+
+[node name="PlayerSelect" type="Node2D"]
+
+[node name="Player1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="Player1"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 475.0
+offset_bottom = 1060.0
+color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Player1/ColorRect"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 169.0
+offset_right = 1085.0
+offset_bottom = 1553.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_byecr")
+
+[node name="Label" type="Label" parent="Player1/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Player 1"
