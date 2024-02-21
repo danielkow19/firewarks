@@ -5,10 +5,11 @@ public partial class PlayButton : Node
 {
 	[Export]
 	string scenePath;
+	private Button button;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Button button = GetNode<Button>("PlayButton");
+		button = GetNode<Button>("PlayButton");
 		button.Pressed += OnStartButtonPressed;
 		button.GrabFocus();
 	}
@@ -28,5 +29,6 @@ public partial class PlayButton : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		button.GrabFocus();
 	}
 }
