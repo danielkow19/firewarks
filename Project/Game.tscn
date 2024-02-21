@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://Player.tscn" id="1_yrali"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/temp-bkg-city1.JPG" id="2_imqba"]
-[ext_resource type="PackedScene" path="res://Pattern3.tscn" id="3_h57t8"]
+[ext_resource type="PackedScene" uid="uid://dotdtw8pnxfsl" path="res://Pattern3.tscn" id="3_h57t8"]
 [ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://Cloud.tscn" id="3_ra8m4"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="4_3o8fl"]
-[ext_resource type="PackedScene" path="res://Pattern4.tscn" id="4_fgd5p"]
+[ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://Pattern4.tscn" id="4_fgd5p"]
 [ext_resource type="PackedScene" uid="uid://dx5660n6vooik" path="res://Pattern1.tscn" id="5_q4elx"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="5_u8a8j"]
-[ext_resource type="PackedScene" path="res://Pattern2.tscn" id="6_motgg"]
+[ext_resource type="PackedScene" uid="uid://c0ltjtdxvm5fm" path="res://Pattern2.tscn" id="6_motgg"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="6_rl52b"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
@@ -17,6 +17,7 @@
 [node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_py270")
 _players = [NodePath("Player_1"), NodePath("Player_2")]
+currentScene = "res://Game.tscn"
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 texture = ExtResource("2_imqba")
