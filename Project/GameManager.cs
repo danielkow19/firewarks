@@ -13,6 +13,7 @@ public partial class GameManager : Node2D
 
 	private string[] scenePaths = { "res://StartMenu.tscn", "res://Game.tscn", "res://GameOver.tscn" };
 	private Control _pauseMenu;
+	private Button _resumeButton;
 	private bool _paused;
 
 	[Export]
@@ -23,6 +24,7 @@ public partial class GameManager : Node2D
 	{
 		_playersCount = _players.Length;
 		_pauseMenu = GetNode<Control>("%PauseMenu");
+		_resumeButton = GetNode<Button>("PauseMenu/MarginContainer/VBoxContainer/Resume");
 		_paused = false;
 	}
 
@@ -98,12 +100,13 @@ public partial class GameManager : Node2D
 		if (!_paused)
 		{
 			_pauseMenu.Show();
-			Engine.TimeScale = 0;
+			_resumeButton.GrabFocus();
+			GetTree().Paused = true;
 		}
 		else
 		{
-			_pauseMenu.Hide();
-			Engine.TimeScale = 1;	
+            GetTree().Paused = false;
+            _pauseMenu.Hide();	
 		}
 		if (_playersCount > 0)
 		{

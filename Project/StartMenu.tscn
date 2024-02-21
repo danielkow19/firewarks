@@ -46,6 +46,9 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Play Game"
 
-[node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
 visible = false
+_gameManager = NodePath("..")
+
+[editable path="PauseMenu"]
