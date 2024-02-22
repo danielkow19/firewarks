@@ -105,8 +105,8 @@ public partial class GameManager : Node2D
 		}
 		else
 		{
-            GetTree().Paused = false;
-            _pauseMenu.Hide();	
+			GetTree().Paused = false;
+			_pauseMenu.Hide();	
 		}
 		if (_playersCount > 0)
 		{
