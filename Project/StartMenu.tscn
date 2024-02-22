@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://eyxvn7yqditg"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_7du7k"]
-[ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_twqmu"]
+[ext_resource type="Script" path="res://assets/scripts/PlayButton.cs" id="1_twqmu"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_h1xvh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cs6dbil364eee"]
 
-[ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="1_lxktc"]
+[ext_resource type="Script" path="res://assets/scripts/PlayButton.cs" id="1_lxktc"]
 [ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
 

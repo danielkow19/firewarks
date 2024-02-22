@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh8lv7x53paxb"]
-
-[ext_resource type="AudioStream" uid="uid://imq3pbv11ilm" path="res://assets/SFX/FWSFX Draft1.wav" id="1_vwx52"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_vwx52")
-autoplay = true
