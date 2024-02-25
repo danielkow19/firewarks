@@ -20,6 +20,7 @@ public partial class Bullet : Area2D
 	public Player owner;
 	private string[] tags;
 	private bool swirl = false;
+	private Line2D trail;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,25 +28,32 @@ public partial class Bullet : Area2D
 		this.Hide();	
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
+		trail = GetNode<Line2D>("%Trail");
 		if(owner != null){			
 			switch (owner.player_id)
 			{
 				case 0:
 					Modulate = Colors.Aquamarine;
+					trail.Modulate = Colors.Aquamarine;
 					break;
 				case 1:
 					Modulate = Colors.RebeccaPurple;
+					trail.Modulate = Colors.RebeccaPurple;
 					break;
 				case 2:
 					Modulate = Colors.Firebrick;
+					trail.Modulate = Colors.Firebrick;
 					break;
 				case 3:
 					Modulate = Colors.Lime;
+					trail.Modulate = Colors.Lime;
 					break;
 			}
 		}
-		
-		
+
+		// Sets the opacity of the trail 0 - 255
+		//trail.Modulate = trail.Modulate with { A8 = 255 };
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0ounhj71g27q"]
+[gd_scene load_steps=16 format=3 uid="uid://c0ounhj71g27q"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="1_qc7qp"]
 [ext_resource type="Texture2D" uid="uid://colenu8fb8b1f" path="res://assets/sprites/bullets/firework-spark.png" id="2_8plhr"]
 [ext_resource type="Texture2D" uid="uid://cefsi5crsmi7s" path="res://assets/sprites/bullets/spritesheet-bullet-spark.png" id="3_tsdr0"]
+[ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_1rgbt"]
+[ext_resource type="Script" path="res://assets/Scripts/BulletTrail.cs" id="4_floe7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6xk0k"]
 atlas = ExtResource("3_tsdr0")
@@ -80,10 +82,23 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8plhr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_r41jp")
 autoplay = "default"
 frame_progress = 0.953102
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 shape = SubResource("CircleShape2D_ndpxb")
+
+[node name="Trail" type="Line2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+position = Vector2(0, 1)
+points = PackedVector2Array(-51, -1, 0, -1)
+width = 30.0
+texture = ExtResource("4_1rgbt")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("4_floe7")

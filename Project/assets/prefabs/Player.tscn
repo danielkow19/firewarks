@@ -112,6 +112,7 @@ explosiveness = 1.0
 trail_enabled = true
 
 [node name="PlayerTrail" type="Line2D" parent="."]
+visible = false
 top_level = true
 position = Vector2(-20, 0)
 points = PackedVector2Array(-66, 0, -1, 0)
