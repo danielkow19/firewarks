@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c0ounhj71g27q"]
 
-[ext_resource type="Script" path="res://assets/scripts/Bullet.cs" id="1_ye7ha"]
+[ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="1_qc7qp"]
 [ext_resource type="Texture2D" uid="uid://colenu8fb8b1f" path="res://assets/sprites/bullets/firework-spark.png" id="2_8plhr"]
 [ext_resource type="Texture2D" uid="uid://cefsi5crsmi7s" path="res://assets/sprites/bullets/spritesheet-bullet-spark.png" id="3_tsdr0"]
 
@@ -72,7 +72,7 @@ animations = [{
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 2
-script = ExtResource("1_ye7ha")
+script = ExtResource("1_qc7qp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

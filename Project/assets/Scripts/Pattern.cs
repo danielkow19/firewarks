@@ -26,8 +26,8 @@ public partial class Pattern : Node
 	public float[] spinAccelPerWave = {0,0,0};
 	[Export]
 	public bool swirl = false;
-	PackedScene pattern = GD.Load<PackedScene>("res://Wave.tscn");
-	PackedScene sfx = GD.Load<PackedScene>("res://SFXFW1.tscn");
+	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Wave.tscn");
+	PackedScene sfx = GD.Load<PackedScene>("res://assets/prefabs/SFXFW1.tscn");
 	public Pattern(){
 	}
 

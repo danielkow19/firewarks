@@ -17,7 +17,7 @@ public partial class Wave : Node
 	public int wait;
 	private int swirl;
 	private Player owner;
-	PackedScene pattern = GD.Load<PackedScene>("res://Bullet.tscn");
+	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Bullet.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -56,7 +56,7 @@ public partial class Wave : Node
 		//if one bullet instantiate 1 bullet
 		else
 		{
-			PackedScene pattern = GD.Load<PackedScene>("res://Bullet.tscn");
+			PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Bullet.tscn");
 			var instance = pattern.Instantiate();
 			instance.Set("position", Get("position"));
 			instance.Set("delay", wait);

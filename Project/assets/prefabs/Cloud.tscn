@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4otgqtiedtm3"]
 
-[ext_resource type="Script" path="res://assets/scripts/Clouds.cs" id="1_1fb68"]
+[ext_resource type="Script" path="res://assets/Scripts/Clouds.cs" id="1_nk638"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ttfpx"]
 
@@ -8,7 +8,7 @@
 size = Vector2(146, 180)
 
 [node name="Cloud" type="Area2D"]
-script = ExtResource("1_1fb68")
+script = ExtResource("1_nk638")
 
 [node name="Obstacle" type="MeshInstance2D" parent="."]
 rotation = 3.14159

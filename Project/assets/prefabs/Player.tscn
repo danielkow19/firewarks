@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://c1rsifuaq4gih"]
 
-[ext_resource type="Script" path="res://assets/scripts/Player.cs" id="1_vgjtl"]
+[ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
-[ext_resource type="Script" path="res://assets/scripts/PlayerTrail.cs" id="5_qt5bg"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -44,7 +44,7 @@ turbulence_enabled = true
 turbulence_noise_strength = 13.43
 
 [node name="Player_1" type="Area2D"]
-script = ExtResource("1_vgjtl")
+script = ExtResource("1_pxkww")
 
 [node name="PlayerTexture" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -119,7 +119,7 @@ width = 30.0
 texture = ExtResource("4_he0d1")
 texture_mode = 2
 joint_mode = 1
-script = ExtResource("5_qt5bg")
+script = ExtResource("5_tcvo2")
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]

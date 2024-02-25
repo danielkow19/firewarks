@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://imq3pbv11ilm"
-path="res://.godot/imported/FWSFX Draft1.wav-f09523c3c9b445e1eac1ff6595f92f2d.sample"
+path="res://.godot/imported/FWSFX Draft1.wav-112c0daa218ef72eb99ab366708957e7.sample"
 
 [deps]
 
-source_file="res://assets/sfx/FWSFX Draft1.wav"
-dest_files=["res://.godot/imported/FWSFX Draft1.wav-f09523c3c9b445e1eac1ff6595f92f2d.sample"]
+source_file="res://assets/SFX/FWSFX Draft1.wav"
+dest_files=["res://.godot/imported/FWSFX Draft1.wav-112c0daa218ef72eb99ab366708957e7.sample"]
 
 [params]
 

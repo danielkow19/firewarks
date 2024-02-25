@@ -18,12 +18,12 @@ public partial class PlayButton : Node
 	{
 		if(scenePath == null)
 		{
-            GetTree().ChangeSceneToFile("res://Game.tscn");
-        }
+			GetTree().ChangeSceneToFile("res://Game.tscn");
+		}
 		else
 		{
-            GetTree().ChangeSceneToFile(scenePath);
-        }
+			GetTree().ChangeSceneToFile(scenePath);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

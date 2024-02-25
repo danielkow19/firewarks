@@ -78,12 +78,12 @@ public partial class Player : Area2D
 	[Export]
 	PackedScene patternRight = null;
 
-	PackedScene pattern = GD.Load<PackedScene>("res://Pattern1.tscn");
-	PackedScene pattern1 = GD.Load<PackedScene>("res://Pattern2.tscn");
-	PackedScene pattern2 = GD.Load<PackedScene>("res://Pattern3.tscn");
-	PackedScene pattern3 = GD.Load<PackedScene>("res://Pattern4.tscn");
-	PackedScene hitFX = GD.Load<PackedScene>("res://SFXHit.tscn");
-	PackedScene trailBullet = GD.Load<PackedScene>("res://TrailBullet.tscn");
+	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Pattern1.tscn");
+	PackedScene pattern1 = GD.Load<PackedScene>("res://assets/prefabs/Pattern2.tscn");
+	PackedScene pattern2 = GD.Load<PackedScene>("res://assets/prefabs/Pattern3.tscn");
+	PackedScene pattern3 = GD.Load<PackedScene>("res://assets/prefabs/Pattern4.tscn");
+	PackedScene hitFX = GD.Load<PackedScene>("res://assets/prefabs/SFXHit.tscn");
+	PackedScene trailBullet = GD.Load<PackedScene>("res://assets/prefabs/TrailBullet.tscn");
 
 	public bool Damageable{ get => _damageable;}
 	

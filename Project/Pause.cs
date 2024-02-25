@@ -22,8 +22,8 @@ public partial class Pause : Control
 	public void _on_quit_pressed()
 	{
 		Debug.Print("Quit");
-        GetTree().Quit();
-    }
+		GetTree().Quit();
+	}
 	public void _on_resume_pressed()
 	{
 		Debug.Print("UnPause");
