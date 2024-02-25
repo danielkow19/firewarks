@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cc67w82ctld0d"]
 
-[ext_resource type="Script" path="res://assets/scripts/Pattern.cs" id="1_sxpbi"]
+[ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_hq65q"]
 [ext_resource type="Texture2D" uid="uid://ciy4kb8jrvum0" path="res://assets/sprites/bullets/warning mockup.png" id="2_qbrji"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_sxpbi")
+script = ExtResource("1_hq65q")
 waves = 10
 bulletPerWave = PackedInt32Array(4)
 spreadPerWave = PackedInt32Array(270)
