@@ -20,6 +20,7 @@ public partial class Bullet : Area2D
 	public Player owner;
 	private string[] tags;
 	private bool swirl = false;
+	public int swirlMod;
 	private Line2D trail;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -64,7 +65,7 @@ public partial class Bullet : Area2D
 		{
 			if (swirl && delay <= -1)
 			{
-				speed = speed.Rotated((float)Math.PI/3);
+				speed = speed.Rotated(((float)Math.PI/swirlMod));
 				swirl = false;			
 			}
 			if(!this.Visible)

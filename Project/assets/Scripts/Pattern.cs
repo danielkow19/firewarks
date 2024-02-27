@@ -26,6 +26,8 @@ public partial class Pattern : Node
 	public float[] spinAccelPerWave = {0,0,0};
 	[Export]
 	public bool swirl = false;
+	[Export]
+	public int[] swirlMod;
 	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Wave.tscn");
 	PackedScene sfx = GD.Load<PackedScene>("res://assets/prefabs/SFXFW1.tscn");
 	public Pattern(){
@@ -63,6 +65,7 @@ public partial class Pattern : Node
 			instance.Set("spin",spinPerWave[i]);
 			instance.Set("spinAccel",spinAccelPerWave[i]);
 			instance.Set("swirl", swirl);
+			instance.Set("swirlMod", swirlMod[i]);
 			AddChild(instance);
 		}
 	}
@@ -173,6 +176,25 @@ public partial class Pattern : Node
 					}
 			}
 			spinAccelPerWave = waveUpdate;
+		}
+		if(swirlMod.Length < waves)
+		{
+			int[] waveUpdate = new int[waves];
+			for (int i = 0; i < waveUpdate.Length; i++)
+			{
+				if(i < swirlMod.Length)
+				{
+					waveUpdate[i] = swirlMod[i];
+				}
+				else{
+					if(i == 0)
+					{
+						waveUpdate[i]= 40;
+					}
+					waveUpdate[i]= waveUpdate[i-1];
+					}
+			}
+			swirlMod = waveUpdate;
 		}
 		//initial bullet rotation not wave rotation needs to be added here
 	}
