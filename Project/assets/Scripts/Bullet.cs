@@ -65,7 +65,7 @@ public partial class Bullet : Area2D
 		{
 			if (swirl && delay <= -1)
 			{
-				speed = speed.Rotated(((float)Math.PI/swirlMod));
+				speed = speed.Rotated((((float)Math.PI/180) * swirlMod));
 				swirl = false;			
 			}
 			if(!this.Visible)
