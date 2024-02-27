@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn21bnpmg02n"]
+[gd_scene load_steps=16 format=3 uid="uid://cn21bnpmg02n"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_wusj2"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://assets/prefabs/Player.tscn" id="2_pwkuw"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://assets/prefabs/Pattern4.tscn" id="6_6gwft"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="7_x1utr"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_aruoj"]
+[ext_resource type="PackedScene" uid="uid://cc67w82ctld0d" path="res://assets/prefabs/Pattern5.tscn" id="8_r6s6f"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_5vmaj"]
+[ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="9_153hh"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_568jj"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="11_auitg"]
 [ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://assets/prefabs/Cloud.tscn" id="12_d7him"]
@@ -51,6 +53,8 @@ offset_bottom = -361.0
 [node name="Player_3" parent="." instance=ExtResource("2_pwkuw")]
 position = Vector2(-600, 300)
 player_id = 2
+patternLeft = ExtResource("8_r6s6f")
+patternRight = ExtResource("9_153hh")
 
 [node name="PlayerHUD" parent="Player_3" index="3"]
 offset_left = -729.0
@@ -61,6 +65,8 @@ offset_bottom = 461.0
 [node name="Player_4" parent="." instance=ExtResource("2_pwkuw")]
 position = Vector2(600, 300)
 player_id = 3
+patternLeft = ExtResource("6_6gwft")
+patternRight = ExtResource("8_r6s6f")
 
 [node name="PlayerHUD" parent="Player_4" index="3"]
 offset_left = 600.0
