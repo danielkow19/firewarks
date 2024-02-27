@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl42m53yo0svu"]
+[gd_scene load_steps=3 format=3 uid="uid://d145uhqaf8iiv"]
 
 [ext_resource type="Script" path="res://assets/Scripts/PlayerSelectButton.cs" id="1_0onal"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerSpawnButton.cs" id="2_suoxg"]

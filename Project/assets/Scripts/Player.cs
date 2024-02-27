@@ -487,12 +487,13 @@ public partial class Player : Area2D
 			healthBar.Hide();
 			freeze.GetParent<ProgressBar>().Hide();
 			// Hiding Sprite for Now, should be handled else where in future
-			
+			_playerSprite.Hide();
 		}
 		else
 		{
 			healthBar.Show();
 			freeze.GetParent<ProgressBar>().Show();
+			_playerSprite.Show();
 		}
 		_uiVisible = !_uiVisible;
 	}

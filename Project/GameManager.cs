@@ -38,7 +38,7 @@ public partial class GameManager : Node2D
 		}
 		if (Input.IsActionJustPressed("Pause"))
 		{
-			if(currentScene == scenePaths[1]) { PauseMenu(); }
+			if(currentScene != scenePaths[0] && currentScene != scenePaths[2]) { PauseMenu(); }
 		}
 
 		if (Input.IsKeyPressed(Key.Key8))
@@ -97,7 +97,7 @@ public partial class GameManager : Node2D
 			if (_players[i]._isDead) { deathCount++; }
 		}
 
-		if (deathCount >= _players.Count - 1) { return true; }
+		if (deathCount > _players.Count - 1) { return true; }
 		else { return false; }
 	}
 	public void PauseMenu()

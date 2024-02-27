@@ -20,6 +20,11 @@ script = ExtResource("1_g22nk")
 _players = [NodePath("Player_1"), NodePath("Player_2")]
 currentScene = "res://assets/cheatScenes/Game(2 Player).tscn"
 
+[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+texture = ExtResource("7_o2dn4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="Player_1" parent="." instance=ExtResource("2_anj1y")]
 position = Vector2(-600, -300)
 patternLeft = ExtResource("3_eemlp")
@@ -42,11 +47,6 @@ offset_left = 600.0
 offset_top = -422.0
 offset_right = 729.0
 offset_bottom = -361.0
-
-[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
-texture = ExtResource("7_o2dn4")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
