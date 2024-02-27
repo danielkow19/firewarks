@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl42m53yo0svu"]
+[gd_scene load_steps=3 format=3 uid="uid://cl42m53yo0svu"]
 
 [ext_resource type="Script" path="res://assets/Scripts/PlayerSelectButton.cs" id="1_0onal"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayerSpawnButton.cs" id="2_suoxg"]
 
 [node name="PlayerNumbers" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -27,4 +29,10 @@ unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("1_0onal")
 
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+script = ExtResource("2_suoxg")
+
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/OptionButton" to="MarginContainer/VBoxContainer/OptionButton" method="_on_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="MarginContainer/VBoxContainer/Button" method="_on_pressed"]

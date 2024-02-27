@@ -1,9 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=15 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="2_imqba"]
+[ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://assets/prefabs/Player.tscn" id="2_j0vrw"]
+[ext_resource type="PackedScene" uid="uid://dx5660n6vooik" path="res://assets/prefabs/Pattern1.tscn" id="3_onqyq"]
 [ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://assets/prefabs/Cloud.tscn" id="3_ra8m4"]
+[ext_resource type="PackedScene" uid="uid://c0ltjtdxvm5fm" path="res://assets/prefabs/Pattern2.tscn" id="4_jtkrm"]
+[ext_resource type="PackedScene" uid="uid://dotdtw8pnxfsl" path="res://assets/prefabs/Pattern3.tscn" id="5_i8q4l"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="6_pm6ws"]
+[ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://assets/prefabs/Pattern4.tscn" id="6_vhunu"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_24xvk"]
 [ext_resource type="PackedScene" uid="uid://cl42m53yo0svu" path="res://assets/prefabs/PlayerNumbers.tscn" id="9_n16hy"]
@@ -14,6 +19,29 @@
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
+
+[node name="Player_1" parent="." instance=ExtResource("2_j0vrw")]
+position = Vector2(-600, -300)
+patternLeft = ExtResource("3_onqyq")
+patternRight = ExtResource("4_jtkrm")
+
+[node name="PlayerHUD" parent="Player_1" index="3"]
+offset_left = -729.0
+offset_top = -422.0
+offset_right = -600.0
+offset_bottom = -361.0
+
+[node name="Player_2" parent="." instance=ExtResource("2_j0vrw")]
+position = Vector2(600, -300)
+player_id = 1
+patternLeft = ExtResource("5_i8q4l")
+patternRight = ExtResource("6_vhunu")
+
+[node name="PlayerHUD" parent="Player_2" index="3"]
+offset_left = 600.0
+offset_top = -422.0
+offset_right = 729.0
+offset_bottom = -361.0
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 texture = ExtResource("2_imqba")
@@ -70,15 +98,18 @@ scale = Vector2(3, 3)
 _gameManager = NodePath("..")
 
 [node name="PlayerNumbers" parent="." instance=ExtResource("9_n16hy")]
+process_priority = 1
 offset_left = 63.9121
 offset_top = 62.5681
 offset_right = 63.9121
 offset_bottom = 62.5681
 
-[node name="OptionButton" parent="PlayerNumbers/MarginContainer/VBoxContainer" index="1" node_paths=PackedStringArray("_gameManager")]
+[node name="Button" parent="PlayerNumbers/MarginContainer/VBoxContainer" index="2" node_paths=PackedStringArray("_gameManager")]
 _gameManager = NodePath("../../../..")
 
 [connection signal="area_entered" from="CloudBorder" to="CloudBorder" method="_on_area_entered"]
 [connection signal="area_exited" from="CloudBorder" to="CloudBorder" method="_on_area_exited"]
 
+[editable path="Player_1"]
+[editable path="Player_2"]
 [editable path="PlayerNumbers"]
