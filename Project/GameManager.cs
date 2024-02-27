@@ -7,9 +7,7 @@ using System.Diagnostics;
 public partial class GameManager : Node2D
 {
 	[Export]
-	public Player[] _players;
-
-	private int _playersCount;
+	public Godot.Collections.Array<Player> _players;
 
 	private string[] scenePaths = { "res://StartMenu.tscn", "res://Game.tscn", "res://GameOver.tscn" };
 	private Control _pauseMenu;
@@ -19,10 +17,12 @@ public partial class GameManager : Node2D
 	[Export]
 	public string currentScene;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	// Player Scene
+	PackedScene _playerPrefab = GD.Load<PackedScene>("res://assets/prefabs/Player.tscn");
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
-		_playersCount = _players.Length;
 		_pauseMenu = GetNode<Control>("%PauseMenu");
 		_resumeButton = GetNode<Button>("PauseMenu/MarginContainer/VBoxContainer/Resume");
 		_paused = false;
@@ -60,7 +60,7 @@ public partial class GameManager : Node2D
 		if (Input.IsKeyPressed(Key.P))
 		{
 			// Empty Player protection
-			if(_players.Length <= 0)
+			if(_players.Count <= 0)
 			{
 				return;
 			}
@@ -81,18 +81,18 @@ public partial class GameManager : Node2D
 	}
 	private bool PlayersDead()
 	{
-		if (_playersCount <= 0)
+		if (_players.Count <= 0)
 		{
 			return false;
 		}
 
 		int deathCount = 0;
-		for(int i  = 0; i < _playersCount; i++)
+		for(int i  = 0; i < _players.Count; i++)
 		{
 			if (_players[i]._isDead) { deathCount++; }
 		}
 
-		if (deathCount >= _playersCount - 1) { return true; }
+		if (deathCount >= _players.Count - 1) { return true; }
 		else { return false; }
 	}
 	public void PauseMenu()
@@ -108,9 +108,9 @@ public partial class GameManager : Node2D
 			GetTree().Paused = false;
 			_pauseMenu.Hide();	
 		}
-		if (_playersCount > 0)
+		if (_players.Count > 0)
 		{
-			foreach (var player in _players)
+			foreach (Player player in _players)
 			{
 				player.ToggleHUD();
 			}
@@ -118,5 +118,16 @@ public partial class GameManager : Node2D
 
 		Debug.Print($"{_paused}");
 		_paused = !_paused;
+	}
+	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight)
+	{
+		var instance = _playerPrefab.Instantiate();
+		instance.Set("player_id", playerID);
+		instance.Set("patternLeft", patternLeft);
+		instance.Set("patternRight", patternRight);
+		if(instance is Player)
+		{
+			_players.Add((Player)instance);
+		}
 	}
 }

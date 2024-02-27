@@ -486,6 +486,8 @@ public partial class Player : Area2D
 		{
 			healthBar.Hide();
 			freeze.GetParent<ProgressBar>().Hide();
+			// Hiding Sprite for Now, should be handled else where in future
+			
 		}
 		else
 		{
