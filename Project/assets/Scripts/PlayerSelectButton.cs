@@ -13,6 +13,7 @@ public partial class PlayerSelectButton : Godot.OptionButton
 		// Will be reassigned later
 		_numSelected = -1;
 		button = GetNode<OptionButton>("%OptionButton");
+		button.GrabFocus();
 		addItems();
 
 	}

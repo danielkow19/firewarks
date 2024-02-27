@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://gu43v4332g5b"]
+
+[ext_resource type="Script" path="res://GameManager.cs" id="1_t3ush"]
+[ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://assets/prefabs/Player.tscn" id="2_35rny"]
+[ext_resource type="PackedScene" uid="uid://dx5660n6vooik" path="res://assets/prefabs/Pattern1.tscn" id="3_62up7"]
+[ext_resource type="PackedScene" uid="uid://c0ltjtdxvm5fm" path="res://assets/prefabs/Pattern2.tscn" id="4_7fc3i"]
+[ext_resource type="PackedScene" uid="uid://dotdtw8pnxfsl" path="res://assets/prefabs/Pattern3.tscn" id="5_am1q3"]
+[ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://assets/prefabs/Pattern4.tscn" id="6_cslh7"]
+[ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="7_rxs83"]
+[ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_k55e7"]
+[ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_1cv6c"]
+[ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_oh1c1"]
+[ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="11_li2t8"]
+[ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://assets/prefabs/Cloud.tscn" id="12_6g0uo"]
+[ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="13_sh61e"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
+scale = Vector2(1, 0.996516)
+script = ExtResource("1_t3ush")
+_players = [NodePath("Player_1"), NodePath("Player_2"), NodePath("Player_3")]
+currentScene = "res://assets/cheatScenes/Game(3 Player).tscn"
+
+[node name="Player_1" parent="." instance=ExtResource("2_35rny")]
+position = Vector2(-600, -300)
+patternLeft = ExtResource("3_62up7")
+patternRight = ExtResource("4_7fc3i")
+
+[node name="PlayerHUD" parent="Player_1" index="3"]
+offset_left = -729.0
+offset_top = -422.0
+offset_right = -600.0
+offset_bottom = -361.0
+
+[node name="Player_2" parent="." instance=ExtResource("2_35rny")]
+position = Vector2(600, -300)
+player_id = 1
+patternLeft = ExtResource("5_am1q3")
+patternRight = ExtResource("6_cslh7")
+
+[node name="PlayerHUD" parent="Player_2" index="3"]
+offset_left = 600.0
+offset_top = -422.0
+offset_right = 729.0
+offset_bottom = -361.0
+
+[node name="Player_3" parent="." instance=ExtResource("2_35rny")]
+position = Vector2(-600, 300)
+player_id = 2
+
+[node name="PlayerHUD" parent="Player_3" index="3"]
+offset_left = -729.0
+offset_top = 400.0
+offset_right = -600.0
+offset_bottom = 461.0
+
+[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+texture = ExtResource("7_rxs83")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Debug" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FPS" type="Label" parent="Debug"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = 285.0
+offset_right = 176.0
+offset_bottom = 347.0
+text = "Test"
+script = ExtResource("8_k55e7")
+
+[node name="Spawner_Resource" type="Node2D" parent="."]
+script = ExtResource("9_1cv6c")
+
+[node name="CloudBorder" type="Area2D" parent="."]
+script = ExtResource("10_oh1c1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
+scale = Vector2(0.9, 0.9)
+polygon = PackedVector2Array(-6000, -3375, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -6000, -3375, 6000, -3375, 6000, 3375, -6000, 3375)
+
+[node name="Temp-world-border" type="Sprite2D" parent="CloudBorder"]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("11_li2t8")
+
+[node name="Cloud" parent="." instance=ExtResource("12_6g0uo")]
+position = Vector2(-600, 150)
+
+[node name="Cloud2" parent="." instance=ExtResource("12_6g0uo")]
+position = Vector2(600, 275)
+
+[node name="Cloud3" parent="." instance=ExtResource("12_6g0uo")]
+position = Vector2(0, -300)
+scale = Vector2(1, 2)
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("13_sh61e")]
+unique_name_in_owner = true
+visible = false
+offset_left = -90.0
+offset_top = -80.0
+offset_right = -90.0
+offset_bottom = -80.0
+scale = Vector2(3, 3)
+_gameManager = NodePath("..")
+
+[connection signal="area_entered" from="CloudBorder" to="CloudBorder" method="_on_area_entered"]
+[connection signal="area_exited" from="CloudBorder" to="CloudBorder" method="_on_area_exited"]
+
+[editable path="Player_1"]
+[editable path="Player_2"]
+[editable path="Player_3"]

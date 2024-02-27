@@ -13,7 +13,7 @@ public partial class GameManager : Node2D
 	private Control _pauseMenu;
 	private Button _resumeButton;
 	private bool _paused;
-	private bool _hasSpawned;
+	//private bool _hasSpawned;
 
 	[Export]
 	public string currentScene;
@@ -27,7 +27,7 @@ public partial class GameManager : Node2D
 		_pauseMenu = GetNode<Control>("%PauseMenu");
 		_resumeButton = GetNode<Button>("PauseMenu/MarginContainer/VBoxContainer/Resume");
 		_paused = false;
-		_hasSpawned = false;
+		//_hasSpawned = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -83,9 +83,9 @@ public partial class GameManager : Node2D
 	}
 	private bool PlayersDead()
 	{
-		if(!_hasSpawned){
-			return false;	
-		}
+		//if(!_hasSpawned){
+		//	return false;	
+		//}
 		if (_players.Count <= 0)
 		{
 			return false;
@@ -135,6 +135,6 @@ public partial class GameManager : Node2D
 		{
 			_players.Add((Player)instance);
 		}
-		_hasSpawned = true;
+		//_hasSpawned = true;
 	}
 }

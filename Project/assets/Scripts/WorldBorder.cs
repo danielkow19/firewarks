@@ -49,6 +49,3 @@ public partial class WorldBorder : Area2D
 		}
 	}
 }
-
-
-
