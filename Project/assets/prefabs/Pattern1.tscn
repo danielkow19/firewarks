@@ -9,6 +9,7 @@ bulletPerWave = PackedInt32Array(30, 30, 15)
 spreadPerWave = PackedInt32Array(348, 348, 336)
 speedPerWave = PackedInt32Array(100, 100, 200)
 offsetPerWave = PackedInt32Array(0, 6, 9)
+swirlMod = PackedInt32Array(0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(60, 0)

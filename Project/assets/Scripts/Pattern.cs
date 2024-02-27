@@ -27,7 +27,7 @@ public partial class Pattern : Node
 	[Export]
 	public bool swirl = false;
 	[Export]
-	public int[] swirlMod;
+	public int[] swirlMod = {1};
 	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Wave.tscn");
 	PackedScene sfx = GD.Load<PackedScene>("res://assets/prefabs/SFXFW1.tscn");
 	public Pattern(){

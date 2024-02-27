@@ -13,7 +13,7 @@ offsetPerWave = PackedInt32Array(-45, 45, -45, 45, -45, 45)
 spinPerWave = PackedFloat32Array(15, -15, 15, -15, 15, -15)
 spinAccelPerWave = PackedFloat32Array(0)
 swirl = true
-swirlMod = PackedInt32Array(24, -24, 24, -24, 24, -24)
+swirlMod = PackedInt32Array(7, -7, 7, -7, 7, -7)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(60, 0)
