@@ -20,6 +20,11 @@ scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
 
+[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+texture = ExtResource("2_imqba")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="Player_1" parent="." instance=ExtResource("2_j0vrw")]
 position = Vector2(-600, -300)
 patternLeft = ExtResource("3_onqyq")
@@ -45,11 +50,6 @@ offset_left = 600.0
 offset_top = -422.0
 offset_right = 729.0
 offset_bottom = -361.0
-
-[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
-texture = ExtResource("2_imqba")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
