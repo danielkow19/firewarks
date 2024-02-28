@@ -30,6 +30,7 @@ public partial class Pattern : Node
 	public int[] swirlMod = {1};
 	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Wave.tscn");
 	PackedScene sfx = GD.Load<PackedScene>("res://assets/prefabs/SFXFW1.tscn");
+	bool released = false;
 	public Pattern(){
 	}
 
@@ -45,16 +46,27 @@ public partial class Pattern : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//spawn a wave/waves every x seconds while not released
+		//if end of waves start from beggining
 		if(GetChildCount() < 3)
 		{
 			QueueFree();
 		}
+		//if attached follow player to continue to spawn from... 
+		//need to add pattern bool to see if bullets should also follow player
+		if(!released){
+			Set("position", owner.Get("position"));
+		}
+	}
+
+	public void Release(){
+		released = true;
 	}
 	//instantiates each wave setting variables
 	public void SpawnWaves(){
 		for (int i = 0; i < waves; i++)
 		{		
-			
+			//! dettach waves as siblings unless they have bool
 			var instance = pattern.Instantiate();
 			instance.Set("owner", owner);
 			instance.Set("wait", i*delay);
@@ -66,7 +78,10 @@ public partial class Pattern : Node
 			instance.Set("spinAccel",spinAccelPerWave[i]);
 			instance.Set("swirl", swirl);
 			instance.Set("swirlMod", swirlMod[i]);
+			if(true){
 			AddChild(instance);
+			}
+			else{AddSibling(instance);}
 		}
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
