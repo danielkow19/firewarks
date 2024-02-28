@@ -246,24 +246,14 @@ public partial class Player : Area2D
 				DrainEnergy(60, .15f);
 				FirePattern(patternLeft);
 				firing = true;
-			}
-		}
-		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
-			//Debug.Print($"P{player_id} Left on Cooldown");
-		}
-		if(Input.IsActionPressed($"Shoot_L_{player_id}") && firing )
-		{
-			DrainEnergy(5 * (float)delta,.15f * (float)delta);
-		}
-		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || energy <= 0)
-		{
-				Pattern wrkPattern = currentPattern as Pattern;
-				wrkPattern.Release();
-				//Debug.Print($"Shoot Left P{player_id}");
 				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
 				_leftCooldown.Start();
 				chargeTime = 0;
 				firing = false;
+			}
+		}
+		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
+			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
 			if (energy >= 40 && !InCloud())
@@ -271,27 +261,16 @@ public partial class Player : Area2D
 				FirePattern(patternRight);
 				DrainEnergy(40, .15f);
 				firing = true;
+				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
+				_rightCooldown.Start();				
+				chargeTime = 0;
+				firing = false;
 			}
 		}
 		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
 			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
-		if(Input.IsActionPressed($"Shoot_R_{player_id}") && firing)
-		{
-			
-			DrainEnergy(5 * (float)delta,.15f * (float)delta);
-		}
-		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || energy <= 0)
-		{
-			Pattern wrkPattern = currentPattern as Pattern;
-			wrkPattern.Release();
-			//Debug.Print($"{player_id}");
-				//Debug.Print($"Shoot Right P{player_id}");
-				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
-				_rightCooldown.Start();				
-				chargeTime = 0;
-				firing = false;
-		}
+				
 
 
 
