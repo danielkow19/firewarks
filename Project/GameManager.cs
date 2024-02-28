@@ -86,18 +86,26 @@ public partial class GameManager : Node2D
 		//if(!_hasSpawned){
 		//	return false;	
 		//}
-		if (_players.Count <= 0)
+		if (_players.Count == 0)
 		{
 			return false;
 		}
-
-		int deathCount = 0;
-		for(int i  = 0; i < _players.Count; i++)
+		// Count the number of deaths
+        int deathCount = 0;
+        if (_players.Count > 1)
 		{
-			if (_players[i]._isDead) { deathCount++; }
+            for (int i = 0; i < _players.Count; i++)
+            {
+                if (_players[i]._isDead) { deathCount++; }
+            }
+            if (deathCount >= _players.Count - 1) { return true; }
+			else { return false; }
+        }
+		// Single player death logic
+		else if(_players.Count == 1)
+		{
+			return _players[0]._isDead;
 		}
-
-		if (deathCount > _players.Count - 1) { return true; }
 		else { return false; }
 	}
 	public void PauseMenu()

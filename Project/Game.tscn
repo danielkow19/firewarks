@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=14 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="2_imqba"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dx5660n6vooik" path="res://assets/prefabs/Pattern1.tscn" id="3_onqyq"]
 [ext_resource type="PackedScene" uid="uid://b4otgqtiedtm3" path="res://assets/prefabs/Cloud.tscn" id="3_ra8m4"]
 [ext_resource type="PackedScene" uid="uid://c0ltjtdxvm5fm" path="res://assets/prefabs/Pattern2.tscn" id="4_jtkrm"]
-[ext_resource type="Texture2D" uid="uid://colenu8fb8b1f" path="res://assets/sprites/bullets/firework-spark.png" id="5_d4i7h"]
 [ext_resource type="PackedScene" uid="uid://dotdtw8pnxfsl" path="res://assets/prefabs/Pattern3.tscn" id="5_i8q4l"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://assets/prefabs/Pattern4.tscn" id="6_vhunu"]
@@ -20,6 +19,11 @@ scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
 
+[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+texture = ExtResource("2_imqba")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="Player_1" parent="." instance=ExtResource("2_j0vrw")]
 position = Vector2(-600, -300)
 patternLeft = ExtResource("3_onqyq")
@@ -30,9 +34,6 @@ offset_left = -729.0
 offset_top = -422.0
 offset_right = -600.0
 offset_bottom = -361.0
-
-[node name="PlayerDamaged" parent="Player_1" index="10"]
-texture = ExtResource("5_d4i7h")
 
 [node name="Player_2" parent="." instance=ExtResource("2_j0vrw")]
 position = Vector2(600, -300)
@@ -45,11 +46,6 @@ offset_left = 600.0
 offset_top = -422.0
 offset_right = 729.0
 offset_bottom = -361.0
-
-[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
-texture = ExtResource("2_imqba")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Debug" type="Control" parent="."]
 layout_mode = 3
