@@ -73,6 +73,7 @@ public partial class Player : Area2D
 	public bool _isDead; // Whether or not the player is alive, referenced in class and by the game manager
 	public bool _canMove; // Used within class and by game manager for pausing
 	private bool _uiVisible;
+	private float chargeTime = 0;
 	[Export]
 	PackedScene patternLeft = null;
 	[Export]
@@ -233,34 +234,56 @@ public partial class Player : Area2D
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
 		// Update cool down timers
-		if (Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
+		if (Input.IsActionJustPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
 			if (energy >= 60 && !InCloud())
-			{
-				FirePattern(patternLeft);
+			{				
 				DrainEnergy(60, .15f);
+			}
+		}
+		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
+			//Debug.Print($"P{player_id} Left on Cooldown");
+		}
+		if(Input.IsActionPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
+		{
+			DrainEnergy(5 * (float)delta,.15f);
+			chargeTime += 1 * (float)delta;
+		}
+		if (Input.IsActionJustReleased($"Shoot_L_{player_id}") || energy <= 0)
+		{
+				FirePattern(patternLeft, chargeTime);
 				//Debug.Print($"Shoot Left P{player_id}");
 				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
 				_leftCooldown.Start();
-			}
-		}
-		else if (Input.IsActionPressed($"Shoot_L_{player_id}")){
-			//Debug.Print($"P{player_id} Left on Cooldown");
+				chargeTime = 0;
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
 			if (energy >= 40 && !InCloud())
 			{
-				FirePattern(patternRight);
+				
 				DrainEnergy(60, .15f);
-				//Debug.Print($"{player_id}");
-				//Debug.Print($"Shoot Right P{player_id}");
-				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
-				_rightCooldown.Start();
+				
 			}
 		}
-		else if (Input.IsActionPressed($"Shoot_R_{player_id}")){
+		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
 			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
+		if(Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0)
+		{
+			DrainEnergy(5 * (float)delta,.15f);
+			chargeTime += 1 * (float)delta;
+		}
+		if (Input.IsActionJustReleased($"Shoot_R_{player_id}") || energy <= 0)
+		{
+			FirePattern(patternRight, chargeTime);
+			//Debug.Print($"{player_id}");
+				//Debug.Print($"Shoot Right P{player_id}");
+				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
+				_rightCooldown.Start();				
+				chargeTime = 0;
+		}
+
+
 
 		if (_rightStickInput != Vector2.Zero)
 		{
@@ -403,7 +426,7 @@ public partial class Player : Area2D
 		}
 	}
 
-	public void DrainEnergy(int amount, float delayTime = 0)
+	public void DrainEnergy(float amount, float delayTime = 0)
 	{
 		energy -= amount;
 		if (energy < 0)
@@ -441,7 +464,7 @@ public partial class Player : Area2D
 	}
 	
 	//takes in pattern and sets properties then spawns
-	private void FirePattern(PackedScene pToFire)
+	private void FirePattern(PackedScene pToFire, float charge)
 	{		
 		var instance = pToFire.Instantiate();
 		instance.Set("position", this.Position);
