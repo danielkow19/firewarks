@@ -54,9 +54,7 @@ public partial class Pattern : Node
 		}
 		//if attached follow player to continue to spawn from... 
 		//need to add pattern bool to see if bullets should also follow player
-		if(!released){
-			Set("position", owner.Get("position"));
-		}
+		
 	}
 
 	public void Release(){
