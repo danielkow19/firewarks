@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cijdrkcbwkyh1"]
+
+[node name="MapBlank" type="Node2D"]
+metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
+metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
