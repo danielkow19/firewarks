@@ -31,6 +31,15 @@ public partial class Pattern : Node
 	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Wave.tscn");
 	PackedScene sfx = GD.Load<PackedScene>("res://assets/prefabs/SFXFW1.tscn");
 	bool released = false;
+	private float timeAlive;
+	private int lastFire;
+	[Export]
+	public bool fireAndForget = false;
+	[Export]
+	private float initialCost = 10;
+	[Export]
+	private float costPerSecond = 5;
+	private float coolDown;
 	public Pattern(){
 	}
 
@@ -39,7 +48,14 @@ public partial class Pattern : Node
 	{
 		AddChild(sfx.Instantiate());
 		PopulateWaves();
-		SpawnWaves();
+		if(fireAndForget)
+		{
+			SpawnWaves();
+		}
+		owner.DrainEnergy(initialCost, .15f);
+		timeAlive = 0;
+		lastFire = 0;
+		coolDown = 0;
 		
 	}
 
@@ -47,15 +63,32 @@ public partial class Pattern : Node
 	public override void _Process(double delta)
 	{
 		//spawn a wave/waves every x seconds while not released
-		//if end of waves start from beggining
-		if(GetChildCount() < 3)
-		{
-			QueueFree();
+		//if end of waves start from beggining		
+		if(!fireAndForget){
+			timeAlive += (float)delta;
+			if(!released && (float)owner.Get("energy") >= costPerSecond)
+			{
+				if(timeAlive > coolDown)
+				{			
+					SpawnWave(lastFire % waves);
+					lastFire += 1;
+					coolDown += (float)delay;
+				}
+				owner.DrainEnergy(costPerSecond*(float)delta, (float)delta);
+			}
 		}
+
+		
 		//if attached follow player to continue to spawn from... 
 		//need to add pattern bool to see if bullets should also follow player
 		if(!released){
 			Set("position", owner.Get("position"));
+		}
+		else{
+			if(GetChildCount() < 3)
+			{
+				QueueFree();
+			}
 		}
 	}
 
@@ -83,6 +116,24 @@ public partial class Pattern : Node
 			}
 			else{AddSibling(instance);}
 		}
+	}
+
+	public void SpawnWave(int waveToSpawn){
+		var instance = pattern.Instantiate();
+		instance.Set("owner", owner);
+		instance.Set("wait", 0);
+		instance.Set("numOfBullet", bulletPerWave[waveToSpawn]);
+		instance.Set("spread", spreadPerWave[waveToSpawn]);
+		instance.Set("speed", speedPerWave[waveToSpawn]);
+		instance.Set("offset",offsetPerWave[waveToSpawn]);
+		instance.Set("spin",spinPerWave[waveToSpawn]);
+		instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
+		instance.Set("swirl", swirl);
+		instance.Set("swirlMod", swirlMod[waveToSpawn]);
+		if(true){
+			AddChild(instance);
+		}
+		else{AddSibling(instance);}
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
 	public void PopulateWaves(){

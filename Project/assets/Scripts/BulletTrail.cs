@@ -5,6 +5,7 @@ public partial class BulletTrail : Line2D
 {
 	private int maxPoints = 20;
 	private Curve2D curve;
+	private Area2D parent;
 	
 	
 	//../../Camera2D
@@ -17,15 +18,13 @@ public partial class BulletTrail : Line2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+				
 		Area2D parent = GetParent<Area2D>();
-
 		curve.AddPoint(parent.GlobalPosition);
-
 		if (curve.PointCount > maxPoints)
 		{
 			curve.RemovePoint(0);
 		}
-
 		Points = curve.GetBakedPoints();
 	}
 }

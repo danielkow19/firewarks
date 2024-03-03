@@ -26,7 +26,7 @@ public partial class Bullet : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{		
-		this.Hide();	
+		//this.Hide();	removed as delay was implemented elsewhere and caused lag
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
 		trail = GetNode<Line2D>("%Trail");
@@ -68,10 +68,10 @@ public partial class Bullet : Area2D
 				speed = speed.Rotated((((float)Math.PI/180) * swirlMod));
 				swirl = false;			
 			}
-			if(!this.Visible)
-			{
-				this.Visible = true;
-			}
+			//if(!this.Visible)
+			//{
+			//	this.Visible = true; //removed due to lag issue and delay eing handled elsewher
+			//}
 			Translate(speed.Rotated(Rotation) * (float)delta);
 			Rotate((float)(Math.PI*spin*delta/180));
 			spin += (float)(spinAccel*delta);		
