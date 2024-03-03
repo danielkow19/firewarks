@@ -39,10 +39,15 @@ public partial class PlayerTrail : Line2D
 		Points = curve.GetBakedPoints();
 		
 		
-		for (int i = 0; i < maxPoints - 1 && i < Points.Length + 1; i++)
+		for (int i = 0; i < maxPoints - 1 && i < Points.Length + 2; i++)
 		{
+			try {
 				((SegmentShape2D)tailSegments[i].Shape).A = Points[i];
 				((SegmentShape2D)tailSegments[i].Shape).B = Points[i + 1];
+				}
+			catch (Exception e) {
+					GD.Print(i);
+				}
 		}
 		
 	}
