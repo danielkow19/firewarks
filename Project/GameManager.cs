@@ -3,6 +3,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 
 public partial class GameManager : Node2D
 {
@@ -21,12 +22,20 @@ public partial class GameManager : Node2D
 	// Player Scene
 	PackedScene _playerPrefab = GD.Load<PackedScene>("res://assets/prefabs/Player.tscn");
 
+	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_pauseMenu = GetNode<Control>("%PauseMenu");
 		_resumeButton = GetNode<Button>("PauseMenu/MarginContainer/VBoxContainer/Resume");
 		_paused = false;
+		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		if(currentScene == scenePaths[1])
+		{
+			// Handle player spawning
+			LoadPlayers(settings);
+		}
 		//_hasSpawned = false;
 	}
 
@@ -134,15 +143,27 @@ public partial class GameManager : Node2D
 	}
 	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, float x, float y)
 	{
-		var instance = _playerPrefab.Instantiate();
+		Player instance = (Player)_playerPrefab.Instantiate();
 		// Set positions here
+		instance.GlobalPosition = new Vector2(x, y);
 		instance.Set("player_id", playerID);
 		instance.Set("patternLeft", patternLeft);
 		instance.Set("patternRight", patternRight);
-		if(instance is Player)
-		{
-			_players.Add((Player)instance);
-		}
+        _players.Add(instance);
+		this.AddChild(instance);
 		//_hasSpawned = true;
+	}
+	private void LoadPlayers(player_settings settings)
+	{
+		GD.Print("Load Players Called");
+		for(int i =0; i < settings.PlayerInfos.Count; i++)
+		{
+			GD.Print($"Loading player {i}");
+			SpawnPlayer(settings.PlayerInfos[i].PlayerID,
+				settings.PlayerInfos[i].LeftPattern,
+				settings.PlayerInfos[i].RightPattern,
+				settings.PlayerInfos[i].X,
+				settings.PlayerInfos[i].Y);
+		}
 	}
 }
