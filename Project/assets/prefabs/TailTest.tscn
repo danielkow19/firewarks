@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://bstfge0v73s4a"]
+
+[ext_resource type="Texture2D" uid="uid://dp456ifp1gb2k" path="res://assets/sprites/phoenix/sprite_player_tail1.png" id="1_d6mnx"]
+[ext_resource type="Texture2D" uid="uid://dvan07cov5ai2" path="res://assets/sprites/phoenix/sprite_player_tail2.png" id="2_bsjyb"]
+[ext_resource type="Texture2D" uid="uid://bkmmv6qfnyo56" path="res://assets/sprites/phoenix/sprite_player_tail3.png" id="3_nt5c1"]
+
+[node name="TailTest" type="Node2D"]
+
+[node name="polygons" type="Node2D" parent="."]
+
+[node name="Tail1" type="Polygon2D" parent="polygons"]
+position = Vector2(-14, 0)
+texture = ExtResource("1_d6mnx")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(2.0625, 16.875, 5.875, 17.125, 9.3125, 14.9375, 10.75, 13.25, 10.6875, 0.0625, 7.6875, 0, 7.75, 5.1875, 5.6875, 5.8125, 4.25, 7.8125, 2.3125, 9.0625, 2, 11.5625, 0.6875, 10.9375, 0, 10.375, 0, 15.5625, 0.9375, 16.4375)
+uv = PackedVector2Array(2.0625, 16.875, 5.875, 17.125, 9.3125, 14.9375, 10.75, 13.25, 10.6875, 0.0625, 7.6875, 0, 7.75, 5.1875, 5.6875, 5.8125, 4.25, 7.8125, 2.3125, 9.0625, 2, 11.5625, 0.6875, 10.9375, 0, 10.375, 0, 15.5625, 0.9375, 16.4375)
+
+[node name="Tail2" type="Polygon2D" parent="polygons"]
+position = Vector2(-15.125, -0.0625)
+texture = ExtResource("2_bsjyb")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(3.5, 50.125, 10.25, 50, 16.0625, 44.6875, 16.9375, 34.1875, 16.5625, 0.125, 12.5, 0.0625, 12.8125, 23.0625, 8.75, 27.375, 5.25, 34.6875, 5.5625, 37.3125, 9.25, 41.0625, 5.875, 42.4375, 3.5625, 37.1875, 0.125, 40.375, 0.125, 47.875, 14.5, 33.125, 12.125, 42.125, 6.1875, 46.75, 2.1875, 45.25, 2.5625, 41.4375, 14.75, 13.6875)
+uv = PackedVector2Array(3.5, 50.125, 10.25, 50, 16.0625, 44.6875, 16.9375, 34.1875, 16.5625, 0.125, 12.5, 0.0625, 12.8125, 23.0625, 8.75, 27.375, 5.25, 34.6875, 5.5625, 37.3125, 9.25, 41.0625, 5.875, 42.4375, 3.5625, 37.1875, 0.125, 40.375, 0.125, 47.875, 14.5, 33.125, 12.125, 42.125, 6.1875, 46.75, 2.1875, 45.25, 2.5625, 41.4375, 14.75, 13.6875)
+polygons = [PackedInt32Array(15, 6, 3), PackedInt32Array(15, 7, 8), PackedInt32Array(7, 6, 15), PackedInt32Array(6, 5, 20), PackedInt32Array(20, 3, 6), PackedInt32Array(5, 4, 20), PackedInt32Array(3, 4, 20), PackedInt32Array(3, 2, 15), PackedInt32Array(15, 16, 2), PackedInt32Array(15, 8, 9), PackedInt32Array(15, 10, 9), PackedInt32Array(15, 16, 10), PackedInt32Array(2, 1, 16), PackedInt32Array(16, 11, 10), PackedInt32Array(16, 17, 11), PackedInt32Array(16, 1, 17), PackedInt32Array(17, 0, 1), PackedInt32Array(0, 14, 18), PackedInt32Array(0, 17, 18), PackedInt32Array(11, 17, 18), PackedInt32Array(11, 19, 18), PackedInt32Array(11, 12, 19), PackedInt32Array(12, 13, 19), PackedInt32Array(19, 18, 13), PackedInt32Array(18, 14, 13)]
+bones = ["tail_2_base", PackedFloat32Array(0, 0, 0, 0, 1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1), "tail_2_base/tail_2_mid", PackedFloat32Array(0, 0, 0, 0.5, 0, 0, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0.5, 0, 0.5, 0, 0, 1), "tail_2_base/tail_2_mid/tail_2_lower", PackedFloat32Array(0, 1, 1, 0.5, 0, 0, 0, 0, 0.5, 1, 1, 0, 0, 0, 0, 0.5, 1, 0.5, 0, 0, 0), "tail_2_base/tail_2_mid/tail_2_lower/tail_2_tip", PackedFloat32Array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0.5, 1, 1, 0), "tail_1_base", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "tail_1_base/tail_1_mid", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "tail_1_base/tail_1_mid/tail_1_tip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "tail_3_base", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "tail_3_base/tail_3_mid", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "tail_3_base/tail_3_mid/tail_3_tip", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 6
+
+[node name="Tail3" type="Polygon2D" parent="polygons"]
+position = Vector2(2.875, -0.0625)
+texture = ExtResource("3_nt5c1")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(1.625, 0.0625, 1.625, 10.2687, 1.625, 15.9375, 3.875, 14.9375, 6.0625, 15.625, 6.125, 18.25, 6.0625, 19.6875, 8.5625, 20.4375, 8.8125, 22.4375, 6.9375, 23.1875, 6.25, 25.0625, 8.8125, 26.6875, 11.25, 26.5, 12.8125, 24, 12.9375, 21.625, 15.75, 21.875, 17.625, 24.875, 17.25, 29.75, 15.4375, 33.0625, 13, 34.5, 5.0625, 34.5, 2.6875, 31.4375, 0.4375, 28.0625, 0.0625, 26.0625, 0.0625, 0.0625)
+uv = PackedVector2Array(1.625, 0.0625, 1.625, 15.9375, 3.875, 14.9375, 6.0625, 15.625, 6.125, 18.25, 6.0625, 19.6875, 8.5625, 20.4375, 8.8125, 22.4375, 6.9375, 23.1875, 6.25, 25.0625, 8.8125, 26.6875, 11.25, 26.5, 12.8125, 24, 12.9375, 21.625, 15.75, 21.875, 17.625, 24.875, 17.25, 29.75, 15.4375, 33.0625, 13, 34.5, 5.0625, 34.5, 2.6875, 31.4375, 0.4375, 28.0625, 0.0625, 26.0625, 0.0625, 0.0625)
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="tail_2_base" type="Bone2D" parent="Skeleton2D"]
+rotation = 0.0488692
+scale = Vector2(1, 1)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+editor_settings/show_bone_gizmo = false
+
+[node name="tail_2_mid" type="Bone2D" parent="Skeleton2D/tail_2_base"]
+position = Vector2(0, 30)
+rest = Transform2D(1, 0, 0, 1, -1, 37)
+editor_settings/show_bone_gizmo = false
+
+[node name="tail_2_lower" type="Bone2D" parent="Skeleton2D/tail_2_base/tail_2_mid"]
+position = Vector2(-1, 5)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+editor_settings/show_bone_gizmo = false
+
+[node name="tail_2_tip" type="Bone2D" parent="Skeleton2D/tail_2_base/tail_2_mid/tail_2_lower"]
+position = Vector2(-6, 11)
+rest = Transform2D(1, 0, 0, 1, -8, 12)
+auto_calculate_length_and_angle = false
+length = 10.0
+bone_angle = -120.0
+editor_settings/show_bone_gizmo = false
+
+[node name="tail_1_base" type="Bone2D" parent="Skeleton2D"]
+visible = false
+position = Vector2(-4, 0)
+rest = Transform2D(1, 0, 0, 1, -4, 0)
+
+[node name="tail_1_mid" type="Bone2D" parent="Skeleton2D/tail_1_base"]
+position = Vector2(0, 12)
+rest = Transform2D(1, 0, 0, 1, 0, 12)
+
+[node name="tail_1_tip" type="Bone2D" parent="Skeleton2D/tail_1_base/tail_1_mid"]
+position = Vector2(-5, 4)
+rest = Transform2D(1, 0, 0, 1, -5, 4)
+auto_calculate_length_and_angle = false
+length = 6.0
+bone_angle = -150.0
+
+[node name="tail_3_base" type="Bone2D" parent="Skeleton2D"]
+visible = false
+position = Vector2(3, 0)
+rest = Transform2D(1, 0, 0, 1, 3, 0)
+
+[node name="tail_3_mid" type="Bone2D" parent="Skeleton2D/tail_3_base"]
+position = Vector2(1, 26)
+rest = Transform2D(1, 0, 0, 1, 1, 26)
+
+[node name="tail_3_tip" type="Bone2D" parent="Skeleton2D/tail_3_base/tail_3_mid"]
+position = Vector2(9, 5)
+rest = Transform2D(1, 0, 0, 1, 9, 5)
+auto_calculate_length_and_angle = false
+length = 9.0
+bone_angle = -47.259
