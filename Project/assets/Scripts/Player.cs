@@ -240,20 +240,14 @@ public partial class Player : Area2D
 		// Update cool down timers
 		if (Input.IsActionJustPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
-			if (energy >= 60 && !InCloud())
-			{								
-				
-				DrainEnergy(60, .15f);
+			if (!InCloud())
+			{
 				FirePattern(patternLeft);
 				firing = true;
 			}
 		}
 		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
 			//Debug.Print($"P{player_id} Left on Cooldown");
-		}
-		if(Input.IsActionPressed($"Shoot_L_{player_id}") && firing )
-		{
-			DrainEnergy(5 * (float)delta,.15f * (float)delta);
 		}
 		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || energy <= 0)
 		{
@@ -266,20 +260,14 @@ public partial class Player : Area2D
 				firing = false;
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
-			if (energy >= 40 && !InCloud())
+			if (!InCloud())
 			{
 				FirePattern(patternRight);
-				DrainEnergy(40, .15f);
 				firing = true;
 			}
 		}
 		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
 			//Debug.Print($"P{player_id} Right on Cooldown");
-		}
-		if(Input.IsActionPressed($"Shoot_R_{player_id}") && firing)
-		{
-			
-			DrainEnergy(5 * (float)delta,.15f * (float)delta);
 		}
 		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || energy <= 0)
 		{
@@ -476,12 +464,18 @@ public partial class Player : Area2D
 	//takes in pattern and sets properties then spawns
 	private void FirePattern(PackedScene pToFire)
 	{	
-		var instance = pToFire.Instantiate();
-		instance.Set("position", this.Position);
-		instance.Set("rotation", this.Rotation);
-		instance.Set("owner", this);
-		currentPattern = instance;
-		AddSibling(instance);
+		if(!firing)
+		{
+			var instance = pToFire.Instantiate();
+			if((float)instance.Get("initialCost") <= energy){
+				instance.Set("position", this.Position);
+				instance.Set("rotation", this.Rotation);
+				instance.Set("owner", this);
+				currentPattern = instance;
+				AddSibling(instance);
+			}
+			else{instance.QueueFree();}
+		}
 	}
 
 	private void MakeTrail(float lifetime = 1f) {
