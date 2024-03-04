@@ -149,7 +149,7 @@ public partial class GameManager : Node2D
 		instance.Set("player_id", playerID);
 		instance.Set("patternLeft", patternLeft);
 		instance.Set("patternRight", patternRight);
-        _players.Add(instance);
+		_players.Add(instance);
 		this.AddChild(instance);
 		//_hasSpawned = true;
 	}

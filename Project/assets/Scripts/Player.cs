@@ -398,11 +398,11 @@ public partial class Player : Area2D
 		}
 
 		// Trails
-		if(health == 1 && _trailTimer.TimeLeft == 0) {
+		/*if(health == 1 && _trailTimer.TimeLeft == 0) {
 			MakeTrail();
 		} else if (health == 0 && _trailTimer.TimeLeft == 0) {
 			MakeTrail(2f);
-		}
+		}*/
 	}
 
 	public void DamagePlayer(int amount)

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -9,18 +8,34 @@ public partial class PlayerTrail : Line2D
 	private int maxPoints = 100;
 	private Curve2D curve;
 	private List<CollisionShape2D> tailSegments;
+	private Player playerRef;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		playerRef = GetParent<Player>();
 		curve = new Curve2D();
 		tailSegments = new List<CollisionShape2D>();
 
 		for (int i = 0; i < maxPoints - 1; i++)
 		{
-			tailSegments.Add(new CollisionShape2D());
-			tailSegments[i].Shape = new SegmentShape2D();
-			AddChild(tailSegments[i]);
+			// Temp, doesn't need to be saved in class but will in scene
+			Area2D segment = new Area2D();
+			CollisionShape2D collisionShape = new CollisionShape2D();
+			collisionShape.Shape = new SegmentShape2D();
+			segment.AddChild(collisionShape);
+			segment.CollisionLayer = 2;
+				
+			tailSegments.Add(collisionShape);
+			((SegmentShape2D)tailSegments[i].Shape).A = Position;
+			((SegmentShape2D)tailSegments[i].Shape).B = Position;
+			
+			// Set up signals for the area2Ds so they don't need to be saved
+			AddChild(segment);
+			
+			// Create a Callable for the OnAreaEntered method; This allows signals
+			Callable callable = new Callable(this, nameof(OnAreaEntered));
+			segment.Connect("area_entered", callable);
 		}
 	}
 
@@ -39,16 +54,20 @@ public partial class PlayerTrail : Line2D
 		Points = curve.GetBakedPoints();
 		
 		
-		for (int i = 0; i < maxPoints - 1 && i < Points.Length + 2; i++)
+		for (int i = 0; i < maxPoints - 1 && i < Points.Length - 1; i++)
 		{
-			try {
-				((SegmentShape2D)tailSegments[i].Shape).A = Points[i];
-				((SegmentShape2D)tailSegments[i].Shape).B = Points[i + 1];
-				}
-			catch (Exception e) {
-					GD.Print(i);
-				}
+			((SegmentShape2D)tailSegments[i].Shape).A = Points[i];
+			((SegmentShape2D)tailSegments[i].Shape).B = Points[i + 1];
 		}
 		
+	}
+	
+	private void OnAreaEntered(Area2D area)
+	{
+		// Check if the area that entered is a player
+		if (area is Player player && player != playerRef)
+		{
+			player.DamagePlayer(1);
+		}
 	}
 }
