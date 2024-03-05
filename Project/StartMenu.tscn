@@ -20,7 +20,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_5ljtf")
-scenePath = "res://Game.tscn"
+scenePath = "res://assets/prefabs/PlayerNumbers.tscn"
 
 [node name="Title" type="Label" parent="Menu"]
 layout_mode = 0

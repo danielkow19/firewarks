@@ -30,26 +30,28 @@ public partial class Bullet : Area2D
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
 		trail = GetNode<Line2D>("%Trail");
-		if(owner != null){			
-			switch (owner.player_id)
-			{
-				case 0:
-					Modulate = Colors.Aquamarine;
-					trail.Modulate = Colors.Aquamarine;
-					break;
-				case 1:
-					Modulate = Colors.RebeccaPurple;
-					trail.Modulate = Colors.RebeccaPurple;
-					break;
-				case 2:
-					Modulate = Colors.Firebrick;
-					trail.Modulate = Colors.Firebrick;
-					break;
-				case 3:
-					Modulate = Colors.Lime;
-					trail.Modulate = Colors.Lime;
-					break;
-			}
+		if(owner != null){
+			Modulate = owner.Modulate;
+			trail.Modulate = owner.Modulate;
+			//switch (owner.player_id)
+			//{
+			//	case 0:
+			//		Modulate = Colors.Aquamarine;
+			//		trail.Modulate = Colors.Aquamarine;
+			//		break;
+			//	case 1:
+			//		Modulate = Colors.RebeccaPurple;
+			//		trail.Modulate = Colors.RebeccaPurple;
+			//		break;
+			//	case 2:
+			//		Modulate = Colors.Firebrick;
+			//		trail.Modulate = Colors.Firebrick;
+			//		break;
+			//	case 3:
+			//		Modulate = Colors.Lime;
+			//		trail.Modulate = Colors.Lime;
+			//		break;
+			//}
 		}
 
 		// Sets the opacity of the trail 0 - 255

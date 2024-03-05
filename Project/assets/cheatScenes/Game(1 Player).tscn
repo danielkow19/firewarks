@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GameManager.cs" id="1_pnsnw"]
 [ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://assets/prefabs/Player.tscn" id="2_jgrgm"]
 [ext_resource type="PackedScene" uid="uid://dx5660n6vooik" path="res://assets/prefabs/Pattern1.tscn" id="3_58qg0"]
-[ext_resource type="PackedScene" uid="uid://c0ltjtdxvm5fm" path="res://assets/prefabs/Pattern2.tscn" id="4_qeodx"]
+[ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://assets/prefabs/Pattern4.tscn" id="5_4lu4o"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="7_01wak"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_5uhef"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_xpyg4"]
@@ -26,7 +26,7 @@ texture = ExtResource("7_01wak")
 [node name="Player_1" parent="." instance=ExtResource("2_jgrgm")]
 position = Vector2(-600, -300)
 patternLeft = ExtResource("3_58qg0")
-patternRight = ExtResource("4_qeodx")
+patternRight = ExtResource("5_4lu4o")
 
 [node name="PlayerHUD" parent="Player_1" index="3"]
 offset_left = -729.0

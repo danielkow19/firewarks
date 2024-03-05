@@ -178,34 +178,34 @@ public partial class Player : Area2D
 		
 		
 
-		Color set;
-		switch (player_id)
-		{
-			case 0:
-				set = Colors.Aquamarine;
-				break;
-			case 1:
-				set = Colors.RebeccaPurple;
-				break;
-			case 2:
-				set = Colors.Firebrick;
-				break;
-			case 3:
-				set = Colors.Lime;
-				break;
-			default:
-				set = Colors.White;
-				break;
-		}
-
-		// Change Phoenix color
-		SelfModulate = set;
-		playerSprite.Modulate = set;
+		//Color set;
+		//switch (player_id)
+		//{
+		//	case 0:
+		//		set = Colors.Aquamarine;
+		//		break;
+		//	case 1:
+		//		set = Colors.RebeccaPurple;
+		//		break;
+		//	case 2:
+		//		set = Colors.Firebrick;
+		//		break;
+		//	case 3:
+		//		set = Colors.Lime;
+		//		break;
+		//	default:
+		//		set = Colors.White;
+		//		break;
+		//}
+		//
+		//// Change Phoenix color
+		//SelfModulate = set;
+		//playerSprite.Modulate = set;
 		
 		// Change lives color
 		for (int i = 2; i >= 0; i--) // TODO: This should be counting upwards to a max lives value in order to support potential changing of the max lives number.
 		{
-			((TextureRect)lives[i]).Modulate = set;
+			((TextureRect)lives[i]).Modulate = Modulate;
 		}
 	}
 
@@ -249,7 +249,7 @@ public partial class Player : Area2D
 		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
-		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || energy <= 0)
+		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || (energy <= 0 && firing))
 		{
 				Pattern wrkPattern = currentPattern as Pattern;
 				wrkPattern.Release();
@@ -269,7 +269,7 @@ public partial class Player : Area2D
 		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
 			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
-		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || energy <= 0)
+		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || (energy <= 0 && firing))
 		{
 			Pattern wrkPattern = currentPattern as Pattern;
 			wrkPattern.Release();
