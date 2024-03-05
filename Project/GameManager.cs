@@ -141,7 +141,7 @@ public partial class GameManager : Node2D
 		Debug.Print($"{_paused}");
 		_paused = !_paused;
 	}
-	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, float x, float y)
+	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, Color color, float x, float y)
 	{
 		Player instance = (Player)_playerPrefab.Instantiate();
 		// Set positions here
@@ -149,6 +149,8 @@ public partial class GameManager : Node2D
 		instance.Set("player_id", playerID);
 		instance.Set("patternLeft", patternLeft);
 		instance.Set("patternRight", patternRight);
+		instance.Modulate = color;
+		instance.SelfModulate = color;
 		_players.Add(instance);
 		this.AddChild(instance);
 		//_hasSpawned = true;
@@ -162,6 +164,7 @@ public partial class GameManager : Node2D
 			SpawnPlayer(settings.PlayerInfos[i].PlayerID,
 				settings.PlayerInfos[i].LeftPattern,
 				settings.PlayerInfos[i].RightPattern,
+				settings.PlayerInfos[i].Color,
 				settings.PlayerInfos[i].X,
 				settings.PlayerInfos[i].Y);
 		}
