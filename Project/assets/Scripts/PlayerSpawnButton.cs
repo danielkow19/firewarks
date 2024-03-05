@@ -81,7 +81,7 @@ public partial class PlayerSpawnButton : Button
 				{
 					settings.AddPlayerInfo(0, pattern1, pattern2,Colors.Aqua, -600, -300);
 					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Gold, 600, -300);
-					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -600, 300);
+					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -500, 300);
                     GD.Print("3 Player Spawned");
 					break;
 				}
@@ -89,8 +89,8 @@ public partial class PlayerSpawnButton : Button
 				{
 					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Aquamarine, -600, -300);
 					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Purple, 600, -300);
-					settings.AddPlayerInfo(3, pattern4, pattern5, Colors.Green, 600, 300);
-					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -600, 300);
+					settings.AddPlayerInfo(3, pattern4, pattern5, Colors.Green, 500, 300);
+					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -500, 300);
 
                     GD.Print("4 Player Spawned");
 					break;
