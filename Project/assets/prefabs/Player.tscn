@@ -114,7 +114,6 @@ trail_enabled = true
 
 [node name="PlayerTrail" type="Line2D" parent="."]
 top_level = true
-position = Vector2(-20, 0)
 points = PackedVector2Array(-66, 0, -1, 0)
 width = 30.0
 texture = ExtResource("4_he0d1")

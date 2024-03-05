@@ -42,9 +42,9 @@ public partial class PlayerTrail : Line2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Area2D parent = GetParent<Area2D>();
+		Player parent = GetParent<Area2D>() as Player;
 
-		curve.AddPoint(parent.Position);
+		curve.AddPoint(new Vector2(parent.Position.X + 20 * (Mathf.Cos(parent.Rotation) * -1), parent.Position.Y + 20 * (Mathf.Sin(parent.Rotation) * -1)));
 
 		while (curve.PointCount > maxPoints)
 		{

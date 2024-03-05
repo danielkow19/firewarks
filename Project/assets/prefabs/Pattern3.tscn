@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dotdtw8pnxfsl"]
+[gd_scene load_steps=2 format=3 uid="uid://dotdtw8pnxfsl"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_f8khs"]
-[ext_resource type="Texture2D" uid="uid://ciy4kb8jrvum0" path="res://assets/sprites/bullets/warning mockup.png" id="2_upuj8"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_f8khs")
@@ -11,8 +10,3 @@ spreadPerWave = PackedInt32Array(75, 75, 75, 75, 75, 75, 75, 75, 75, 75)
 speedPerWave = PackedInt32Array(400)
 offsetPerWave = PackedInt32Array(0, 5, 10, 15, 20, 25, 30, 35, 40, 45)
 swirlMod = PackedInt32Array(0)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(60, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_upuj8")
