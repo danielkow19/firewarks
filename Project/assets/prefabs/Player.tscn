@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=17 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
+[ext_resource type="Texture2D" uid="uid://d3clxhs3ha0y3" path="res://assets/sprites/ui/ui_heat_empty.png" id="6_kh1iw"]
+[ext_resource type="Texture2D" uid="uid://dnwwb0dyxnc61" path="res://assets/sprites/ui/ui_heat_overlay.png" id="7_cu2a5"]
+[ext_resource type="Texture2D" uid="uid://dgd40xufpyb7t" path="res://assets/sprites/ui/ui_heat_full.png" id="8_uf3fn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -121,6 +124,19 @@ texture = ExtResource("4_he0d1")
 texture_mode = 2
 joint_mode = 1
 script = ExtResource("5_tcvo2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -167.0
+offset_top = -101.0
+offset_right = 167.0
+offset_bottom = 233.0
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("6_kh1iw")
+texture_over = ExtResource("7_cu2a5")
+texture_progress = ExtResource("8_uf3fn")
+radial_initial_angle = 320.0
+radial_fill_degrees = 80.0
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
