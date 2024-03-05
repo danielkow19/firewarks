@@ -83,10 +83,7 @@ public partial class Player : Area2D
 	[Export]
 	PackedScene patternRight = null;
 
-	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Pattern1.tscn");
-	PackedScene pattern1 = GD.Load<PackedScene>("res://assets/prefabs/Pattern2.tscn");
-	PackedScene pattern2 = GD.Load<PackedScene>("res://assets/prefabs/Pattern3.tscn");
-	PackedScene pattern3 = GD.Load<PackedScene>("res://assets/prefabs/Pattern4.tscn");
+	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn");
 	PackedScene hitFX = GD.Load<PackedScene>("res://assets/prefabs/SFXHit.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://assets/prefabs/TrailBullet.tscn");
 
@@ -97,11 +94,11 @@ public partial class Player : Area2D
 	{
 		if(patternLeft == null)
 		{
-			patternLeft = pattern1;
+			patternLeft = pattern;
 		}
 		if(patternRight == null)
 		{
-			patternRight = pattern1;
+			patternRight = pattern;
 		}
 		// Fetch Children
 		Hud = GetNode<Control>("%PlayerHUD");
@@ -282,7 +279,6 @@ public partial class Player : Area2D
 		}
 
 
-
 		if (_rightStickInput != Vector2.Zero)
 		{
 			_aimDirection = _rightStickInput;
@@ -304,10 +300,10 @@ public partial class Player : Area2D
 		}
 		else if (MathF.Abs(Rotation - _targetRotation) > MathF.PI)
 		{
-			Rotation += _rotationSpeed * (float)delta * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
+			Rotation += _rotationSpeed * (firing ? .5f : 1) * (float)delta * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 		else {
-			Rotation += _rotationSpeed * (float)delta * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
+			Rotation += _rotationSpeed * (firing ? .5f : 1) *  (float)delta * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 
 		if(Rotation > MathF.PI * 2) {
@@ -318,7 +314,7 @@ public partial class Player : Area2D
 		}
 
 		
-		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
+		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || firing ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
 
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)

@@ -23,7 +23,6 @@ public partial class Wave : Node
 	public override void _Ready()
 	{
 		SpawnBullets();
-		Set("rotation", owner.Get("rotation"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

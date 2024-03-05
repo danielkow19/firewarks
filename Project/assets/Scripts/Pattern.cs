@@ -130,8 +130,10 @@ public partial class Pattern : Node
 		instance.Set("spin",spinPerWave[waveToSpawn]);
 		instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
 		instance.Set("swirl", swirl);
-		if(playerLocked){
+		instance.Set("swirlMod", swirlMod[waveToSpawn]);
+		if(!playerLocked){
 			instance.Set("position", owner.Get("position"));
+			instance.Set("rotation", owner.Get("rotation"));
 			AddSibling(instance);
 		}
 		else{AddChild(instance);}

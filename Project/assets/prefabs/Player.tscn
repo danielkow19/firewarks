@@ -118,7 +118,7 @@ points = PackedVector2Array(-66, 0, -1, 0)
 width = 30.0
 texture = ExtResource("4_he0d1")
 texture_mode = 2
-joint_mode = 1
+joint_mode = 2
 script = ExtResource("5_tcvo2")
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
