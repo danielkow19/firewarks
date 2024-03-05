@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://trid3b5emcmd" path="res://assets/prefabs/PatternSwirl.tscn" id="6_cslh7"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="7_rxs83"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_k55e7"]
-[ext_resource type="PackedScene" uid="uid://cc67w82ctld0d" path="res://assets/prefabs/Pattern5.tscn" id="8_u2pij"]
+[ext_resource type="PackedScene" uid="uid://cc67w82ctld0d" path="res://assets/prefabs/PatternKnot.tscn" id="8_u2pij"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_1cv6c"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="9_u041e"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_oh1c1"]

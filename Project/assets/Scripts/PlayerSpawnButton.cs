@@ -7,12 +7,13 @@ public partial class PlayerSpawnButton : Button
 	GameManager _gameManager;
 	
 		// All the Patterns (get a better solution later)
-	PackedScene pattern1 = GD.Load<PackedScene>("res://assets/prefabs/Pattern1.tscn");
-	PackedScene pattern2 = GD.Load<PackedScene>("res://assets/prefabs/Pattern2.tscn");
-	PackedScene pattern3 = GD.Load<PackedScene>("res://assets/prefabs/Pattern3.tscn");
-	PackedScene pattern4 = GD.Load<PackedScene>("res://assets/prefabs/Pattern4.tscn");
-	PackedScene pattern5 = GD.Load<PackedScene>("res://assets/prefabs/Pattern5.tscn");
-	
+	PackedScene patternCircle = GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn");
+	PackedScene patternSpreadShot = GD.Load<PackedScene>("res://assets/prefabs/PatternSpreadShot.tscn");
+	PackedScene patternFastSS = GD.Load<PackedScene>("res://assets/prefabs/PatternFastSS.tscn");
+	PackedScene patternWeave = GD.Load<PackedScene>("res://assets/prefabs/PatternWeave.tscn");
+	PackedScene patternKnot = GD.Load<PackedScene>("res://assets/prefabs/PatternKnot.tscn");
+	PackedScene patternSwirl = GD.Load<PackedScene>("res://assets/prefabs/PatternSwirl.tscn");
+
 	PlayerSelectButton options;
 	
 	MarginContainer container;
@@ -66,38 +67,38 @@ public partial class PlayerSpawnButton : Button
         switch (options._numSelected){
 			case 0:
 				{
-					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Orange, -600, -300);
+					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot, Colors.Orange, -600, -300);
 					GD.Print("1 Player Spawned");
 					break;
 				}
 			case 1:
 				{
-					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Green, 600, -300);
-					settings.AddPlayerInfo(0, pattern4, pattern2, Colors.Orange, -600, -300);
+					settings.AddPlayerInfo(1, patternFastSS, patternWeave, Colors.Green, 600, -300);
+					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot, Colors.Orange, -600, -300);
                     GD.Print("2 Player Spawned");
 					break;
 				}
 			case 2:
 				{
-					settings.AddPlayerInfo(0, pattern1, pattern2,Colors.Aqua, -600, -300);
-					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Gold, 600, -300);
-					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -500, 300);
+					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot,Colors.Aqua, -600, -300);
+					settings.AddPlayerInfo(1, patternFastSS, patternWeave, Colors.Gold, 600, -300);
+					settings.AddPlayerInfo(2, patternSwirl, patternKnot, Colors.Red, -500, 300);
                     GD.Print("3 Player Spawned");
 					break;
 				}
 			case 3:
 				{
-					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Aquamarine, -600, -300);
-					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Purple, 600, -300);
-					settings.AddPlayerInfo(3, pattern4, pattern5, Colors.Green, 500, 300);
-					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -500, 300);
+					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot,Colors.Aquamarine, -600, -300);
+					settings.AddPlayerInfo(1, patternFastSS, patternWeave, Colors.Purple, 600, -300);
+					settings.AddPlayerInfo(2, patternSwirl, patternKnot, Colors.Red, -500, 300);
+					settings.AddPlayerInfo(3, patternSwirl, patternWeave, Colors.Green, 500, 300);
 
                     GD.Print("4 Player Spawned");
 					break;
 				}
 			default:
 				{
-					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Aquamarine, -600, -300);
+					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot,Colors.Aquamarine, -600, -300);
 					GD.Print("Default Player Spawned");
 					break;
 				}

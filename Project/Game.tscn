@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_8vbbq"]
 [ext_resource type="PackedScene" uid="uid://d145uhqaf8iiv" path="res://assets/prefabs/PlayerNumbers.tscn" id="14_2gti6"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_players")]
+[node name="Game2" type="Node2D" node_paths=PackedStringArray("_players")]
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
