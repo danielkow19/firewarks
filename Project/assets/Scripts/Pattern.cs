@@ -36,6 +36,8 @@ public partial class Pattern : Node
 	[Export]
 	public bool fireAndForget = false;
 	[Export]
+	public bool playerLocked = false;
+	[Export]
 	private float initialCost = 10;
 	[Export]
 	private float costPerSecond = 5;
@@ -50,6 +52,7 @@ public partial class Pattern : Node
 		PopulateWaves();
 		if(fireAndForget)
 		{
+			Release();
 			SpawnWaves();
 		}
 		owner.DrainEnergy(initialCost, .15f);
@@ -83,9 +86,10 @@ public partial class Pattern : Node
 		//need to add pattern bool to see if bullets should also follow player
 		if(!released){
 			Set("position", owner.Get("position"));
+			Set("rotation", owner.Get("rotation"));
 		}
 		else{
-			if(GetChildCount() < 3)
+			if(GetChildCount() < 2)
 			{
 				QueueFree();
 			}
@@ -111,10 +115,7 @@ public partial class Pattern : Node
 			instance.Set("spinAccel",spinAccelPerWave[i]);
 			instance.Set("swirl", swirl);
 			instance.Set("swirlMod", swirlMod[i]);
-			if(true){
 			AddChild(instance);
-			}
-			else{AddSibling(instance);}
 		}
 	}
 
@@ -129,11 +130,12 @@ public partial class Pattern : Node
 		instance.Set("spin",spinPerWave[waveToSpawn]);
 		instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
 		instance.Set("swirl", swirl);
-		instance.Set("swirlMod", swirlMod[waveToSpawn]);
-		if(true){
-			AddChild(instance);
+		if(playerLocked){
+			instance.Set("position", owner.Get("position"));
+			AddSibling(instance);
 		}
-		else{AddSibling(instance);}
+		else{AddChild(instance);}
+		
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
 	public void PopulateWaves(){

@@ -249,7 +249,7 @@ public partial class Player : Area2D
 		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
-		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || energy <= 0)
+		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || (energy <= 0 && firing))
 		{
 				Pattern wrkPattern = currentPattern as Pattern;
 				wrkPattern.Release();
@@ -269,7 +269,7 @@ public partial class Player : Area2D
 		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
 			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
-		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || energy <= 0)
+		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || (energy <= 0 && firing))
 		{
 			Pattern wrkPattern = currentPattern as Pattern;
 			wrkPattern.Release();

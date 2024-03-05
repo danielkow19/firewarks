@@ -23,6 +23,7 @@ public partial class Wave : Node
 	public override void _Ready()
 	{
 		SpawnBullets();
+		Set("rotation", owner.Get("rotation"));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +45,6 @@ public partial class Wave : Node
 			for (int i = 0; i < numOfBullet; i++)
 			{				
 				var instance = pattern.Instantiate();
-				instance.Set("position", Get("position"));
 				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180) + (offset * Math.PI/180));
 				instance.Set("delay", wait);
 				instance.Set("speed", new Vector2(speed, 0));
@@ -60,7 +60,6 @@ public partial class Wave : Node
 		{
 			PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Bullet.tscn");
 			var instance = pattern.Instantiate();
-			instance.Set("position", Get("position"));
 			instance.Set("delay", wait);
 			instance.Set("speed", new Vector2(speed, 0));
 			instance.Set("spin",spin);		
