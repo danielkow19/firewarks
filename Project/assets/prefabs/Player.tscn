@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=15 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
-[ext_resource type="Texture2D" uid="uid://d3clxhs3ha0y3" path="res://assets/sprites/ui/ui_heat_empty.png" id="6_kh1iw"]
-[ext_resource type="Texture2D" uid="uid://dnwwb0dyxnc61" path="res://assets/sprites/ui/ui_heat_overlay.png" id="7_cu2a5"]
-[ext_resource type="Texture2D" uid="uid://dgd40xufpyb7t" path="res://assets/sprites/ui/ui_heat_full.png" id="8_uf3fn"]
+[ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -124,20 +122,15 @@ texture_mode = 2
 joint_mode = 2
 script = ExtResource("5_tcvo2")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-self_modulate = Color(1, 1, 1, 0.705882)
-offset_left = -125.0
-offset_top = -87.0
-offset_right = 209.0
-offset_bottom = 247.0
-scale = Vector2(0.75, 0.75)
-value = 50.0
-fill_mode = 4
-texture_under = ExtResource("6_kh1iw")
-texture_over = ExtResource("7_cu2a5")
-texture_progress = ExtResource("8_uf3fn")
-radial_initial_angle = 320.0
-radial_fill_degrees = 80.0
+[node name="Follow_HUD" parent="." instance=ExtResource("6_e5m8y")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]

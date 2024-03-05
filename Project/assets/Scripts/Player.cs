@@ -11,7 +11,8 @@ namespace FireWARks.assets.Scripts;
 public partial class Player : Area2D
 {
 	
-	private Control Hud;
+	private Control Hud;	
+	private Control followHud;
 	
 	// Consider just accessing instead of saving
 	private CollisionShape2D _collider;
@@ -57,8 +58,12 @@ public partial class Player : Area2D
 	
 	// Energy variables, also consider just accessing
 	private Timer freeze;
+	private ProgressBar energyStatic;
+	private TextureProgressBar energyDynamic;
 	private float energy;
 	private bool firing = false;
+	private bool fireLeft = false;
+	private bool fireRight = false;
 
 	private Timer _leftCooldown;
 	private Timer _rightCooldown;
@@ -102,6 +107,7 @@ public partial class Player : Area2D
 		}
 		// Fetch Children
 		Hud = GetNode<Control>("%PlayerHUD");
+		followHud = GetNode<Control>("%Follow_HUD");		
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
@@ -142,6 +148,8 @@ public partial class Player : Area2D
 		// UI and Cool downs
 		energy = 100;
 		freeze = Hud.GetNode<Timer>("%Freeze");
+		energyStatic = Hud.GetNode<ProgressBar>("%EnergyMeterStatic");
+		energyDynamic = followHud.GetNode<TextureProgressBar>("%EnergyMeterDynamic");
 		freeze.OneShot = true;
 		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
 		freeze.Start();
@@ -237,10 +245,17 @@ public partial class Player : Area2D
 		// Update cool down timers
 		if (Input.IsActionJustPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
-			if (!InCloud())
+			if (!InCloud() && !firing)
 			{
-				FirePattern(patternLeft);
 				firing = true;
+				fireLeft = true;
+				FirePattern(patternLeft);
+				if(!firing)
+				{
+					_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
+					_leftCooldown.Start();
+					fireLeft = false;
+				}				
 			}
 		}
 		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
@@ -248,6 +263,8 @@ public partial class Player : Area2D
 		}
 		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || (energy <= 0 && firing))
 		{
+			if(firing && fireLeft)
+			{
 				Pattern wrkPattern = currentPattern as Pattern;
 				wrkPattern.Release();
 				//Debug.Print($"Shoot Left P{player_id}");
@@ -255,12 +272,21 @@ public partial class Player : Area2D
 				_leftCooldown.Start();
 				chargeTime = 0;
 				firing = false;
+				fireLeft = false;
+			}
 		}
 		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
-			if (!InCloud())
-			{
-				FirePattern(patternRight);
+			if (!InCloud() && !firing)
+			{				
 				firing = true;
+				fireRight = true;
+				FirePattern(patternRight);
+				if(!firing)
+				{
+					_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
+					_leftCooldown.Start();
+					fireRight = false;
+				}	
 			}
 		}
 		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
@@ -268,14 +294,18 @@ public partial class Player : Area2D
 		}
 		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || (energy <= 0 && firing))
 		{
-			Pattern wrkPattern = currentPattern as Pattern;
-			wrkPattern.Release();
-			//Debug.Print($"{player_id}");
+			if(firing && fireRight)
+			{
+				Pattern wrkPattern = currentPattern as Pattern;
+				wrkPattern.Release();
+				//Debug.Print($"{player_id}");
 				//Debug.Print($"Shoot Right P{player_id}");
 				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
 				_rightCooldown.Start();				
 				chargeTime = 0;
 				firing = false;
+				fireRight = false;
+			}
 		}
 
 
@@ -358,8 +388,9 @@ public partial class Player : Area2D
 		}
 
 		#region UI
-			freeze.GetParent<ProgressBar>().Value = energy;
-			
+			energyStatic.Value = energy;
+			energyDynamic.Value = energy;
+			followHud.Position = Position;
 			// Can't Hide and Show the objects unless I have access to the node
 			Array<Node> lives = healthBar.GetChildren();
 		
@@ -460,18 +491,18 @@ public partial class Player : Area2D
 	//takes in pattern and sets properties then spawns
 	private void FirePattern(PackedScene pToFire)
 	{	
-		if(!firing)
-		{
 			var instance = pToFire.Instantiate();
 			if((float)instance.Get("initialCost") <= energy){
+				if((bool)instance.Get("fireAndForget") == true)
+				{
+					firing = false;
+				}
 				instance.Set("position", this.Position);
 				instance.Set("rotation", this.Rotation);
 				instance.Set("owner", this);
 				currentPattern = instance;
 				AddSibling(instance);
 			}
-			else{instance.QueueFree();}
-		}
 	}
 
 	private void MakeTrail(float lifetime = 1f) {
