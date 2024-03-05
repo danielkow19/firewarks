@@ -66,43 +66,42 @@ public partial class PlayerSpawnButton : Button
         switch (options._numSelected){
 			case 0:
 				{
-
-					_gameManager.SpawnPlayer(0, pattern1, pattern2, -600, -300);
-					//settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Orange, -600, -300);
+					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Orange, -600, -300);
 					GD.Print("1 Player Spawned");
 					break;
 				}
 			case 1:
 				{
-					_gameManager.SpawnPlayer(0, pattern4, pattern2, -600, -300);
-					_gameManager.SpawnPlayer(1, pattern2, pattern3, 600, -300);
-					GD.Print("2 Player Spawned");
+					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Green, 600, -300);
+					settings.AddPlayerInfo(0, pattern4, pattern2, Colors.Orange, -600, -300);
+                    GD.Print("2 Player Spawned");
 					break;
 				}
 			case 2:
 				{
-					_gameManager.SpawnPlayer(0, pattern1, pattern2, -600, -300);
-					_gameManager.SpawnPlayer(1, pattern2, pattern3, 600, -300);
-					_gameManager.SpawnPlayer(2, pattern3, pattern4, -600, 300);
-					GD.Print("3 Player Spawned");
+					settings.AddPlayerInfo(0, pattern1, pattern2,Colors.Aqua, -600, -300);
+					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Gold, 600, -300);
+					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -500, 300);
+                    GD.Print("3 Player Spawned");
 					break;
 				}
 			case 3:
 				{
-					_gameManager.SpawnPlayer(0, pattern1, pattern2, -600, -300);
-					_gameManager.SpawnPlayer(1, pattern2, pattern3, 600, -300);
-					_gameManager.SpawnPlayer(2, pattern3, pattern4, -600, 300);
-					_gameManager.SpawnPlayer(3, pattern4, pattern5, 600, 300);
-					GD.Print("4 Player Spawned");
+					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Aquamarine, -600, -300);
+					settings.AddPlayerInfo(1, pattern2, pattern3, Colors.Purple, 600, -300);
+					settings.AddPlayerInfo(3, pattern4, pattern5, Colors.Green, 500, 300);
+					settings.AddPlayerInfo(2, pattern3, pattern4, Colors.Red, -500, 300);
+
+                    GD.Print("4 Player Spawned");
 					break;
 				}
 			default:
 				{
-					_gameManager.SpawnPlayer(0, pattern4, pattern1, -600, -300);
+					settings.AddPlayerInfo(0, pattern1, pattern2, Colors.Aquamarine, -600, -300);
 					GD.Print("Default Player Spawned");
 					break;
 				}
 		}
-		container.Hide();
+		GetTree().ChangeSceneToFile("res://Game.tscn");
 	}
 }
