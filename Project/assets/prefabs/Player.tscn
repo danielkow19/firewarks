@@ -125,10 +125,12 @@ joint_mode = 1
 script = ExtResource("5_tcvo2")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = -167.0
-offset_top = -101.0
-offset_right = 167.0
-offset_bottom = 233.0
+self_modulate = Color(1, 1, 1, 0.705882)
+offset_left = -125.0
+offset_top = -87.0
+offset_right = 209.0
+offset_bottom = 247.0
+scale = Vector2(0.75, 0.75)
 value = 50.0
 fill_mode = 4
 texture_under = ExtResource("6_kh1iw")
