@@ -14,6 +14,7 @@
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
+currentScene = "res://Game.tscn"
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 texture = ExtResource("2_imqba")
@@ -70,6 +71,7 @@ scale = Vector2(3, 3)
 _gameManager = NodePath("..")
 
 [node name="PlayerNumbers" parent="." instance=ExtResource("14_2gti6")]
+visible = false
 
 [node name="MarginContainer" parent="PlayerNumbers" index="0"]
 offset_left = -72.0
