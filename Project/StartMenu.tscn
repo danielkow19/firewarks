@@ -12,7 +12,6 @@ outline_color = Color(0, 0, 0, 1)
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_7du7k")
 _players = []
-currentScene = "res://StartMenu.tscn"
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
