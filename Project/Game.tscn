@@ -64,7 +64,6 @@ texture = ExtResource("8_6jpuu")
 [node name="Sprite2D7" type="Sprite2D" parent="Cloud"]
 position = Vector2(-41, -53.2274)
 rotation = -1.48004
-scale = Vector2(1, 1)
 texture = ExtResource("8_6jpuu")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Cloud"]
@@ -80,7 +79,6 @@ texture = ExtResource("9_l1agn")
 [node name="Sprite2D3" type="Sprite2D" parent="Cloud"]
 position = Vector2(41, 48.1258)
 rotation = -1.16239
-scale = Vector2(1, 1)
 texture = ExtResource("10_uuc3g")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Cloud"]
@@ -91,7 +89,6 @@ texture = ExtResource("11_qlyyl")
 [node name="Sprite2D5" type="Sprite2D" parent="Cloud"]
 position = Vector2(-14, 17.0174)
 rotation = -2.32478
-scale = Vector2(1, 1)
 texture = ExtResource("10_uuc3g")
 
 [node name="Cloud2" parent="." instance=ExtResource("3_ra8m4")]
@@ -105,7 +102,6 @@ texture = ExtResource("8_6jpuu")
 [node name="Sprite2D7" type="Sprite2D" parent="Cloud2"]
 position = Vector2(-41, -53.2274)
 rotation = -1.48004
-scale = Vector2(1, 1)
 texture = ExtResource("8_6jpuu")
 
 [node name="Sprite2D6" type="Sprite2D" parent="Cloud2"]
@@ -121,7 +117,6 @@ texture = ExtResource("9_l1agn")
 [node name="Sprite2D3" type="Sprite2D" parent="Cloud2"]
 position = Vector2(41, 48.1258)
 rotation = -1.16239
-scale = Vector2(1, 1)
 texture = ExtResource("10_uuc3g")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Cloud2"]
@@ -132,7 +127,6 @@ texture = ExtResource("11_qlyyl")
 [node name="Sprite2D5" type="Sprite2D" parent="Cloud2"]
 position = Vector2(-14, 17.0174)
 rotation = -2.32478
-scale = Vector2(1, 1)
 texture = ExtResource("10_uuc3g")
 
 [node name="Cloud3" parent="." instance=ExtResource("3_ra8m4")]

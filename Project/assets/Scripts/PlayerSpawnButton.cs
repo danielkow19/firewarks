@@ -67,7 +67,7 @@ public partial class PlayerSpawnButton : Button
 		//temp code to prevent spawning bug, remove once player select screen is setup
 			settings.Clear();
 
-        switch (options._numSelected)
+		switch (options._numSelected)
 		{	
 			case 0:
 				{
@@ -79,7 +79,7 @@ public partial class PlayerSpawnButton : Button
 				{
 					settings.AddPlayerInfo(1, patternFastSS, patternWeave, Colors.Green, 600, -300);
 					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot, Colors.Orange, -600, -300);
-                    GD.Print("2 Player Spawned");
+					GD.Print("2 Player Spawned");
 					break;
 				}
 			case 2:
@@ -87,7 +87,7 @@ public partial class PlayerSpawnButton : Button
 					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot,Colors.Aqua, -600, -300);
 					settings.AddPlayerInfo(1, patternFastSS, patternWeave, Colors.Gold, 600, -300);
 					settings.AddPlayerInfo(2, patternSwirl, patternKnot, Colors.Red, -500, 300);
-                    GD.Print("3 Player Spawned");
+					GD.Print("3 Player Spawned");
 					break;
 				}
 			case 3:
@@ -97,7 +97,7 @@ public partial class PlayerSpawnButton : Button
 					settings.AddPlayerInfo(2, patternSwirl, patternKnot, Colors.Red, -500, 300);
 					settings.AddPlayerInfo(3, patternSwirl, patternWeave, Colors.Green, 500, 300);
 
-                    GD.Print("4 Player Spawned");
+					GD.Print("4 Player Spawned");
 					break;
 				}
 			default:

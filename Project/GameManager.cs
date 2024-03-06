@@ -35,7 +35,7 @@ public partial class GameManager : Node2D
 		currentScene = GetTree().CurrentScene.SceneFilePath;
 
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
-        if (currentScene == scenePaths[1])
+		if (currentScene == scenePaths[1])
 		{
 			// Handle player spawning
 			LoadPlayers(settings);
@@ -46,7 +46,7 @@ public partial class GameManager : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{	
-        if (Input.IsActionPressed("Exit")) 
+		if (Input.IsActionPressed("Exit")) 
 		{
 			GetTree().Quit();
 		}
