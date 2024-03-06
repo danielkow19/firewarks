@@ -212,6 +212,9 @@ public partial class Player : Area2D
 		{
 			((TextureRect)lives[i-1]).Modulate = Modulate;
 		}
+
+		// Set heat meter to the right color
+		followHud.Modulate = Modulate;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

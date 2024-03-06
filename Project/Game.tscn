@@ -14,7 +14,6 @@
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
-currentScene = "res://Game.tscn"
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 texture = ExtResource("2_imqba")

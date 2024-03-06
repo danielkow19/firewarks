@@ -16,7 +16,6 @@ public partial class GameManager : Node2D
 	private bool _paused;
 	//private bool _hasSpawned;
 
-	[Export]
 	public string currentScene;
 
 	// Player Scene
@@ -27,11 +26,16 @@ public partial class GameManager : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Hook up menu logic
 		_pauseMenu = GetNode<Control>("%PauseMenu");
 		_resumeButton = GetNode<Button>("PauseMenu/MarginContainer/VBoxContainer/Resume");
 		_paused = false;
+
+		// Set current Scene
+		currentScene = GetTree().CurrentScene.SceneFilePath;
+
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
-		if(currentScene == scenePaths[1])
+        if (currentScene == scenePaths[1])
 		{
 			// Handle player spawning
 			LoadPlayers(settings);
@@ -41,8 +45,8 @@ public partial class GameManager : Node2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
-		if(Input.IsActionPressed("Exit")) 
+	{	
+        if (Input.IsActionPressed("Exit")) 
 		{
 			GetTree().Quit();
 		}
@@ -153,8 +157,6 @@ public partial class GameManager : Node2D
 				}
 			}
 		}
-
-		Debug.Print($"{_paused}");
 		_paused = !_paused;
 	}
 	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, Color color, float x, float y)
