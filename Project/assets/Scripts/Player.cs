@@ -233,9 +233,8 @@ public partial class Player : Area2D
 		// We use string concatenation to splice in the player ID for the input system
 		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
-
-		_direction = new Vector2(Input.GetActionStrength($"Right_{player_id}") - Input.GetActionStrength($"Left_{player_id}"),  Input.GetActionStrength($"Down_{player_id}") - Input.GetActionStrength($"Up_{player_id}")).Normalized();
-		//_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
+		
+		_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 
 		// Update cool down timers
