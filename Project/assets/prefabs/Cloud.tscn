@@ -11,11 +11,13 @@ size = Vector2(146, 180)
 script = ExtResource("1_nk638")
 
 [node name="Obstacle" type="MeshInstance2D" parent="."]
+visible = false
 rotation = 3.14159
 scale = Vector2(146, 180)
 mesh = SubResource("BoxMesh_ttfpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_xxtae")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
