@@ -10,7 +10,6 @@ font_size = 64
 [node name="GameOver" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_wioir")
 _players = []
-currentScene = "res://GameOver.tscn"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
