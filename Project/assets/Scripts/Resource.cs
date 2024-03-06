@@ -27,7 +27,8 @@ public partial class Resource : Area2D
 		CheckCollisions();
 	}
 
-	private void CheckCollisions(){
+	private void CheckCollisions()
+	{
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{

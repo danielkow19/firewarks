@@ -63,8 +63,12 @@ public partial class PlayerSpawnButton : Button
 
 		// color field to set player colors
 		Color set;
+		
+		//temp code to prevent spawning bug, remove once player select screen is setup
+			settings.Clear();
 
-        switch (options._numSelected){
+        switch (options._numSelected)
+		{	
 			case 0:
 				{
 					settings.AddPlayerInfo(0, patternCircle, patternSpreadShot, Colors.Orange, -600, -300);

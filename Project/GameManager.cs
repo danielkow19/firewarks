@@ -42,12 +42,16 @@ public partial class GameManager : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionPressed("Exit")) {
+		if(Input.IsActionPressed("Exit")) 
+		{
 			GetTree().Quit();
 		}
 		if (Input.IsActionJustPressed("Pause"))
 		{
-			if(currentScene != scenePaths[0] && currentScene != scenePaths[2]) { PauseMenu(); }
+			if(currentScene != scenePaths[0] && currentScene != scenePaths[2]) 
+			{ 
+				PauseMenu(); 
+			}
 		}
 
 		if (Input.IsKeyPressed(Key.Key8))
@@ -107,15 +111,24 @@ public partial class GameManager : Node2D
 			{
 				if (_players[i]._isDead) { deathCount++; }
 			}
-			if (deathCount >= _players.Count - 1) { return true; }
-			else { return false; }
+			if (deathCount >= _players.Count - 1) 
+			{ 
+				return true; 
+			}
+			else 
+			{ 
+				return false; 
+			}
 		}
 		// Single player death logic
 		else if(_players.Count == 1)
 		{
 			return _players[0]._isDead;
 		}
-		else { return false; }
+		else 
+		{ 
+			return false; 
+		}
 	}
 	public void PauseMenu()
 	{
@@ -134,7 +147,10 @@ public partial class GameManager : Node2D
 		{
 			foreach (Player player in _players)
 			{
+				if(!player._isDead)
+				{
 				player.ToggleHUD();
+				}
 			}
 		}
 

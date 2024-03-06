@@ -67,7 +67,8 @@ public partial class Pattern : Node
 	{
 		//spawn a wave/waves every x seconds while not released
 		//if end of waves start from beggining		
-		if(!fireAndForget){
+		if(!fireAndForget)
+		{
 			timeAlive += (float)delta;
 			if(!released && (float)owner.Get("energy") >= costPerSecond)
 			{
@@ -82,13 +83,14 @@ public partial class Pattern : Node
 		}
 
 		
-		//if attached follow player to continue to spawn from... 
-		//need to add pattern bool to see if bullets should also follow player
-		if(!released){
+		//if attached follow player to continue to spawn from...
+		if(!released)
+		{
 			Set("position", owner.Get("position"));
 			Set("rotation", owner.Get("rotation"));
 		}
-		else{
+		else
+		{
 			if(GetChildCount() < 2)
 			{
 				QueueFree();
@@ -96,11 +98,13 @@ public partial class Pattern : Node
 		}
 	}
 
-	public void Release(){
+	public void Release()
+	{
 		released = true;
 	}
 	//instantiates each wave setting variables
-	public void SpawnWaves(){
+	public void SpawnWaves()
+	{
 		for (int i = 0; i < waves; i++)
 		{		
 			//! dettach waves as siblings unless they have bool
@@ -115,11 +119,21 @@ public partial class Pattern : Node
 			instance.Set("spinAccel",spinAccelPerWave[i]);
 			instance.Set("swirl", swirl);
 			instance.Set("swirlMod", swirlMod[i]);
-			AddChild(instance);
+			if(!playerLocked)
+			{
+				instance.Set("position", owner.Get("position"));
+				instance.Set("rotation", owner.Get("rotation"));
+				AddSibling(instance);
+			}
+			else
+			{
+				AddChild(instance);
+			}
 		}
 	}
 
-	public void SpawnWave(int waveToSpawn){
+	public void SpawnWave(int waveToSpawn)
+	{
 		var instance = pattern.Instantiate();
 		instance.Set("owner", owner);
 		instance.Set("wait", 0);
@@ -131,16 +145,21 @@ public partial class Pattern : Node
 		instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
 		instance.Set("swirl", swirl);
 		instance.Set("swirlMod", swirlMod[waveToSpawn]);
-		if(!playerLocked){
+		if(!playerLocked)
+		{
 			instance.Set("position", owner.Get("position"));
 			instance.Set("rotation", owner.Get("rotation"));
 			AddSibling(instance);
 		}
-		else{AddChild(instance);}
+		else
+		{
+			AddChild(instance);
+		}
 		
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
-	public void PopulateWaves(){
+	public void PopulateWaves()
+	{
 		if(bulletPerWave.Length < waves)
 		{
 			int[] waveUpdate = new int[waves];
@@ -150,11 +169,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = bulletPerWave[i];
 				}
-				else{if(i == 0)
+				else
+				{
+					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];}
+					waveUpdate[i]= waveUpdate[i-1];
+				}
 			}
 			bulletPerWave = waveUpdate;
 		}
@@ -167,11 +189,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = spreadPerWave[i];
 				}
-				else{if(i == 0)
+				else
+				{
+					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];}
+					waveUpdate[i]= waveUpdate[i-1];
+				}
 			}
 			spreadPerWave = waveUpdate;
 		}
@@ -184,11 +209,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = speedPerWave[i];
 				}
-				else{if(i == 0)
+				else
+				{
+					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];}
+					waveUpdate[i]= waveUpdate[i-1];
+				}
 			}
 			speedPerWave = waveUpdate;
 		}
@@ -201,11 +229,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = offsetPerWave[i];
 				}
-				else{if(i == 0)
+				else
+				{
+					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];;}
+					waveUpdate[i]= waveUpdate[i-1];
+				}
 			}
 			offsetPerWave = waveUpdate;
 		}
@@ -218,13 +249,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = spinPerWave[i];
 				}
-				else{
+				else
+				{
 					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
 					waveUpdate[i]= waveUpdate[i-1];
-					}
+				}
 			}
 			spinPerWave = waveUpdate;
 		}
@@ -237,13 +269,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = spinAccelPerWave[i];
 				}
-				else{
+				else
+				{
 					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
 					waveUpdate[i]= waveUpdate[i-1];
-					}
+				}
 			}
 			spinAccelPerWave = waveUpdate;
 		}
@@ -256,13 +289,14 @@ public partial class Pattern : Node
 				{
 					waveUpdate[i] = swirlMod[i];
 				}
-				else{
+				else
+				{
 					if(i == 0)
 					{
 						waveUpdate[i]= 40;
 					}
 					waveUpdate[i]= waveUpdate[i-1];
-					}
+				}
 			}
 			swirlMod = waveUpdate;
 		}

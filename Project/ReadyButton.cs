@@ -22,7 +22,8 @@ public partial class ReadyButton : Button
     public override void _GuiInput(InputEvent @event)
     {
         base._GuiInput(@event);
-		if(@event is InputEventMouseButton mbe && mbe.ButtonIndex == MouseButton.Left && mbe.Pressed && !keyboardPlayer && numPlayers < 4) {
+		if(@event is InputEventMouseButton mbe && mbe.ButtonIndex == MouseButton.Left && mbe.Pressed && !keyboardPlayer && numPlayers < 4) 
+		{
 			InputEventKey keyEvent = new InputEventKey();
 			//keyEvent.Keycode = Key.A;
 
@@ -41,7 +42,8 @@ public partial class ReadyButton : Button
 			keyboardPlayer = true;
 			numPlayers++;
 		}
-		if(@event is InputEventJoypadButton jbe && jbe.ButtonIndex == JoyButton.A && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4) {
+		if(@event is InputEventJoypadButton jbe && jbe.ButtonIndex == JoyButton.A && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4) 
+		{
 			InputEventJoypadButton joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.LeftShoulder;
@@ -85,7 +87,8 @@ public partial class ReadyButton : Button
     public override void _Process(double delta)
 	{
 		//button.GrabFocus();
-		if(Input.IsActionPressed("Burst_0")) {
+		if(Input.IsActionPressed("Burst_0")) 
+		{
 			Debug.Print("Bursted");
 		}
 	}

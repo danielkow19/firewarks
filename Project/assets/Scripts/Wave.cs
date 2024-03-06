@@ -33,11 +33,13 @@ public partial class Wave : Node
 			QueueFree();
 		}
 	}
-	public void PopulateBullets(){
+	public void PopulateBullets()
+	{
 
 	}
 	//checks num of bullets and spawns numofbullets at player location
-	public void SpawnBullets(){
+	public void SpawnBullets()
+	{
 		//if multiple bullets loop for every bullet and instantiate setting variables and adding to scene
 		if(numOfBullet > 1)
 		{

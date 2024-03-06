@@ -37,11 +37,19 @@ public partial class player_settings : Node
 					index = i;
 				}
 			}
-			if (index >= 0) { _players.RemoveAt(index); }
+			if (index >= 0) 
+			{ 
+				_players.RemoveAt(index); 
+			}
 		}
 
 		// Create a PlayerInfo and push it to the array
 		PlayerInfo player = new PlayerInfo(playerID, leftPattern, rightPattern, color, x, y);
 		_players.Add(player);
 	}
+
+	public void Clear(){
+		_players.Clear();
+	}
+
 }

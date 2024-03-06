@@ -25,8 +25,7 @@ public partial class Bullet : Area2D
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
-	{		
-		//this.Hide();	removed as delay was implemented elsewhere and caused lag
+	{
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
 		trail = GetNode<Line2D>("%Trail");
@@ -72,10 +71,6 @@ public partial class Bullet : Area2D
 				swirl = false;			
 				GD.Print(speed);
 			}
-			//if(!this.Visible)
-			//{
-			//	this.Visible = true; //removed due to lag issue and delay eing handled elsewher
-			//}
 			Translate(speed.Rotated(Rotation) * (float)delta);
 			Rotate((float)(Math.PI*spin*delta/180));
 			spin += (float)(spinAccel*delta);		
@@ -90,7 +85,8 @@ public partial class Bullet : Area2D
 	}
 
 	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
-	private void CheckCollisions(){
+	private void CheckCollisions()
+	{
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{

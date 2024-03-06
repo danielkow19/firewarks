@@ -48,7 +48,8 @@ public partial class TrailBullet : Area2D
 	}
 
 	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
-	private void CheckCollisions(){
+	private void CheckCollisions()
+	{
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{

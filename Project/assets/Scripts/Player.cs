@@ -20,7 +20,7 @@ public partial class Player : Area2D
 	private HBoxContainer healthBar;
 
 	// Player sprite for death
-	private Sprite2D mySprite;
+	private Sprite2D deathSprite;
 	
 	// Movement and Aiming Variables
 	private float _speed;
@@ -111,7 +111,7 @@ public partial class Player : Area2D
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
-		Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
+		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		
 		health = 2;
 		_speed = 200;
@@ -208,9 +208,9 @@ public partial class Player : Area2D
 		//playerSprite.Modulate = set;
 		
 		// Change lives color
-		for (int i = 2; i >= 0; i--) // TODO: This should be counting upwards to a max lives value in order to support potential changing of the max lives number.
+		for (int i = lives.Count; i > 0; i--) // TODO: This should be counting upwards to a max lives value in order to support potential changing of the max lives number.
 		{
-			((TextureRect)lives[i]).Modulate = Modulate;
+			((TextureRect)lives[i-1]).Modulate = Modulate;
 		}
 	}
 
@@ -223,12 +223,7 @@ public partial class Player : Area2D
 
 		if (_isDead)
 		{
-			_canMove = false;
-			healthBar.Hide();
-			freeze.GetParent<ProgressBar>().Hide();
-			_collider.Disabled = true;
-			_playerSprite.Hide();
-}
+		}
 		if (!_canMove)
 		{
 			// Stops the player inputs from affecting the player object
@@ -258,10 +253,11 @@ public partial class Player : Area2D
 				}				
 			}
 		}
-		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}")){
+		else if (Input.IsActionJustPressed($"Shoot_L_{player_id}"))
+		{
 			//Debug.Print($"P{player_id} Left on Cooldown");
 		}
-		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}")&& firing) || (energy <= 0 && firing))
+		if ((Input.IsActionJustReleased($"Shoot_L_{player_id}") || InCloud() || energy <= 0) && firing)
 		{
 			if(firing && fireLeft)
 			{
@@ -275,7 +271,8 @@ public partial class Player : Area2D
 				fireLeft = false;
 			}
 		}
-		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0){
+		if (Input.IsActionPressed($"Shoot_R_{player_id}") && _rightCooldown.TimeLeft == 0)
+		{
 			if (!InCloud() && !firing)
 			{				
 				firing = true;
@@ -289,10 +286,11 @@ public partial class Player : Area2D
 				}	
 			}
 		}
-		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}")){
+		else if (Input.IsActionJustPressed($"Shoot_R_{player_id}"))
+		{
 			//Debug.Print($"P{player_id} Right on Cooldown");
 		}
-		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") && firing) || (energy <= 0 && firing))
+		if ((Input.IsActionJustReleased($"Shoot_R_{player_id}") || InCloud() || energy <= 0) && firing)
 		{
 			if(firing && fireRight)
 			{
@@ -320,7 +318,9 @@ public partial class Player : Area2D
 			{
 				_targetRotation = MathF.PI * 2 - MathF.Acos(_aimDirection.X);
 			}
-		} else {
+		} 
+		else 
+		{
 			_targetRotation = Rotation;
 		}
 		//Debug.Print("{0}", Rotation - _targetRotation);
@@ -332,14 +332,17 @@ public partial class Player : Area2D
 		{
 			Rotation += _rotationSpeed * (firing ? .5f : 1) * (float)delta * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
-		else {
+		else 
+		{
 			Rotation += _rotationSpeed * (firing ? .5f : 1) *  (float)delta * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 
-		if(Rotation > MathF.PI * 2) {
+		if(Rotation > MathF.PI * 2) 
+		{
 			Rotation -= MathF.PI * 2;
 		}
-		else if (Rotation < 0) {
+		else if (Rotation < 0) 
+		{
 			Rotation += MathF.PI * 2;
 		}
 
@@ -366,61 +369,71 @@ public partial class Player : Area2D
 		
 
 		#region Energy
-		if (InCloud())
-		{
-			// Energy drains while in cloud
-			energy -= 10 * (float)delta;
-			
-			if (energy < 0)
+			if (InCloud())
 			{
-				energy = 0;
-				DamagePlayer(1);
-			}
-}
-		else if (freeze.TimeLeft == 0)
-		{
-			energy += 10 * (float)delta;
+				// Energy drains while in cloud
+				energy -= 10 * (float)delta;
 
-			if (energy > 100)
-			{
-				energy = 100;
+				if (energy < 0)
+				{
+					energy = 0;
+					DamagePlayer(1);
+				}
 			}
-		}
+			else if (freeze.TimeLeft == 0)
+			{
+				energy += 10 * (float)delta;
 
-		#region UI
-			energyStatic.Value = energy;
-			energyDynamic.Value = energy;
-			followHud.Position = Position;
-			// Can't Hide and Show the objects unless I have access to the node
-			Array<Node> lives = healthBar.GetChildren();
-		
-			// Change Health bar display
-			for (int i = 2; i >= 0; i--)
-			{
-				((TextureRect)lives[i]).Visible = (health >= i);
+				if (energy > 100)
+				{
+					energy = 100;
+				}
 			}
-		#endregion // UI
+
+			#region UI
+				energyStatic.Value = energy;
+				energyDynamic.Value = energy;
+				followHud.Position = Position;
+				// Can't Hide and Show the objects unless I have access to the node
+				Array<Node> lives = healthBar.GetChildren();
+
+				// Change Health bar display
+				for (int i = 2; i >= 0; i--)
+				{
+					((TextureRect)lives[i]).Visible = (health >= i);
+				}
+			#endregion // UI
 		#endregion // Energy, technically ended after freeze set
 
 		// Invulnerability logic
-		if(_invTime >= _invTimeMax) {
+		if(_invTime >= _invTimeMax) 
+		{
 			_damageable = true;
-		} else {
+		} 
+		else 
+		{
 			_invTime += (float)delta;
 		}
-		if(_invTime % _doubleColorTime <= _singleColorTime && _invTime < _invTimeMax && _playerSprite.SelfModulate != _alternateColor) {
+
+		if(_invTime % _doubleColorTime <= _singleColorTime && _invTime < _invTimeMax && _playerSprite.SelfModulate != _alternateColor) 
+		{
 			_playerSprite.SelfModulate = _alternateColor;
-		} else if(_invTime % _doubleColorTime > _singleColorTime || _invTime >= _invTimeMax) {
+		} 
+		else if(_invTime % _doubleColorTime > _singleColorTime || _invTime >= _invTimeMax) 
+		{
 			_playerSprite.SelfModulate = _initialColor;
 		}
 		
 		// Burst Logic
-		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0) {
+		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0) 
+		{
 			_burstArea.Monitoring = true;
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
 			_burstTimer.Start();
-		} else if(_burstTimer.TimeLeft < 0.1f) {
+		} 
+		else if(_burstTimer.TimeLeft < 0.1f) 
+		{
 			_burstArea.Monitoring = false;
 		}
 
@@ -434,7 +447,8 @@ public partial class Player : Area2D
 
 	public void DamagePlayer(int amount)
 	{
-		if(_damageable) {
+		if(_damageable) 
+		{
 			AddSibling(hitFX.Instantiate());
 			health -= amount;
 			_damageable = false;
@@ -443,6 +457,10 @@ public partial class Player : Area2D
 			if (health < 0)
 			{
 				_isDead = true;
+				_canMove = false;
+				ToggleHUD();
+				_collider.Disabled = true;
+				_playerSprite.Hide();
 			}
 			else
 			{
@@ -480,7 +498,7 @@ public partial class Player : Area2D
 	public bool HasEnergy()
 	{
 		// Because it works on float it isn't ==0
-		return energy >=1;
+		return energy >= 1;
 	}
 	
 	private bool InCloud()
@@ -491,21 +509,23 @@ public partial class Player : Area2D
 	//takes in pattern and sets properties then spawns
 	private void FirePattern(PackedScene pToFire)
 	{	
-			var instance = pToFire.Instantiate();
-			if((float)instance.Get("initialCost") <= energy){
-				if((bool)instance.Get("fireAndForget") == true)
-				{
-					firing = false;
-				}
-				instance.Set("position", this.Position);
-				instance.Set("rotation", this.Rotation);
-				instance.Set("owner", this);
-				currentPattern = instance;
-				AddSibling(instance);
+		var instance = pToFire.Instantiate();
+		if((float)instance.Get("initialCost") <= energy)
+		{
+			if((bool)instance.Get("fireAndForget") == true)
+			{
+				firing = false;
 			}
+			instance.Set("position", this.Position);
+			instance.Set("rotation", this.Rotation);
+			instance.Set("owner", this);
+			currentPattern = instance;
+			AddSibling(instance);
+		}
 	}
 
-	private void MakeTrail(float lifetime = 1f) {
+	private void MakeTrail(float lifetime = 1f) 
+	{
 		_trailTimer.WaitTime = _trailCD;
 		_trailTimer.Start();
 		var instance = trailBullet.Instantiate();
@@ -528,7 +548,8 @@ public partial class Player : Area2D
 	}
 
 	// Signal for burst area being entered
-	public void _on_burst_area_entered(Area2D area) {
+	public void _on_burst_area_entered(Area2D area) 
+	{
 		if (area is not Bullet bullet || area.Visible == false) return;
 		if(bullet.owner != this) {
 			bullet.QueueFree();
@@ -541,6 +562,7 @@ public partial class Player : Area2D
 		{
 			healthBar.Hide();
 			freeze.GetParent<ProgressBar>().Hide();
+			followHud.Hide();
 			// Hiding Sprite for Now, should be handled else where in future
 			_playerSprite.Hide();
 		}
@@ -548,6 +570,7 @@ public partial class Player : Area2D
 		{
 			healthBar.Show();
 			freeze.GetParent<ProgressBar>().Show();
+			followHud.Show();
 			_playerSprite.Show();
 		}
 		_uiVisible = !_uiVisible;
