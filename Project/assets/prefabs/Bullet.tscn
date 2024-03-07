@@ -94,7 +94,6 @@ shape = SubResource("CircleShape2D_ndpxb")
 [node name="Trail" type="Line2D" parent="."]
 unique_name_in_owner = true
 top_level = true
-points = PackedVector2Array(940, -465)
 points = PackedVector2Array(37, -10)
 width = 30.0
 texture = ExtResource("4_1rgbt")
