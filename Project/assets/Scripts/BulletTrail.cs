@@ -20,7 +20,8 @@ public partial class BulletTrail : Line2D
 	{
 				
 		Area2D parent = GetParent<Area2D>();
-		curve.AddPoint(parent.GlobalPosition);
+		curve.AddPoint(new Vector2(parent.GlobalPosition.X + -7 * Mathf.Cos(parent.Rotation), 
+			parent.GlobalPosition.Y + -7 * Mathf.Sin(parent.Rotation)));
 		if (curve.PointCount > maxPoints)
 		{
 			curve.RemovePoint(0);
