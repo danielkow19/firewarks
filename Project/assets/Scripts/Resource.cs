@@ -56,7 +56,7 @@ public partial class Resource : Area2D
 				{
 					if (area is Player player)
 					{
-						player.RewardEnergy(15);
+						player.ResourceCollected(type);
 						lifetime = 0;
 						QueueFree();
 
