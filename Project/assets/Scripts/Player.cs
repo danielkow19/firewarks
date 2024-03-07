@@ -43,6 +43,7 @@ public partial class Player : Area2D
 	private Area2D _burstArea;
 	private Timer _burstTimer;
 	private float _burstCD;
+	private AnimatedSprite2D _burstAnimation;
 	
 	// Particles
 	private GpuParticles2D playerDamaged;
@@ -138,6 +139,8 @@ public partial class Player : Area2D
 		_burstTimer.Start();
 		_burstCD = 0.5f;
 		_burstArea.Monitoring = false;
+		_burstAnimation = GetNode<AnimatedSprite2D>("Player_1/BurstArea/BurstAnimation");
+		
 
 		_trailTimer = GetNode<Timer>("%TrailCD");
 		_trailTimer.OneShot = true;
@@ -412,6 +415,7 @@ public partial class Player : Area2D
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
 			_burstTimer.Start();
+			_burstAnimation.Play();
 		} 
 		else if(_burstTimer.TimeLeft < 0.1f) 
 		{
