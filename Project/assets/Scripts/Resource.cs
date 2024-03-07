@@ -5,15 +5,32 @@ using FireWARks.assets.Scripts;
 using Godot.Collections;
 using System.Diagnostics;
 
+public enum PowerUpType
+{
+	Refill,
+	Barrier,
+	OrbitRing,
+	BulletSpeed,
+	RandomFireworks,
+	MobileAttacker,
+	Slowdown,
+	SmokeBomb,
+	Camo,
+}
+
 public partial class Resource : Area2D
 {
 	[Export]
 	private double lifetime = 10;
 	[Export]
 	private string[] tags;
+
+	public PowerUpType type;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Resource Spawner determines power-up type  instead of this class
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,6 +46,7 @@ public partial class Resource : Area2D
 
 	private void CheckCollisions()
 	{
+		GD.Print(type);
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{
