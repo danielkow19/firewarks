@@ -1,0 +1,180 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2urxr6akefnj"]
+
+[ext_resource type="Script" path="res://assets/Scripts/Clouds.cs" id="1_irs00"]
+[ext_resource type="Texture2D" uid="uid://v2gk2gp35qin" path="res://assets/sprites/objects/Object_cloud 4PNG.png" id="2_n3t2g"]
+[ext_resource type="Texture2D" uid="uid://bdqpapmjr4qys" path="res://assets/sprites/objects/Object_cloud 1.PNG" id="3_g0xkn"]
+[ext_resource type="Texture2D" uid="uid://ceyh4w0bjumh7" path="res://assets/sprites/objects/Object_cloud2.PNG" id="4_j5e6s"]
+[ext_resource type="Texture2D" uid="uid://j1pbl3hgd4p6" path="res://assets/sprites/objects/Object_cloud 3.PNG" id="5_2jqqr"]
+[ext_resource type="Texture2D" uid="uid://b5nnullbrbpd3" path="res://assets/sprites/objects/Object_cloud 5.PNG" id="6_a12n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsvmw"]
+size = Vector2(1730, 80)
+
+[node name="MapBlank" type="Node2D"]
+metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
+metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
+
+[node name="Cloud Wall" type="Area2D" parent="."]
+scale = Vector2(0.995, 0.995)
+script = ExtResource("1_irs00")
+
+[node name="Center Cloud Group" type="CollisionShape2D" parent="Cloud Wall"]
+shape = SubResource("RectangleShape2D_fsvmw")
+debug_color = Color(0.717647, 0.458824, 0.396078, 0.419608)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(461.055, 0)
+texture = ExtResource("2_n3t2g")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(360.553, 0)
+texture = ExtResource("3_g0xkn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(316.332, 5.02513)
+rotation = 1.5708
+texture = ExtResource("4_j5e6s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(410.804, 0)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(537.437, -22.1106)
+texture = ExtResource("6_a12n8")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(536.432, 19.0955)
+rotation = 0.844739
+scale = Vector2(1, 1)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(743.216, 0)
+texture = ExtResource("2_n3t2g")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(642.714, 0)
+texture = ExtResource("3_g0xkn")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(598.492, 5.02513)
+rotation = 1.5708
+texture = ExtResource("4_j5e6s")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(692.965, 0)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(819.598, -22.1106)
+texture = ExtResource("6_a12n8")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(818.593, 19.0955)
+rotation = 0.844739
+scale = Vector2(1, 1)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-125.879, 0)
+texture = ExtResource("2_n3t2g")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-226.382, 0)
+texture = ExtResource("3_g0xkn")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-270.603, 5.02513)
+rotation = 1.5708
+texture = ExtResource("4_j5e6s")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-176.131, 0)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-49.4975, -22.1106)
+texture = ExtResource("6_a12n8")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-50.5025, 19.0955)
+rotation = 0.844739
+scale = Vector2(1, 1)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D19" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(156.281, 0)
+texture = ExtResource("2_n3t2g")
+
+[node name="Sprite2D20" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(55.7789, 0)
+texture = ExtResource("3_g0xkn")
+
+[node name="Sprite2D21" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(11.5577, 5.02513)
+rotation = 1.5708
+texture = ExtResource("4_j5e6s")
+
+[node name="Sprite2D22" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(106.03, 0)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D23" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(232.663, -22.1106)
+texture = ExtResource("6_a12n8")
+
+[node name="Sprite2D24" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(231.658, 19.0955)
+rotation = 0.844739
+scale = Vector2(1, 1)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D25" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-708.794, 0)
+texture = ExtResource("2_n3t2g")
+
+[node name="Sprite2D26" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-821.106, -1.00503)
+texture = ExtResource("3_g0xkn")
+
+[node name="Sprite2D28" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-759.045, 0)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D29" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-632.412, -22.1106)
+texture = ExtResource("6_a12n8")
+
+[node name="Sprite2D30" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-633.417, 19.0955)
+rotation = 0.844739
+scale = Vector2(1, 1)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D31" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-426.633, 0)
+texture = ExtResource("2_n3t2g")
+
+[node name="Sprite2D32" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-527.136, 0)
+texture = ExtResource("3_g0xkn")
+
+[node name="Sprite2D33" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-571.357, 5.02513)
+rotation = 1.5708
+texture = ExtResource("4_j5e6s")
+
+[node name="Sprite2D34" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-476.884, 0)
+texture = ExtResource("5_2jqqr")
+
+[node name="Sprite2D35" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-350.251, -22.1106)
+texture = ExtResource("6_a12n8")
+
+[node name="Sprite2D36" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
+position = Vector2(-351.256, 19.0955)
+rotation = 0.844739
+scale = Vector2(1, 1)
+texture = ExtResource("5_2jqqr")
