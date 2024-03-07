@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=40 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
