@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=40 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
+[ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
@@ -209,6 +210,7 @@ turbulence_noise_strength = 13.43
 
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_pxkww")
+patternLeft = ExtResource("2_dn5ft")
 
 [node name="PlayerTexture" type="Sprite2D" parent="."]
 unique_name_in_owner = true
