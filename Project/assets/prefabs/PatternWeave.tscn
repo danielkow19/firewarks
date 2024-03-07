@@ -6,10 +6,10 @@
 script = ExtResource("1_s18ce")
 waves = 6
 bulletPerWave = PackedInt32Array(4)
-spreadPerWave = PackedInt32Array(90)
-speedPerWave = PackedInt32Array(200)
-offsetPerWave = PackedInt32Array(-45, 45, -45, 45, -45, 45)
-spinPerWave = PackedFloat32Array(15, -15, 15, -15, 15, -15)
+spreadPerWave = PackedInt32Array(60)
+speedPerWave = PackedInt32Array(400)
+offsetPerWave = PackedInt32Array(-30, 30, -30, 30, -30, 30)
+spinPerWave = PackedFloat32Array(10, -10, 10, -10, 10, -10)
 spinAccelPerWave = PackedFloat32Array(0)
 swirl = true
-swirlMod = PackedInt32Array(7, -7, 7, -7, 7, -7)
+swirlMod = PackedInt32Array(6, -6, 6, -6, 6, -6)

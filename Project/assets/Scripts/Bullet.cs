@@ -29,6 +29,7 @@ public partial class Bullet : Area2D
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
 		trail = GetNode<Line2D>("%Trail");
+		trail.Set("baseCd", 2/speed.X);
 		if(owner != null){
 			Modulate = owner.Modulate;
 			trail.Modulate = owner.Modulate;
