@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d7tsg8t1h4h8"]
+[gd_scene load_steps=2 format=3 uid="uid://d7tsg8t1h4h8"]
 
 [ext_resource type="Script" path="res://player_select.cs" id="1_77hbd"]
-[ext_resource type="PackedScene" uid="uid://bauxs6aiaf1yq" path="res://assets/prefabs/SelectMenu.tscn" id="1_h66ld"]
 
 [node name="PlayerSelect" type="Node2D"]
-
-[node name="SelectMenu" parent="." instance=ExtResource("1_h66ld")]
-visible = false
 
 [node name="JoinNode" type="Control" parent="."]
 layout_mode = 3

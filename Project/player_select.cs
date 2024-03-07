@@ -110,6 +110,30 @@ public partial class player_select : Control
             InputMap.ActionEraseEvents($"Burst_{numPlayers}");
             InputMap.ActionAddEvent($"Burst_{numPlayers}", joyButton);
 
+            joyButton = new InputEventJoypadButton();
+            joyButton.Device = jbe.Device;
+            joyButton.ButtonIndex = JoyButton.DpadLeft;
+            InputMap.ActionEraseEvents($"Left_{numPlayers}");
+            InputMap.ActionAddEvent($"Left_{numPlayers}", joyButton);
+
+            joyButton = new InputEventJoypadButton();
+            joyButton.Device = jbe.Device;
+            joyButton.ButtonIndex = JoyButton.DpadRight;
+            InputMap.ActionEraseEvents($"Right_{numPlayers}");
+            InputMap.ActionAddEvent($"Right_{numPlayers}", joyButton);
+
+            joyButton = new InputEventJoypadButton();
+            joyButton.Device = jbe.Device;
+            joyButton.ButtonIndex = JoyButton.DpadUp;
+            InputMap.ActionEraseEvents($"Up_{numPlayers}");
+            InputMap.ActionAddEvent($"Up_{numPlayers}", joyButton);
+
+            joyButton = new InputEventJoypadButton();
+            joyButton.Device = jbe.Device;
+            joyButton.ButtonIndex = JoyButton.DpadDown;
+            InputMap.ActionEraseEvents($"Down_{numPlayers}");
+            InputMap.ActionAddEvent($"Down_{numPlayers}", joyButton);
+
 
             InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
             joyAxis.Device = jbe.Device;
@@ -127,28 +151,24 @@ public partial class player_select : Control
             joyAxis.Device = jbe.Device;
             joyAxis.Axis = JoyAxis.LeftX;
             joyAxis.AxisValue = 1;
-            InputMap.ActionEraseEvents($"Right_{numPlayers}");
             InputMap.ActionAddEvent($"Right_{numPlayers}", joyAxis);
 
             joyAxis = new InputEventJoypadMotion();
             joyAxis.Device = jbe.Device;
             joyAxis.Axis = JoyAxis.LeftX;
             joyAxis.AxisValue = -1;
-            InputMap.ActionEraseEvents($"Left_{numPlayers}");
             InputMap.ActionAddEvent($"Left_{numPlayers}", joyAxis);
 
             joyAxis = new InputEventJoypadMotion();
             joyAxis.Device = jbe.Device;
             joyAxis.Axis = JoyAxis.LeftY;
             joyAxis.AxisValue = -1;
-            InputMap.ActionEraseEvents($"Up_{numPlayers}");
             InputMap.ActionAddEvent($"Up_{numPlayers}", joyAxis);
 
             joyAxis = new InputEventJoypadMotion();
             joyAxis.Device = jbe.Device;
             joyAxis.Axis = JoyAxis.LeftY;
             joyAxis.AxisValue = 1;
-            InputMap.ActionEraseEvents($"Down_{numPlayers}");
             InputMap.ActionAddEvent($"Down_{numPlayers}", joyAxis);
             
             joyAxis = new InputEventJoypadMotion();
@@ -202,6 +222,7 @@ public partial class player_select : Control
                     instance.Set("position", new Vector2(960,540));
                     break;
             }
+            instance.GetNode<CursorAlt>("ColorRect/Cursor").Set("playerNum", numPlayers - 1);
         AddChild(instance);
     }
 
