@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=39 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
+[ext_resource type="Texture2D" uid="uid://b02bhxv5mvhnv" path="res://assets/sprites/effects/spritesheet_smoke_bomb.png" id="4_qsqd8"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 [ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
 
@@ -16,6 +17,168 @@ height = 14.0
 radius = 75.4255
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sbp86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohycq"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(0, 0, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc65h"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(450, 0, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud86i"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(900, 0, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k83re"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1350, 0, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gm00"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1800, 0, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0relf"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(2250, 0, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xy73"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(0, 450, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhah1"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(450, 450, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kjkd"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(900, 450, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36l4q"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1350, 450, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nakjj"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1800, 450, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6315"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(2250, 450, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8m03"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(0, 900, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrwvw"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(450, 900, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gncgy"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(900, 900, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3kc8"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1350, 900, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ets12"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1800, 900, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8pv3"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(2250, 900, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_audh2"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(0, 1350, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42kco"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(450, 1350, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00pl7"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(900, 1350, 450, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acvx5"]
+atlas = ExtResource("4_qsqd8")
+region = Rect2(1350, 1350, 450, 450)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj170"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohycq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc65h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud86i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k83re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gm00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0relf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xy73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhah1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kjkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36l4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nakjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6315")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8m03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrwvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gncgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3kc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ets12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8pv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_audh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42kco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00pl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acvx5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_8hlya"]
 offsets = PackedFloat32Array(0, 0.813988)
@@ -93,6 +256,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BurstArea"]
 scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_sbp86")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BurstArea"]
+sprite_frames = SubResource("SpriteFrames_uj170")
 
 [node name="BurstCD" type="Timer" parent="."]
 unique_name_in_owner = true

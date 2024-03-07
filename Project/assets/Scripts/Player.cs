@@ -68,8 +68,8 @@ public partial class Player : Area2D
 	private Timer _leftCooldown;
 	private Timer _rightCooldown;
 	private Timer _grazeCooldown;
-	private const double LEFT_COOLDOWN_MAX = 2.0f;
-	private const double RIGHT_COOLDOWN_MAX = 4.0f;
+	private const double LEFT_COOLDOWN_MAX = 0.25f;
+	private const double RIGHT_COOLDOWN_MAX = 0.25f;
 
 	// Interaction variable
 	public int numClouds;
