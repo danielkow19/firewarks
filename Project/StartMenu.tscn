@@ -9,9 +9,8 @@ font_size = 128
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_players")]
+[node name="StartMenu" type="Node2D"]
 script = ExtResource("1_7du7k")
-_players = []
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -45,9 +44,10 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Play Game"
 
-[node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("3_h1xvh")]
+[node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
 visible = false
-_gameManager = NodePath("..")
+_gameManager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("1_7du7k"))
+
 
 [editable path="PauseMenu"]

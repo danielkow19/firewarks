@@ -139,7 +139,7 @@ public partial class Player : Area2D
 		_burstTimer.Start();
 		_burstCD = 0.5f;
 		_burstArea.Monitoring = false;
-		_burstAnimation = GetNode<AnimatedSprite2D>("Player_1/BurstArea/BurstAnimation");
+		_burstAnimation = GetNode<AnimatedSprite2D>("BurstArea/BurstAnimation");
 		
 
 		_trailTimer = GetNode<Timer>("%TrailCD");
