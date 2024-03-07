@@ -406,6 +406,8 @@ public partial class Player : Area2D
 		// Burst Logic
 		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0) 
 		{
+			// If this ever gets transferred into a method in the future,
+			// it should be noted that ResourceCollected copies this code
 			_burstArea.Monitoring = true;
 			DrainEnergy(50);
 			_burstTimer.WaitTime = _burstCD;
@@ -553,5 +555,20 @@ public partial class Player : Area2D
 			_playerSprite.Show();
 		}
 		_uiVisible = !_uiVisible;
+	}
+
+	public void ResourceCollected(PowerUpType power)
+	{
+		if (power == PowerUpType.Refill)
+		{
+			// Essentially sets to max immediately
+			RewardEnergy(100);
+		}
+		else if (power == PowerUpType.SmokeBomb)
+		{
+			_burstArea.Monitoring = true;
+			_burstTimer.WaitTime = _burstCD;
+			_burstTimer.Start();
+		}
 	}
 }

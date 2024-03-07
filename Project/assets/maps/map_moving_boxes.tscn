@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhyybbsfck5i0"]
+
+[ext_resource type="Script" path="res://assets/Scripts/Clouds.cs" id="1_s14j4"]
+[ext_resource type="Texture2D" uid="uid://v2gk2gp35qin" path="res://assets/sprites/objects/Object_cloud 4PNG.png" id="2_7p5d1"]
+[ext_resource type="Texture2D" uid="uid://bdqpapmjr4qys" path="res://assets/sprites/objects/Object_cloud 1.PNG" id="3_qq6nx"]
+[ext_resource type="Texture2D" uid="uid://ceyh4w0bjumh7" path="res://assets/sprites/objects/Object_cloud2.PNG" id="4_mo110"]
+[ext_resource type="Texture2D" uid="uid://j1pbl3hgd4p6" path="res://assets/sprites/objects/Object_cloud 3.PNG" id="5_lvuyq"]
+[ext_resource type="Texture2D" uid="uid://b5nnullbrbpd3" path="res://assets/sprites/objects/Object_cloud 5.PNG" id="6_rii0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsvmw"]
+size = Vector2(150, 150)
+
+[node name="MapBlank" type="Node2D"]
+metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
+metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
+
+[node name="Cloud Box 1" type="Area2D" parent="."]
+position = Vector2(-490, 0)
+script = ExtResource("1_s14j4")
+
+[node name="Box" type="CollisionShape2D" parent="Cloud Box 1"]
+shape = SubResource("RectangleShape2D_fsvmw")
+debug_color = Color(0.717647, 0.458824, 0.396078, 0.419608)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Cloud Box 1"]
+position = Vector2(-38.6432, 4.0201)
+rotation = 0.820305
+texture = ExtResource("5_lvuyq")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Cloud Box 1"]
+position = Vector2(27.6884, 58.2915)
+rotation = -3.14159
+texture = ExtResource("6_rii0b")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud Box 1"]
+position = Vector2(-33.6181, -31.1558)
+rotation = -0.150098
+scale = Vector2(1, 1)
+texture = ExtResource("3_qq6nx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Cloud Box 1"]
+position = Vector2(-29.598, 24.1206)
+texture = ExtResource("4_mo110")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Cloud Box 1"]
+position = Vector2(38.7437, -40.201)
+texture = ExtResource("5_lvuyq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Cloud Box 1"]
+position = Vector2(42.7638, -1.00502)
+texture = ExtResource("2_7p5d1")
+
+[node name="Cloud Box 2" type="Area2D" parent="."]
+position = Vector2(490, 0)
+script = ExtResource("1_s14j4")
+
+[node name="Box" type="CollisionShape2D" parent="Cloud Box 2"]
+shape = SubResource("RectangleShape2D_fsvmw")
+debug_color = Color(0.717647, 0.458824, 0.396078, 0.419608)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Cloud Box 2"]
+position = Vector2(-38.6432, 4.0201)
+rotation = 0.820305
+texture = ExtResource("5_lvuyq")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Cloud Box 2"]
+position = Vector2(27.6885, 58.2915)
+rotation = -3.14159
+texture = ExtResource("6_rii0b")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cloud Box 2"]
+position = Vector2(-33.6181, -31.1558)
+rotation = -0.150098
+scale = Vector2(1, 1)
+texture = ExtResource("3_qq6nx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Cloud Box 2"]
+position = Vector2(-29.598, 24.1206)
+texture = ExtResource("4_mo110")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Cloud Box 2"]
+position = Vector2(38.7437, -40.201)
+texture = ExtResource("5_lvuyq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Cloud Box 2"]
+position = Vector2(42.7638, -1.00502)
+texture = ExtResource("2_7p5d1")

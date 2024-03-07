@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2urxr6akefnj"]
+[gd_scene load_steps=7 format=3 uid="uid://dohovlkcqdgpx"]
 
-[ext_resource type="PackedScene" uid="uid://c1rsifuaq4gih" path="res://assets/prefabs/Player.tscn" id="1_0yooe"]
+[ext_resource type="Script" path="res://assets/Scripts/Clouds.cs" id="1_rtscf"]
 [ext_resource type="Texture2D" uid="uid://bdqpapmjr4qys" path="res://assets/sprites/objects/Object_cloud 1.PNG" id="2_10yjh"]
 [ext_resource type="Texture2D" uid="uid://j1pbl3hgd4p6" path="res://assets/sprites/objects/Object_cloud 3.PNG" id="3_gv3qi"]
 [ext_resource type="Texture2D" uid="uid://v2gk2gp35qin" path="res://assets/sprites/objects/Object_cloud 4PNG.png" id="4_qfh5f"]
@@ -13,241 +13,241 @@ radius = 360.0
 metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
 metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 
-[node name="Player_1" parent="." instance=ExtResource("1_0yooe")]
-position = Vector2(-612, -193)
+[node name="Center Cloud" type="Area2D" parent="."]
+script = ExtResource("1_rtscf")
 
-[node name="Center Cloud Group" type="CollisionShape2D" parent="."]
+[node name="Center Cloud Group" type="CollisionShape2D" parent="Center Cloud"]
 shape = SubResource("CircleShape2D_5ngye")
 debug_color = Color(0.717647, 0.458824, 0.396078, 0.419608)
 
-[node name="ObjectCloud33" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud33" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(138, -104)
 scale = Vector2(3.97, 3.97)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud34" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud34" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(116, 129)
 rotation = 1.5708
 scale = Vector2(3.97, 3.97)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud35" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud35" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-105, -137)
 rotation = -1.5708
 scale = Vector2(3.97, 3.97)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud36" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud36" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-116, 101)
 rotation = -3.14159
 scale = Vector2(3.97, 3.97)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud1" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud1" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-245, 202)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud3" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud3" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-173, 257)
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-291, 118)
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud5" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud5" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-317, 9)
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud2" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud2" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-307, 75)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud4" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-279, 157)
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png2" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png2" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-135, 285)
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud6" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud6" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-205, 244)
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud7" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud7" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-98, 317)
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud9" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud9" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-37, 326)
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud4png4" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png4" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-3, 329)
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud8" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud8" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-202, -245)
 rotation = 1.5708
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud10" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud10" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-257, -173)
 rotation = 1.5708
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png3" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png3" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-118, -291)
 rotation = 1.5708
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud11" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud11" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-8.99999, -317)
 rotation = 1.5708
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud12" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud12" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-75, -307)
 rotation = 1.5708
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud13" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud13" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-157, -279)
 rotation = 1.5708
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png5" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png5" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-285, -135)
 rotation = 1.5708
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud14" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud14" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-244, -205)
 rotation = 1.5708
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud15" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud15" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-317, -98)
 rotation = 1.5708
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud16" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud16" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-326, -37)
 rotation = 1.5708
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud4png6" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png6" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(-329, -3.00001)
 rotation = 1.5708
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud17" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud17" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(258.255, -197.135)
 rotation = -3.14159
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud18" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud18" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(186.255, -252.135)
 rotation = -3.14159
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png7" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png7" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(304.255, -113.135)
 rotation = -3.14159
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud19" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud19" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(330.255, -4.13497)
 rotation = -3.14159
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud20" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud20" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(320.255, -70.135)
 rotation = -3.14159
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud21" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud21" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(292.255, -152.135)
 rotation = -3.14159
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png8" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png8" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(148.255, -280.135)
 rotation = -3.14159
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud22" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud22" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(218.255, -239.135)
 rotation = -3.14159
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud23" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud23" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(111.255, -312.135)
 rotation = -3.14159
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud24" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud24" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(50.255, -321.135)
 rotation = -3.14159
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud4png9" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png9" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(16.255, -324.135)
 rotation = -3.14159
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud25" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud25" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(215.255, 249.865)
 rotation = -1.5708
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud26" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud26" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(270.255, 177.865)
 rotation = -1.5708
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png10" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png10" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(131.255, 295.865)
 rotation = -1.5708
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud27" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud27" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(22.255, 321.865)
 rotation = -1.5708
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud28" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud28" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(88.255, 311.865)
 rotation = -1.5708
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud29" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud29" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(170.255, 283.865)
 rotation = -1.5708
 texture = ExtResource("3_gv3qi")
 
-[node name="ObjectCloud4png11" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png11" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(298.255, 139.865)
 rotation = -1.5708
 texture = ExtResource("4_qfh5f")
 
-[node name="ObjectCloud30" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud30" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(257.255, 209.865)
 rotation = -1.5708
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud31" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud31" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(330.255, 102.865)
 rotation = -1.5708
 texture = ExtResource("2_10yjh")
 
-[node name="ObjectCloud32" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud32" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(339.255, 41.865)
 rotation = -1.5708
 texture = ExtResource("5_0ph4b")
 
-[node name="ObjectCloud4png12" type="Sprite2D" parent="Center Cloud Group"]
+[node name="ObjectCloud4png12" type="Sprite2D" parent="Center Cloud/Center Cloud Group"]
 position = Vector2(342.255, 7.86504)
 rotation = -1.5708
 texture = ExtResource("4_qfh5f")
