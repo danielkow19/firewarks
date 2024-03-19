@@ -20,7 +20,6 @@
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_t3ush")
 _players = [NodePath("Player_1"), NodePath("Player_2"), NodePath("Player_3")]
-currentScene = "res://assets/cheatScenes/Game(3 Player).tscn"
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 texture = ExtResource("7_rxs83")

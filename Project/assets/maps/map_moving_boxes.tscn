@@ -35,7 +35,6 @@ texture = ExtResource("6_rii0b")
 [node name="Sprite2D" type="Sprite2D" parent="Cloud Box 1"]
 position = Vector2(-33.6181, -31.1558)
 rotation = -0.150098
-scale = Vector2(1, 1)
 texture = ExtResource("3_qq6nx")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Cloud Box 1"]
@@ -71,7 +70,6 @@ texture = ExtResource("6_rii0b")
 [node name="Sprite2D" type="Sprite2D" parent="Cloud Box 2"]
 position = Vector2(-33.6181, -31.1558)
 rotation = -0.150098
-scale = Vector2(1, 1)
 texture = ExtResource("3_qq6nx")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Cloud Box 2"]

@@ -17,6 +17,7 @@ public partial class CursorAlt : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Cursor movement Logic
 		if(Input.IsActionJustPressed($"Up_{playerNum}")) {
 			positionIndex -= 2;
 		} else if (Input.IsActionJustPressed($"Down_{playerNum}")) {
@@ -34,5 +35,41 @@ public partial class CursorAlt : Node2D
 		}
 
 		Position = positions[positionIndex];
+
+		// Cursor click logic
+		if(Input.IsActionJustPressed($"UI_Click_{playerNum}"))
+		{
+			switch(positionIndex)
+			{
+				case 0:
+					{
+						break;
+					}
+				case 1:
+					{
+						break;
+					}
+				case 2:
+					{
+						break;
+					}
+				case 3:
+					{
+						break;
+					}
+				case 4:
+					{
+						break;
+					}
+				case 5:
+					{
+						break;
+					}
+				case 6:
+					{
+						break;
+					}
+			}
+		}
 	}
 }

@@ -45,7 +45,6 @@ texture = ExtResource("6_a12n8")
 [node name="Sprite2D6" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
 position = Vector2(536.432, 19.0955)
 rotation = 0.844739
-scale = Vector2(1, 1)
 texture = ExtResource("5_2jqqr")
 
 [node name="Sprite2D7" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
@@ -72,7 +71,6 @@ texture = ExtResource("6_a12n8")
 [node name="Sprite2D12" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
 position = Vector2(818.593, 19.0955)
 rotation = 0.844739
-scale = Vector2(1, 1)
 texture = ExtResource("5_2jqqr")
 
 [node name="Sprite2D13" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
@@ -99,7 +97,6 @@ texture = ExtResource("6_a12n8")
 [node name="Sprite2D18" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
 position = Vector2(-50.5025, 19.0955)
 rotation = 0.844739
-scale = Vector2(1, 1)
 texture = ExtResource("5_2jqqr")
 
 [node name="Sprite2D19" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
@@ -126,7 +123,6 @@ texture = ExtResource("6_a12n8")
 [node name="Sprite2D24" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
 position = Vector2(231.658, 19.0955)
 rotation = 0.844739
-scale = Vector2(1, 1)
 texture = ExtResource("5_2jqqr")
 
 [node name="Sprite2D25" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
@@ -148,7 +144,6 @@ texture = ExtResource("6_a12n8")
 [node name="Sprite2D30" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
 position = Vector2(-633.417, 19.0955)
 rotation = 0.844739
-scale = Vector2(1, 1)
 texture = ExtResource("5_2jqqr")
 
 [node name="Sprite2D31" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
@@ -175,5 +170,4 @@ texture = ExtResource("6_a12n8")
 [node name="Sprite2D36" type="Sprite2D" parent="Cloud Wall/Center Cloud Group"]
 position = Vector2(-351.256, 19.0955)
 rotation = 0.844739
-scale = Vector2(1, 1)
 texture = ExtResource("5_2jqqr")

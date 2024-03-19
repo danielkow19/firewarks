@@ -11,7 +11,7 @@ public partial class ColorSwap : ColorRect
 	public override void _Ready()
 	{
 		// Assign references on load
-		childRect = GetNode<ColorRect>("%ColorRect");
+		childRect = GetNode<ColorRect>("%Color");
 		colorIndex = 0;
 
 		// Assign childRects 0 color
