@@ -23,6 +23,8 @@ public partial class Spawner : Node2D
 			Array values = Enum.GetValues(typeof(PowerUpType));
 			(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
 			AddChild(instance);
+
+			GD.Print(("Spawned a " + (instance as Resource).ToString()));
 		}
 	}
 }

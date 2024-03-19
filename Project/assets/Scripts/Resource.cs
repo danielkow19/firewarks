@@ -46,7 +46,6 @@ public partial class Resource : Area2D
 
 	private void CheckCollisions()
 	{
-		GD.Print(type);
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{
@@ -64,5 +63,10 @@ public partial class Resource : Area2D
 				}
 			}
 		}
+	}
+
+	public override string ToString()
+	{
+		return type + " PowerUp";
 	}
 }

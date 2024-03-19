@@ -75,6 +75,9 @@ public partial class Player : Area2D
 	// Interaction variable
 	public int numClouds;
 	
+	// Things for Powerups
+	private Timer mobileAttackLength;
+	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
 	[Export]
@@ -98,14 +101,9 @@ public partial class Player : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if(patternLeft == null)
-		{
-			patternLeft = pattern;
-		}
-		if(patternRight == null)
-		{
-			patternRight = pattern;
-		}
+		patternLeft ??= pattern;
+		patternRight ??= pattern;
+		
 		// Fetch Children
 		Hud = GetNode<Control>("%PlayerHUD");
 		followHud = GetNode<Control>("%Follow_HUD");		
@@ -157,6 +155,11 @@ public partial class Player : Area2D
 		freeze.WaitTime = .25f; // An initial, just so I know everything works correctly
 		freeze.Start();
 		_uiVisible = true;
+		mobileAttackLength = new Timer();
+		mobileAttackLength.OneShot = true;
+		mobileAttackLength.WaitTime = .01f;
+		AddChild(mobileAttackLength);
+		mobileAttackLength.Start();
 
 		_leftCooldown = GetNode<Timer>("%LeftTimer");
 		_leftCooldown.OneShot = true;
@@ -329,7 +332,7 @@ public partial class Player : Area2D
 		}
 
 		
-		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || firing ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
+		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
 
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)
@@ -563,16 +566,26 @@ public partial class Player : Area2D
 
 	public void ResourceCollected(PowerUpType power)
 	{
-		if (power == PowerUpType.Refill)
+		switch (power)
 		{
-			// Essentially sets to max immediately
-			RewardEnergy(100);
-		}
-		else if (power == PowerUpType.SmokeBomb)
-		{
-			_burstArea.Monitoring = true;
-			_burstTimer.WaitTime = _burstCD;
-			_burstTimer.Start();
+			case PowerUpType.Refill:
+				// Essentially sets to max immediately
+				RewardEnergy(100);
+				return;
+			
+			case PowerUpType.SmokeBomb:
+				_burstArea.Monitoring = true;
+				_burstTimer.WaitTime = _burstCD;
+				_burstTimer.Start();
+				break;
+			
+			case PowerUpType.MobileAttacker:
+				mobileAttackLength.Start(15);
+				break;
+			
+			default:
+				// Nothing happens
+				break;
 		}
 	}
 }
