@@ -77,6 +77,8 @@ public partial class Player : Area2D
 	
 	// Things for Powerups
 	private Timer mobileAttackLength;
+	private bool barrier = false;
+	private MeshInstance2D barrierMesh;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
@@ -110,6 +112,7 @@ public partial class Player : Area2D
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
+		barrierMesh = GetNode<MeshInstance2D>("%Barrier");
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		
 		health = 2;
@@ -120,6 +123,7 @@ public partial class Player : Area2D
 		_aimDirection = Vector2.Right;
 		_targetRotation = 0;
 		_rotationSpeed = 4.5f;
+		barrierMesh.Visible = false;
 
 		_damageable = true;
 		_invTimeMax = 3;
@@ -435,7 +439,7 @@ public partial class Player : Area2D
 
 	public void DamagePlayer(int amount)
 	{
-		if(_damageable) 
+		if(_damageable && !barrier) 
 		{
 			AddSibling(hitFX.Instantiate());
 			health -= amount;
@@ -454,6 +458,10 @@ public partial class Player : Area2D
 			{
 				playerDamaged.Emitting = true;
 			}
+		}
+		else if (barrier)
+		{
+			DeactivateBarrier();
 		}
 	}
 
@@ -563,6 +571,12 @@ public partial class Player : Area2D
 		}
 		_uiVisible = !_uiVisible;
 	}
+	
+	public void DeactivateBarrier()
+	{
+		barrier = false;
+		barrierMesh.Visible = false;
+	}
 
 	public void ResourceCollected(PowerUpType power)
 	{
@@ -581,6 +595,11 @@ public partial class Player : Area2D
 			
 			case PowerUpType.MobileAttacker:
 				mobileAttackLength.Start(15);
+				break;
+			
+			case PowerUpType.Barrier:
+				barrier = true;
+				barrierMesh.Visible = true;
 				break;
 			
 			default:
