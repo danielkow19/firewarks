@@ -18,7 +18,7 @@ public partial class BulletTrail : Line2D
 	{
 		curve = new Curve2D();
 		parent = GetParent<Area2D>();
-		GD.Print("cd" + baseCd);
+		//GD.Print("cd" + baseCd);
 		pointToAdd = new Vector2(parent.GlobalPosition.X, parent.GlobalPosition.Y);
 	}
 
