@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4rrocm5vcmmq"]
 
-[ext_resource type="Texture2D" uid="uid://dgteu3kikcie8" path="res://assets/sprites/phoenix/2MinuteToken-Phoenix.png" id="1_wrnbg"]
+[ext_resource type="Texture2D" uid="uid://bqyifxl1ih8yb" path="res://assets/sprites/ui/ui_feather.png" id="1_2ge0a"]
 
 [node name="PlayerHUD" type="Control"]
 layout_mode = 3
@@ -20,21 +20,22 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Lives"]
 layout_mode = 2
-texture = ExtResource("1_wrnbg")
+texture = ExtResource("1_2ge0a")
 expand_mode = 3
 
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/Lives"]
 layout_mode = 2
-texture = ExtResource("1_wrnbg")
+texture = ExtResource("1_2ge0a")
 expand_mode = 3
 
 [node name="TextureRect3" type="TextureRect" parent="VBoxContainer/Lives"]
 layout_mode = 2
-texture = ExtResource("1_wrnbg")
+texture = ExtResource("1_2ge0a")
 expand_mode = 3
 
 [node name="EnergyMeterStatic" type="ProgressBar" parent="VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="Freeze" type="Timer" parent="VBoxContainer/EnergyMeterStatic"]

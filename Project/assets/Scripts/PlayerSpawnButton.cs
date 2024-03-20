@@ -61,9 +61,6 @@ public partial class PlayerSpawnButton : Button
 		// get a reference to the player_settings singleton
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 
-		// color field to set player colors
-		Color set;
-		
 		//temp code to prevent spawning bug, remove once player select screen is setup
 			settings.Clear();
 

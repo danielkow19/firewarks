@@ -6,16 +6,22 @@ public partial class ColorSwap : ColorRect
 	// Reference to child rect
 	private ColorRect childRect;
 	private int colorIndex;
+	public int ColorIndex {  get { return colorIndex; } }
+
+	// Reference to the Player preview Sprite
+	[Export]
+	private TextureRect texture;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
-		colorIndex = 0;
+		colorIndex = -1;
 
 		// Assign childRects 0 color
-		childRect.Color = Colors.Red;
+		childRect.Color = Colors.White;
+		texture.Modulate = Colors.White;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -113,5 +119,6 @@ public partial class ColorSwap : ColorRect
 
 		// Apply the color to the colorRect
 		childRect.Color = newColor;
+		texture.Modulate = newColor;
     }
 }

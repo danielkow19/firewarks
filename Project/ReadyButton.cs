@@ -12,13 +12,13 @@ public partial class ReadyButton : Button
 		button = GetNode<Button>("../ReadyUp");
 	}
 
-    public override void _GuiInput(InputEvent @event)
-    {
-        base._GuiInput(@event);
-    }
+	public override void _GuiInput(InputEvent @event)
+	{
+		base._GuiInput(@event);
+	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
 	{
 	}
 }
