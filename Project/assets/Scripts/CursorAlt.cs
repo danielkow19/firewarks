@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 
 public partial class CursorAlt : Node2D
@@ -7,12 +8,27 @@ public partial class CursorAlt : Node2D
 	public int playerNum;
 	private int positionIndex;
 	private Godot.Vector2[] positions = {new Godot.Vector2(510, 100), new Godot.Vector2(850, 100), new Godot.Vector2(510, 200), new Godot.Vector2(855, 200), new Godot.Vector2(510, 300), new Godot.Vector2(850, 300), new Godot.Vector2(565, 400)};
+	private List<Button> ButtonList; 
+
+	// Reference to the info managing scripts (not arrows)
+	[Export]
+	private ColorSwap colorSwap;
+	[Export]
+	private AttackSwap attack1Swap;
+	[Export]
+	private AttackSwap attack2Swap;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		positionIndex = 0;
-	}
+
+        ButtonList = new List<Button> { GetNode<Button>("../ColorLeft"), GetNode<Button>("../ColorRight"), 
+			GetNode<Button>("../Attack1Left") ,GetNode<Button>("../Attack1Right"),
+            GetNode<Button>("../Attack2Left"), GetNode<Button>("../Attack2Right"),
+            GetNode<Button>("../ReadyUp")
+        };
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -40,36 +56,36 @@ public partial class CursorAlt : Node2D
 		if(Input.IsActionJustPressed($"UI_Click_{playerNum}"))
 		{
 			switch(positionIndex)
-			{
-				case 0:
-					{
-						break;
-					}
+            {
+                case 0:// Color Left
 				case 1:
 					{
+						// Color Right
+						ArrowColor color = (ArrowColor)ButtonList[positionIndex];
+						color._on_pressed();
 						break;
 					}
-				case 2:
-					{
-						break;
-					}
-				case 3:
-					{
-						break;
-					}
-				case 4:
-					{
-						break;
-					}
+				case 2://Attack1Left
+				case 3://Attack1Right
+				case 4://Attack2Left
 				case 5:
 					{
-						break;
+                        //Attack2Right
+						ArrowAttack attack = (ArrowAttack)ButtonList[positionIndex];
+						attack._on_pressed();
+                        break;
 					}
 				case 6:
 					{
+						//ReadyUp
+						// Feed in the PlayerInfo
 						break;
 					}
 			}
 		}
+	}
+	private void addPlayerInfo()
+	{
+
 	}
 }

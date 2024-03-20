@@ -20,7 +20,7 @@ public partial class ArrowColor : Button
 	{
 	}
 
-	private void _on_pressed() {
+	public void _on_pressed() {
 		GD.Print($"{name} pressed");
 		swap._ChangeColor(name);
 	}
