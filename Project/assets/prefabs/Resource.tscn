@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ma03tm36hd1w"]
 
-[ext_resource type="Texture2D" uid="uid://cap2aeeb156qt" path="res://assets/sprites/bullets/quick bullet.png" id="1_5msln"]
 [ext_resource type="Script" path="res://assets/Scripts/Resource.cs" id="1_n8aem"]
+[ext_resource type="Texture2D" uid="uid://bjv5vahvvdenj" path="res://assets/sprites/objects/Object_envelope.png" id="2_06y6k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcuqv"]
 
@@ -12,5 +12,4 @@ script = ExtResource("1_n8aem")
 shape = SubResource("CapsuleShape2D_pcuqv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_5msln")
+texture = ExtResource("2_06y6k")
