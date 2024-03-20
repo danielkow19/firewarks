@@ -116,13 +116,13 @@ public partial class Player : Area2D
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		
 		health = 2;
-		_speed = 200;
+		_speed = 300;
 		_slowedSpeed = _speed / 2;
 		_direction = Vector2.Zero;
 		_rightStickInput = Vector2.Zero;
 		_aimDirection = Vector2.Right;
 		_targetRotation = 0;
-		_rotationSpeed = 4.5f;
+		_rotationSpeed = 6f;
 		barrierMesh.Visible = false;
 
 		_damageable = true;
