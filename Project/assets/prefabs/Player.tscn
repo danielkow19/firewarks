@@ -365,6 +365,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_ogaot")
 
 [node name="FlyingSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(-1, 0)
 scale = Vector2(0.145, 0.145)
 sprite_frames = SubResource("SpriteFrames_dpxtp")
