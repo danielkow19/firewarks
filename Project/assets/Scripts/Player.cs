@@ -89,6 +89,7 @@ public partial class Player : Area2D
 	private float chargeTime = 0;
 	private Node currentPattern;
 	private string powerUpPasser = "";
+	private float cooldown;
 	
 	[Export]
 	PackedScene patternLeft = null;
@@ -237,7 +238,7 @@ public partial class Player : Area2D
 				FirePattern(patternLeft);
 				if(!firing)
 				{
-					_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
+					_leftCooldown.WaitTime = _leftCooldown.TimeLeft + cooldown;
 					_leftCooldown.Start();
 					fireLeft = false;
 				}				
@@ -251,11 +252,11 @@ public partial class Player : Area2D
 		{
 			if(firing && fireLeft)
 			{
-				Pattern wrkPattern = currentPattern as Pattern;
-				wrkPattern.Release();
+				Pattern wrkPattern = currentPattern as Pattern;				
 				//Debug.Print($"Shoot Left P{player_id}");
-				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
+				_leftCooldown.WaitTime = _leftCooldown.TimeLeft + cooldown;
 				_leftCooldown.Start();
+				wrkPattern.Release();
 				chargeTime = 0;
 				firing = false;
 				fireLeft = false;
@@ -268,9 +269,10 @@ public partial class Player : Area2D
 				firing = true;
 				fireRight = true;
 				FirePattern(patternRight);
+				Pattern wrkPattern = currentPattern as Pattern;
 				if(!firing)
 				{
-					_leftCooldown.WaitTime = _leftCooldown.TimeLeft + LEFT_COOLDOWN_MAX;
+					_leftCooldown.WaitTime = _leftCooldown.TimeLeft + cooldown;
 					_leftCooldown.Start();
 					fireRight = false;
 				}	
@@ -285,11 +287,12 @@ public partial class Player : Area2D
 			if(firing && fireRight)
 			{
 				Pattern wrkPattern = currentPattern as Pattern;
-				wrkPattern.Release();
+				
 				//Debug.Print($"{player_id}");
 				//Debug.Print($"Shoot Right P{player_id}");
-				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + RIGHT_COOLDOWN_MAX;
-				_rightCooldown.Start();				
+				_rightCooldown.WaitTime = _rightCooldown.TimeLeft + cooldown;
+				_rightCooldown.Start();	
+				wrkPattern.Release();			
 				chargeTime = 0;
 				firing = false;
 				fireRight = false;
@@ -518,8 +521,10 @@ public partial class Player : Area2D
 			instance.Set("passer", powerUpPasser);
 			instance.Set("owner", this);
 			currentPattern = instance;
+			cooldown = (float)currentPattern.Get("recharge");
 			AddSibling(instance);
 		}
+		
 	}
 
 	private void MakeTrail(float lifetime = 1f) 

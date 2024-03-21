@@ -41,6 +41,8 @@ public partial class Pattern : Node
 	private float initialCost = 10;
 	[Export]
 	private float costPerSecond = 5;
+	[Export]
+	private float recharge = 2;
 	private float coolDown;
 	private string passer;
 	public Pattern(){
@@ -111,10 +113,17 @@ public partial class Pattern : Node
 			//! dettach waves as siblings unless they have bool
 			var instance = pattern.Instantiate();
 			instance.Set("owner", owner);
+			instance.Set("passer", passer);
 			instance.Set("wait", i*delay);
 			instance.Set("numOfBullet", bulletPerWave[i]);
 			instance.Set("spread", spreadPerWave[i]);
-			instance.Set("speed", speedPerWave[i]);
+			if(passer == "BulletSpeed")
+			{
+				instance.Set("speed", speedPerWave[i] * 1.5);
+			}
+			else{
+				instance.Set("speed", speedPerWave[i]);
+			}			
 			instance.Set("offset",offsetPerWave[i]);
 			instance.Set("spin",spinPerWave[i]);
 			instance.Set("spinAccel",spinAccelPerWave[i]);
@@ -137,10 +146,17 @@ public partial class Pattern : Node
 	{
 		var instance = pattern.Instantiate();
 		instance.Set("owner", owner);
+		instance.Set("passer", passer);
 		instance.Set("wait", 0);
 		instance.Set("numOfBullet", bulletPerWave[waveToSpawn]);
 		instance.Set("spread", spreadPerWave[waveToSpawn]);
-		instance.Set("speed", speedPerWave[waveToSpawn]);
+		if(passer == "BulletSpeed")
+			{
+				instance.Set("speed", speedPerWave[waveToSpawn] * 1.5);
+		}
+		else{
+				instance.Set("speed", speedPerWave[waveToSpawn]);
+		}			
 		instance.Set("offset",offsetPerWave[waveToSpawn]);
 		instance.Set("spin",spinPerWave[waveToSpawn]);
 		instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);

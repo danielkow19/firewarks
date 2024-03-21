@@ -18,6 +18,7 @@ public partial class Bullet : Area2D
 	[Export]
 	public double delay = 1;
 	public Player owner;
+	private string passer;
 	private string[] tags;
 	private bool swirl = false;
 	public int swirlMod;
@@ -52,6 +53,10 @@ public partial class Bullet : Area2D
 			//		trail.Modulate = Colors.Lime;
 			//		break;
 			//}
+		}
+		if(passer == "Camo"){
+			Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .1f);
+			trail.Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .1f);
 		}
 
 		// Sets the opacity of the trail 0 - 255
