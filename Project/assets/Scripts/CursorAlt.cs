@@ -8,7 +8,8 @@ public partial class CursorAlt : Node2D
 	public int playerNum;
 	private int positionIndex;
 	private Godot.Vector2[] positions = {new Godot.Vector2(510, 100), new Godot.Vector2(850, 100), new Godot.Vector2(510, 200), new Godot.Vector2(855, 200), new Godot.Vector2(510, 300), new Godot.Vector2(850, 300), new Godot.Vector2(565, 400)};
-	private List<Button> ButtonList; 
+	private List<Button> ButtonList;
+	private List<PackedScene> patternsList;
 
 	// Reference to the info managing scripts (not arrows)
 	[Export]
@@ -28,6 +29,12 @@ public partial class CursorAlt : Node2D
             GetNode<Button>("../Attack2Left"), GetNode<Button>("../Attack2Right"),
             GetNode<Button>("../ReadyUp")
         };
+
+		patternsList = new List<PackedScene> { GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternFastSS.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternKnot.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternSpreadShot.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternSwirl.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternWeave.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternWillow.tscn")
+		};
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,13 +86,27 @@ public partial class CursorAlt : Node2D
 					{
 						//ReadyUp
 						// Feed in the PlayerInfo
+						addPlayerInfo();
+
+						// Call the on press
+						ReadyButton ready = (ReadyButton)ButtonList[6];
+						ready._on_pressed();
 						break;
 					}
 			}
 		}
 	}
-	private void addPlayerInfo()
+	public void addPlayerInfo()
 	{
+        // get a reference to the player_settings singleton
+        player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 
-	}
+		// position logic will go below
+		float x = 0;
+		float y = 0;
+
+		// Have code that takes in the map, then the player ID to determine the spawn position
+
+		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, x, y);
+    }
 }

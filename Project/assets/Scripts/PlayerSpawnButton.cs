@@ -13,6 +13,7 @@ public partial class PlayerSpawnButton : Button
 	PackedScene patternWeave = GD.Load<PackedScene>("res://assets/prefabs/PatternWeave.tscn");
 	PackedScene patternKnot = GD.Load<PackedScene>("res://assets/prefabs/PatternKnot.tscn");
 	PackedScene patternSwirl = GD.Load<PackedScene>("res://assets/prefabs/PatternSwirl.tscn");
+	PackedScene patternWillow = GD.Load<PackedScene>("res://assets/prefabs/PatternWillow.tscn");
 
 	PlayerSelectButton options;
 	
@@ -62,7 +63,7 @@ public partial class PlayerSpawnButton : Button
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 
 		//temp code to prevent spawning bug, remove once player select screen is setup
-			settings.Clear();
+		//	settings.Clear();
 
 		switch (options._numSelected)
 		{	

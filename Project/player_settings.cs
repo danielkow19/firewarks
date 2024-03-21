@@ -17,19 +17,12 @@ public partial class player_settings : Node
 	public override void _Ready()
 	{
 		currentScene = GetTree().CurrentScene.SceneFilePath;
+		// Clear the list when entering lobby (No Ghost players)
+		if(currentScene == lobbyScene) { _players.Clear(); }
     }
 
 	public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, float x, float y)
 	{
-		
-		if(_players.Count != 0)
-		{
-			if(currentScene == lobbyScene)
-			{
-				// When entering the lobby clear the list so we don't have ghost players
-				_players.Clear();
-			}
-		}
 
 		// Create a PlayerInfo and push it to the array
 		PlayerInfo player = new PlayerInfo(playerID, leftPattern, rightPattern, color, x, y);
