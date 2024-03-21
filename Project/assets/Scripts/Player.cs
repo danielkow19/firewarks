@@ -90,6 +90,9 @@ public partial class Player : Area2D
 	private Node currentPattern;
 	private string powerUpPasser = "";
 	private float cooldown;
+
+	public bool debuffSlow = false;
+	private double debuffTimer = 0;
 	
 	[Export]
 	PackedScene patternLeft = null;
@@ -340,8 +343,15 @@ public partial class Player : Area2D
 		}
 
 		
-		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
-
+		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) || debuffSlow ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
+		if(debuffTimer > 0){
+		debuffTimer -= delta;		
+		}
+		else if(debuffTimer <= 0)
+		{
+			debuffSlow = false;
+			debuffTimer = 0;
+		}
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)
 		{
@@ -519,6 +529,7 @@ public partial class Player : Area2D
 			instance.Set("position", this.Position);
 			instance.Set("rotation", this.Rotation);
 			instance.Set("passer", powerUpPasser);
+			powerUpPasser = "";
 			instance.Set("owner", this);
 			currentPattern = instance;
 			cooldown = (float)currentPattern.Get("recharge");
@@ -615,6 +626,20 @@ public partial class Player : Area2D
 			
 			case PowerUpType.Camo:
 				powerUpPasser = "Camo";
+				break;
+
+			case PowerUpType.Slowdown:
+				foreach(Node child in GetParent().GetChildren())
+				{
+					if(child is Player player)
+					{
+						if(player != this)
+						{
+							player.debuffSlow = true;
+							player.debuffTimer = 5;
+						}
+					}
+				}
 				break;
 			
 			default:
