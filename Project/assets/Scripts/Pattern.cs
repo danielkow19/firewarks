@@ -42,6 +42,7 @@ public partial class Pattern : Node
 	[Export]
 	private float costPerSecond = 5;
 	private float coolDown;
+	private string passer;
 	public Pattern(){
 	}
 
