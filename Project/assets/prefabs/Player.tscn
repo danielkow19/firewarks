@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=62 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 [ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
 [ext_resource type="Texture2D" uid="uid://dgobxqaaifoyd" path="res://assets/sprites/effects/spritesheet_barrier.png" id="9_einjs"]
+[ext_resource type="Texture2D" uid="uid://cscrsrwm5lrfk" path="res://assets/sprites/phoenix/spritesheet_player_fly.png" id="10_bfhjd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -245,12 +246,119 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pi6h"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(150, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fnyf"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(810, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2033"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(1470, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmd7t"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(2130, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3650m"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(2790, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10l3n"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(3450, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07j10"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(4110, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j44mq"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(150, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f5ri"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(810, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nejvm"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(1470, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaxqu"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(2130, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdyhx"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(2790, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqoqo"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(3450, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42l80"]
+atlas = ExtResource("10_bfhjd")
+region = Rect2(4110, 816, 660, 816)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dpxtp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pi6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fnyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2033")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmd7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3650m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10l3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07j10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j44mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f5ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nejvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qaxqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdyhx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqoqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42l80")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_pxkww")
 patternLeft = ExtResource("2_dn5ft")
 
 [node name="PlayerTexture" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
@@ -344,6 +452,12 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_pnvig")
 autoplay = "default"
 frame_progress = 0.832578
+
+[node name="FlyingSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(0.185, 0.185)
+sprite_frames = SubResource("SpriteFrames_dpxtp")
+frame_progress = 0.280056
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
