@@ -88,6 +88,7 @@ public partial class Player : Area2D
 	private bool _uiVisible;
 	private float chargeTime = 0;
 	private Node currentPattern;
+	private string powerUpPasser = "";
 	
 	[Export]
 	PackedScene patternLeft = null;
@@ -319,11 +320,11 @@ public partial class Player : Area2D
 		}
 		else if (MathF.Abs(Rotation - _targetRotation) > MathF.PI)
 		{
-			Rotation += _rotationSpeed * (firing ? .5f : 1) * (float)delta * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
+			Rotation += _rotationSpeed * (firing ? .2f : 1) * (float)delta * (Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 		else 
 		{
-			Rotation += _rotationSpeed * (firing ? .5f : 1) *  (float)delta * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
+			Rotation += _rotationSpeed * (firing ? .2f : 1) *  (float)delta * -(Rotation - _targetRotation) / MathF.Abs(Rotation - _targetRotation);
 		}
 
 		if(Rotation > MathF.PI * 2) 
@@ -514,6 +515,7 @@ public partial class Player : Area2D
 			}
 			instance.Set("position", this.Position);
 			instance.Set("rotation", this.Rotation);
+			instance.Set("passer", powerUpPasser);
 			instance.Set("owner", this);
 			currentPattern = instance;
 			AddSibling(instance);
@@ -600,6 +602,14 @@ public partial class Player : Area2D
 			case PowerUpType.Barrier:
 				barrier = true;
 				barrierMesh.Visible = true;
+				break;
+
+			case PowerUpType.BulletSpeed:
+				powerUpPasser = "BulletSpeed";
+				break;
+			
+			case PowerUpType.Camo:
+				powerUpPasser = "Camo";
 				break;
 			
 			default:
