@@ -112,7 +112,7 @@ public partial class Clouds : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print(timersHolder[step]);
+		//GD.Print(timersHolder[step]);
 		Vector2 movingVec = new Vector2(0,0);
 		
 		if((directions[step] == "Up" && !reverseTracking) || (directions[step] == "Down" && reverseTracking)){
