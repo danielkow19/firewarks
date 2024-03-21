@@ -39,7 +39,7 @@ public partial class Resource : Area2D
 		lifetime -= delta;
 		if(lifetime <= 0)
 		{
-			this.QueueFree();
+			QueueFree();
 		}
 		CheckCollisions();
 	}
@@ -57,8 +57,9 @@ public partial class Resource : Area2D
 					{
 						player.ResourceCollected(type);
 						lifetime = 0;
+						var text = new PopupText();
+						text.DisplayText(ToString(), Position);
 						QueueFree();
-
 					}	
 				}
 			}

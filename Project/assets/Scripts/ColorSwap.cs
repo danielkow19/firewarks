@@ -7,7 +7,54 @@ public partial class ColorSwap : ColorRect
 	private ColorRect childRect;
 	private int colorIndex;
 	public int ColorIndex {  get { return colorIndex; } }
-
+	public Color ColorChoice { get { switch (colorIndex)
+			{
+                case 0:
+                    {
+                        // Strontium
+                        return Colors.Red;
+                    }
+                case 1:
+                    {
+                        // Calcium
+                        return Colors.Orange;
+                    }
+                case 2:
+                    {
+                        // Sodium
+                        return Colors.Yellow;
+                    }
+                case 3:
+                    {
+                        // Barium
+                        return Colors.Green;
+                    }
+                case 4:
+                    {
+                        // Pure Copper
+                        // Maybe lighten the color
+                        return Colors.Purple;
+                    }
+                case 5:
+                    {
+                        // Strontium + Copper
+                        return Colors.Magenta;
+                    }
+                case 6:
+                    {
+                        // Magnesium
+                        return Colors.Silver;
+                    }
+                case 7:
+                    {
+                        return Colors.Aquamarine;
+                    }
+                default:
+                    {
+                        // Just incase
+                        return Colors.White;
+                    }
+            } } }
 	// Reference to the Player preview Sprite
 	[Export]
 	private TextureRect texture;
@@ -17,7 +64,7 @@ public partial class ColorSwap : ColorRect
 	{
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
-		colorIndex = -1;
+		colorIndex = 0;
 
 		// Assign childRects 0 color
 		childRect.Color = Colors.White;
@@ -57,65 +104,9 @@ public partial class ColorSwap : ColorRect
 			// break out if input isn't correct
 			return;
         }
-		
+
 		// Choose Colors
-		Color newColor;
-		switch(colorIndex)
-		{
-			case 0:
-				{
-					// Strontium
-					newColor = Colors.Red; 
-					break;
-				}
-			case 1:
-				{
-					// Calcium
-					newColor = Colors.Orange;
-					break;
-				}
-			case 2:
-				{
-					// Sodium
-					newColor = Colors.Yellow;
-					break;
-				}
-			case 3:
-				{
-					// Barium
-					newColor = Colors.Green;
-					break;
-				}
-			case 4:
-				{
-					// Pure Copper
-					// Maybe lighten the color
-					newColor = Colors.Purple;
-					break;
-				}
-			case 5:
-				{
-					// Strontium + Copper
-					newColor = Colors.Magenta;
-					break;
-				}
-			case 6:
-				{
-					// Magnesium
-					newColor = Colors.Silver;
-					break;
-				}
-			case 7:
-				{
-					newColor = Colors.Aquamarine;
-					break;
-				}
-			default:
-				{
-					// Just incase
-					newColor = Colors.White; break;
-				}
-		}
+		Color newColor = ColorChoice;
 
 		// Apply the color to the colorRect
 		childRect.Color = newColor;

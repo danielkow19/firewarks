@@ -17,10 +17,6 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 [node name="Cloud Box 1" type="Area2D" parent="."]
 position = Vector2(-480, 0)
 script = ExtResource("1_s14j4")
-directions = PackedStringArray("Up", "Right", "Down", "Left", "Up")
-speed = PackedFloat64Array(160)
-timersHolder = PackedFloat64Array(2, 6, 4, 6, 2)
-loop = true
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 1"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -56,10 +52,6 @@ texture = ExtResource("2_7p5d1")
 [node name="Cloud Box 2" type="Area2D" parent="."]
 position = Vector2(480, 0)
 script = ExtResource("1_s14j4")
-directions = PackedStringArray("Down", "Left", "Up", "Right", "Down")
-speed = PackedFloat64Array(160)
-timersHolder = PackedFloat64Array(2, 6, 4, 6, 2)
-loop = true
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 2"]
 shape = SubResource("RectangleShape2D_fsvmw")
