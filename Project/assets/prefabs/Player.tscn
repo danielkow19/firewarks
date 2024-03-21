@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=40 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
@@ -208,8 +208,6 @@ color_ramp = SubResource("GradientTexture1D_l3dgi")
 turbulence_enabled = true
 turbulence_noise_strength = 13.43
 
-[sub_resource type="SphereMesh" id="SphereMesh_g4i65"]
-
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_pxkww")
 patternLeft = ExtResource("2_dn5ft")
@@ -304,12 +302,8 @@ offset_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="Barrier" type="MeshInstance2D" parent="."]
+[node name="Barrier" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-self_modulate = Color(0.0705882, 1, 1, 1)
-z_index = 1
-scale = Vector2(20, 20)
-mesh = SubResource("SphereMesh_g4i65")
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]

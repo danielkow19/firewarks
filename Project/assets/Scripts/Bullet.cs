@@ -67,10 +67,10 @@ public partial class Bullet : Area2D
 		{
 			if (swirl && delay <= -1)
 			{
-				GD.Print(speed);
+				//GD.Print(speed);
 				speed = speed.Rotated(((float)Math.PI/180) * swirlMod);
 				swirl = false;			
-				GD.Print(speed);
+				//GD.Print(speed);
 			}
 			Translate(speed.Rotated(Rotation) * (float)delta);
 			Rotate((float)(Math.PI*spin*delta/180));
