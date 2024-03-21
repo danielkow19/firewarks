@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsvmw"]
 size = Vector2(150, 150)
 
-[node name="MapBlank" type="Node2D"]
+[node name="MapMovingBoxes" type="Node2D"]
 metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
 metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 

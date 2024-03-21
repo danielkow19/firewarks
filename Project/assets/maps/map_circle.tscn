@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ngye"]
 radius = 360.0
 
-[node name="MapBlank" type="Node2D"]
+[node name="MapCircle" type="Node2D"]
 metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
 metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 

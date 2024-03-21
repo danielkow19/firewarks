@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=46 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b02bhxv5mvhnv" path="res://assets/sprites/effects/spritesheet_smoke_bomb.png" id="4_qsqd8"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 [ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
+[ext_resource type="Texture2D" uid="uid://dgobxqaaifoyd" path="res://assets/sprites/effects/spritesheet_barrier.png" id="9_einjs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -208,6 +209,42 @@ color_ramp = SubResource("GradientTexture1D_l3dgi")
 turbulence_enabled = true
 turbulence_noise_strength = 13.43
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f86ha"]
+atlas = ExtResource("9_einjs")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e67y"]
+atlas = ExtResource("9_einjs")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sgx5"]
+atlas = ExtResource("9_einjs")
+region = Rect2(0, 120, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_036ts"]
+atlas = ExtResource("9_einjs")
+region = Rect2(240, 120, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnvig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f86ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4e67y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sgx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_036ts")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_pxkww")
 patternLeft = ExtResource("2_dn5ft")
@@ -304,6 +341,9 @@ grow_vertical = 1
 
 [node name="Barrier" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_pnvig")
+autoplay = "default"
+frame_progress = 0.832578
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
 [connection signal="area_entered" from="BurstArea" to="." method="_on_burst_area_entered"]
