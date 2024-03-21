@@ -78,7 +78,7 @@ public partial class Player : Area2D
 	// Things for Powerups
 	private Timer mobileAttackLength;
 	private bool barrier = false;
-	private MeshInstance2D barrierMesh;
+	private AnimatedSprite2D barrierMesh;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
@@ -113,7 +113,7 @@ public partial class Player : Area2D
 		healthBar = Hud.GetNode<HBoxContainer>("%Lives");
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
-		barrierMesh = GetNode<MeshInstance2D>("%Barrier");
+		barrierMesh = GetNode<AnimatedSprite2D>("%Barrier");
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		
 		health = 2;
