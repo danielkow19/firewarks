@@ -342,6 +342,7 @@ grow_vertical = 1
 [node name="Barrier" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_pnvig")
+autoplay = "default"
 frame_progress = 0.832578
 
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
