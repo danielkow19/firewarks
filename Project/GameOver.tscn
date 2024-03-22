@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs6dbil364eee"]
+[gd_scene load_steps=6 format=3 uid="uid://cs6dbil364eee"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_w4u74"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
+[ext_resource type="AudioStream" uid="uid://7v30tj2kp1oq" path="res://assets/Music/menusongfirstdraft.wav" id="4_ptfvf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
 font_size = 64
@@ -44,3 +45,9 @@ label_settings = SubResource("LabelSettings_uw0au")
 unique_name_in_owner = true
 visible = false
 _gameManager = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ptfvf")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="play"]
