@@ -16,7 +16,7 @@ public partial class PlayerTrail : Line2D
 		playerRef = GetParent<Player>();
 		curve = new Curve2D();
 		tailSegments = new List<CollisionShape2D>();
-
+		Modulate = playerRef.Modulate;
 		for (int i = 0; i < maxPoints - 1; i++)
 		{
 			// Temp, doesn't need to be saved in class but will in scene

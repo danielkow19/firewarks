@@ -17,6 +17,9 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 [node name="Cloud Box 1" type="Area2D" parent="."]
 position = Vector2(-480, 0)
 script = ExtResource("1_s14j4")
+directions = PackedStringArray("Up", "Right", "Down", "Left", "Up")
+speed = PackedFloat64Array(120)
+timersHolder = PackedFloat64Array(2, 8, 4, 8, 2)
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 1"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -52,6 +55,9 @@ texture = ExtResource("2_7p5d1")
 [node name="Cloud Box 2" type="Area2D" parent="."]
 position = Vector2(480, 0)
 script = ExtResource("1_s14j4")
+directions = PackedStringArray("Down", "Left", "Up", "Right", "Down")
+speed = PackedFloat64Array(120)
+timersHolder = PackedFloat64Array(2, 8, 4, 8, 2)
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 2"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -83,3 +89,10 @@ texture = ExtResource("5_lvuyq")
 [node name="Sprite2D4" type="Sprite2D" parent="Cloud Box 2"]
 position = Vector2(42.7638, -1.00502)
 texture = ExtResource("2_7p5d1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="area_entered" from="Cloud Box 1" to="Cloud Box 1" method="_on_area_entered"]
+[connection signal="area_exited" from="Cloud Box 1" to="Cloud Box 1" method="_on_area_exited"]
+[connection signal="area_entered" from="Cloud Box 2" to="Cloud Box 2" method="_on_area_entered"]
+[connection signal="area_exited" from="Cloud Box 2" to="Cloud Box 2" method="_on_area_exited"]
