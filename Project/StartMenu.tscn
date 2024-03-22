@@ -13,6 +13,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_7du7k")
 _players = []
+metadata/_edit_vertical_guides_ = [960.0]
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -24,10 +25,10 @@ scenePath = "res://assets/prefabs/PlayerNumbers.tscn"
 
 [node name="Title" type="Label" parent="Menu"]
 layout_mode = 0
-offset_left = 565.0
-offset_top = 218.0
-offset_right = 1221.0
-offset_bottom = 393.0
+offset_left = 632.0
+offset_top = 357.0
+offset_right = 1288.0
+offset_bottom = 532.0
 text = "FireWARks"
 label_settings = SubResource("LabelSettings_43tf6")
 horizontal_alignment = 1
@@ -35,13 +36,13 @@ horizontal_alignment = 1
 [node name="PlayButton" type="Button" parent="Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 20.725
+anchor_left = 21.775
 anchor_top = 12.275
-anchor_right = 24.225
-anchor_bottom = 13.05
-offset_left = 25.0
-offset_right = 65.0
-offset_bottom = 31.0
+anchor_right = 26.275
+anchor_bottom = 13.825
+offset_left = -6.10352e-05
+offset_top = 139.0
+offset_bottom = 139.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Play Game"
