@@ -40,7 +40,10 @@ public partial class GameManager : Node2D
 			// Handle player spawning
 			LoadPlayers(settings);
 		}
-		//_hasSpawned = false;
+		else if(currentScene == scenePaths[0])
+		{
+			settings.Clear();
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
