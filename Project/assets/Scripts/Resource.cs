@@ -57,8 +57,6 @@ public partial class Resource : Area2D
 					{
 						player.ResourceCollected(type);
 						lifetime = 0;
-						var text = new PopupText();
-						text.DisplayText(ToString(), Position);
 						QueueFree();
 					}	
 				}
