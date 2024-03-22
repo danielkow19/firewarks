@@ -14,12 +14,13 @@ size = Vector2(150, 150)
 metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
 metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 
-[node name="Cloud Box 1" type="Area2D" parent="."]
+[node name="Cloud Box 1" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
 position = Vector2(-480, 0)
 script = ExtResource("1_s14j4")
 directions = PackedStringArray("Up", "Right", "Down", "Left", "Up")
 speed = PackedFloat64Array(120)
 timersHolder = PackedFloat64Array(2, 8, 4, 8, 2)
+sprites = [NodePath("Sprite2D"), NodePath("Sprite2D2"), NodePath("Sprite2D3"), NodePath("Sprite2D4"), NodePath("Sprite2D5"), NodePath("Sprite2D6")]
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 1"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -52,12 +53,13 @@ texture = ExtResource("5_lvuyq")
 position = Vector2(42.7638, -1.00502)
 texture = ExtResource("2_7p5d1")
 
-[node name="Cloud Box 2" type="Area2D" parent="."]
+[node name="Cloud Box 2" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
 position = Vector2(480, 0)
 script = ExtResource("1_s14j4")
 directions = PackedStringArray("Down", "Left", "Up", "Right", "Down")
 speed = PackedFloat64Array(120)
 timersHolder = PackedFloat64Array(2, 8, 4, 8, 2)
+sprites = [NodePath("Sprite2D"), NodePath("Sprite2D2"), NodePath("Sprite2D3"), NodePath("Sprite2D4"), NodePath("Sprite2D5"), NodePath("Sprite2D6")]
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 2"]
 shape = SubResource("RectangleShape2D_fsvmw")

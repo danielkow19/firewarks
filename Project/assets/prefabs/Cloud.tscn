@@ -7,8 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxtae"]
 size = Vector2(146, 180)
 
-[node name="Cloud" type="Area2D"]
+[node name="Cloud" type="Area2D" node_paths=PackedStringArray("sprites")]
 script = ExtResource("1_nk638")
+sprites = []
 
 [node name="Obstacle" type="MeshInstance2D" parent="."]
 visible = false

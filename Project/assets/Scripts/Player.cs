@@ -35,7 +35,7 @@ public partial class Player : Area2D
 	private bool _damageable;
 	private float _invTimeMax;
 	private float _invTime;
-	private Sprite2D _playerSprite;
+	private AnimatedSprite2D _playerSprite;
 	private Color _initialColor;
 	private Color _alternateColor;
 
@@ -133,7 +133,7 @@ public partial class Player : Area2D
 		_damageable = true;
 		_invTimeMax = 3;
 		_invTime = _invTimeMax;
-		_playerSprite = this.GetChild<Sprite2D>(0);
+		_playerSprite = this.GetChild<AnimatedSprite2D>(1);
 		_initialColor = _playerSprite.SelfModulate;
 		_alternateColor = new Color(_initialColor.R / 4, _initialColor.G / 4, _initialColor.B / 4, 255);
 		_singleColorTime = 0.5f;

@@ -157,6 +157,14 @@ public partial class GameManager : Node2D
 				}
 			}
 		}
+
+		// Cloud Logic (Will need to update for more maps)
+		// Make sure we're in the game
+		if(currentScene == scenePaths[1])
+		{
+			GetNode<Clouds>("MapMovingBoxes/Cloud Box 1").ToggleCloud();
+			GetNode<Clouds>("MapMovingBoxes/Cloud Box 2").ToggleCloud();
+		}
 		_paused = !_paused;
 	}
 	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, Color color, float x, float y)

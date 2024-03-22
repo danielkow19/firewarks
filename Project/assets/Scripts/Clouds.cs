@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -29,6 +30,10 @@ public partial class Clouds : Area2D
 	[Export]
 	private bool moving = true;
 
+	// Variables for pausing
+	[Export]
+	private Array<Sprite2D> sprites;
+	private bool isVisible = true;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -212,6 +217,25 @@ public partial class Clouds : Area2D
 		for(int i = 0; i < timersHolder.Length;i++){
 			timers[i] = timersHolder[i];
 		}
+	}
+
+	public void ToggleCloud()
+	{
+		if (isVisible)
+		{
+			foreach(Sprite2D cloud in sprites)
+			{
+				cloud.Hide();
+			}
+		}
+		else
+		{
+			foreach (Sprite2D cloud in sprites)
+			{
+				cloud.Show();
+			}
+		}
+		isVisible = !isVisible;
 	}
 }
 
