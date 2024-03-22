@@ -10,6 +10,8 @@ public partial class PlayerTrail : Line2D
 	private List<CollisionShape2D> tailSegments;
 	private Player playerRef;
 
+	private bool isVisible = true;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -69,5 +71,18 @@ public partial class PlayerTrail : Line2D
 		{
 			player.DamagePlayer(1);
 		}
+	}
+
+	public void ToggleTrail()
+	{
+		if (isVisible)
+		{
+			this.Hide();
+		}
+		else
+		{
+			this.Show();
+		}
+		isVisible = !isVisible;
 	}
 }

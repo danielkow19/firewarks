@@ -103,6 +103,10 @@ public partial class Player : Area2D
 	PackedScene hitFX = GD.Load<PackedScene>("res://assets/prefabs/SFXHit.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://assets/prefabs/TrailBullet.tscn");
 
+
+	// Trail reference for pausing
+	private PlayerTrail trail;
+
 	public bool Damageable{ get => _damageable;}
 	
 	// Called when the node enters the scene tree for the first time.
@@ -205,7 +209,11 @@ public partial class Player : Area2D
 
 		// Set heat meter to the right color
 		followHud.Modulate = Modulate;
-	}
+
+
+        // Assign trail
+        trail = GetNode<PlayerTrail>("PlayerTrail");
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -588,9 +596,12 @@ public partial class Player : Area2D
 			_playerSprite.Show();
 		}
 		_uiVisible = !_uiVisible;
-	}
-	
-	public void DeactivateBarrier()
+
+		// Toggle the trail
+		trail.ToggleTrail();
+    }
+
+    public void DeactivateBarrier()
 	{
 		barrier = false;
 		barrierMesh.Visible = false;
