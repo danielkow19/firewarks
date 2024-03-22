@@ -14,9 +14,10 @@ size = Vector2(1730, 250)
 metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
 metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 
-[node name="Bottom Wall" type="Area2D" parent="."]
+[node name="Bottom Wall" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
 position = Vector2(0, 520)
 script = ExtResource("1_vtlbq")
+sprites = []
 
 [node name="Box" type="CollisionShape2D" parent="Bottom Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -475,9 +476,10 @@ position = Vector2(-351.256, 16.2061)
 rotation = 0.844739
 texture = ExtResource("5_lemed")
 
-[node name="Top Wall" type="Area2D" parent="."]
+[node name="Top Wall" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
 position = Vector2(0, -520)
 script = ExtResource("1_vtlbq")
+sprites = []
 
 [node name="Box" type="CollisionShape2D" parent="Top Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -936,10 +938,11 @@ position = Vector2(-351.256, 16.2061)
 rotation = 0.844739
 texture = ExtResource("5_lemed")
 
-[node name="Left Wall" type="Area2D" parent="."]
+[node name="Left Wall" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
 position = Vector2(-900, 0)
 rotation = 1.5708
 script = ExtResource("1_vtlbq")
+sprites = []
 
 [node name="Box" type="CollisionShape2D" parent="Left Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -1398,10 +1401,11 @@ position = Vector2(-351.256, 16.2061)
 rotation = 0.844739
 texture = ExtResource("5_lemed")
 
-[node name="Right Wall" type="Area2D" parent="."]
+[node name="Right Wall" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
 position = Vector2(900, 0)
 rotation = 1.5708
 script = ExtResource("1_vtlbq")
+sprites = []
 
 [node name="Box" type="CollisionShape2D" parent="Right Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
