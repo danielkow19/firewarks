@@ -231,6 +231,7 @@ public partial class Player : Area2D
 
         // Assign trail
         trail = GetNode<PlayerTrail>("PlayerTrail");
+		trail.Set("playerRef", this);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
