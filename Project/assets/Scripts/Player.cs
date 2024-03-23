@@ -123,6 +123,24 @@ public partial class Player : Area2D
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
 		barrierMesh = GetNode<AnimatedSprite2D>("%Barrier");
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
+		switch(player_id)
+		{
+			case 0:
+				Hud.Position = new Vector2(-800, -430);
+				break;
+
+			case 1:
+				Hud.Position = new Vector2(700, -430);
+				break;
+				
+			case 2:
+				Hud.Position = new Vector2(-800, 430);
+				break;
+
+			case 3:
+				Hud.Position = new Vector2(700, 430);
+				break;
+		}
 		
 		health = 2;
 		_speed = 300;
@@ -213,6 +231,7 @@ public partial class Player : Area2D
 
         // Assign trail
         trail = GetNode<PlayerTrail>("PlayerTrail");
+		trail.Set("playerRef", this);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

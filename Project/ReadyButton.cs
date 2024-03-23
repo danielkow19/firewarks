@@ -6,6 +6,7 @@ using System.Diagnostics;
 public partial class ReadyButton : Button
 {
 	private Button button;
+	public player_select joinNode;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -25,8 +26,9 @@ public partial class ReadyButton : Button
 
 	public void _on_pressed()
 	{
-
-        //TEMP change scene
-        //GetTree().ChangeSceneToFile("res://Game.tscn");
+		if(joinNode != null)
+		{
+			joinNode.ReadyPlayer();
+		}
     }
 }

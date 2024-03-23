@@ -102,11 +102,47 @@ public partial class CursorAlt : Node2D
         player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 
 		// position logic will go below
-		float x = 0;
-		float y = 0;
-
 		// Have code that takes in the map, then the player ID to determine the spawn position
 
-		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, x, y);
+		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, getSpawnX(), getSpawnY());
     }
+	private float getSpawnX()
+	{
+		switch(playerNum)
+		{
+			case 0:
+				{
+					return -600f;
+				}
+			case 1:
+				{
+					return 600f;
+				}
+			case 2:
+				{
+					return -500f;
+
+                }
+			case 3:
+				{
+					return 500f;
+
+                }
+			default:
+				{
+					return 0f;
+				}
+		}
+	}
+	private float getSpawnY()
+	{
+		switch(playerNum)
+		{
+			case 0: return -300f;
+			case 1: return -300f;
+			case 2: return 300f;
+			case 3: return 300f;
+			default: return 0f;
+		}
+	}
 }

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d7tsg8t1h4h8"]
+[gd_scene load_steps=4 format=3 uid="uid://d7tsg8t1h4h8"]
 
 [ext_resource type="Script" path="res://player_select.cs" id="1_77hbd"]
+[ext_resource type="Theme" uid="uid://codusw7uqaesg" path="res://assets/Themes/ColorChangeButton.tres" id="2_c5n6p"]
+[ext_resource type="Script" path="res://assets/Scripts/LobbyButton.cs" id="2_f1r4r"]
 
 [node name="PlayerSelect" type="Node2D"]
 
@@ -10,3 +12,24 @@ anchors_preset = 0
 offset_right = 1923.0
 offset_bottom = 1083.0
 script = ExtResource("1_77hbd")
+
+[node name="StartButton" type="Button" parent="JoinNode"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 144.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_c5n6p")
+text = "Start Game"
+script = ExtResource("2_f1r4r")
+
+[connection signal="pressed" from="JoinNode/StartButton" to="JoinNode/StartButton" method="_on_pressed"]

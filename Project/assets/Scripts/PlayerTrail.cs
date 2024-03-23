@@ -15,7 +15,7 @@ public partial class PlayerTrail : Line2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		playerRef = GetParent<Player>();
+		playerRef = GetParent<Area2D>() as Player;
 		curve = new Curve2D();
 		tailSegments = new List<CollisionShape2D>();
 		Modulate = playerRef.Modulate;

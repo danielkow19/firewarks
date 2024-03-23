@@ -14,6 +14,8 @@ public partial class player_select : Control
 	PackedScene selectMenu = GD.Load<PackedScene>("res://assets/prefabs/SelectMenu.tscn");
 	private int readiedPlayers;
 
+	private Button startButton;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -22,6 +24,8 @@ public partial class player_select : Control
 		keyboardPlayer = false;
 		joinable = true;
 		readiedPlayers = 0;
+
+		startButton = GetNode<LobbyButton>("StartButton");
 	}
 
 
@@ -90,7 +94,13 @@ public partial class player_select : Control
 			InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
 			InputMap.ActionAddEvent($"AimDown_{numPlayers}", keyEvent);
 
-			keyboardPlayer = true;
+            // UI Click Event
+			keyEvent = new InputEventKey(); 
+			keyEvent.Keycode = Key.Enter; 
+			InputMap.ActionEraseEvents($"UI_Click_{numPlayers}"); 
+			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", keyEvent);
+
+            keyboardPlayer = true;
 			numPlayers++;
 
 			InstantiateSelectMenu();
@@ -133,8 +143,13 @@ public partial class player_select : Control
 			InputMap.ActionEraseEvents($"Down_{numPlayers}");
 			InputMap.ActionAddEvent($"Down_{numPlayers}", joyButton);
 
+            // UI Click Event
+			joyButton = new InputEventJoypadButton(); 
+			joyButton.Device = jbe.Device; 
+			InputMap.ActionEraseEvents($"UI_Click_{numPlayers}"); 
+			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", joyButton);
 
-			InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
+            InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.TriggerLeft;
 			InputMap.ActionEraseEvents($"Shoot_L_{numPlayers}");
@@ -222,6 +237,7 @@ public partial class player_select : Control
 					break;
 			}
 			instance.GetNode<CursorAlt>("ColorRect/Cursor").Set("playerNum", numPlayers - 1);
+		instance.GetNode<ReadyButton>("ColorRect/ReadyUp").Set("joinNode", this);
 		AddChild(instance);
 	}
 
@@ -229,8 +245,17 @@ public partial class player_select : Control
 	public override void _Process(double delta)
 	{
 		// Game Start Code
-		if(numPlayers >=2 && numPlayers == readiedPlayers) {
+		if(numPlayers >=1 && numPlayers == readiedPlayers) {
 			//GetTree().ChangeSceneToFile("res://assets/cheatScenes/Game(2 Player).tscn");
+
+			// Pop up a button that will allow us to change scenes
+			startButton.Show();
+			startButton.GrabFocus();
 		}
+	}
+
+	public void ReadyPlayer()
+	{
+		readiedPlayers++;
 	}
 }
