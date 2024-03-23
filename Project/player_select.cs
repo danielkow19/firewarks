@@ -94,7 +94,13 @@ public partial class player_select : Control
 			InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
 			InputMap.ActionAddEvent($"AimDown_{numPlayers}", keyEvent);
 
-			keyboardPlayer = true;
+            // UI Click Event
+			keyEvent = new InputEventKey(); 
+			keyEvent.Keycode = Key.Enter; 
+			InputMap.ActionEraseEvents($"UI_Click_{numPlayers}"); 
+			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", keyEvent);
+
+            keyboardPlayer = true;
 			numPlayers++;
 
 			InstantiateSelectMenu();
@@ -137,8 +143,13 @@ public partial class player_select : Control
 			InputMap.ActionEraseEvents($"Down_{numPlayers}");
 			InputMap.ActionAddEvent($"Down_{numPlayers}", joyButton);
 
+            // UI Click Event
+			joyButton = new InputEventJoypadButton(); 
+			joyButton.Device = jbe.Device; 
+			InputMap.ActionEraseEvents($"UI_Click_{numPlayers}"); 
+			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", joyButton);
 
-			InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
+            InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.TriggerLeft;
 			InputMap.ActionEraseEvents($"Shoot_L_{numPlayers}");
