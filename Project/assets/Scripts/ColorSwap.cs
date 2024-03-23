@@ -67,8 +67,8 @@ public partial class ColorSwap : ColorRect
 		colorIndex = 0;
 
 		// Assign childRects 0 color
-		childRect.Color = Colors.White;
-		texture.Modulate = Colors.White;
+		childRect.Color = Colors.Red;
+		texture.Modulate = Colors.Red;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
