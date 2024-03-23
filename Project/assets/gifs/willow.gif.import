@@ -1,0 +1,14 @@
+[remap]
+
+importer="import_gif_to_animated_texture"
+type="AnimatedTexture"
+uid="uid://cb0svgaewn8hf"
+path="res://.godot/imported/willow.gif-26aa6ac89e41b8c2ca0eeb37e65f0010.tres"
+
+[deps]
+
+source_file="res://assets/gifs/willow.gif"
+dest_files=["res://.godot/imported/willow.gif-26aa6ac89e41b8c2ca0eeb37e65f0010.tres"]
+
+[params]
+

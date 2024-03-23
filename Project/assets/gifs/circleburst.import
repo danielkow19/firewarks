@@ -1,0 +1,10 @@
+[remap]
+
+importer="import_gif_to_animated_texture"
+type="AnimatedTexture"
+path="res://.godot/imported/circleburst.gif-40f8c4e190b3e3dfc8deffe3c5ef0f45.tres"
+
+[deps]
+
+source_file="res://assets/gifs/circleburst.gif"
+dest_files=["res://.godot/imported/circleburst.gif-40f8c4e190b3e3dfc8deffe3c5ef0f45.tres"]

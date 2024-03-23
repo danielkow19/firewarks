@@ -6,7 +6,7 @@ using System.Numerics;
 public partial class CursorAlt : Node2D
 {
 	public int playerNum;
-	private int positionIndex;
+	public int positionIndex;
 	private Godot.Vector2[] positions = {new Godot.Vector2(510, 100), new Godot.Vector2(850, 100), new Godot.Vector2(510, 200), new Godot.Vector2(855, 200), new Godot.Vector2(510, 300), new Godot.Vector2(850, 300), new Godot.Vector2(565, 400)};
 	private List<Button> ButtonList;
 	private List<PackedScene> patternsList;
