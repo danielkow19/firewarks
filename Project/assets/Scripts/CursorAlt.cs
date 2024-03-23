@@ -5,6 +5,7 @@ using System.Numerics;
 
 public partial class CursorAlt : Node2D
 {
+	bool infoAdded = false;
 	public int playerNum;
 	public int positionIndex;
 	private Godot.Vector2[] positions = {new Godot.Vector2(510, 100), new Godot.Vector2(850, 100), new Godot.Vector2(510, 200), new Godot.Vector2(855, 200), new Godot.Vector2(510, 300), new Godot.Vector2(850, 300), new Godot.Vector2(565, 400)};
@@ -86,11 +87,18 @@ public partial class CursorAlt : Node2D
 					{
 						//ReadyUp
 						// Feed in the PlayerInfo
-						addPlayerInfo();
+						if(!infoAdded) {
+							addPlayerInfo();
 
-						// Call the on press
-						ReadyButton ready = (ReadyButton)ButtonList[6];
-						ready._on_pressed();
+							// Call the on press
+							ReadyButton ready = (ReadyButton)ButtonList[6];
+							ready._on_pressed();
+
+							infoAdded = true;
+						}
+						
+
+						
 						break;
 					}
 			}

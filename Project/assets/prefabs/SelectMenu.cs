@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class SelectMenu : Control
 {
@@ -10,7 +11,7 @@ public partial class SelectMenu : Control
 	private Label attack2;
 	private int currentPos;
 	private int prevPos;
-	private ImageTexture playerTexture = GD.Load<ImageTexture>("res://assets/sprites/phoenix/Phoenix Sketch D.png");
+	private CompressedTexture2D playerTexture = GD.Load<CompressedTexture2D>("res://assets/sprites/phoenix/Phoenix Sketch D.png");
 	private AnimatedTexture circleBurst = GD.Load<AnimatedTexture>("res://assets/gifs/circleburst.gif");
 	private AnimatedTexture spreadShot = GD.Load<AnimatedTexture>("res://assets/gifs/spreadshot.gif");
 	private AnimatedTexture fastSS = GD.Load<AnimatedTexture>("res://assets/gifs/fastss.gif");
@@ -34,8 +35,9 @@ public partial class SelectMenu : Control
 	public override void _Process(double delta)
 	{
 		currentPos = (int)cursor.Get("positionIndex");
-
+		//Debug.Print("HI 1");
 		if((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) {
+			//Debug.Print("HI 2");
 			switch(currentPos) {
 			case 0:
 			case 1:
@@ -66,6 +68,7 @@ public partial class SelectMenu : Control
 						display.Texture = willow;
 						break;
 					default:
+						display.Texture = circleBurst;
 						break;
 				}
 				break;
@@ -95,6 +98,7 @@ public partial class SelectMenu : Control
 						display.Texture = willow;
 						break;
 					default:
+						display.Texture = spreadShot;
 						break;
 				}
 				break;
