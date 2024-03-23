@@ -14,6 +14,8 @@ public partial class player_select : Control
 	PackedScene selectMenu = GD.Load<PackedScene>("res://assets/prefabs/SelectMenu.tscn");
 	private int readiedPlayers;
 
+	private Button startButton;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -22,6 +24,8 @@ public partial class player_select : Control
 		keyboardPlayer = false;
 		joinable = true;
 		readiedPlayers = 0;
+
+		startButton = GetNode<LobbyButton>("StartButton");
 	}
 
 
@@ -222,6 +226,7 @@ public partial class player_select : Control
 					break;
 			}
 			instance.GetNode<CursorAlt>("ColorRect/Cursor").Set("playerNum", numPlayers - 1);
+		instance.GetNode<ReadyButton>("ColorRect/ReadyUp").Set("joinNode", this);
 		AddChild(instance);
 	}
 
@@ -229,8 +234,17 @@ public partial class player_select : Control
 	public override void _Process(double delta)
 	{
 		// Game Start Code
-		if(numPlayers >=2 && numPlayers == readiedPlayers) {
+		if(numPlayers >=1 && numPlayers == readiedPlayers) {
 			//GetTree().ChangeSceneToFile("res://assets/cheatScenes/Game(2 Player).tscn");
+
+			// Pop up a button that will allow us to change scenes
+			startButton.Show();
+			startButton.GrabFocus();
 		}
+	}
+
+	public void ReadyPlayer()
+	{
+		readiedPlayers++;
 	}
 }
