@@ -35,24 +35,26 @@ public partial class SelectMenu : Control
 	public override void _Process(double delta)
 	{
 		currentPos = (int)cursor.Get("positionIndex");
-		//Debug.Print("HI 1");
-		if((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) {
-			//Debug.Print("HI 2");
+		//if((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) {
 			switch(currentPos) {
 			case 0:
 			case 1:
 				display.Texture = playerTexture;
+				display.Modulate = color.Color;
+				display.Scale = new Vector2(0.3f, 0.3f);
 				break;
 			case 2:
 			case 3:
+				display.Modulate = Colors.White;
+				display.Scale = new Vector2(0.74f,0.74f);
 				switch(attack1.Text) {
 					case "Circle Burst":
 						display.Texture = circleBurst;
 						break;
-					case "Spread Shot":
+					case "Spreadshot":
 						display.Texture = spreadShot;
 						break;
-					case "Fast Spread Shot":
+					case "Fast Spreadshot":
 						display.Texture = fastSS;
 						break;
 					case "Knot":
@@ -75,14 +77,16 @@ public partial class SelectMenu : Control
 			case 4:
 			case 5:
 			case 6:
+				display.Modulate = Colors.White;
+				display.Scale = new Vector2(0.74f,0.74f);
 				switch(attack2.Text) {
 					case "Circle Burst":
 						display.Texture = circleBurst;
 						break;
-					case "Spread Shot":
+					case "Spreadshot":
 						display.Texture = spreadShot;
 						break;
-					case "Fast Spread Shot":
+					case "Fast Spreadshot":
 						display.Texture = fastSS;
 						break;
 					case "Knot":
@@ -103,7 +107,7 @@ public partial class SelectMenu : Control
 				}
 				break;
 		}
-		}
-		prevPos = currentPos;
+		//}
+		//prevPos = currentPos;
 	}
 }

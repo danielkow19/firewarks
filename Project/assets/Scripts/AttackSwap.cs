@@ -47,7 +47,7 @@ public partial class AttackSwap : Label
 				}
 			case 1:
 				{
-					labelName = "Fast Spread Shot";
+					labelName = "Fast Spreadshot";
                     break;
 				}
 			case 2:
