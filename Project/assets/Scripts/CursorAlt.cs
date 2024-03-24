@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Numerics;
+//using System.Numerics;
 
 public partial class CursorAlt : Node2D
 {
@@ -96,9 +96,6 @@ public partial class CursorAlt : Node2D
 
 							infoAdded = true;
 						}
-						
-
-						
 						break;
 					}
 			}
@@ -112,7 +109,7 @@ public partial class CursorAlt : Node2D
 		// position logic will go below
 		// Have code that takes in the map, then the player ID to determine the spawn position
 
-		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, getSpawnX(), getSpawnY());
+		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, getSpawnPosition());
     }
 	private float getSpawnX()
 	{
@@ -151,6 +148,18 @@ public partial class CursorAlt : Node2D
 			case 2: return 300f;
 			case 3: return 300f;
 			default: return 0f;
+		}
+	}
+	
+	private Vector2 getSpawnPosition()
+	{
+		switch(playerNum)
+		{
+			case 0:	return new Vector2(-600f, -300f);
+			case 1:	return new Vector2(600f, -300f);
+			case 2:	return new Vector2(-500f, 300f);
+			case 3:	return new Vector2(500f, 300f);
+			default: { return Vector2.Zero; }
 		}
 	}
 }
