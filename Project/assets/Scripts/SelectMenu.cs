@@ -19,6 +19,7 @@ public partial class SelectMenu : Control
 	private VideoStream swirl = GD.Load<VideoStream>("res://assets/videos/swirl.ogv");
 	private VideoStream weave = GD.Load<VideoStream>("res://assets/videos/weave.ogv");
 	private VideoStream willow = GD.Load<VideoStream>("res://assets/videos/willow.ogv");
+	private VideoStream newStream;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,7 +37,7 @@ public partial class SelectMenu : Control
 	public override void _Process(double delta)
 	{
 		currentPos = (int)cursor.Get("positionIndex");
-		if(((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) || Input.IsActionPressed("UI_Click_0")) {
+		//if(((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) || Input.IsActionPressed("UI_Click_0")) {
 			switch(currentPos) {
 			case 0:
 			case 1:
@@ -49,31 +50,34 @@ public partial class SelectMenu : Control
 				attackDisplay.Visible = true;
 				switch(attack1.Text) {
 					case "Circle Burst":
-						attackDisplay.Stream = circleBurst;
+						newStream = circleBurst;
 						break;
 					case "Spreadshot":
-						attackDisplay.Stream = spreadShot;
+						newStream = spreadShot;
 						break;
 					case "Fast Spreadshot":
-						attackDisplay.Stream = fastSS;
+						newStream = fastSS;
 						break;
 					case "Knot":
-						attackDisplay.Stream = knot;
+						newStream = knot;
 						break;
 					case "Swirl":
-						attackDisplay.Stream = swirl;
+						newStream = swirl;
 						break;
 					case "Weave":
-						attackDisplay.Stream = weave;
+						newStream = weave;
 						break;
 					case "Willow":
-						attackDisplay.Stream = willow;
+						newStream = willow;
 						break;
 					default:
-						attackDisplay.Stream = circleBurst;
+						newStream = circleBurst;
 						break;
 				}
-				attackDisplay.Play();
+				if(attackDisplay.Stream != newStream) {
+					attackDisplay.Stream = newStream;
+					attackDisplay.Play();
+				}
 				break;
 			case 4:
 			case 5:
@@ -82,34 +86,37 @@ public partial class SelectMenu : Control
 				attackDisplay.Visible = true;
 				switch(attack2.Text) {
 					case "Circle Burst":
-						attackDisplay.Stream = circleBurst;
+						newStream = circleBurst;
 						break;
 					case "Spreadshot":
-						attackDisplay.Stream = spreadShot;
+						newStream = spreadShot;
 						break;
 					case "Fast Spreadshot":
-						attackDisplay.Stream = fastSS;
+						newStream = fastSS;
 						break;
 					case "Knot":
-						attackDisplay.Stream = knot;
+						newStream = knot;
 						break;
 					case "Swirl":
-						attackDisplay.Stream = swirl;
+						newStream = swirl;
 						break;
 					case "Weave":
-						attackDisplay.Stream = weave;
+						newStream = weave;
 						break;
 					case "Willow":
-						attackDisplay.Stream = willow;
+						newStream = willow;
 						break;
 					default:
-						attackDisplay.Stream = spreadShot;
+						newStream = spreadShot;
 						break;
 				}
-				attackDisplay.Play();
+				if(attackDisplay.Stream != newStream) {
+					attackDisplay.Stream = newStream;
+					attackDisplay.Play();
+				}
 				break;
-		}
-		}
-		prevPos = currentPos;
+			}
+		//}
+		//prevPos = currentPos;
 	}
 }
