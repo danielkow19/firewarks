@@ -9,6 +9,7 @@ public partial class ColorSwap : ColorRect
 	public int ColorIndex {  get { return colorIndex; } }
 	public Color ColorChoice { get { switch (colorIndex)
 			{
+<<<<<<< HEAD
 				case 0:
 					{
 						// Strontium
@@ -55,6 +56,53 @@ public partial class ColorSwap : ColorRect
 						return Colors.White;
 					}
 			} } }
+=======
+                case 0:
+                    {
+                        // Strontium
+                        return Colors.Red;
+                    }
+                case 1:
+                    {
+                        // Calcium
+                        return Colors.Orange;
+                    }
+                case 2:
+                    {
+                        // Sodium
+                        return Colors.Yellow;
+                    }
+                case 3:
+                    {
+                        // Barium
+                        return Colors.Green;
+                    }
+                case 4:
+                    {
+                        // Pure Copper
+                        return Colors.Purple;
+                    }
+                case 5:
+                    {
+                        // Strontium + Copper
+                        return Colors.Magenta;
+                    }
+                case 6:
+                    {
+                        // Magnesium
+                        return Colors.Silver;
+                    }
+                case 7:
+                    {
+                        return Colors.Aquamarine;
+                    }
+                default:
+                    {
+                        // Just incase
+                        return Colors.White;
+                    }
+            } } }
+>>>>>>> 245b8cc8ba6ffd2773298eab2dc955879795c4ef
 	// Reference to the Player preview Sprite
 	[Export]
 	private AnimatedSprite2D sprite;
