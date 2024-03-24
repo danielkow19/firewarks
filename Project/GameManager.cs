@@ -14,6 +14,7 @@ public partial class GameManager : Node2D
 	private Control _pauseMenu;
 	private Button _resumeButton;
 	private bool _paused;
+	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn");
 	//private bool _hasSpawned;
 
 	public string currentScene;
@@ -69,8 +70,18 @@ public partial class GameManager : Node2D
 
 		if (Input.IsKeyPressed(Key.Key9))
 		{
-			// Change to Gameplay Scene
+			// Change to Gameplay Scenevvvv
 			GetTree().ChangeSceneToFile(scenePaths[1]);
+		}
+
+		if (Input.IsKeyPressed(Key.V))
+		{
+			Pattern instance = pattern.Instantiate<Pattern>();
+			
+			instance.Set("position", GetGlobalMousePosition());
+			instance.Set("rotation", Vector3.Zero);
+			instance.Set("owner", GetNode("Player_1"));
+			AddSibling(instance);
 		}
 
 		if (Input.IsKeyPressed(Key.Key0))

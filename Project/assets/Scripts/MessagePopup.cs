@@ -10,3 +10,4 @@ public partial class MessagePopup : Marker2D
 		GetChild<AnimationPlayer>(1).Play();
 	}
 }
+
