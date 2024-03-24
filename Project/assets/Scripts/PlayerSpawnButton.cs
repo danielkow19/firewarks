@@ -65,7 +65,7 @@ public partial class PlayerSpawnButton : Button
 		//temp code to prevent spawning bug, remove once player select screen is setup
 		//	settings.Clear();
 
-		switch (options._numSelected)
+	/*witch (options._numSelected)
 		{	
 			case 0:
 				{
@@ -105,6 +105,7 @@ public partial class PlayerSpawnButton : Button
 					break;
 				}
 		}
+	*/
 		GetTree().ChangeSceneToFile("res://Game.tscn");
 	}
 }

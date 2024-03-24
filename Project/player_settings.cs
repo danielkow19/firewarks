@@ -21,11 +21,25 @@ public partial class player_settings : Node
 		if(currentScene == lobbyScene) { _players.Clear(); }
     }
 
-	public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, float x, float y)
+	public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, Vector2 position)
 	{
-
 		// Create a PlayerInfo and push it to the array
-		PlayerInfo player = new PlayerInfo(playerID, leftPattern, rightPattern, color, x, y);
+		PlayerInfo player = new PlayerInfo(playerID, leftPattern, rightPattern, color, position);
+
+		// Make sure only there's only 1 player per ID
+		int index = -1;
+		for(int i = 0; i < _players.Count; i++)
+		{
+			if (_players[i].PlayerID == player.PlayerID)
+			{
+				index = i; break;
+			}
+		}
+		// If the index was changed, remove the previous player
+		if(index >-1) {
+			_players.RemoveAt(index);
+			GD.Print("Player Removed, and replaced");
+		}
 		_players.Add(player);
 	}
 

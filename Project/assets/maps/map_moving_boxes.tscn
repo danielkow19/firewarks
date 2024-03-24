@@ -20,7 +20,7 @@ script = ExtResource("1_s14j4")
 directions = PackedStringArray("Up", "Right", "Down", "Left", "Up")
 speed = PackedFloat64Array(120)
 timersHolder = PackedFloat64Array(2, 8, 4, 8, 2)
-sprites = [NodePath("Sprite2D"), NodePath("Sprite2D2"), NodePath("Sprite2D3"), NodePath("Sprite2D4"), NodePath("Sprite2D5"), NodePath("Sprite2D6")]
+sprites = []
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 1"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -59,7 +59,7 @@ script = ExtResource("1_s14j4")
 directions = PackedStringArray("Down", "Left", "Up", "Right", "Down")
 speed = PackedFloat64Array(120)
 timersHolder = PackedFloat64Array(2, 8, 4, 8, 2)
-sprites = [NodePath("Sprite2D"), NodePath("Sprite2D2"), NodePath("Sprite2D3"), NodePath("Sprite2D4"), NodePath("Sprite2D5"), NodePath("Sprite2D6")]
+sprites = []
 
 [node name="Box" type="CollisionShape2D" parent="Cloud Box 2"]
 shape = SubResource("RectangleShape2D_fsvmw")
