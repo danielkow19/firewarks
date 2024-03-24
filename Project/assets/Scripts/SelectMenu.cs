@@ -1,0 +1,115 @@
+using Godot;
+using System;
+using System.Diagnostics;
+
+public partial class SelectMenu : Control
+{
+	private Node2D cursor;
+	private AnimatedSprite2D displaySprite;
+	private ColorRect color;
+	private Label attack1;
+	private Label attack2;
+	private VideoStreamPlayer attackDisplay;
+	private int currentPos;
+	private int prevPos;
+	private VideoStream circleBurst = GD.Load<VideoStream>("res://assets/videos/circleburst.ogv");
+	private VideoStream spreadShot = GD.Load<VideoStream>("res://assets/videos/spreadshot.ogv");
+	private VideoStream fastSS = GD.Load<VideoStream>("res://assets/videos/fastss.ogv");
+	private VideoStream knot = GD.Load<VideoStream>("res://assets/videos/knot.ogv");
+	private VideoStream swirl = GD.Load<VideoStream>("res://assets/videos/swirl.ogv");
+	private VideoStream weave = GD.Load<VideoStream>("res://assets/videos/weave.ogv");
+	private VideoStream willow = GD.Load<VideoStream>("res://assets/videos/willow.ogv");
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		cursor = GetNode<Node2D>("ColorRect/Cursor");
+		displaySprite = GetNode<AnimatedSprite2D>("ColorRect/FlyingSprite");
+		color = GetNode<ColorRect>("ColorRect/Color");
+		attack1 = GetNode<Label>("ColorRect/Attack1Label");
+		attack2 = GetNode<Label>("ColorRect/Attack2Label");
+		attackDisplay = GetNode<VideoStreamPlayer>("ColorRect/AttackDisplayer");
+		prevPos = (int)cursor.Get("positionIndex");
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		currentPos = (int)cursor.Get("positionIndex");
+		if(((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) || Input.IsActionPressed("UI_Click_0")) {
+			switch(currentPos) {
+			case 0:
+			case 1:
+				displaySprite.Visible = true;
+				attackDisplay.Visible = false;
+				break;
+			case 2:
+			case 3:
+				displaySprite.Visible = false;
+				attackDisplay.Visible = true;
+				switch(attack1.Text) {
+					case "Circle Burst":
+						attackDisplay.Stream = circleBurst;
+						break;
+					case "Spreadshot":
+						attackDisplay.Stream = spreadShot;
+						break;
+					case "Fast Spreadshot":
+						attackDisplay.Stream = fastSS;
+						break;
+					case "Knot":
+						attackDisplay.Stream = knot;
+						break;
+					case "Swirl":
+						attackDisplay.Stream = swirl;
+						break;
+					case "Weave":
+						attackDisplay.Stream = weave;
+						break;
+					case "Willow":
+						attackDisplay.Stream = willow;
+						break;
+					default:
+						attackDisplay.Stream = circleBurst;
+						break;
+				}
+				attackDisplay.Play();
+				break;
+			case 4:
+			case 5:
+			case 6:
+				displaySprite.Visible = false;
+				attackDisplay.Visible = true;
+				switch(attack2.Text) {
+					case "Circle Burst":
+						attackDisplay.Stream = circleBurst;
+						break;
+					case "Spreadshot":
+						attackDisplay.Stream = spreadShot;
+						break;
+					case "Fast Spreadshot":
+						attackDisplay.Stream = fastSS;
+						break;
+					case "Knot":
+						attackDisplay.Stream = knot;
+						break;
+					case "Swirl":
+						attackDisplay.Stream = swirl;
+						break;
+					case "Weave":
+						attackDisplay.Stream = weave;
+						break;
+					case "Willow":
+						attackDisplay.Stream = willow;
+						break;
+					default:
+						attackDisplay.Stream = spreadShot;
+						break;
+				}
+				attackDisplay.Play();
+				break;
+		}
+		}
+		prevPos = currentPos;
+	}
+}
