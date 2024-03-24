@@ -57,7 +57,9 @@ public partial class ColorSwap : ColorRect
             } } }
 	// Reference to the Player preview Sprite
 	[Export]
-	private TextureRect texture;
+	private AnimatedSprite2D sprite;
+	
+	//private TextureRect texture;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -68,7 +70,8 @@ public partial class ColorSwap : ColorRect
 
 		// Assign childRects 0 color
 		childRect.Color = Colors.Red;
-		texture.Modulate = Colors.Red;
+		sprite.Modulate = Colors.Red;
+		//texture.Modulate = Colors.Red;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -110,6 +113,7 @@ public partial class ColorSwap : ColorRect
 
 		// Apply the color to the colorRect
 		childRect.Color = newColor;
-		texture.Modulate = newColor;
+		sprite.Modulate = newColor;
+		//texture.Modulate = newColor;
     }
 }

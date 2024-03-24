@@ -229,10 +229,10 @@ public partial class Player : Area2D
 		followHud.Modulate = Modulate;
 
 
-        // Assign trail
-        trail = GetNode<PlayerTrail>("PlayerTrail");
+		// Assign trail
+		trail = GetNode<PlayerTrail>("PlayerTrail");
 		trail.Set("playerRef", this);
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -618,9 +618,9 @@ public partial class Player : Area2D
 
 		// Toggle the trail
 		trail.ToggleTrail();
-    }
+	}
 
-    public void DeactivateBarrier()
+	public void DeactivateBarrier()
 	{
 		barrier = false;
 		barrierMesh.Visible = false;

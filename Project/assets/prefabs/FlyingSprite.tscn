@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=3 uid="uid://dl4rtusna28r0"]
+
+[ext_resource type="Texture2D" uid="uid://7yt6xbit2uf0" path="res://assets/sprites/phoenix/spritesheet_player_fly.png" id="1_uvkgr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obh1v"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(0, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a17e"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(660, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rssrs"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(1320, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w6iu"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(1980, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45t2l"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(2640, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfxro"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(3300, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvej3"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(3960, 0, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osg3x"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(0, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0t4y"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(660, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43ik6"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(1320, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2umbe"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(1980, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4ym5"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(2640, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggba6"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(3300, 816, 660, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrasb"]
+atlas = ExtResource("1_uvkgr")
+region = Rect2(3960, 816, 660, 816)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dpxtp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obh1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a17e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rssrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w6iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45t2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfxro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvej3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osg3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0t4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43ik6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2umbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4ym5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggba6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrasb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="FlyingSprite" type="AnimatedSprite2D"]
+z_index = 1
+position = Vector2(-1, 0)
+scale = Vector2(0.145, 0.145)
+sprite_frames = SubResource("SpriteFrames_dpxtp")
+autoplay = "default"
+frame_progress = 0.612783
