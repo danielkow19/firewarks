@@ -32,7 +32,6 @@ public partial class ColorSwap : ColorRect
                 case 4:
                     {
                         // Pure Copper
-                        // Maybe lighten the color
                         return Colors.Purple;
                     }
                 case 5:
