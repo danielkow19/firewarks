@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bniq5ou8vbvnu"]
+
+[ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_vhk7h"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-20, 0)
+script = ExtResource("1_vhk7h")
+waves = 1
+delay = 0.0
+bulletPerWave = PackedInt32Array(8)
+spreadPerWave = PackedInt32Array(315)
+speedPerWave = PackedInt32Array(100)
+spinPerWave = PackedFloat32Array(45)
+spinAccelPerWave = PackedFloat32Array(0)
+swirl = true
+swirlMod = PackedInt32Array(60)
+fireAndForget = true
+playerLocked = true
+initialCost = 0.0
+costPerSecond = 0.0
+recharge = 0.0

@@ -102,6 +102,7 @@ public partial class Player : Area2D
 	PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn");
 	PackedScene hitFX = GD.Load<PackedScene>("res://assets/prefabs/SFXHit.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://assets/prefabs/TrailBullet.tscn");
+	PackedScene orbitPU = GD.Load<PackedScene>("res://assets/prefabs/SparkRingPU.tscn");
 
 
 	// Trail reference for pausing
@@ -670,6 +671,14 @@ public partial class Player : Area2D
 						}
 					}
 				}
+				break;
+			
+			case PowerUpType.OrbitRing:
+			    var instance = orbitPU.Instantiate();
+				instance.Set("rotation", this.Rotation);
+				instance.Set("passer", powerUpPasser);
+				instance.Set("owner", this);
+				AddChild(instance);
 				break;
 			
 			default:
