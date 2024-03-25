@@ -63,11 +63,14 @@ public partial class Wave : Node
 		{
 			PackedScene pattern = GD.Load<PackedScene>("res://assets/prefabs/Bullet.tscn");
 			var instance = pattern.Instantiate();
+			instance.Set("rotation", (offset * Math.PI/180));
 			instance.Set("passer",passer);
 			instance.Set("delay", wait);
 			instance.Set("speed", new Vector2(speed, 0));
 			instance.Set("spin",spin);		
-			instance.Set("spinAccel",spinAccel);	
+			instance.Set("spinAccel",spinAccel);
+			instance.Set("swirl",swirl);
+			instance.Set("swirlMod",swirlMod);	
 			AddChild(instance);
 		}
 	}

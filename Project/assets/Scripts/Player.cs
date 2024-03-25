@@ -553,6 +553,8 @@ public partial class Player : Area2D
 			if((bool)instance.Get("fireAndForget") == true)
 			{
 				firing = false;
+				fireLeft = false;
+				fireRight = false;
 			}
 			instance.Set("position", this.Position);
 			instance.Set("rotation", this.Rotation);

@@ -43,14 +43,19 @@ public partial class Pattern : Node
 	private float costPerSecond = 5;
 	[Export]
 	private float recharge = 2;
+	[Export]
+	private bool randomness = false;
+	private bool drained = false;
 	private float coolDown;
 	private string passer;
+	private RandomNumberGenerator rng;
 	public Pattern(){
 	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		rng = new RandomNumberGenerator();
 		AddChild(sfx.Instantiate());
 		PopulateWaves();
 		if(fireAndForget)
@@ -58,7 +63,7 @@ public partial class Pattern : Node
 			Release();
 			SpawnWaves();
 		}
-		owner.DrainEnergy(initialCost, .15f);
+		owner.DrainEnergy(initialCost, .35f);
 		timeAlive = 0;
 		lastFire = 0;
 		coolDown = 0;
@@ -70,18 +75,28 @@ public partial class Pattern : Node
 	{
 		//spawn a wave/waves every x seconds while not released
 		//if end of waves start from beggining		
-		if(!fireAndForget)
+		if(!fireAndForget && !drained)
 		{
 			timeAlive += (float)delta;
-			if(!released && (float)owner.Get("energy") >= costPerSecond)
+			if(!released && (float)owner.Get("energy") >= (costPerSecond * delta))
 			{
+				owner.DrainEnergy(costPerSecond*(float)delta, (float)delta);
 				if(timeAlive > coolDown)
 				{			
-					SpawnWave(lastFire % waves);
-					lastFire += 1;
-					coolDown += (float)delay;
+					if((float)owner.Get("energy") >= costPerSecond * delta)
+					{
+						SpawnWave(lastFire % waves);
+						lastFire += 1;
+						coolDown += (float)delay;
+					}
+					
 				}
-				owner.DrainEnergy(costPerSecond*(float)delta, (float)delta);
+				
+				
+			}
+			if((float)owner.Get("energy") < costPerSecond/4)
+			{
+				drained = true;
 			}
 		}
 
@@ -116,19 +131,37 @@ public partial class Pattern : Node
 			instance.Set("passer", passer);
 			instance.Set("wait", i*delay);
 			instance.Set("numOfBullet", bulletPerWave[i]);
-			instance.Set("spread", spreadPerWave[i]);
-			if(passer == "BulletSpeed")
-			{
-				instance.Set("speed", speedPerWave[i] * 1.5);
+			if(randomness){
+				instance.Set("spread", spreadPerWave[i] + rng.RandfRange(-10,10));
+				instance.Set("offset",offsetPerWave[i] + rng.RandfRange(-5,5));
+				instance.Set("spin",spinPerWave[i] + rng.RandfRange(-5,5));
+				instance.Set("spinAccel",spinAccelPerWave[i] + rng.RandfRange(-5,5));
+				instance.Set("swirlMod", swirlMod[i] + rng.RandfRange(-5,5));
+				if(passer == "BulletSpeed")
+				{
+					instance.Set("speed", (speedPerWave[i] * 1.5)+ rng.RandfRange(-50,50));
+				}
+				else{
+					instance.Set("speed", speedPerWave[i] + rng.RandfRange(-50,50));
+				}
 			}
 			else{
-				instance.Set("speed", speedPerWave[i]);
-			}			
-			instance.Set("offset",offsetPerWave[i]);
-			instance.Set("spin",spinPerWave[i]);
-			instance.Set("spinAccel",spinAccelPerWave[i]);
+				instance.Set("spread", spreadPerWave[i]);
+				instance.Set("offset",offsetPerWave[i]);
+				instance.Set("spin",spinPerWave[i]);
+				instance.Set("spinAccel",spinAccelPerWave[i]);
+				instance.Set("swirlMod", swirlMod[i]);
+				if(passer == "BulletSpeed")
+				{
+					instance.Set("speed", speedPerWave[i] * 1.5);
+				}
+				else{
+					instance.Set("speed", speedPerWave[i]);
+				}
+			}
+			
+								
 			instance.Set("swirl", swirl);
-			instance.Set("swirlMod", swirlMod[i]);
 			if(!playerLocked)
 			{
 				instance.Set("position", owner.Get("position"));
@@ -148,20 +181,39 @@ public partial class Pattern : Node
 		instance.Set("owner", owner);
 		instance.Set("passer", passer);
 		instance.Set("wait", 0);
+		if(randomness){
+				instance.Set("spread", spreadPerWave[waveToSpawn] + rng.RandfRange(-10,10));
+				instance.Set("offset",offsetPerWave[waveToSpawn] + rng.RandfRange(-5,5));
+				instance.Set("spin",spinPerWave[waveToSpawn] + rng.RandfRange(-5,5));
+				instance.Set("spinAccel",spinAccelPerWave[waveToSpawn] + rng.RandfRange(-5,5));
+				instance.Set("swirlMod", swirlMod[waveToSpawn] + rng.RandfRange(-5,5));
+				if(passer == "BulletSpeed")
+				{
+					instance.Set("speed", (speedPerWave[waveToSpawn] * 1.5)+ rng.RandfRange(-50,50));
+				}
+				else{
+					instance.Set("speed", speedPerWave[waveToSpawn] + rng.RandfRange(-50,50));
+				}	
+			}
+			else{
+				instance.Set("spread", spreadPerWave[waveToSpawn]);
+				instance.Set("offset",offsetPerWave[waveToSpawn]);
+				instance.Set("spin",spinPerWave[waveToSpawn]);
+				instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
+				instance.Set("swirlMod", swirlMod[waveToSpawn]);
+				if(passer == "BulletSpeed")
+				{
+					instance.Set("speed", speedPerWave[waveToSpawn] * 1.5);
+				}
+				else{
+					instance.Set("speed", speedPerWave[waveToSpawn]);
+				}		
+			}
+
+
 		instance.Set("numOfBullet", bulletPerWave[waveToSpawn]);
-		instance.Set("spread", spreadPerWave[waveToSpawn]);
-		if(passer == "BulletSpeed")
-			{
-				instance.Set("speed", speedPerWave[waveToSpawn] * 1.5);
-		}
-		else{
-				instance.Set("speed", speedPerWave[waveToSpawn]);
-		}			
-		instance.Set("offset",offsetPerWave[waveToSpawn]);
-		instance.Set("spin",spinPerWave[waveToSpawn]);
-		instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
+		
 		instance.Set("swirl", swirl);
-		instance.Set("swirlMod", swirlMod[waveToSpawn]);
 		if(!playerLocked)
 		{
 			instance.Set("position", owner.Get("position"));
@@ -192,7 +244,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%bulletPerWave.Length];
 				}
 			}
 			bulletPerWave = waveUpdate;
@@ -212,7 +264,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%spreadPerWave.Length];
 				}
 			}
 			spreadPerWave = waveUpdate;
@@ -232,7 +284,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%speedPerWave.Length];
 				}
 			}
 			speedPerWave = waveUpdate;
@@ -252,7 +304,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%offsetPerWave.Length];
 				}
 			}
 			offsetPerWave = waveUpdate;
@@ -272,7 +324,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%spinPerWave.Length];
 				}
 			}
 			spinPerWave = waveUpdate;
@@ -292,7 +344,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%spinAccelPerWave.Length];
 				}
 			}
 			spinAccelPerWave = waveUpdate;
@@ -312,7 +364,7 @@ public partial class Pattern : Node
 					{
 						waveUpdate[i]= 40;
 					}
-					waveUpdate[i]= waveUpdate[i-1];
+					waveUpdate[i]= waveUpdate[i%swirlMod.Length];
 				}
 			}
 			swirlMod = waveUpdate;
