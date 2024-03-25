@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=12 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="2_imqba"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="6_pm6ws"]
+[ext_resource type="Texture2D" uid="uid://haocm7nge708" path="res://assets/sprites/objects/Object_borderRight.PNG" id="7_hfr57"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_24xvk"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_tbo5m"]
@@ -17,11 +18,13 @@ script = ExtResource("1_py270")
 _players = []
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+position = Vector2(0, 1.0035)
 texture = ExtResource("2_imqba")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Debug" type="Control" parent="."]
+z_index = 5
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -50,6 +53,27 @@ polygon = PackedVector2Array(-6000, -3375, -960, -540, -960, 540, 960, 540, 960,
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("6_pm6ws")
 
+[node name="BorderRight" type="Sprite2D" parent="CloudBorder"]
+position = Vector2(1160, 0)
+texture = ExtResource("7_hfr57")
+
+[node name="BorderLeft" type="Sprite2D" parent="CloudBorder"]
+position = Vector2(-1160, 0)
+scale = Vector2(-1, -1)
+texture = ExtResource("7_hfr57")
+
+[node name="BorderTop" type="Sprite2D" parent="CloudBorder"]
+position = Vector2(0, -780)
+rotation = -1.5708
+scale = Vector2(1, -1.6)
+texture = ExtResource("7_hfr57")
+
+[node name="BorderBottom" type="Sprite2D" parent="CloudBorder"]
+position = Vector2(0, 780)
+rotation = 1.5708
+scale = Vector2(1, 1.6)
+texture = ExtResource("7_hfr57")
+
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("7_wexeu")]
 unique_name_in_owner = true
 visible = false
@@ -75,10 +99,10 @@ _gameManager = NodePath("../../../..")
 [node name="MapMovingBoxes" parent="." instance=ExtResource("9_tq2po")]
 
 [node name="Cloud Box 1" parent="MapMovingBoxes" index="0" node_paths=PackedStringArray("sprites")]
-sprites = []
+sprites = [NodePath("Sprite2D"), NodePath("Sprite2D2"), NodePath("Sprite2D3"), NodePath("Sprite2D4"), NodePath("Sprite2D5"), NodePath("Sprite2D6")]
 
 [node name="Cloud Box 2" parent="MapMovingBoxes" index="1" node_paths=PackedStringArray("sprites")]
-sprites = []
+sprites = [NodePath("Sprite2D"), NodePath("Sprite2D2"), NodePath("Sprite2D3"), NodePath("Sprite2D4"), NodePath("Sprite2D5"), NodePath("Sprite2D6")]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_8whm1")

@@ -1,121 +1,15 @@
-[gd_scene load_steps=62 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=47 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="PackedScene" uid="uid://ctofvyxhifnra" path="res://assets/prefabs/PatternWeave.tscn" id="2_dn5ft"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
+[ext_resource type="PackedScene" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
 [ext_resource type="Texture2D" uid="uid://b02bhxv5mvhnv" path="res://assets/sprites/effects/spritesheet_smoke_bomb.png" id="4_qsqd8"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 [ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
 [ext_resource type="Texture2D" uid="uid://dgobxqaaifoyd" path="res://assets/sprites/effects/spritesheet_barrier.png" id="9_einjs"]
-[ext_resource type="Texture2D" uid="uid://7yt6xbit2uf0" path="res://assets/sprites/phoenix/spritesheet_player_fly.png" id="10_bfhjd"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_obh1v"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(0, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6a17e"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(660, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rssrs"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(1320, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1w6iu"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(1980, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_45t2l"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(2640, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfxro"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(3300, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rvej3"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(3960, 0, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_osg3x"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(0, 816, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b0t4y"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(660, 816, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_43ik6"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(1320, 816, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2umbe"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(1980, 816, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4ym5"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(2640, 816, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggba6"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(3300, 816, 660, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yrasb"]
-atlas = ExtResource("10_bfhjd")
-region = Rect2(3960, 816, 660, 816)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dpxtp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_obh1v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6a17e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rssrs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1w6iu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_45t2l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfxro")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rvej3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_osg3x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b0t4y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_43ik6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2umbe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t4ym5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ggba6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yrasb")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -364,14 +258,8 @@ rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_ogaot")
 
-[node name="FlyingSprite" type="AnimatedSprite2D" parent="."]
+[node name="FlyingSprite" parent="." instance=ExtResource("4_5apw0")]
 unique_name_in_owner = true
-z_index = 1
-position = Vector2(-1, 0)
-scale = Vector2(0.145, 0.145)
-sprite_frames = SubResource("SpriteFrames_dpxtp")
-autoplay = "default"
-frame_progress = 0.612783
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

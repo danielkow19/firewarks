@@ -34,9 +34,4 @@ theme = ExtResource("2_c5n6p")
 text = "Start Game"
 script = ExtResource("2_f1r4r")
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="JoinNode"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="pressed" from="JoinNode/StartButton" to="JoinNode/StartButton" method="_on_pressed"]

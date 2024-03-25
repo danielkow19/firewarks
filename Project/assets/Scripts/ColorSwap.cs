@@ -9,6 +9,54 @@ public partial class ColorSwap : ColorRect
 	public int ColorIndex {  get { return colorIndex; } }
 	public Color ColorChoice { get { switch (colorIndex)
 			{
+<<<<<<< HEAD
+				case 0:
+					{
+						// Strontium
+						return Colors.Red;
+					}
+				case 1:
+					{
+						// Calcium
+						return Colors.Orange;
+					}
+				case 2:
+					{
+						// Sodium
+						return Colors.Yellow;
+					}
+				case 3:
+					{
+						// Barium
+						return Colors.Green;
+					}
+				case 4:
+					{
+						// Pure Copper
+						// Maybe lighten the color
+						return Colors.Purple;
+					}
+				case 5:
+					{
+						// Strontium + Copper
+						return Colors.Magenta;
+					}
+				case 6:
+					{
+						// Magnesium
+						return Colors.Silver;
+					}
+				case 7:
+					{
+						return Colors.Aquamarine;
+					}
+				default:
+					{
+						// Just incase
+						return Colors.White;
+					}
+			} } }
+=======
                 case 0:
                     {
                         // Strontium
@@ -32,7 +80,6 @@ public partial class ColorSwap : ColorRect
                 case 4:
                     {
                         // Pure Copper
-                        // Maybe lighten the color
                         return Colors.Purple;
                     }
                 case 5:
@@ -55,9 +102,12 @@ public partial class ColorSwap : ColorRect
                         return Colors.White;
                     }
             } } }
+>>>>>>> 245b8cc8ba6ffd2773298eab2dc955879795c4ef
 	// Reference to the Player preview Sprite
 	[Export]
-	private TextureRect texture;
+	private AnimatedSprite2D sprite;
+	
+	//private TextureRect texture;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -68,7 +118,8 @@ public partial class ColorSwap : ColorRect
 
 		// Assign childRects 0 color
 		childRect.Color = Colors.Red;
-		texture.Modulate = Colors.Red;
+		sprite.Modulate = Colors.Red;
+		//texture.Modulate = Colors.Red;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -89,7 +140,7 @@ public partial class ColorSwap : ColorRect
 				colorIndex = 7;
 			}
 		}
-        else if(arrowName == "right")
+		else if(arrowName == "right")
 		{
 			// increase number
 			colorIndex++;
@@ -100,16 +151,17 @@ public partial class ColorSwap : ColorRect
 			}
 		}
 		else
-        {
+		{
 			// break out if input isn't correct
 			return;
-        }
+		}
 
 		// Choose Colors
 		Color newColor = ColorChoice;
 
 		// Apply the color to the colorRect
 		childRect.Color = newColor;
-		texture.Modulate = newColor;
-    }
+		sprite.Modulate = newColor;
+		//texture.Modulate = newColor;
+	}
 }

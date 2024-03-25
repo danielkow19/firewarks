@@ -36,68 +36,55 @@ public partial class player_select : Control
 		{
 			InputEventKey keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Shift;
-			InputMap.ActionEraseEvents($"Slow_{numPlayers}");
 			InputMap.ActionAddEvent($"Slow_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Ctrl;
-			InputMap.ActionEraseEvents($"Burst_{numPlayers}");
 			InputMap.ActionAddEvent($"Burst_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Space;
-			InputMap.ActionEraseEvents($"Shoot_L_{numPlayers}");
 			InputMap.ActionAddEvent($"Shoot_L_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Enter;
-			InputMap.ActionEraseEvents($"Shoot_R_{numPlayers}");
 			InputMap.ActionAddEvent($"Shoot_R_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.D;
-			InputMap.ActionEraseEvents($"Right_{numPlayers}");
 			InputMap.ActionAddEvent($"Right_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.A;
-			InputMap.ActionEraseEvents($"Left_{numPlayers}");
 			InputMap.ActionAddEvent($"Left_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.W;
-			InputMap.ActionEraseEvents($"Up_{numPlayers}");
 			InputMap.ActionAddEvent($"Up_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.S;
-			InputMap.ActionEraseEvents($"Down_{numPlayers}");
 			InputMap.ActionAddEvent($"Down_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.L;
-			InputMap.ActionEraseEvents($"AimRight_{numPlayers}");
 			InputMap.ActionAddEvent($"AimRight_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.J;
-			InputMap.ActionEraseEvents($"AimLeft_{numPlayers}");
 			InputMap.ActionAddEvent($"AimLeft_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.I;
-			InputMap.ActionEraseEvents($"AimUp_{numPlayers}");
 			InputMap.ActionAddEvent($"AimUp_{numPlayers}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.K;
-			InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
 			InputMap.ActionAddEvent($"AimDown_{numPlayers}", keyEvent);
 
             // UI Click Event
 			keyEvent = new InputEventKey(); 
 			keyEvent.Keycode = Key.Enter; 
-			InputMap.ActionEraseEvents($"UI_Click_{numPlayers}"); 
 			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", keyEvent);
 
             keyboardPlayer = true;
@@ -110,55 +97,46 @@ public partial class player_select : Control
 			InputEventJoypadButton joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.LeftShoulder;
-			InputMap.ActionEraseEvents($"Slow_{numPlayers}");
 			InputMap.ActionAddEvent($"Slow_{numPlayers}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.RightShoulder;
-			InputMap.ActionEraseEvents($"Burst_{numPlayers}");
 			InputMap.ActionAddEvent($"Burst_{numPlayers}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadLeft;
-			InputMap.ActionEraseEvents($"Left_{numPlayers}");
 			InputMap.ActionAddEvent($"Left_{numPlayers}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadRight;
-			InputMap.ActionEraseEvents($"Right_{numPlayers}");
 			InputMap.ActionAddEvent($"Right_{numPlayers}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadUp;
-			InputMap.ActionEraseEvents($"Up_{numPlayers}");
 			InputMap.ActionAddEvent($"Up_{numPlayers}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadDown;
-			InputMap.ActionEraseEvents($"Down_{numPlayers}");
 			InputMap.ActionAddEvent($"Down_{numPlayers}", joyButton);
 
             // UI Click Event
 			joyButton = new InputEventJoypadButton(); 
 			joyButton.Device = jbe.Device; 
-			InputMap.ActionEraseEvents($"UI_Click_{numPlayers}"); 
 			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", joyButton);
 
             InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.TriggerLeft;
-			InputMap.ActionEraseEvents($"Shoot_L_{numPlayers}");
 			InputMap.ActionAddEvent($"Shoot_L_{numPlayers}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.TriggerRight;
-			InputMap.ActionEraseEvents($"Shoot_R_{numPlayers}");
 			InputMap.ActionAddEvent($"Shoot_R_{numPlayers}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
@@ -189,28 +167,24 @@ public partial class player_select : Control
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightX;
 			joyAxis.AxisValue = 1;
-			InputMap.ActionEraseEvents($"AimRight_{numPlayers}");
 			InputMap.ActionAddEvent($"AimRight_{numPlayers}", joyAxis);
 			
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightX;
 			joyAxis.AxisValue = -1;
-			InputMap.ActionEraseEvents($"AimLeft_{numPlayers}");
 			InputMap.ActionAddEvent($"AimLeft_{numPlayers}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightY;
 			joyAxis.AxisValue = -1;
-			InputMap.ActionEraseEvents($"AimUp_{numPlayers}");
 			InputMap.ActionAddEvent($"AimUp_{numPlayers}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightY;
 			joyAxis.AxisValue = 1;
-			InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
 			InputMap.ActionAddEvent($"AimDown_{numPlayers}", joyAxis);
 
 

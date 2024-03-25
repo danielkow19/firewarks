@@ -26,11 +26,14 @@ public partial class Resource : Area2D
 	private string[] tags;
 
 	public PowerUpType type;
+
+	private PackedScene popup;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// Resource Spawner determines power-up type  instead of this class
+		popup = GD.Load<PackedScene>("res://assets/prefabs/MessagePopup.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,6 +58,11 @@ public partial class Resource : Area2D
 				{
 					if (area is Player player)
 					{
+						// Fire Popup to screen
+						MessagePopup p = popup.Instantiate<MessagePopup>();
+						GetTree().Root.AddChild(p);
+						p.Popup(ToString(), GlobalPosition);
+						
 						player.ResourceCollected(type);
 						lifetime = 0;
 						QueueFree();
