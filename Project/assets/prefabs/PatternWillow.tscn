@@ -16,4 +16,5 @@ swirl = true
 swirlMod = PackedInt32Array(30, -30)
 initialCost = 15.0
 costPerSecond = 20.0
+recharge = 4.0
 randomness = true
