@@ -19,6 +19,11 @@ public partial class Player : Area2D
 	private int health;
 	private HBoxContainer healthBar;
 
+	public int Health
+	{
+		get { return health; }
+	}
+
 	// Player sprite for death
 	private Sprite2D deathSprite;
 	
@@ -676,7 +681,7 @@ public partial class Player : Area2D
 				break;
 			
 			case PowerUpType.OrbitRing:
-			    var instance = orbitPU.Instantiate();
+				var instance = orbitPU.Instantiate();
 				instance.Set("rotation", this.Rotation);
 				instance.Set("passer", powerUpPasser);
 				instance.Set("owner", this);
