@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj38wh3s1d4oj"]
+[gd_scene load_steps=3 format=3 uid="uid://dj38wh3s1d4oj"]
+
+[ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="1_cp0m4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amicp"]
 font_size = 32
@@ -69,7 +71,7 @@ text = "[b]Movement:[/b] Use [i] WASD [/i] keys for keyboard or [i]Left Joystick
 [b]Aiming Up:[/b] Use the [i]I Key[/i]
 [b]Aiming Down:[/b] Use the [i] K Key[/i]"
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="ControlsButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -83,3 +85,6 @@ offset_bottom = -418.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Return"
+script = ExtResource("1_cp0m4")
+
+[connection signal="pressed" from="ColorRect/ControlsButton" to="ColorRect/ControlsButton" method="_on_pressed"]
