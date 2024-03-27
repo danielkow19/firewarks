@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using FireWARks.assets.Scripts;
 
-public partial class Pattern : Node
+public partial class Pattern : Node2D
 {
 	private Player owner;
 	[Export]
@@ -67,7 +67,7 @@ public partial class Pattern : Node
 		timeAlive = 0;
 		lastFire = 0;
 		coolDown = 0;
-		
+		TopLevel = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -170,7 +170,13 @@ public partial class Pattern : Node
 			}
 			else
 			{
+				RemoteTransform2D remote = new RemoteTransform2D();
 				AddChild(instance);
+				AddSibling(remote);
+				remote.RemotePath = remote.GetPathTo(instance);
+				remote.UpdatePosition = true;
+				remote.UpdateRotation = false;
+				remote.UpdateScale = false;
 			}
 		}
 	}
@@ -222,7 +228,13 @@ public partial class Pattern : Node
 		}
 		else
 		{
+			RemoteTransform2D remote = new RemoteTransform2D();
 			AddChild(instance);
+			AddChild(remote);
+			remote.RemotePath = remote.GetPathTo(instance);
+			remote.UpdatePosition = true;
+			remote.UpdateRotation = false;
+			remote.UpdateScale = false;
 		}
 		
 	}
