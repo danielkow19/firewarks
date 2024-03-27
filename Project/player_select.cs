@@ -34,22 +34,27 @@ public partial class player_select : Control
 		base._GuiInput(@event);
 		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && !keyboardPlayer && numPlayers < 4 && joinable)
 		{
+			// Slow
 			InputEventKey keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Shift;
 			InputMap.ActionAddEvent($"Slow_{numPlayers}", keyEvent);
 
+			// Burst
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Ctrl;
 			InputMap.ActionAddEvent($"Burst_{numPlayers}", keyEvent);
 
+			// Left Shoot
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Space;
 			InputMap.ActionAddEvent($"Shoot_L_{numPlayers}", keyEvent);
 
+			// Right Shoot
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Enter;
 			InputMap.ActionAddEvent($"Shoot_R_{numPlayers}", keyEvent);
 
+			// Movement
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.D;
 			InputMap.ActionAddEvent($"Right_{numPlayers}", keyEvent);
@@ -66,6 +71,7 @@ public partial class player_select : Control
 			keyEvent.Keycode = Key.S;
 			InputMap.ActionAddEvent($"Down_{numPlayers}", keyEvent);
 
+			// Aiming
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.L;
 			InputMap.ActionAddEvent($"AimRight_{numPlayers}", keyEvent);

@@ -47,6 +47,15 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Play Game"
 
+[node name="ControlsButton" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 871.0
+offset_top = 700.0
+offset_right = 1051.0
+offset_bottom = 762.0
+text = "Controls
+"
+
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
 visible = false
