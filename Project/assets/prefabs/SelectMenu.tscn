@@ -11,9 +11,9 @@
 [ext_resource type="Script" path="res://ReadyButton.cs" id="6_lkdmd"]
 [ext_resource type="Script" path="res://assets/Scripts/CursorAlt.cs" id="7_arkcm"]
 [ext_resource type="Script" path="res://assets/Scripts/ArrowAttack.cs" id="8_gkvfb"]
-[ext_resource type="Texture2D" uid="uid://bjupooxu1uom" path="res://assets/sprites/ui/CursorCrosshairPlaceholder.png" id="8_tidik"]
 [ext_resource type="Theme" uid="uid://dqfeaouu8nwh3" path="res://assets/Themes/ButtonTheme.tres" id="10_1lydg"]
 [ext_resource type="Script" path="res://assets/Scripts/AttackSwap.cs" id="11_txlgl"]
+[ext_resource type="Texture2D" uid="uid://bqyifxl1ih8yb" path="res://assets/sprites/ui/ui_feather.png" id="14_r3wpf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lw75j"]
 font_size = 26
@@ -198,11 +198,11 @@ scale = Vector2(2, 2)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Cursor/Area2D"]
 shape = SubResource("RectangleShape2D_52tpr")
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/Cursor"]
-modulate = Color(1, 0, 0, 1)
+[node name="CursorTexture" type="TextureRect" parent="ColorRect/Cursor"]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("8_tidik")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("14_r3wpf")
 
 [connection signal="pressed" from="ColorRect/ColorLeft" to="ColorRect/ColorLeft" method="_on_pressed"]
 [connection signal="pressed" from="ColorRect/ColorRight" to="ColorRect/ColorRight" method="_on_pressed"]
