@@ -30,5 +30,5 @@ public partial class ReadyButton : Button
 		{
 			joinNode.ReadyPlayer();
 		}
-    }
+	}
 }
