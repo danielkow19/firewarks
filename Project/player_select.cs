@@ -32,7 +32,7 @@ public partial class player_select : Control
 		public override void _UnhandledInput(InputEvent @event)
 	{
 		base._GuiInput(@event);
-		if(@event is InputEventKey ke && ke.Keycode == Key.Space && ke.Pressed && !keyboardPlayer && numPlayers < 4 && joinable)
+		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && !keyboardPlayer && numPlayers < 4 && joinable)
 		{
 			InputEventKey keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Shift;
@@ -92,7 +92,7 @@ public partial class player_select : Control
 
 			InstantiateSelectMenu();
 		}
-		if(@event is InputEventJoypadButton jbe && jbe.ButtonIndex == JoyButton.A && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable)
+		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable)
 		{
 			InputEventJoypadButton joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
