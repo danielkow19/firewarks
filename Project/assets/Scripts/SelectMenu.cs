@@ -10,6 +10,7 @@ public partial class SelectMenu : Control
 	private Label attack1;
 	private Label attack2;
 	private VideoStreamPlayer attackDisplay;
+	private TextureRect cursorTexture;
 	private int currentPos;
 	private int prevPos;
 	private VideoStream circleBurst = GD.Load<VideoStream>("res://assets/videos/circleburst.ogv");
@@ -30,12 +31,14 @@ public partial class SelectMenu : Control
 		attack1 = GetNode<Label>("ColorRect/Attack1Label");
 		attack2 = GetNode<Label>("ColorRect/Attack2Label");
 		attackDisplay = GetNode<VideoStreamPlayer>("ColorRect/AttackDisplayer");
+		cursorTexture = GetNode<TextureRect>("ColorRect/Cursor/CursorTexture");
 		prevPos = (int)cursor.Get("positionIndex");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		cursorTexture.Modulate = displaySprite.Modulate;
 		currentPos = (int)cursor.Get("positionIndex");
 		//if(((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) || Input.IsActionPressed("UI_Click_0")) {
 			switch(currentPos) {
