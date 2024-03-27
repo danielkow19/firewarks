@@ -31,7 +31,7 @@ public partial class SelectMenu : Control
 		attack1 = GetNode<Label>("ColorRect/Attack1Label");
 		attack2 = GetNode<Label>("ColorRect/Attack2Label");
 		attackDisplay = GetNode<VideoStreamPlayer>("ColorRect/AttackDisplayer");
-		cursorTexture = GetNode<TextureRect>("ColorRect/Cursor/CursorTexture");
+		cursorTexture = GetNode<TextureRect>("ColorRect/Cursor/TextureRect");
 		prevPos = (int)cursor.Get("positionIndex");
 	}
 

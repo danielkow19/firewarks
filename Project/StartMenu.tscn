@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://eyxvn7yqditg"]
+[gd_scene load_steps=7 format=3 uid="uid://eyxvn7yqditg"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_7du7k"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_5ljtf"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_h1xvh"]
+[ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="3_jqg0j"]
 [ext_resource type="AudioStream" uid="uid://7v30tj2kp1oq" path="res://assets/Music/menusongfirstdraft.wav" id="4_kaxj3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
@@ -14,6 +15,16 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_7du7k")
 _players = []
 metadata/_edit_vertical_guides_ = [960.0]
+
+[node name="ControlsButton" type="Button" parent="."]
+offset_left = 871.0
+offset_top = 700.0
+offset_right = 1051.0
+offset_bottom = 762.0
+focus_neighbor_top = NodePath("../Menu/PlayButton")
+text = "Controls
+"
+script = ExtResource("3_jqg0j")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -40,11 +51,13 @@ anchor_left = 21.775
 anchor_top = 12.275
 anchor_right = 26.275
 anchor_bottom = 13.825
-offset_left = -6.10352e-05
-offset_top = 139.0
-offset_bottom = 139.0
+offset_left = 0.999939
+offset_top = 137.0
+offset_right = 1.0
+offset_bottom = 137.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_bottom = NodePath("../../ControlsButton")
 text = "Play Game"
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("3_h1xvh")]
@@ -56,6 +69,7 @@ _gameManager = NodePath("..")
 stream = ExtResource("4_kaxj3")
 autoplay = true
 
+[connection signal="pressed" from="ControlsButton" to="ControlsButton" method="_on_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="play"]
 
 [editable path="PauseMenu"]

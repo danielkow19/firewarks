@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player_select.cs" id="1_77hbd"]
 [ext_resource type="Script" path="res://Load.cs" id="1_tj5iy"]
 [ext_resource type="Script" path="res://assets/Scripts/LobbyButton.cs" id="2_f1r4r"]
-[ext_resource type="Theme" uid="uid://dqfeaouu8nwh3" path="res://assets/Themes/ButtonTheme.tres" id="3_4c64v"]
+[ext_resource type="Theme" uid="uid://bpqvtx6nvqrvg" path="res://assets/Themes/ButtonTheme.tres" id="3_4c64v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5r35j"]
 font_size = 28

@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj38wh3s1d4oj"]
+
+[ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="1_cp0m4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_amicp"]
+font_size = 32
+
+[node name="Controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -540.0
+offset_right = 460.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.121569, 0.121569, 0.376471)
+
+[node name="Title" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 40.0
+offset_right = 80.0
+offset_bottom = 100.0
+grow_horizontal = 2
+text = "Controls"
+label_settings = SubResource("LabelSettings_amicp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -430.0
+offset_top = 120.0
+offset_right = 430.0
+offset_bottom = 507.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[b]Movement:[/b] Use [i] WASD [/i] keys for keyboard or [i]Left Joystick[/i] for controllers.
+[b]Shoot Left Pattern:[/b] Press [i] SPACE Key[/i] or [i] Left trigger[/i] for controller
+[b]Shoot Right Pattern:[/b] Press [i]Enter Key[/i] or [i] Right trigger[/i] for controller
+[b]Slow Movement:[/b] Hold [i]SHIFT Key[/i] or [i]Left Shoulder[/i] for controller, combined with a movement input.
+[b]Smoke Bomb:[/b] Press [i]CTRL Key[/i] or [i]Right Shoulder[/i] for controller
+[b]UI Input:[/b] Press [i]Enter Key[/i] or [i] A/X button[/i] for Xbox or Playstation controller
+[b]Pause:[/b] Press [i]Backspace Key[/i] or [i] Start Button[/i] for controllers
+
+																							[b]Controller Aiming[/b]
+[b]Aiming:[/b] Use the [i]Right Joystick[/i] for controllers
+
+																							[b]Keyboard Aiming[/b]
+[b]Aiming Left:[/b] Use the [i]J Key[/i]
+[b]Aiming Right:[/b] Use the [i]L Key[/i]
+[b]Aiming Up:[/b] Use the [i]I Key[/i]
+[b]Aiming Down:[/b] Use the [i] K Key[/i]"
+
+[node name="ControlsButton" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -480.0
+offset_right = 90.0
+offset_bottom = -418.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return"
+script = ExtResource("1_cp0m4")
+
+[connection signal="pressed" from="ColorRect/ControlsButton" to="ColorRect/ControlsButton" method="_on_pressed"]
