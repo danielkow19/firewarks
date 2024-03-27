@@ -6,7 +6,6 @@ namespace FireWARks.assets.Scripts;
 
 public partial class PlayerTrail : Line2D
 {
-	private int maxPoints = 100;
 	private Curve2D curve;
 	private List<CollisionShape2D> tailSegments;
 	private List<float> timeActive;
@@ -36,20 +35,6 @@ public partial class PlayerTrail : Line2D
 		parent = GetParent<Area2D>() as Player;
 		callable = new Callable(this, nameof(OnAreaEntered));
 		
-		for (int i = 0; i < maxPoints - 1; i++)
-		{
-			// Temp, doesn't need to be saved in class but will in scene
-			Area2D newSegment = (Area2D)segment.Duplicate();
-			CollisionShape2D newColShape = (CollisionShape2D)collisionShape.Duplicate();
-			newSegment.AddChild(newColShape);	
-			tailSegments.Add(newColShape);
-			((SegmentShape2D)tailSegments[i].Shape).A = Position;
-			((SegmentShape2D)tailSegments[i].Shape).B = Position;
-			AddChild(newSegment);
-			
-			// Create a Callable for the OnAreaEntered method; This allows signals
-			newSegment.Connect("area_entered", callable);
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,25 +51,16 @@ public partial class PlayerTrail : Line2D
 			lengths.Add(Points.Last<Vector2>().DistanceTo(Points[Points.Length - 1]));
 			Area2D newSegment = (Area2D)segment.Duplicate();
 			CollisionShape2D newColShape = (CollisionShape2D)collisionShape.Duplicate();
+			Shape2D newShape = (Shape2D)collisionShape.Shape.Duplicate();
+			newColShape.Shape = newShape;
+			((SegmentShape2D)newColShape.Shape).A = Points[Points.Length - 2];
+			((SegmentShape2D)newColShape.Shape).B = Points[Points.Length - 1];	
 			newSegment.AddChild(newColShape);	
 			tailSegments.Add(newColShape);
-			((SegmentShape2D)tailSegments[tailSegments.Count-1].Shape).A = Points[Points.Length - 1];
-			((SegmentShape2D)tailSegments[tailSegments.Count-1].Shape).B = Points[Points.Length - 2];
 			AddChild(newSegment);
 			
 			// Create a Callable for the OnAreaEntered method; This allows signals
 			newSegment.Connect("area_entered", callable);
-		}
-		
-		// Fixes problem with player teleporting after first frame
-		if (deleteFirstValue)
-		{
-			curve.RemovePoint(0);
-			timeActive.RemoveAt(0);
-			var deleteThis = tailSegments[0];
-			tailSegments.RemoveAt(0);
-			deleteThis.QueueFree();
-			deleteFirstValue = false;
 		}
 		
 		// Only start deleting if a line is drawn
@@ -98,21 +74,6 @@ public partial class PlayerTrail : Line2D
 				timeActive[i] += (float)delta;
 			}
 		}
-
-		#region DistanceCulling
-		
-		float goalLength = 150f / (parent.Health + 1);
-		while(lengths.Sum() > goalLength)
-		{
-			curve.RemovePoint(0);
-			timeActive.RemoveAt(0);
-			lengths.RemoveAt(0);
-			var deleteThis = tailSegments[0];
-			tailSegments.RemoveAt(0);
-			deleteThis.QueueFree();
-		}
-		
-		#endregion
 		
 		// Time Culling
 		float timeAllowed = 1.0f / (parent.Health + 1);
