@@ -33,6 +33,7 @@ public partial class SelectMenu : Control
 		attackDisplay = GetNode<VideoStreamPlayer>("ColorRect/AttackDisplayer");
 		cursorTexture = GetNode<TextureRect>("ColorRect/Cursor/TextureRect");
 		prevPos = (int)cursor.Get("positionIndex");
+		GetNode<ColorSwap>("ColorRect").sprite = displaySprite;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

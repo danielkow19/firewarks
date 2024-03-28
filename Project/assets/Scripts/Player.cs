@@ -647,6 +647,7 @@ public partial class Player : Area2D
 				_burstArea.Monitoring = true;
 				_burstTimer.WaitTime = _burstCD;
 				_burstTimer.Start();
+				_burstAnimation.Play();
 				break;
 			
 			case PowerUpType.MobileAttacker:

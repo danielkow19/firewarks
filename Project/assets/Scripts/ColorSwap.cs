@@ -56,8 +56,7 @@ public partial class ColorSwap : ColorRect
 					}
 			} } }
 	// Reference to the Player preview Sprite
-	[Export]
-	private AnimatedSprite2D sprite;
+	public AnimatedSprite2D sprite;
 	
 	//private TextureRect texture;
 
