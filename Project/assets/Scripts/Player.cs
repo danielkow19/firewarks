@@ -500,6 +500,16 @@ public partial class Player : Area2D
 				ToggleHUD();
 				_collider.Disabled = true;
 				_playerSprite.Hide();
+				if(firing || fireLeft || fireRight){
+					Pattern wrkPattern = currentPattern as Pattern;
+					wrkPattern.Release();
+					firing = false;
+					fireLeft = false;
+					fireRight = false;
+				}
+				//delete trail on death
+				trail.QueueFree();
+				
 			}
 			else
 			{
