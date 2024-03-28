@@ -32,6 +32,8 @@ public partial class player_select : Control
 		public override void _UnhandledInput(InputEvent @event)
 	{
 		base._GuiInput(@event);
+		// Make Sure Inputs are clear before reassigning
+		EraseInputs();
 		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && !keyboardPlayer && numPlayers < 4 && joinable)
 		{
 			// Slow
@@ -238,4 +240,21 @@ public partial class player_select : Control
 	{
 		readiedPlayers++;
 	}
+
+	private void EraseInputs()
+	{
+		InputMap.ActionEraseEvents($"UI_Click_{numPlayers}");
+        InputMap.ActionEraseEvents($"Slow_{numPlayers}");
+        InputMap.ActionEraseEvents($"Burst_{numPlayers}");
+        InputMap.ActionEraseEvents($"Up_{numPlayers}");
+        InputMap.ActionEraseEvents($"Down_{numPlayers}");
+        InputMap.ActionEraseEvents($"Left_{numPlayers}");
+        InputMap.ActionEraseEvents($"Right_{numPlayers}");
+        InputMap.ActionEraseEvents($"Shoot_R_{numPlayers}");
+        InputMap.ActionEraseEvents($"Shoot_L_{numPlayers}");
+        InputMap.ActionEraseEvents($"AimUp_{numPlayers}");
+        InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
+        InputMap.ActionEraseEvents($"AimLeft_{numPlayers}");
+        InputMap.ActionEraseEvents($"AimRight_{numPlayers}");
+    }
 }
