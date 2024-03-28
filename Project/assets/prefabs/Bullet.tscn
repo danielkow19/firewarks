@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0ounhj71g27q"]
+[gd_scene load_steps=15 format=3 uid="uid://c0ounhj71g27q"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Bullet.cs" id="1_qc7qp"]
-[ext_resource type="Texture2D" uid="uid://colenu8fb8b1f" path="res://assets/sprites/bullets/firework-spark.png" id="2_8plhr"]
 [ext_resource type="Texture2D" uid="uid://cefsi5crsmi7s" path="res://assets/sprites/bullets/spritesheet-bullet-spark.png" id="3_tsdr0"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_1rgbt"]
 [ext_resource type="Script" path="res://assets/Scripts/BulletTrail.cs" id="4_floe7"]
@@ -75,10 +74,6 @@ animations = [{
 [node name="Area2D" type="Area2D"]
 collision_layer = 2
 script = ExtResource("1_qc7qp")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_8plhr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
