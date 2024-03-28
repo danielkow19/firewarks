@@ -65,6 +65,7 @@ public partial class ColorSwap : ColorRect
 	{
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
+		sprite = GetNode<AnimatedSprite2D>("%FlyingSprite");
 		colorIndex = 0;
 
 		// Assign childRects 0 color
