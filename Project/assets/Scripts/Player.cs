@@ -108,6 +108,7 @@ public partial class Player : Area2D
 	PackedScene hitFX = GD.Load<PackedScene>("res://assets/prefabs/SFXHit.tscn");
 	PackedScene trailBullet = GD.Load<PackedScene>("res://assets/prefabs/TrailBullet.tscn");
 	PackedScene orbitPU = GD.Load<PackedScene>("res://assets/prefabs/SparkRingPU.tscn");
+	PackedScene randomFireworks =  GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurstPowerup.tscn");
 
 
 	// Trail reference for pausing
@@ -697,6 +698,10 @@ public partial class Player : Area2D
 				instance.Set("passer", powerUpPasser);
 				instance.Set("owner", this);
 				AddChild(instance);
+				break;
+			
+			case PowerUpType.RandomFireworks:
+				FirePattern(randomFireworks);
 				break;
 			
 			default:

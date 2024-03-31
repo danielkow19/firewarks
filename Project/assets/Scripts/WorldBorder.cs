@@ -6,7 +6,8 @@ public partial class WorldBorder : Area2D
 {
 	private Timer countDown;
 	private float scale;
-
+	// TODO: return world border positions so powerups and random bullets don't spawn outside the map 
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
