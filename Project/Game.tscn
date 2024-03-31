@@ -31,12 +31,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="FPS" type="Label" parent="Debug"]
+z_index = 10
 layout_mode = 0
-offset_left = -51.0
-offset_top = 285.0
-offset_right = 176.0
-offset_bottom = 347.0
+offset_left = -30.0
+offset_top = 440.983
+offset_right = 31.0
+offset_bottom = 463.983
 text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("8_24xvk")
 
 [node name="Spawner_Resource" type="Node2D" parent="."]
