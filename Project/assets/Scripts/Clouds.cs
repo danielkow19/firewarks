@@ -32,6 +32,7 @@ public partial class Clouds : Area2D
 
 	// Variables for pausing
 	[Export]
+	private int numClouds;
 	private Array<Sprite2D> sprites;
 	private bool isVisible = true;
 	// Called when the node enters the scene tree for the first time.
@@ -116,6 +117,21 @@ public partial class Clouds : Area2D
 			}
 			timers = new double[timersHolder.Length];
 			setTimers();
+		}
+
+		sprites = new Array<Sprite2D>();
+		// Assign cloud sprites to the array
+		for(int i = 1;i < numClouds +1; i++)
+		{
+			if(i > 1)
+			{
+				sprites.Add(GetNode<Sprite2D>($"Sprite2D{i}"));
+            }
+			else
+			{
+				sprites.Add(GetNode<Sprite2D>("Sprite2D"));
+			}
+			
 		}
 	}
 
