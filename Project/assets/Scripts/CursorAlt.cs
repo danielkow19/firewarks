@@ -46,11 +46,14 @@ public partial class CursorAlt : Node2D
 		// Cursor movement Logic
 		if(Input.IsActionJustPressed($"Up_{playerNum}")) {
 			positionIndex -= 2;
-		} else if (Input.IsActionJustPressed($"Down_{playerNum}")) {
+		} 
+		else if (Input.IsActionJustPressed($"Down_{playerNum}")) {
 			positionIndex += 2;
-		} else if (Input.IsActionJustPressed($"Left_{playerNum}")) {
+		} 
+		else if (Input.IsActionJustPressed($"Left_{playerNum}")) {
 			positionIndex -= 1;
-		} else if (Input.IsActionJustPressed($"Right_{playerNum}")) {
+		} 
+		else if (Input.IsActionJustPressed($"Right_{playerNum}")) {
 			positionIndex += 1;
 		}
 
