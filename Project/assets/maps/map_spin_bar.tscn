@@ -14,9 +14,9 @@ size = Vector2(1730, 80)
 metadata/_edit_vertical_guides_ = [960.0, -960.0, -860.0, 860.0]
 metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 
-[node name="Cloud Wall" type="Area2D" parent="." node_paths=PackedStringArray("sprites")]
+[node name="Cloud Wall" type="Area2D" parent="."]
 script = ExtResource("1_irs00")
-sprites = []
+numClouds = 36
 
 [node name="Center Cloud Group" type="CollisionShape2D" parent="Cloud Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")

@@ -8,7 +8,7 @@ public partial class CursorAlt : Node2D
 	bool infoAdded = false;
 	public int playerNum;
 	public int positionIndex;
-	private Godot.Vector2[] positions = {new Godot.Vector2(510, 100), new Godot.Vector2(850, 100), new Godot.Vector2(510, 200), new Godot.Vector2(855, 200), new Godot.Vector2(510, 300), new Godot.Vector2(850, 300), new Godot.Vector2(565, 400)};
+	private Godot.Vector2[] positions = {new Godot.Vector2(550, 100), new Godot.Vector2(550, 200), new Godot.Vector2(550, 300), new Godot.Vector2(565, 400)};
 	private List<Button> ButtonList;
 	private List<PackedScene> patternsList;
 
@@ -23,6 +23,8 @@ public partial class CursorAlt : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Input.ActionRelease($"UI_Click_{playerNum}");
+
 		positionIndex = 0;
 
         ButtonList = new List<Button> { GetNode<Button>("../ColorLeft"), GetNode<Button>("../ColorRight"), 
@@ -43,17 +45,44 @@ public partial class CursorAlt : Node2D
 	{
 		// Cursor movement Logic
 		if(Input.IsActionJustPressed($"Up_{playerNum}")) {
-			positionIndex -= 2;
-		} else if (Input.IsActionJustPressed($"Down_{playerNum}")) {
-			positionIndex += 2;
-		} else if (Input.IsActionJustPressed($"Left_{playerNum}")) {
 			positionIndex -= 1;
-		} else if (Input.IsActionJustPressed($"Right_{playerNum}")) {
+		} 
+		else if (Input.IsActionJustPressed($"Down_{playerNum}")) {
 			positionIndex += 1;
+		} 
+		else if (Input.IsActionJustPressed($"Left_{playerNum}")) {
+			switch(positionIndex) {
+				case 0:// Color Left
+					colorSwap._ChangeColor("left");
+					break;
+				case 1:
+					attack1Swap._Change_Attack("left");
+					break;
+				case 2:
+				attack2Swap._Change_Attack("left");
+					break;
+				default:
+					break;
+			}
+		} 
+		else if (Input.IsActionJustPressed($"Right_{playerNum}")) {
+			switch(positionIndex) {
+				case 0:// Color Left
+					colorSwap._ChangeColor("right");
+					break;
+				case 1:
+					attack1Swap._Change_Attack("right");
+					break;
+				case 2:
+				attack2Swap._Change_Attack("right");
+					break;
+				default:
+					break;
+			}
 		}
 
 		if(positionIndex > 6) {
-			positionIndex = 6;
+			positionIndex = 3;
 		} else if (positionIndex < 0) {
 			positionIndex = 0;
 		}
@@ -63,41 +92,52 @@ public partial class CursorAlt : Node2D
 		// Cursor click logic
 		if(Input.IsActionJustPressed($"UI_Click_{playerNum}"))
 		{
-			switch(positionIndex)
-            {
-                case 0:// Color Left
-				case 1:
-					{
-						// Color Right
-						ArrowColor color = (ArrowColor)ButtonList[positionIndex];
-						color._on_pressed();
-						break;
-					}
-				case 2://Attack1Left
-				case 3://Attack1Right
-				case 4://Attack2Left
-				case 5:
-					{
-                        //Attack2Right
-						ArrowAttack attack = (ArrowAttack)ButtonList[positionIndex];
-						attack._on_pressed();
-                        break;
-					}
-				case 6:
-					{
-						//ReadyUp
-						// Feed in the PlayerInfo
-						if(!infoAdded) {
-							addPlayerInfo();
+			// switch(positionIndex)
+            // {
+            //     case 0:// Color Left
+			// 	case 1:
+			// 		{
+			// 			// Color Right
+			// 			ArrowColor color = (ArrowColor)ButtonList[positionIndex];
+			// 			color._on_pressed();
+			// 			break;
+			// 		}
+			// 	case 2://Attack1Left
+			// 	case 3://Attack1Right
+			// 	case 4://Attack2Left
+			// 	case 5:
+			// 		{
+            //             //Attack2Right
+			// 			ArrowAttack attack = (ArrowAttack)ButtonList[positionIndex];
+			// 			attack._on_pressed();
+            //             break;
+			// 		}
+			// 	case 6:
+			// 		{
+			// 			//ReadyUp
+			// 			// Feed in the PlayerInfo
+			// 			if(!infoAdded) {
+			// 				addPlayerInfo();
 
-							// Call the on press
-							ReadyButton ready = (ReadyButton)ButtonList[6];
-							ready._on_pressed();
+			// 				// Call the on press
+			// 				ReadyButton ready = (ReadyButton)ButtonList[6];
+			// 				ready._on_pressed();
 
-							infoAdded = true;
-						}
-						break;
-					}
+			// 				infoAdded = true;
+			// 			}
+			// 			break;
+			// 		}
+			// }
+			if(positionIndex == 3) {
+				if(!infoAdded) {
+					addPlayerInfo();
+
+					// Call the on press
+					ReadyButton ready = (ReadyButton)ButtonList[6];
+					ready._on_pressed();
+
+					infoAdded = true;
+				}
 			}
 		}
 	}
