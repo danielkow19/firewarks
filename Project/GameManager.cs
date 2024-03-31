@@ -161,24 +161,6 @@ public partial class GameManager : Node2D
 			GetTree().Paused = false;
 			_pauseMenu.Hide();	
 		}
-		if (_players.Count > 0)
-		{
-			foreach (Player player in _players)
-			{
-				if(!player._isDead)
-				{
-				player.ToggleHUD();
-				}
-			}
-		}
-
-		// Cloud Logic (Will need to update for more maps)
-		// Make sure we're in the game
-		if(currentScene == scenePaths[1])
-		{
-			GetNode<Clouds>("MapMovingBoxes/Cloud Box 1").ToggleCloud();
-			GetNode<Clouds>("MapMovingBoxes/Cloud Box 2").ToggleCloud();
-		}
 		_paused = !_paused;
 	}
 	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, Color color, float x, float y)
@@ -197,10 +179,8 @@ public partial class GameManager : Node2D
 	}
 	private void LoadPlayers(player_settings settings)
 	{
-		GD.Print("Load Players Called");
 		for(int i =0; i < settings.PlayerInfos.Count; i++)
 		{
-			GD.Print($"Loading player {i}");
 			SpawnPlayer(settings.PlayerInfos[i].PlayerID,
 				settings.PlayerInfos[i].LeftPattern,
 				settings.PlayerInfos[i].RightPattern,

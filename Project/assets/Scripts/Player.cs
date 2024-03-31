@@ -643,6 +643,7 @@ public partial class Player : Area2D
 	{
 		barrier = false;
 		barrierMesh.Visible = false;
+		_invTime = 0;
 	}
 
 	public void ResourceCollected(PowerUpType power)
