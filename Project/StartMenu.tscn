@@ -23,6 +23,9 @@ offset_top = 607.0
 offset_right = 1105.0
 offset_bottom = 706.0
 focus_neighbor_top = NodePath("../Menu/PlayButton")
+focus_neighbor_bottom = NodePath("../Menu/PlayButton")
+focus_next = NodePath("../Menu/PlayButton")
+focus_previous = NodePath("../Menu/PlayButton")
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
@@ -56,7 +59,10 @@ anchor_bottom = 14.275
 offset_left = -6.10352e-05
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_top = NodePath("../../ControlsButton")
 focus_neighbor_bottom = NodePath("../../ControlsButton")
+focus_next = NodePath("../../ControlsButton")
+focus_previous = NodePath("../../ControlsButton")
 text = "Play Game"
 
 [node name="TextureRect" type="TextureRect" parent="Menu"]

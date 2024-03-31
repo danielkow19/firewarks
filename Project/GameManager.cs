@@ -179,10 +179,8 @@ public partial class GameManager : Node2D
 	}
 	private void LoadPlayers(player_settings settings)
 	{
-		GD.Print("Load Players Called");
 		for(int i =0; i < settings.PlayerInfos.Count; i++)
 		{
-			GD.Print($"Loading player {i}");
 			SpawnPlayer(settings.PlayerInfos[i].PlayerID,
 				settings.PlayerInfos[i].LeftPattern,
 				settings.PlayerInfos[i].RightPattern,
