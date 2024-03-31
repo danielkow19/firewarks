@@ -23,6 +23,8 @@ public partial class CursorAlt : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Input.ActionRelease($"UI_Click_{playerNum}");
+
 		positionIndex = 0;
 
         ButtonList = new List<Button> { GetNode<Button>("../ColorLeft"), GetNode<Button>("../ColorRight"), 
