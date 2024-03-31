@@ -11,7 +11,7 @@ public enum PowerUpType
 	Barrier,
 	OrbitRing,
 	BulletSpeed,
-	//RandomFireworks,
+	RandomFireworks,
 	MobileAttacker,
 	Slowdown,
 	SmokeBomb,

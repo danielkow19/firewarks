@@ -55,8 +55,8 @@ public partial class Bullet : Area2D
 			//}
 		}
 		if(passer == "Camo"){
-			Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .1f);
-			trail.Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .1f);
+			Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
+			trail.Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
 		}
 
 		// Sets the opacity of the trail 0 - 255
