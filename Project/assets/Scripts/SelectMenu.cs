@@ -45,12 +45,10 @@ public partial class SelectMenu : Control
 		//if(((currentPos < 2 && prevPos >= 2) || (currentPos > 1 && currentPos < 4 && (prevPos >= 4 || prevPos <= 1)) || (currentPos > 3 && prevPos <= 3)) || Input.IsActionPressed("UI_Click_0")) {
 			switch(currentPos) {
 			case 0:
-			case 1:
 				displaySprite.Visible = true;
 				attackDisplay.Visible = false;
 				break;
-			case 2:
-			case 3:
+			case 1:
 				displaySprite.Visible = false;
 				attackDisplay.Visible = true;
 				switch(attack1.Text) {
@@ -84,9 +82,8 @@ public partial class SelectMenu : Control
 					attackDisplay.Play();
 				}
 				break;
-			case 4:
-			case 5:
-			case 6:
+			case 2:
+			case 3:
 				displaySprite.Visible = false;
 				attackDisplay.Visible = true;
 				switch(attack2.Text) {
