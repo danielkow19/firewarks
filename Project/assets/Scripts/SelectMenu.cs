@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 public partial class SelectMenu : Control
 {
+	public int[] attackIndices = new int[2];
 	private Node2D cursor;
 	private AnimatedSprite2D displaySprite;
 	private ColorRect color;

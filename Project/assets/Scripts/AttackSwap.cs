@@ -1,14 +1,30 @@
 using Godot;
 using System;
+using System.Diagnostics;
+using System.Linq;
 
 public partial class AttackSwap : Label
 {
+	private int attackNum;
+	private SelectMenu menuController;
 	private int attackIndex;
 	public int AttackIndex { get { return attackIndex; } }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		attackIndex = 0;
+		menuController = GetNode<SelectMenu>("../..");
+		if (this.Name.ToString().Contains("1")) {
+			attackNum = 1;
+			menuController.attackIndices[attackNum - 1] = 0;
+			attackIndex = 0;
+		} else if (this.Name.ToString().Contains("2")) {
+			attackNum = 2;
+			menuController.attackIndices[attackNum - 1] = 1;
+			attackIndex = 1;
+		} else {
+			Debug.Print("Ah this broke!");
+		}
+
 	}
 
 	public void _Change_Attack(string arrowName)
@@ -22,7 +38,10 @@ public partial class AttackSwap : Label
 				// Loop to top
 				attackIndex = 6;
 			}
-
+			if (menuController.attackIndices[attackNum % 2] == attackIndex) {
+				_Change_Attack("left");
+			}
+			menuController.attackIndices[attackNum - 1] = attackIndex;
 		}
 		else if (arrowName == "right")
 		{
@@ -33,6 +52,10 @@ public partial class AttackSwap : Label
 				// Loop to bottom
 				attackIndex = 0;
 			}
+			if (menuController.attackIndices[attackNum % 2] == attackIndex) {
+				_Change_Attack("right");
+			}
+			menuController.attackIndices[attackNum - 1] = attackIndex;
 		}
 		else { return; } //Break out if something is wrong
 
