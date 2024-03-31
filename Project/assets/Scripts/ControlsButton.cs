@@ -23,7 +23,6 @@ public partial class ControlsButton : Button
 
 	private void _on_pressed()
 	{
-		GD.Print("Pressed");
 		// Change the scene
 		GetTree().ChangeSceneToFile(scenePath);
 	}
