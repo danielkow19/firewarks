@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmxncgu0f05hj"
+path="res://.godot/imported/FW Crackle.wav-7e0522aa9353eca16407f3d1a5d62034.sample"
+
+[deps]
+
+source_file="res://assets/SFX/FW Crackle.wav"
+dest_files=["res://.godot/imported/FW Crackle.wav-7e0522aa9353eca16407f3d1a5d62034.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

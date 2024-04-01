@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6lqioejw8pha"]
+
+[ext_resource type="AudioStream" uid="uid://c3fj6uo13g7hn" path="res://assets/SFX/FireWooshEffect.wav" id="1_fstfy"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_fstfy")
+pitch_scale = 1.35
+autoplay = true

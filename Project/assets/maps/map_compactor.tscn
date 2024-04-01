@@ -17,7 +17,6 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 [node name="Bottom Wall" type="Area2D" parent="."]
 position = Vector2(0, 520)
 script = ExtResource("1_vtlbq")
-numClouds = 105
 
 [node name="Box" type="CollisionShape2D" parent="Bottom Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -479,7 +478,6 @@ texture = ExtResource("5_lemed")
 [node name="Top Wall" type="Area2D" parent="."]
 position = Vector2(0, -520)
 script = ExtResource("1_vtlbq")
-numClouds = 105
 
 [node name="Box" type="CollisionShape2D" parent="Top Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -942,7 +940,6 @@ texture = ExtResource("5_lemed")
 position = Vector2(-900, 0)
 rotation = 1.5708
 script = ExtResource("1_vtlbq")
-numClouds = 105
 
 [node name="Box" type="CollisionShape2D" parent="Left Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -1405,7 +1402,6 @@ texture = ExtResource("5_lemed")
 position = Vector2(900, 0)
 rotation = 1.5708
 script = ExtResource("1_vtlbq")
-numClouds = 105
 
 [node name="Box" type="CollisionShape2D" parent="Right Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0m5h4hakr0fj"]
+
+[ext_resource type="AudioStream" uid="uid://4bn8xytj6idr" path="res://assets/SFX/wingflap.wav" id="1_4oc7p"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_4oc7p")
+autoplay = true
