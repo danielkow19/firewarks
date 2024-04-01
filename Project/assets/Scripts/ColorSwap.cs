@@ -1,9 +1,13 @@
 using Godot;
 using System;
+using System.Diagnostics;
+using System.Linq;
 
 public partial class ColorSwap : ColorRect
 {
 	// Reference to child rect
+	private int playerNum;
+	private player_select sceneController;
 	private ColorRect childRect;
 	private int colorIndex;
 	public int ColorIndex {  get { return colorIndex; } }
@@ -63,6 +67,9 @@ public partial class ColorSwap : ColorRect
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		sceneController = GetNode<player_select>("../..");
+		playerNum = GetNode<CursorAlt>("Cursor").playerNum;
+
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
 		sprite = GetNode<AnimatedSprite2D>("%FlyingSprite");
@@ -72,6 +79,17 @@ public partial class ColorSwap : ColorRect
 		childRect.Color = Colors.Red;
 		sprite.Modulate = Colors.Red;
 		//texture.Modulate = Colors.Red;
+		Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
+		Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
+		if(sceneController.colorIndices.Contains(colorIndex)) {
+			
+			_ChangeColor("right");
+		} else {
+			sceneController.colorIndices[playerNum] = colorIndex;
+		}
+		Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
+		Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,6 +109,10 @@ public partial class ColorSwap : ColorRect
 			{
 				colorIndex = 7;
 			}
+			if(sceneController.colorIndices.Contains(colorIndex)) {
+				_ChangeColor("left");
+			}
+			sceneController.colorIndices[playerNum] = colorIndex;
 		}
 		else if(arrowName == "right")
 		{
@@ -101,6 +123,10 @@ public partial class ColorSwap : ColorRect
 			{
 				colorIndex = 0;
 			}
+			if(sceneController.colorIndices.Contains(colorIndex)) {
+				_ChangeColor("right");
+			}
+			sceneController.colorIndices[playerNum] = colorIndex;
 		}
 		else
 		{

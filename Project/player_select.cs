@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 public partial class player_select : Control
 {
+	public int[] colorIndices = new int[4] {-1,-1,-1,-1};
 	private Button button;
 	private int numPlayers;
 	private List<int> deviceNums;
