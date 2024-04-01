@@ -3,21 +3,11 @@ using System;
 
 public partial class ControlsButton : Button
 {
-	private string currentScene;
-	private string scenePath;
+	[Export]
+	public Control _controlPop;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		currentScene = GetTree().CurrentScene.SceneFilePath;
-		if(currentScene == "res://StartMenu.tscn")
-		{
-			scenePath = "res://assets/prefabs/Controls.tscn";
-        }
-		else
-		{
-			scenePath = "res://StartMenu.tscn";
-            this.GrabFocus();
-        }
 		
 	}
 
@@ -25,6 +15,6 @@ public partial class ControlsButton : Button
 	{
 		GD.Print("Pressed");
 		// Change the scene
-		GetTree().ChangeSceneToFile(scenePath);
+		_controlPop.Visible = !_controlPop.Visible;
 	}
 }

@@ -18,13 +18,17 @@ public partial class PlayButton : Node
 
 	private void OnStartButtonPressed()
 	{
+		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+    	
 		if(scenePath == null)
 		{
-			GetTree().ChangeSceneToFile("res://Game.tscn");
+			
+			sceneManager.GoToScene("res://Game.tscn");
 		}
 		else
 		{
-			GetTree().ChangeSceneToFile(scenePath);
+			
+			sceneManager.GoToScene(scenePath);
 		}
 	}
 
