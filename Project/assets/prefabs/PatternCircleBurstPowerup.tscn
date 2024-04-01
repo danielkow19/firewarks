@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd767hgjkyow2"]
+[gd_scene load_steps=4 format=3 uid="uid://dejnx82ib1u5"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_6iffk"]
 [ext_resource type="Script" path="res://assets/Scripts/randomizePatternPosition.cs" id="2_q8iml"]

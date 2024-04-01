@@ -702,7 +702,10 @@ public partial class Player : Area2D
 				break;
 			
 			case PowerUpType.RandomFireworks:
-				FirePattern(randomFireworks);
+				var instanceRandom = randomFireworks.Instantiate();
+				instanceRandom.Set("passer", "RFW");
+				instanceRandom.Set("owner", this);
+				AddSibling(instanceRandom);
 				break;
 			
 			default:

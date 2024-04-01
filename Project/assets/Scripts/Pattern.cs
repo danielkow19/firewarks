@@ -162,7 +162,15 @@ public partial class Pattern : Node2D
 			
 								
 			instance.Set("swirl", swirl);
-			if(!playerLocked)
+
+			if(passer == "RFW")
+			{
+			GD.Print("here");
+			instance.Set("position", new Vector2(rng.RandfRange(-500,500),rng.RandfRange(-500,500)));
+			AddSibling(instance);
+			
+			}		
+			else if(!playerLocked)
 			{
 				instance.Set("position", owner.Get("position"));
 				instance.Set("rotation", owner.Get("rotation"));
@@ -220,7 +228,14 @@ public partial class Pattern : Node2D
 		instance.Set("numOfBullet", bulletPerWave[waveToSpawn]);
 		
 		instance.Set("swirl", swirl);
-		if(!playerLocked)
+
+		if(passer == "RFW")
+		{
+			GD.Print("here");
+			instance.Set("position", new Vector2(rng.RandfRange(-500,500),rng.RandfRange(-500,500)));
+			AddSibling(instance);
+		}
+		else if(!playerLocked)
 		{
 			instance.Set("position", owner.Get("position"));
 			instance.Set("rotation", owner.Get("rotation"));
