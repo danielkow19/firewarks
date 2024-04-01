@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cs6dbil364eee"]
+[gd_scene load_steps=7 format=3 uid="uid://cs6dbil364eee"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_w4u74"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
 [ext_resource type="AudioStream" uid="uid://7v30tj2kp1oq" path="res://assets/Music/menusongfirstdraft.wav" id="4_ptfvf"]
+[ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_scr21"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
 font_size = 64
@@ -50,4 +51,8 @@ _gameManager = NodePath("..")
 stream = ExtResource("4_ptfvf")
 autoplay = true
 
+[node name="SFXClick" parent="." instance=ExtResource("5_scr21")]
+autoplay = false
+
+[connection signal="pressed" from="Control/PlayButton" to="SFXClick" method="play"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="play"]

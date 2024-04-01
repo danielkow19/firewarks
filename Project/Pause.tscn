@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7s7plnuj4l5w"]
+[gd_scene load_steps=7 format=3 uid="uid://c7s7plnuj4l5w"]
 
 [ext_resource type="Script" path="res://Pause.cs" id="1_dm0uu"]
 [ext_resource type="Shader" path="res://Pause.gdshader" id="2_hlb4a"]
+[ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="3_tpbxb"]
+[ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="4_cxguj"]
+[ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_jh2lq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p2157"]
 shader = ExtResource("2_hlb4a")
@@ -57,5 +60,15 @@ focus_previous = NodePath("../Resume")
 text = "Quit
 "
 
+[node name="SFXUp" parent="." instance=ExtResource("3_tpbxb")]
+
+[node name="SFXDown" parent="." instance=ExtResource("4_cxguj")]
+
+[node name="SFXClick" parent="." instance=ExtResource("5_jh2lq")]
+
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/Resume" to="SFXDown" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="SFXClick" method="play"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/Quit" to="SFXUp" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="SFXClick" method="play"]

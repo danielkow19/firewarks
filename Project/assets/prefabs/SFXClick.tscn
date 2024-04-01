@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c54p1tb4dmpdt"]
+
+[ext_resource type="AudioStream" uid="uid://kp6mod7h7ap3" path="res://assets/SFX/Click.wav" id="1_4lt1c"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_4lt1c")
+autoplay = true

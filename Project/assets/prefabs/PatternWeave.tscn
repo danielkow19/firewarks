@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_s18ce"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_s18ce")
 waves = 6
 delay = 0.33

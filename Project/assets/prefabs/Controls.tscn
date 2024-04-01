@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj38wh3s1d4oj"]
+[gd_scene load_steps=4 format=3 uid="uid://xcwra4xefee6"]
 
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="1_cp0m4"]
+[ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="2_o4uu5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amicp"]
 font_size = 32
@@ -87,4 +88,8 @@ grow_vertical = 0
 text = "Return"
 script = ExtResource("1_cp0m4")
 
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("2_o4uu5")]
+autoplay = false
+
 [connection signal="pressed" from="ColorRect/ControlsButton" to="ColorRect/ControlsButton" method="_on_pressed"]
+[connection signal="pressed" from="ColorRect/ControlsButton" to="AudioStreamPlayer" method="play"]

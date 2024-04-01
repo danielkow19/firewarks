@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3gf7t8jkovvp"]
+
+[ext_resource type="AudioStream" uid="uid://ceyjioqm7jyr5" path="res://assets/SFX/clickUp.wav" id="1_wk2v2"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_wk2v2")

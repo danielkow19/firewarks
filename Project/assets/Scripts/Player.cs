@@ -49,6 +49,7 @@ public partial class Player : Area2D
 	private Timer _burstTimer;
 	private float _burstCD;
 	private AnimatedSprite2D _burstAnimation;
+	private AudioStreamPlayer _burstSFX;
 	
 	// Particles
 	private GpuParticles2D playerDamaged;
@@ -176,6 +177,7 @@ public partial class Player : Area2D
 		_burstCD = 0.5f;
 		_burstArea.Monitoring = false;
 		_burstAnimation = GetNode<AnimatedSprite2D>("BurstArea/BurstAnimation");
+		_burstSFX = GetNode<AudioStreamPlayer>("BurstArea/BurstSFX");
 		
 
 		_trailTimer = GetNode<Timer>("%TrailCD");
@@ -471,6 +473,7 @@ public partial class Player : Area2D
 			_burstTimer.WaitTime = _burstCD;
 			_burstTimer.Start();
 			_burstAnimation.Play();
+			_burstSFX.Play();
 		} 
 		else if(_burstTimer.TimeLeft < 0.1f) 
 		{
@@ -660,6 +663,7 @@ public partial class Player : Area2D
 				_burstTimer.WaitTime = _burstCD;
 				_burstTimer.Start();
 				_burstAnimation.Play();
+				_burstSFX.Play();
 				break;
 			
 			case PowerUpType.MobileAttacker:
