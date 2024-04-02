@@ -8,6 +8,7 @@ public partial class PlayerTrail : Line2D
 {
 	private Curve2D curve;
 	private List<CollisionShape2D> tailSegments;
+	private List<Area2D> areaSegments;
 	private List<float> timeActive;
 	//private Player playerRef;
 
@@ -27,6 +28,7 @@ public partial class PlayerTrail : Line2D
 		playerRef = GetParent<Area2D>() as Player;
 		curve = new Curve2D();
 		tailSegments = new List<CollisionShape2D>();
+		areaSegments = new List<Area2D>();
 		timeActive = new List<float>();
 		//lengths = new List<float>();
 		Modulate = playerRef.Modulate;
@@ -58,6 +60,7 @@ public partial class PlayerTrail : Line2D
 			((SegmentShape2D)newColShape.Shape).B = Points[Points.Length - 1];	
 			newSegment.AddChild(newColShape);	
 			tailSegments.Add(newColShape);
+			areaSegments.Add(newSegment);
 			AddChild(newSegment);
 			
 			// Create a Callable for the OnAreaEntered method; This allows signals
@@ -83,9 +86,13 @@ public partial class PlayerTrail : Line2D
 			curve.RemovePoint(0);
 			timeActive.RemoveAt(0);
 			//lengths.RemoveAt(0);
-			var deleteThis = tailSegments[0];
+			var deleteThis1 = tailSegments[0];		
+			var deleteThis2 = areaSegments[0];		
+			areaSegments.RemoveAt(0);
 			tailSegments.RemoveAt(0);
-			deleteThis.QueueFree();
+			deleteThis1.QueueFree();
+			deleteThis2.QueueFree();
+			
 		}
 		
 	}

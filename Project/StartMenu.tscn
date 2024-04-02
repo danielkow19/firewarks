@@ -18,6 +18,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_7du7k")
 _players = []
+isStart = true
 metadata/_edit_vertical_guides_ = [960.0]
 
 [node name="ControlsButton" type="Button" parent="."]
@@ -32,7 +33,6 @@ focus_previous = NodePath("../Menu/PlayButton")
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
-_controlPop = NodePath("../Controls")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -100,4 +100,3 @@ autoplay = false
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="play"]
 
 [editable path="PauseMenu"]
-[editable path="Controls"]
