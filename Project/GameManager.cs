@@ -9,6 +9,10 @@ public partial class GameManager : Node2D
 {
 	[Export]
 	public Godot.Collections.Array<Player> _players;
+	[Export]
+	private bool isGame = false;
+	[Export]
+	private bool isStart = false;
 
 	private string[] scenePaths = { "res://StartMenu.tscn", "res://Game.tscn", "res://GameOver.tscn" };
 	private Control _pauseMenu;
@@ -33,15 +37,14 @@ public partial class GameManager : Node2D
 		_paused = false;
 
 		// Set current Scene
-		currentScene = GetTree().CurrentScene.SceneFilePath;
 
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
-		if (currentScene == scenePaths[1])
+		if (isGame)
 		{
 			// Handle player spawning
 			LoadPlayers(settings);
 		}
-		else if(currentScene == scenePaths[0])
+		else if(isStart)
 		{
 			settings.Clear();
 		}
@@ -109,7 +112,8 @@ public partial class GameManager : Node2D
 
 		if (PlayersDead())
 		{
-			GetTree().ChangeSceneToFile("res://GameOver.tscn");
+			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.GoToScene("res://GameOver.tscn");
 		}
 	}
 	private bool PlayersDead()

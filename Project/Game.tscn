@@ -16,6 +16,7 @@
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
+isGame = true
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 position = Vector2(0, 1.0035)

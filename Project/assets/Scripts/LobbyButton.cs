@@ -17,6 +17,7 @@ public partial class LobbyButton : Button
 	}
 	private void _on_pressed()
 	{
-		GetTree().ChangeSceneToFile(gameScene);
+		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		sceneManager.GoToScene(gameScene);
 	}
 }
