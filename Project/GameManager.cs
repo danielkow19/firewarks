@@ -68,13 +68,15 @@ public partial class GameManager : Node2D
 		if (Input.IsKeyPressed(Key.Key8))
 		{
 			// Change to Start Screen
-			GetTree().ChangeSceneToFile(scenePaths[0]);
+			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.GoToScene(scenePaths[0]);
 		}
 
 		if (Input.IsKeyPressed(Key.Key9))
 		{
 			// Change to Gameplay Scenevvvv
-			GetTree().ChangeSceneToFile(scenePaths[1]);
+			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.GoToScene(scenePaths[1]);
 		}
 
 		if (Input.IsKeyPressed(Key.V))
