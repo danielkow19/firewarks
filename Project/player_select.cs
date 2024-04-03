@@ -12,7 +12,7 @@ public partial class player_select : Control
 	private List<int> deviceNums;
 	bool keyboardPlayer;
 	bool joinable;
-	PackedScene selectMenu = GD.Load<PackedScene>("res://assets/prefabs/SelectMenu.tscn");
+	PackedScene selectMenu;
 	private int readiedPlayers;
 
 	private Button startButton;
@@ -25,7 +25,8 @@ public partial class player_select : Control
 		keyboardPlayer = false;
 		joinable = true;
 		readiedPlayers = 0;
-
+		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		selectMenu =  sceneManager.GetReadyScene("res://assets/prefabs/SelectMenu.tscn");
 		startButton = GetNode<LobbyButton>("StartButton");
 	}
 
