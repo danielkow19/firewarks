@@ -31,6 +31,9 @@ public partial class Player : Area2D
 	private float _speed;
 	private float _slowedSpeed;
 	private Vector2 _direction;
+	private Vector2 _rawDirection;
+	[Export]
+	private float _deadzone;
 	private Vector2 _aimDirection;
 	private Vector2 _rightStickInput;
 	private float _targetRotation;
@@ -154,6 +157,8 @@ public partial class Player : Area2D
 		_speed = 300;
 		_slowedSpeed = _speed / 2;
 		_direction = Vector2.Zero;
+		_rawDirection = Vector2.Zero;
+		_deadzone = 0.1f;
 		_rightStickInput = Vector2.Zero;
 		_aimDirection = Vector2.Right;
 		_targetRotation = 0;
@@ -262,11 +267,17 @@ public partial class Player : Area2D
 		// We use string concatenation to splice in the player ID for the input system
 		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
-		
-		_direction = new Vector2(Input.GetActionStrength($"Right_{player_id}") - Input.GetActionStrength($"Left_{player_id}"),  Input.GetActionStrength($"Down_{player_id}") - Input.GetActionStrength($"Up_{player_id}")).Normalized();
+		//Debug.Print($"{new Vector2(Input.GetActionStrength($"Right_{player_id}") - Input.GetActionStrength($"Left_{player_id}"),  Input.GetActionStrength($"Down_{player_id}") - Input.GetActionStrength($"Up_{player_id}"))}, RIGHT: {Input.GetActionStrength($"Right_{player_id}")} LEFT: {Input.GetActionStrength($"Left_{player_id}")} UP: {Input.GetActionStrength($"Up_{player_id}")} DOWN: {Input.GetActionStrength($"Down_{player_id}")}");
+		_rawDirection = new Vector2(Input.GetActionRawStrength($"Right_{player_id}") - Input.GetActionRawStrength($"Left_{player_id}"),  Input.GetActionRawStrength($"Down_{player_id}") - Input.GetActionRawStrength($"Up_{player_id}"));
+		if(_rawDirection.Length() >= _deadzone) {
+			_direction = _rawDirection.Normalized();
+		}
+		else {
+			_direction = Vector2.Zero;
+		}
+		//Debug.Print($"{_direction}");
 		//_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
-
 		// Update cool down timers
 		if (Input.IsActionJustPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{

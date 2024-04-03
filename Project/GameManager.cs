@@ -27,7 +27,12 @@ public partial class GameManager : Node2D
 	PackedScene _playerPrefab = GD.Load<PackedScene>("res://assets/prefabs/Player.tscn");
 	
 
-	
+	// Map References
+	private PackedScene blank = GD.Load<PackedScene>("res://assets/maps/map_blank.tscn");
+	private PackedScene circle = GD.Load<PackedScene>("res://assets/maps/map_circle.tscn");
+	private PackedScene compactor = GD.Load<PackedScene>("res://assets/maps/map_compactor.tscn");
+	private PackedScene movingBoxes = GD.Load<PackedScene>("res://assets/maps/map_moving_boxes.tscn");
+	private PackedScene spinningBar = GD.Load<PackedScene>("res://assets/maps/map_spin_bar.tscn");
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -44,6 +49,9 @@ public partial class GameManager : Node2D
 		{
 			// Handle player spawning
 			LoadPlayers(settings);
+
+			// Handle Map Loading
+			LoadMap(settings.MapName);
 		}
 		else if(isStart)
 		{
@@ -199,5 +207,40 @@ public partial class GameManager : Node2D
 				settings.PlayerInfos[i].X,
 				settings.PlayerInfos[i].Y);
 		}
+	}
+
+	private void LoadMap(string mapName)
+	{
+		// Choose the map
+		PackedScene map;
+
+		switch (mapName)
+		{
+			case "circle":
+				{
+					map = circle; break;
+				}
+			case "compactor":
+				{
+					map = compactor; break;
+				}
+			case "boxes":
+				{
+					map = movingBoxes; break;
+				}
+			case "bar":
+				{
+					map = spinningBar; break;
+				}
+			default:
+				{
+					map = blank; break;
+				}
+		}
+
+		// then instantiate and add to scene
+		var mapInstance = map.Instantiate();
+		mapInstance.Set("position", this.Position);
+		AddChild(mapInstance);
 	}
 }
