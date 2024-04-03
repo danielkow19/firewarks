@@ -135,7 +135,8 @@ public partial class player_select : Control
 
             // UI Click Event
 			joyButton = new InputEventJoypadButton(); 
-			joyButton.Device = jbe.Device; 
+			joyButton.Device = jbe.Device;
+			joyButton.ButtonIndex = JoyButton.A;
 			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", joyButton);
 
             InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
