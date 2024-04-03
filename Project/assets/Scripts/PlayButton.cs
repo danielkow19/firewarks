@@ -14,6 +14,12 @@ public partial class PlayButton : Node
 		button.Pressed += OnStartButtonPressed;
 		button.GrabFocus();
 		isFocused = false;
+		if(scenePath != null)
+		{
+			GD.Print("here");
+			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.ReadyScene(scenePath);
+		}
 	}
 
 	private void OnStartButtonPressed()
@@ -28,7 +34,7 @@ public partial class PlayButton : Node
 		else
 		{
 			
-			sceneManager.GoToScene(scenePath);
+			sceneManager.GotoReadyScene(scenePath);
 		}
 	}
 
