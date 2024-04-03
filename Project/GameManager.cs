@@ -25,6 +25,7 @@ public partial class GameManager : Node2D
 
 	// Player Scene
 	PackedScene _playerPrefab = GD.Load<PackedScene>("res://assets/prefabs/Player.tscn");
+	
 
 	// Map References
 	private PackedScene blank = GD.Load<PackedScene>("res://assets/maps/map_blank.tscn");
@@ -54,7 +55,10 @@ public partial class GameManager : Node2D
 		}
 		else if(isStart)
 		{
-			settings.Clear();
+			settings.Clear();	
+			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.ReadyScene("res://assets/prefabs/SelectMenu.tscn");
+					
 		}
 	}
 
@@ -100,7 +104,8 @@ public partial class GameManager : Node2D
 		if (Input.IsKeyPressed(Key.Key0))
 		{
 			// Change to GameOver Scene
-			GetTree().ChangeSceneToFile(scenePaths[2]);
+			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+			sceneManager.GoToScene(scenePaths[2]);
 		}
 
 		if (Input.IsKeyPressed(Key.P))

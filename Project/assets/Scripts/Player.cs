@@ -267,7 +267,7 @@ public partial class Player : Area2D
 		// We use string concatenation to splice in the player ID for the input system
 		// The controls will have a naming convention of Action_{player_id}, player ID starts from 0 and goes up to 3
 		// Players 1 and 2 can will have keyboard control backups for testing (WASD and arrow keys respectively)
-		Debug.Print($"{new Vector2(Input.GetActionStrength($"Right_{player_id}") - Input.GetActionStrength($"Left_{player_id}"),  Input.GetActionStrength($"Down_{player_id}") - Input.GetActionStrength($"Up_{player_id}"))}, RIGHT: {Input.GetActionStrength($"Right_{player_id}")} LEFT: {Input.GetActionStrength($"Left_{player_id}")} UP: {Input.GetActionStrength($"Up_{player_id}")} DOWN: {Input.GetActionStrength($"Down_{player_id}")}");
+		//Debug.Print($"{new Vector2(Input.GetActionStrength($"Right_{player_id}") - Input.GetActionStrength($"Left_{player_id}"),  Input.GetActionStrength($"Down_{player_id}") - Input.GetActionStrength($"Up_{player_id}"))}, RIGHT: {Input.GetActionStrength($"Right_{player_id}")} LEFT: {Input.GetActionStrength($"Left_{player_id}")} UP: {Input.GetActionStrength($"Up_{player_id}")} DOWN: {Input.GetActionStrength($"Down_{player_id}")}");
 		_rawDirection = new Vector2(Input.GetActionRawStrength($"Right_{player_id}") - Input.GetActionRawStrength($"Left_{player_id}"),  Input.GetActionRawStrength($"Down_{player_id}") - Input.GetActionRawStrength($"Up_{player_id}"));
 		if(_rawDirection.Length() >= _deadzone) {
 			_direction = _rawDirection.Normalized();

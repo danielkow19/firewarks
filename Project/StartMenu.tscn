@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://eyxvn7yqditg"]
+[gd_scene load_steps=13 format=3 uid="uid://eyxvn7yqditg"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_7du7k"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_5ljtf"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="8_snqrk"]
 [ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="9_xlatk"]
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
+[ext_resource type="PackedScene" uid="uid://xcwra4xefee6" path="res://assets/prefabs/Controls.tscn" id="11_u2ecx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
 font_size = 128
@@ -20,7 +21,7 @@ script = ExtResource("1_7du7k")
 _players = []
 metadata/_edit_vertical_guides_ = [960.0]
 
-[node name="ControlsButton" type="Button" parent="."]
+[node name="ControlsButton" type="Button" parent="." node_paths=PackedStringArray("_controlPop")]
 offset_left = 817.0
 offset_top = 607.0
 offset_right = 1105.0
@@ -32,6 +33,7 @@ focus_previous = NodePath("../Menu/PlayButton")
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
+_controlPop = NodePath("../Controls")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -95,6 +97,16 @@ autoplay = false
 
 [node name="SFXDown" parent="." instance=ExtResource("10_5mufp")]
 
+[node name="Controls" parent="." instance=ExtResource("11_u2ecx")]
+visible = false
+offset_left = 960.0
+offset_top = 550.0
+offset_right = 960.0
+offset_bottom = 550.0
+
+[node name="ControlsButton" parent="Controls/ColorRect" index="2" node_paths=PackedStringArray("_controlPop")]
+_controlPop = NodePath("../..")
+
 [connection signal="focus_exited" from="ControlsButton" to="SFXUp" method="play"]
 [connection signal="pressed" from="ControlsButton" to="ControlsButton" method="_on_pressed"]
 [connection signal="pressed" from="ControlsButton" to="SFXClick" method="play"]
@@ -104,3 +116,4 @@ autoplay = false
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="play"]
 
 [editable path="PauseMenu"]
+[editable path="Controls"]
