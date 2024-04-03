@@ -18,7 +18,6 @@ outline_color = Color(0, 0, 0, 1)
 [node name="StartMenu" type="Node2D" node_paths=PackedStringArray("_players")]
 script = ExtResource("1_7du7k")
 _players = []
-isStart = true
 metadata/_edit_vertical_guides_ = [960.0]
 
 [node name="ControlsButton" type="Button" parent="."]
