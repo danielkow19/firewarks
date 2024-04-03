@@ -12,7 +12,6 @@ public partial class PlayButton : Node
 	{
 		button = GetNode<Button>("PlayButton");
 		button.Pressed += OnStartButtonPressed;
-		button.GrabFocus();
 		isFocused = false;
 	}
 
