@@ -9,16 +9,19 @@ public partial class player_settings : Node
 	// Scene information
 	private string currentScene;
 	private string lobbyScene = "res://assets/prefabs/PlayerNumbers.tscn";
+	private string mapName;
 
 
     private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
 	public Godot.Collections.Array<PlayerInfo> PlayerInfos { get { return _players; } }
+	public string MapName { get { return mapName; } }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		currentScene = GetTree().CurrentScene.SceneFilePath;
 		// Clear the list when entering lobby (No Ghost players)
 		if(currentScene == lobbyScene) { _players.Clear(); }
+		mapName = "boxes";
     }
 
 	public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, Vector2 position)
