@@ -18,7 +18,8 @@ public partial class player_settings : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		currentScene = GetTree().CurrentScene.SceneFilePath;
+		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
+		currentScene = scene.currentScene.SceneFilePath;
 		// Clear the list when entering lobby (No Ghost players)
 		if(currentScene == lobbyScene) { _players.Clear(); }
 		mapName = "boxes";
