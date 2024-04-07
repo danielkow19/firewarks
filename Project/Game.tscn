@@ -15,6 +15,7 @@
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
+isGame = true
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
 position = Vector2(0, 1.0035)
@@ -46,7 +47,6 @@ script = ExtResource("9_tbo5m")
 
 [node name="CloudBorder" type="Area2D" parent="." node_paths=PackedStringArray("edges")]
 script = ExtResource("10_8vbbq")
-timeSeconds = 5.0
 edges = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
