@@ -47,7 +47,7 @@ script = ExtResource("9_tbo5m")
 [node name="CloudBorder" type="Area2D" parent="." node_paths=PackedStringArray("edges")]
 script = ExtResource("10_8vbbq")
 timeSeconds = 5.0
-edges = [NodePath("BorderRight"), NodePath("BorderLeft"), NodePath("BorderTop"), NodePath("BorderBottom")]
+edges = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
 scale = Vector2(0.9, 0.9)
@@ -57,29 +57,43 @@ polygon = PackedVector2Array(-6000, -3375, -960, -540, -960, 540, 960, 540, 960,
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("6_pm6ws")
 
-[node name="BorderRight" type="Sprite2D" parent="CloudBorder"]
+[node name="Marker2D" type="Marker2D" parent="CloudBorder"]
 top_level = true
-position = Vector2(1160, 0)
+position = Vector2(864, 0)
+
+[node name="BorderRight" type="Sprite2D" parent="CloudBorder/Marker2D"]
+position = Vector2(360, 0)
+scale = Vector2(1.2, 1)
 texture = ExtResource("7_hfr57")
 
-[node name="BorderLeft" type="Sprite2D" parent="CloudBorder"]
+[node name="Marker2D2" type="Marker2D" parent="CloudBorder"]
 top_level = true
-position = Vector2(-1160, 0)
-scale = Vector2(-1, -1)
+position = Vector2(-864, 0)
+
+[node name="BorderLeft" type="Sprite2D" parent="CloudBorder/Marker2D2"]
+position = Vector2(-360, 0)
+rotation = -3.14159
+scale = Vector2(1.2, 1)
 texture = ExtResource("7_hfr57")
 
-[node name="BorderTop" type="Sprite2D" parent="CloudBorder"]
+[node name="Marker2D3" type="Marker2D" parent="CloudBorder"]
 top_level = true
-position = Vector2(0, -782)
-rotation = -1.5708
-scale = Vector2(1, -2)
-texture = ExtResource("7_hfr57")
+position = Vector2(0, 486)
 
-[node name="BorderBottom" type="Sprite2D" parent="CloudBorder"]
-top_level = true
-position = Vector2(0, 780)
+[node name="BorderBottom" type="Sprite2D" parent="CloudBorder/Marker2D3"]
+position = Vector2(0, 294)
 rotation = 1.5708
 scale = Vector2(1, 2)
+texture = ExtResource("7_hfr57")
+
+[node name="Marker2D4" type="Marker2D" parent="CloudBorder"]
+top_level = true
+position = Vector2(0, -486)
+
+[node name="BorderTop" type="Sprite2D" parent="CloudBorder/Marker2D4"]
+position = Vector2(0, -294)
+rotation = -1.5708
+scale = Vector2(1, -2)
 texture = ExtResource("7_hfr57")
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("7_wexeu")]

@@ -8,8 +8,9 @@ public partial class WorldBorder : Area2D
 	[Export] private double timeSeconds = 300f;
 	private Timer countDown;
 	private float scale;
+	private Vector2 colliderScale; // May be different than scale, pivots need to work with this
 	[Export] private float closingRate = .05f;
-	[Export] private Sprite2D[] edges;
+	[Export] private Marker2D[] edges; // Pivots for the actual edges
 	public Vector2 edgePosition;
 	
 	/// <summary>
@@ -22,9 +23,10 @@ public partial class WorldBorder : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		scale = 1;
+		scale = Scale.X;
 		countDown = new Timer();
 		AddChild(countDown);
+		colliderScale = GetChild<CollisionPolygon2D>(0).Scale;
 		countDown.OneShot = true;
 		countDown.Start(timeSeconds); 
 		edgePosition = GetChild<CollisionPolygon2D>(0).Polygon[1].Abs();
@@ -51,30 +53,29 @@ public partial class WorldBorder : Area2D
 
 			
 			// Update position of edges
-			foreach (Sprite2D edge in edges)
+			foreach (Marker2D edge in edges)
 			{
 				// Determine correct edge
 				if (edge.GlobalPosition.X == 0)
 				{
 					if (edge.GlobalPosition.Y < 0)
 					{
-						edge.Anch
-						edge.GlobalPosition = new Vector2(0, -edgePosition.Y * 1.5625f);
+						edge.GlobalPosition = new Vector2(0, -edgePosition.Y * colliderScale.Y);
 					}
 					else
 					{
-						edge.GlobalPosition = new Vector2(0, edgePosition.Y * 1.5625f);
+						edge.GlobalPosition = new Vector2(0, edgePosition.Y * colliderScale.Y);
 					}
 				}
 				else
 				{
 					if (edge.GlobalPosition.X < 0)
 					{
-						edge.GlobalPosition = new Vector2(-edgePosition.X - 200, 0);
+						edge.GlobalPosition = new Vector2(-edgePosition.X * .9f, colliderScale.X);
 					}
 					else
 					{
-						edge.GlobalPosition = new Vector2(edgePosition.X + 200, 0);
+						edge.GlobalPosition = new Vector2(edgePosition.X * .9f, colliderScale.X);
 					}
 				}
 			}
