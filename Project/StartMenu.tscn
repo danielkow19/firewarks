@@ -30,6 +30,8 @@ focus_neighbor_top = NodePath("../Menu/PlayButton")
 focus_neighbor_bottom = NodePath("../Menu/PlayButton")
 focus_next = NodePath("../Menu/PlayButton")
 focus_previous = NodePath("../Menu/PlayButton")
+theme_override_fonts/font = ExtResource("4_yx0w2")
+theme_override_font_sizes/font_size = 40
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
@@ -68,6 +70,8 @@ focus_neighbor_top = NodePath("../../ControlsButton")
 focus_neighbor_bottom = NodePath("../../ControlsButton")
 focus_next = NodePath("../../ControlsButton")
 focus_previous = NodePath("../../ControlsButton")
+theme_override_fonts/font = ExtResource("4_yx0w2")
+theme_override_font_sizes/font_size = 40
 text = "Play Game"
 
 [node name="TextureRect" type="TextureRect" parent="Menu"]
