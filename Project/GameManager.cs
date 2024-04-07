@@ -127,6 +127,8 @@ public partial class GameManager : Node2D
 
 		if (PlayersDead())
 		{
+			player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+			settings.Clear();
 			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 			sceneManager.GoToScene("res://GameOver.tscn");
 		}
