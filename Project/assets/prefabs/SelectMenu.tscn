@@ -237,10 +237,4 @@ offset_bottom = 100.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_j5kwg")
 
-[connection signal="pressed" from="ColorRect/ColorLeft" to="ColorRect/ColorLeft" method="_on_pressed"]
-[connection signal="pressed" from="ColorRect/ColorRight" to="ColorRect/ColorRight" method="_on_pressed"]
-[connection signal="pressed" from="ColorRect/Attack1Left" to="ColorRect/Attack1Left" method="_on_pressed"]
-[connection signal="pressed" from="ColorRect/Attack1Right" to="ColorRect/Attack1Right" method="_on_pressed"]
-[connection signal="pressed" from="ColorRect/Attack2Left" to="ColorRect/Attack2Left" method="_on_pressed"]
-[connection signal="pressed" from="ColorRect/Attack2Right" to="ColorRect/Attack2Right" method="_on_pressed"]
 [connection signal="pressed" from="ColorRect/ReadyUp" to="ColorRect/ReadyUp/AudioStreamPlayer" method="play"]
