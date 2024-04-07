@@ -12,7 +12,7 @@ public partial class player_settings : Node
 	private string mapName;
 
 
-    private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
+	private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
 	public Godot.Collections.Array<PlayerInfo> PlayerInfos { get { return _players; } }
 	public string MapName { get { return mapName; } }
 	// Called when the node enters the scene tree for the first time.
@@ -23,7 +23,7 @@ public partial class player_settings : Node
 		// Clear the list when entering lobby (No Ghost players)
 		if(currentScene == lobbyScene) { _players.Clear(); }
 		mapName = "boxes";
-    }
+	}
 
 	public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, Vector2 position)
 	{

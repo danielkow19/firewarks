@@ -1,12 +1,23 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using FireWARks.assets.Scripts;
 
 public partial class WorldBorder : Area2D
 {
+	[Export] private double timeSeconds = 300f;
 	private Timer countDown;
 	private float scale;
-	// TODO: return world border positions so powerups and random bullets don't spawn outside the map 
+	[Export] private float closingRate = .05f;
+	[Export] private Sprite2D[] edges;
+	public Vector2 edgePosition;
+	
+	/// <summary>
+	/// Class Assumptions
+	///		- Everything is centered at (0,0)
+	///		- The top left vertex of the collision polygon is vertex 1, and the collision polygon is the first child
+	///		- All edges are positioned correctly and of appropriate size
+	/// </summary>
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -15,7 +26,8 @@ public partial class WorldBorder : Area2D
 		countDown = new Timer();
 		AddChild(countDown);
 		countDown.OneShot = true;
-		countDown.Start(300); // TODO: Make this a public variable that can be changed in the inspector. Currently is 5 minutes.
+		countDown.Start(timeSeconds); 
+		edgePosition = GetChild<CollisionPolygon2D>(0).Polygon[1].Abs();
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,14 +35,49 @@ public partial class WorldBorder : Area2D
 	{
 		if (countDown.TimeLeft == 0 && Math.Abs(scale - .25f) > .01f)
 		{
-			scale -= .05f * (float)delta;
+			scale -= closingRate * (float)delta;
 
 			if (scale < .25f)
 			{
 				scale = .25f;
 			}
 			
+			// Changes the scale of this collider, Sprites are top level so are unaffected
 			Scale = new Vector2(scale, scale);
+			
+			
+			// Top left corner
+			edgePosition = GetChild<CollisionPolygon2D>(0).Polygon[1].Abs() * scale;
+
+			
+			// Update position of edges
+			foreach (Sprite2D edge in edges)
+			{
+				// Determine correct edge
+				if (edge.GlobalPosition.X == 0)
+				{
+					if (edge.GlobalPosition.Y < 0)
+					{
+						edge.Anch
+						edge.GlobalPosition = new Vector2(0, -edgePosition.Y * 1.5625f);
+					}
+					else
+					{
+						edge.GlobalPosition = new Vector2(0, edgePosition.Y * 1.5625f);
+					}
+				}
+				else
+				{
+					if (edge.GlobalPosition.X < 0)
+					{
+						edge.GlobalPosition = new Vector2(-edgePosition.X - 200, 0);
+					}
+					else
+					{
+						edge.GlobalPosition = new Vector2(edgePosition.X + 200, 0);
+					}
+				}
+			}
 		}
 	}
 	

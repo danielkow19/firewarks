@@ -27,18 +27,18 @@ public partial class CursorAlt : Node2D
 
 		positionIndex = 0;
 
-        ButtonList = new List<Button> { GetNode<Button>("../ColorLeft"), GetNode<Button>("../ColorRight"), 
+		ButtonList = new List<Button> { GetNode<Button>("../ColorLeft"), GetNode<Button>("../ColorRight"), 
 			GetNode<Button>("../Attack1Left") ,GetNode<Button>("../Attack1Right"),
-            GetNode<Button>("../Attack2Left"), GetNode<Button>("../Attack2Right"),
-            GetNode<Button>("../ReadyUp")
-        };
+			GetNode<Button>("../Attack2Left"), GetNode<Button>("../Attack2Right"),
+			GetNode<Button>("../ReadyUp")
+		};
 
 		patternsList = new List<PackedScene> { GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn"),
 			GD.Load<PackedScene>("res://assets/prefabs/PatternFastSS.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternKnot.tscn"),
 			GD.Load<PackedScene>("res://assets/prefabs/PatternSpreadShot.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternSwirl.tscn"),
 			GD.Load<PackedScene>("res://assets/prefabs/PatternWeave.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternWillow.tscn")
 		};
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -93,8 +93,8 @@ public partial class CursorAlt : Node2D
 		if(Input.IsActionJustPressed($"UI_Click_{playerNum}"))
 		{
 			// switch(positionIndex)
-            // {
-            //     case 0:// Color Left
+			// {
+			//     case 0:// Color Left
 			// 	case 1:
 			// 		{
 			// 			// Color Right
@@ -107,10 +107,10 @@ public partial class CursorAlt : Node2D
 			// 	case 4://Attack2Left
 			// 	case 5:
 			// 		{
-            //             //Attack2Right
+			//             //Attack2Right
 			// 			ArrowAttack attack = (ArrowAttack)ButtonList[positionIndex];
 			// 			attack._on_pressed();
-            //             break;
+			//             break;
 			// 		}
 			// 	case 6:
 			// 		{
@@ -143,14 +143,14 @@ public partial class CursorAlt : Node2D
 	}
 	public void addPlayerInfo()
 	{
-        // get a reference to the player_settings singleton
-        player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		// get a reference to the player_settings singleton
+		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 
 		// position logic will go below
 		// Have code that takes in the map, then the player ID to determine the spawn position
 
 		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, getSpawnPosition());
-    }
+	}
 	private float getSpawnX()
 	{
 		switch(playerNum)
@@ -167,12 +167,12 @@ public partial class CursorAlt : Node2D
 				{
 					return -500f;
 
-                }
+				}
 			case 3:
 				{
 					return 500f;
 
-                }
+				}
 			default:
 				{
 					return 0f;

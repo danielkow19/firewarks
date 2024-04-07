@@ -56,8 +56,8 @@ public partial class PlayerTrail : Line2D
 			CollisionShape2D newColShape = (CollisionShape2D)collisionShape.Duplicate();
 			Shape2D newShape = (Shape2D)collisionShape.Shape.Duplicate();
 			newColShape.Shape = newShape;
-			((SegmentShape2D)newColShape.Shape).A = Points[Points.Length - 2];
-			((SegmentShape2D)newColShape.Shape).B = Points[Points.Length - 1];	
+			((SegmentShape2D)newColShape.Shape).A = Points[^2];
+			((SegmentShape2D)newColShape.Shape).B = Points[^1];	
 			newSegment.AddChild(newColShape);	
 			tailSegments.Add(newColShape);
 			areaSegments.Add(newSegment);
