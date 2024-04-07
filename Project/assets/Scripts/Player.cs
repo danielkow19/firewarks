@@ -251,13 +251,6 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//_burstArea.Monitoring = false;
-
-		// We use string concatenation to splice in the player ID for the input system
-
-		if (_isDead)
-		{
-		}
 		if (!_canMove)
 		{
 			// Stops the player inputs from affecting the player object

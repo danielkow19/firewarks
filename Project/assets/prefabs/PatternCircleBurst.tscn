@@ -12,3 +12,4 @@ swirlMod = PackedInt32Array(0)
 fireAndForget = true
 initialCost = 60.0
 costPerSecond = 0.0
+recharge = 0.5
