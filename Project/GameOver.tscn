@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs6dbil364eee"]
+[gd_scene load_steps=8 format=3 uid="uid://cs6dbil364eee"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_w4u74"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
+[ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_dxxvd"]
 [ext_resource type="AudioStream" uid="uid://7v30tj2kp1oq" path="res://assets/Music/menusongfirstdraft.wav" id="4_ptfvf"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_scr21"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
+font = ExtResource("3_dxxvd")
 font_size = 64
 
 [node name="GameOver" type="Node2D" node_paths=PackedStringArray("_players")]
@@ -32,16 +34,19 @@ offset_left = 25.0
 offset_top = 409.0
 offset_right = 205.0
 offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("3_dxxvd")
+theme_override_font_sizes/font_size = 40
 text = "Play Again"
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 832.0
+offset_left = 786.0
 offset_top = 40.0
-offset_right = 1197.0
-offset_bottom = 128.0
+offset_right = 1208.0
+offset_bottom = 145.0
 text = "Game Over!"
 label_settings = SubResource("LabelSettings_uw0au")
+horizontal_alignment = 1
 
 [node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("3_2c1t3")]
 unique_name_in_owner = true

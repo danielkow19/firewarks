@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7s7plnuj4l5w"]
+[gd_scene load_steps=8 format=3 uid="uid://c7s7plnuj4l5w"]
 
 [ext_resource type="Script" path="res://Pause.cs" id="1_dm0uu"]
 [ext_resource type="Shader" path="res://Pause.gdshader" id="2_hlb4a"]
+[ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_3lcw6"]
 [ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="3_tpbxb"]
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="4_cxguj"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_jh2lq"]
@@ -38,6 +39,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_3lcw6")
 text = "Paused"
 horizontal_alignment = 1
 
@@ -48,6 +50,7 @@ focus_neighbor_top = NodePath("../Quit")
 focus_neighbor_bottom = NodePath("../Quit")
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Quit")
+theme_override_fonts/font = ExtResource("3_3lcw6")
 text = "Resume"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -57,6 +60,7 @@ focus_neighbor_top = NodePath("../Resume")
 focus_neighbor_bottom = NodePath("../Resume")
 focus_next = NodePath("../Resume")
 focus_previous = NodePath("../Resume")
+theme_override_fonts/font = ExtResource("3_3lcw6")
 text = "Quit
 "
 
