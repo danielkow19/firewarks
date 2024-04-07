@@ -13,3 +13,4 @@ spinPerWave = PackedFloat32Array(45)
 spinAccelPerWave = PackedFloat32Array(0)
 swirl = true
 swirlMod = PackedInt32Array(60)
+recharge = 0.5

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn0xj8glxcnl4"]
+[gd_scene load_steps=6 format=3 uid="uid://dn0xj8glxcnl4"]
 
+[ext_resource type="Script" path="res://assets/Scripts/MapSelect.cs" id="1_obw0t"]
 [ext_resource type="Texture2D" uid="uid://ciy4kb8jrvum0" path="res://assets/sprites/bullets/warning mockup.png" id="1_yffji"]
 [ext_resource type="Texture2D" uid="uid://cu23gkvtn0pfx" path="res://assets/sprites/ui/left_arrow.png" id="2_pebdu"]
 [ext_resource type="Texture2D" uid="uid://douttfa8l7stv" path="res://assets/sprites/ui/right_arrow.png" id="3_46vlp"]
@@ -15,13 +16,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_obw0t")
 
 [node name="Background Color" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="TextureRect" type="TextureRect" parent="Background Color"]
+[node name="Image" type="TextureRect" parent="Background Color"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(640, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -37,7 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_yffji")
 
-[node name="Label" type="Label" parent="Background Color"]
+[node name="MapName" type="Label" parent="Background Color"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -53,6 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Left" type="Button" parent="Background Color"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -64,6 +69,7 @@ grow_vertical = 2
 icon = ExtResource("2_pebdu")
 
 [node name="Right" type="Button" parent="Background Color"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

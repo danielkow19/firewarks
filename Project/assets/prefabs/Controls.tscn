@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://xcwra4xefee6"]
+[gd_scene load_steps=6 format=3 uid="uid://xcwra4xefee6"]
 
+[ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="1_buo02"]
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="1_cp0m4"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="2_o4uu5"]
+[ext_resource type="Texture2D" uid="uid://bwnkhx1wm4ynv" path="res://assets/sprites/ui/ui_controls_visual.png" id="3_mq5im"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amicp"]
-font_size = 32
+font = ExtResource("1_buo02")
+font_size = 64
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -45,6 +48,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -80,13 +84,22 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -90.0
-offset_top = -480.0
+offset_top = -147.0
 offset_right = 90.0
-offset_bottom = -418.0
+offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_buo02")
+theme_override_font_sizes/font_size = 40
 text = "Return"
 script = ExtResource("1_cp0m4")
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = -500.0
+offset_right = 1420.0
+offset_bottom = 1080.0
+texture = ExtResource("3_mq5im")
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource("2_o4uu5")]
 autoplay = false

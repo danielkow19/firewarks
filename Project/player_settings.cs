@@ -6,26 +6,32 @@ using System.Linq.Expressions;
 
 public partial class player_settings : Node
 {
-	// Scene information
-	private string currentScene;
-	private string lobbyScene = "res://assets/prefabs/PlayerNumbers.tscn";
+    // Scene information
+    private string currentScene;
+	private string lobbyScene = "res://player_select.tscn";
 	private string mapName;
 
 
-	private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
+    private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
 	public Godot.Collections.Array<PlayerInfo> PlayerInfos { get { return _players; } }
 	public string MapName { get { return mapName; } }
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
-		currentScene = scene.currentScene.SceneFilePath;
-		// Clear the list when entering lobby (No Ghost players)
-		if(currentScene == lobbyScene) { _players.Clear(); }
-		mapName = "boxes";
-	}
+        SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
+        currentScene = scene.currentScene.SceneFilePath;
+        // Clear the list when entering lobby (No Ghost players)
+        if (currentScene == lobbyScene) { _players.Clear(); }
+        //Connect(TreeEntered, Player_settings_TreeEntered);
+        mapName = "boxes";
+    }
 
-	public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, Vector2 position)
+    public void CheckScene()
+    {
+
+    }
+
+    public void AddPlayerInfo(int playerID, PackedScene leftPattern, PackedScene rightPattern, Color color, Vector2 position)
 	{
 		// Create a PlayerInfo and push it to the array
 		PlayerInfo player = new PlayerInfo(playerID, leftPattern, rightPattern, color, position);
