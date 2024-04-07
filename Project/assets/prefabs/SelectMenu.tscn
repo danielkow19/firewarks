@@ -192,6 +192,18 @@ script = ExtResource("6_lkdmd")
 [node name="AudioStreamPlayer" parent="ColorRect/ReadyUp" instance=ExtResource("12_ur5dw")]
 autoplay = false
 
+[node name="LtLabel" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 190.0
+offset_right = 492.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("10_di2bm")
+theme_override_font_sizes/font_size = 26
+text = "LT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Attack1Label" type="Label" parent="ColorRect"]
 layout_mode = 0
 offset_left = 570.0
@@ -203,6 +215,19 @@ label_settings = SubResource("LabelSettings_lw75j")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_txlgl")
+
+[node name="RtLabel" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 290.0
+offset_right = 492.0
+offset_bottom = 348.0
+scale = Vector2(1, 1.00726)
+theme_override_fonts/font = ExtResource("10_di2bm")
+theme_override_font_sizes/font_size = 26
+text = "RT"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Attack2Label" type="Label" parent="ColorRect"]
 layout_mode = 0
