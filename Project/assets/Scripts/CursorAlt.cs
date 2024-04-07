@@ -81,7 +81,7 @@ public partial class CursorAlt : Node2D
 			}
 		}
 
-		if(positionIndex > 6) {
+		if(positionIndex > 3) {
 			positionIndex = 3;
 		} else if (positionIndex < 0) {
 			positionIndex = 0;
