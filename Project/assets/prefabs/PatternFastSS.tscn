@@ -10,3 +10,4 @@ spreadPerWave = PackedInt32Array(75, 60)
 speedPerWave = PackedInt32Array(400)
 spinAccelPerWave = PackedFloat32Array(0)
 swirlMod = PackedInt32Array(0)
+recharge = 0.5
