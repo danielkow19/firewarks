@@ -60,7 +60,7 @@ script = ExtResource("9_tbo5m")
 
 [node name="CloudBorder" type="Area2D" parent="." node_paths=PackedStringArray("edges")]
 script = ExtResource("10_8vbbq")
-edges = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
+edges = []
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
 scale = Vector2(0.9, 0.9)
