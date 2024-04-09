@@ -17,6 +17,9 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 [node name="Bottom Wall" type="Area2D" parent="."]
 position = Vector2(0, 520)
 script = ExtResource("1_vtlbq")
+directions = PackedStringArray("None", "Up", "None", "Down", "None", "None", "None", "None")
+speed = PackedFloat64Array(50)
+timersHolder = PackedFloat64Array(5)
 
 [node name="Box" type="CollisionShape2D" parent="Bottom Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -478,6 +481,9 @@ texture = ExtResource("5_lemed")
 [node name="Top Wall" type="Area2D" parent="."]
 position = Vector2(0, -520)
 script = ExtResource("1_vtlbq")
+directions = PackedStringArray("None", "Down", "None", "Up", "None", "None", "None", "None")
+speed = PackedFloat64Array(50)
+timersHolder = PackedFloat64Array(5)
 
 [node name="Box" type="CollisionShape2D" parent="Top Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -940,6 +946,9 @@ texture = ExtResource("5_lemed")
 position = Vector2(-900, 0)
 rotation = 1.5708
 script = ExtResource("1_vtlbq")
+directions = PackedStringArray("None", "None", "None", "None", "Right", "None", "Left", "None", "None")
+speed = PackedFloat64Array(75)
+timersHolder = PackedFloat64Array(5)
 
 [node name="Box" type="CollisionShape2D" parent="Left Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -1402,6 +1411,9 @@ texture = ExtResource("5_lemed")
 position = Vector2(900, 0)
 rotation = 1.5708
 script = ExtResource("1_vtlbq")
+directions = PackedStringArray("None", "None", "None", "None", "Left", "None", "Right", "None", "None")
+speed = PackedFloat64Array(75)
+timersHolder = PackedFloat64Array(5)
 
 [node name="Box" type="CollisionShape2D" parent="Right Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -1861,3 +1873,12 @@ rotation = 0.844739
 texture = ExtResource("5_lemed")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="area_entered" from="Bottom Wall" to="Bottom Wall" method="_on_area_entered"]
+[connection signal="area_exited" from="Bottom Wall" to="Bottom Wall" method="_on_area_exited"]
+[connection signal="area_entered" from="Top Wall" to="Top Wall" method="_on_area_entered"]
+[connection signal="area_exited" from="Top Wall" to="Top Wall" method="_on_area_exited"]
+[connection signal="area_entered" from="Left Wall" to="Left Wall" method="_on_area_entered"]
+[connection signal="area_exited" from="Left Wall" to="Left Wall" method="_on_area_exited"]
+[connection signal="area_entered" from="Right Wall" to="Right Wall" method="_on_area_entered"]
+[connection signal="area_exited" from="Right Wall" to="Right Wall" method="_on_area_exited"]

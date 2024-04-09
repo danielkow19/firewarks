@@ -89,7 +89,10 @@ public partial class Clouds : Area2D
 					}
 					else
 					{
-						update[i] = 0;
+						if(i == 0)
+						{update[i] = 1;}
+						else
+						{update[i] = update[i-1];}
 					}
 				}
 				timersHolder = update;
@@ -104,8 +107,10 @@ public partial class Clouds : Area2D
 					}
 					else
 					{
-						if(i == 0){update[i] = 1;}
-						else{update[i] = update[i-1];}
+						if(i == 0)
+						{update[i] = 1;}
+						else
+						{update[i] = update[i-1];}
 					}
 				}
 				scaleHolder = update;
@@ -149,6 +154,10 @@ public partial class Clouds : Area2D
 			{
 				Rotate(-2*(float)Math.PI);
 			}
+			if(Rotation < -2*Math.PI)
+			{
+				Rotate(2*(float)Math.PI);
+			}
 			Rotate((float)rotations[step]/(float)timersHolder[step] * (float)delta * (float)Math.PI/180);
 			//uncomment this line if translation is being rotated
 			//movingVec = movingVec.Rotated(Rotation);
@@ -172,7 +181,7 @@ public partial class Clouds : Area2D
 					}
 					else if(step == stepCount && boomerang)
 					{
-						step = stepCount;
+						step = stepCount - 1;
 						setTimers();
 						reverseTracking = true;
 					}

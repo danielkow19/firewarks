@@ -16,7 +16,9 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 
 [node name="Cloud Wall" type="Area2D" parent="."]
 script = ExtResource("1_irs00")
-numClouds = 36
+directions = PackedStringArray("None", "None", "None", "None")
+rotations = PackedFloat64Array(450, 360, 900, -900)
+timersHolder = PackedFloat64Array(10)
 
 [node name="Center Cloud Group" type="CollisionShape2D" parent="Cloud Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
@@ -172,3 +174,6 @@ texture = ExtResource("6_a12n8")
 position = Vector2(-351.256, 19.0955)
 rotation = 0.844739
 texture = ExtResource("5_2jqqr")
+
+[connection signal="area_entered" from="Cloud Wall" to="Cloud Wall" method="_on_area_entered"]
+[connection signal="area_exited" from="Cloud Wall" to="Cloud Wall" method="_on_area_exited"]

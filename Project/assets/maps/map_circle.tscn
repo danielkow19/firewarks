@@ -15,6 +15,10 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 
 [node name="Center Cloud" type="Area2D" parent="."]
 script = ExtResource("1_rtscf")
+directions = PackedStringArray("None", "None", "None", "None", "None", "None", "None", "None")
+rotations = PackedFloat64Array(180, 180, 180, 180, 180, 180, 180, 180)
+scaleHolder = PackedFloat64Array(1, 0.5, 0.5, 1, 1, 2, 2, 1)
+timersHolder = PackedFloat64Array(5)
 
 [node name="Center Cloud Group" type="CollisionShape2D" parent="Center Cloud"]
 shape = SubResource("CircleShape2D_5ngye")
@@ -251,3 +255,6 @@ texture = ExtResource("5_0ph4b")
 position = Vector2(342.255, 7.86504)
 rotation = -1.5708
 texture = ExtResource("4_qfh5f")
+
+[connection signal="area_entered" from="Center Cloud" to="Center Cloud" method="_on_area_entered"]
+[connection signal="area_exited" from="Center Cloud" to="Center Cloud" method="_on_area_exited"]
