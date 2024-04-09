@@ -57,4 +57,10 @@ public partial class player_settings : Node
 		_players.Clear();
 	}
 
+	// Updates the stored map name. Using this to prevent accidentally changing the name.
+	public void SaveMap(string name)
+	{
+		mapName = name;
+	}
+
 }

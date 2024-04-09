@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn0xj8glxcnl4"]
+[gd_scene load_steps=7 format=3 uid="uid://dn0xj8glxcnl4"]
 
 [ext_resource type="Script" path="res://assets/Scripts/MapSelect.cs" id="1_obw0t"]
-[ext_resource type="Texture2D" uid="uid://ciy4kb8jrvum0" path="res://assets/sprites/bullets/warning mockup.png" id="1_yffji"]
-[ext_resource type="Texture2D" uid="uid://cu23gkvtn0pfx" path="res://assets/sprites/ui/left_arrow.png" id="2_pebdu"]
-[ext_resource type="Texture2D" uid="uid://douttfa8l7stv" path="res://assets/sprites/ui/right_arrow.png" id="3_46vlp"]
+[ext_resource type="Texture2D" uid="uid://ba1mke33rbwpc" path="res://assets/sprites/map-images/blankMap.PNG" id="2_kevij"]
+[ext_resource type="Texture2D" uid="uid://cki3qxwybk6k7" path="res://assets/sprites/ui/ui_arrowhead_left.png" id="3_gwrjm"]
+[ext_resource type="Texture2D" uid="uid://8dgeavfa6itq" path="res://assets/sprites/ui/ui_arrowhead.png" id="4_3edfk"]
+[ext_resource type="Script" path="res://assets/Scripts/ArrowMap.cs" id="4_d2g80"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x510b"]
 font_size = 32
@@ -38,7 +39,7 @@ offset_right = 320.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_yffji")
+texture = ExtResource("2_kevij")
 
 [node name="MapName" type="Label" parent="Background Color"]
 unique_name_in_owner = true
@@ -51,35 +52,61 @@ offset_top = 120.0
 offset_right = 300.0
 offset_bottom = 200.0
 grow_horizontal = 2
-text = "Map Name"
+text = "Select Map"
 label_settings = SubResource("LabelSettings_x510b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Left" type="Button" parent="Background Color"]
+[node name="Left" type="Button" parent="Background Color" node_paths=PackedStringArray("mapSelect")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -260.0
-offset_right = 520.0
-offset_bottom = 260.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 250.0
+offset_right = 708.0
+offset_bottom = 250.0
 grow_vertical = 2
-icon = ExtResource("2_pebdu")
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("3_gwrjm")
+script = ExtResource("4_d2g80")
+name = "left"
+mapSelect = NodePath("../..")
 
-[node name="Right" type="Button" parent="Background Color"]
+[node name="Right" type="Button" parent="Background Color" node_paths=PackedStringArray("mapSelect")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -520.0
-offset_top = -260.0
-offset_bottom = 260.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = 250.0
+offset_right = 8.0
+offset_bottom = 250.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(1, 0.997717)
-icon = ExtResource("3_46vlp")
+scale = Vector2(0.5, 0.499)
+icon = ExtResource("4_3edfk")
+script = ExtResource("4_d2g80")
+name = "right"
+mapSelect = NodePath("../..")
+
+[node name="Ready" type="Button" parent="Background Color"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -190.0
+offset_right = 160.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Ready"
+
+[connection signal="pressed" from="Background Color/Left" to="Background Color/Left" method="_on_pressed"]
+[connection signal="pressed" from="Background Color/Right" to="Background Color/Right" method="_on_pressed"]

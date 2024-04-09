@@ -4,25 +4,31 @@ using System;
 public partial class MapSelect : Control
 {
 	//References to other UI elements
-	private Label mapName;
-	private Button leftArrow;
-	private Button rightArrow;
+	private string mapName;
 	private TextureRect mapImage;
 	private Button readyButton;
 
 	// script related variables
 	private int mapIndex;
 
+	// Temp Variable
+	private Label mapLabel;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// Assign References
-		mapName = GetNode<Label>("%MapName");
-		//readyButton = GetNode<Button>("%Ready");
+		readyButton = GetNode<Button>("%Ready");
+		readyButton.Pressed += _on_ready_pressed;
+
+		// TEMP
+		mapLabel = GetNode<Label>("%MapName");
 
 		// Logic variables
 		mapIndex = 0;
+
 		// Default map name & default map image
+		mapName = "Blank";
 
 		// Assign arrow's on click functions
 
@@ -33,9 +39,9 @@ public partial class MapSelect : Control
 	{
 	}
 
-    public void _Change_Map(string name)
+    public void _Change_Map(string direction)
     {
-        if (name == "left")
+        if (direction == "left")
         {
             mapIndex--;
             if (mapIndex < 0)
@@ -43,10 +49,10 @@ public partial class MapSelect : Control
                 mapIndex = 4;
             }
         }
-        else if (name == "right")
+        else if (direction == "right")
         {
             mapIndex++;
-            if(mapIndex < 4)
+            if(mapIndex > 4)
 			{
 				mapIndex = 0;
 			}
@@ -54,32 +60,44 @@ public partial class MapSelect : Control
         else { return; } // break out if something is wrong
 
         // Update name & Update image
-        String newName;
         switch (mapIndex)
         {
 			case 0: { 
-					newName = "Blank"; 
+					mapName = "blank";
 					// change map image
 
-					break;
+                    break;
 				}
 			case 1: {
-					newName = "Circle"; 
+					mapName = "circle"; 
 					break;
 				}
             case 2: { 
-					newName = "Compactor"; 
+					mapName = "compactor"; 
 					break;
 				}
             case 3: { 
-					newName = "Moving Boxes";
+					mapName = "boxes";
 					break;
 				}
-            case 4: { newName = "Spinning Bar"; break; }
-			default: { newName = "Error!"; break; }
+            case 4: { 
+					mapName = "bar";
+					break;
+				}
+			default: { mapName = "Error!"; break; }
         }
-		mapName.Text = newName;
-
+		mapLabel.Text = mapName;
 		
     }
+	private void _on_ready_pressed()
+	{
+		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		//make sure the name is lowercase
+		settings.SaveMap(mapName.ToLower());
+		GD.Print($"Map Name: {mapName}");
+
+		// Change scenes
+		SceneManager scene = GetNode<SceneManager>("/root/SceneManager");
+		scene.GoToScene("res://Game.tscn");
+	}
 }
