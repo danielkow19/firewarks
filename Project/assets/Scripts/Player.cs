@@ -88,6 +88,7 @@ public partial class Player : Area2D
 	private Timer mobileAttackLength;
 	private bool barrier = false;
 	private AnimatedSprite2D barrierMesh;
+	private double barrierTimer = 0;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
@@ -255,6 +256,14 @@ public partial class Player : Area2D
 		{
 			// Stops the player inputs from affecting the player object
 			return;
+		}
+		if(barrier)
+		{
+			barrierTimer -= delta;
+			if(barrierTimer <= 0)
+			{
+			DeactivateBarrier();
+			}
 		}
 
 		// We use string concatenation to splice in the player ID for the input system
@@ -517,7 +526,6 @@ public partial class Player : Area2D
 				}
 				//delete trail on death
 				trail.QueueFree();
-				
 			}
 			else
 			{
@@ -610,7 +618,15 @@ public partial class Player : Area2D
 		if (bullet.owner != this)
 		{
 			_grazeCooldown.Start(1.25f);
-			RewardEnergy(10);
+			if(!firing)
+			{
+				RewardEnergy(10);
+			}
+			else
+			{
+				RewardEnergy(5);
+			}
+			
 		}
 	}
 
@@ -644,12 +660,14 @@ public partial class Player : Area2D
 
 		// Toggle the trail
 		trail.ToggleTrail();
+		
 	}
 
 	public void DeactivateBarrier()
 	{
 		barrier = false;
 		barrierMesh.Visible = false;
+		barrierTimer = 0;
 		_invTime = 0;
 	}
 
@@ -677,6 +695,7 @@ public partial class Player : Area2D
 			case PowerUpType.Barrier:
 				barrier = true;
 				barrierMesh.Visible = true;
+				barrierTimer = 20;
 				break;
 
 			case PowerUpType.BulletSpeed:

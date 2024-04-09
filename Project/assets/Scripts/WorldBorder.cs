@@ -5,7 +5,7 @@ using FireWARks.assets.Scripts;
 
 public partial class WorldBorder : Area2D
 {
-	[Export] private double timeSeconds = 300f;
+	[Export] public double timeSeconds = 300f;
 	private Timer countDown;
 	private float scale;
 	private Vector2 colliderScale; // May be different than scale, pivots need to work with this

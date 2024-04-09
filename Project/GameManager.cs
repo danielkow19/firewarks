@@ -149,6 +149,11 @@ public partial class GameManager : Node2D
 			for (int i = 0; i < _players.Count; i++)
 			{
 				if (_players[i]._isDead) { deathCount++; }
+				WorldBorder worldBorder = GetNode<WorldBorder>("/root/SceneManager/Game2/CloudBorder");
+				if(worldBorder.timeSeconds > 0)
+				{
+					worldBorder.timeSeconds -= 30;
+				}				
 			}
 			if (deathCount >= _players.Count - 1) 
 			{ 

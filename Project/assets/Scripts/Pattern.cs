@@ -132,17 +132,17 @@ public partial class Pattern : Node2D
 			instance.Set("wait", i*delay);
 			instance.Set("numOfBullet", bulletPerWave[i]);
 			if(randomness){
-				instance.Set("spread", spreadPerWave[i] + rng.RandfRange(-10,10));
-				instance.Set("offset",offsetPerWave[i] + rng.RandfRange(-5,5));
-				instance.Set("spin",spinPerWave[i] + rng.RandfRange(-5,5));
-				instance.Set("spinAccel",spinAccelPerWave[i] + rng.RandfRange(-5,5));
-				instance.Set("swirlMod", swirlMod[i] + rng.RandfRange(-5,5));
+				instance.Set("spread", spreadPerWave[i] * rng.RandfRange(.9f,1.1f));
+				instance.Set("offset",offsetPerWave[i] * rng.RandfRange(.9f,1.1f));
+				instance.Set("spin",spinPerWave[i] * rng.RandfRange(.9f,1.1f));
+				instance.Set("spinAccel",spinAccelPerWave[i] * rng.RandfRange(.9f,1.1f));
+				instance.Set("swirlMod", swirlMod[i] * rng.RandfRange(.9f,1.1f));
 				if(passer == "BulletSpeed")
 				{
-					instance.Set("speed", (speedPerWave[i] * 1.5)+ rng.RandfRange(-50,50));
+					instance.Set("speed", (speedPerWave[i] * 1.5)* rng.RandfRange(.9f,1.1f));
 				}
 				else{
-					instance.Set("speed", speedPerWave[i] + rng.RandfRange(-50,50));
+					instance.Set("speed", speedPerWave[i] * rng.RandfRange(.9f,1.1f));
 				}
 			}
 			else{
