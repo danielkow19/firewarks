@@ -33,6 +33,13 @@ public partial class GameManager : Node2D
 	private PackedScene compactor = GD.Load<PackedScene>("res://assets/maps/map_compactor.tscn");
 	private PackedScene movingBoxes = GD.Load<PackedScene>("res://assets/maps/map_moving_boxes.tscn");
 	private PackedScene spinningBar = GD.Load<PackedScene>("res://assets/maps/map_spin_bar.tscn");
+	
+	private WorldBorder worldBorder;
+
+	public WorldBorder WorldBorder
+	{
+		get { return worldBorder; }
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,7 +50,7 @@ public partial class GameManager : Node2D
 		_paused = false;
 
 		// Set current Scene
-
+		worldBorder = GetNode<WorldBorder>("CloudBorder");
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 		if (isGame)
 		{
@@ -149,6 +156,11 @@ public partial class GameManager : Node2D
 			for (int i = 0; i < _players.Count; i++)
 			{
 				if (_players[i]._isDead) { deathCount++; }
+				WorldBorder worldBorder = GetNode<WorldBorder>("/root/SceneManager/Game2/CloudBorder");
+				if(worldBorder.timeSeconds > 0)
+				{
+					worldBorder.timeSeconds -= 30;
+				}				
 			}
 			if (deathCount >= _players.Count - 1) 
 			{ 

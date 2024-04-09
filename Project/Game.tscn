@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=12 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="2_imqba"]
+[ext_resource type="Script" path="res://assets/Scripts/TimeTracker.cs" id="4_p5cqw"]
 [ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="Texture2D" uid="uid://haocm7nge708" path="res://assets/sprites/objects/Object_borderRight.PNG" id="7_hfr57"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
@@ -42,12 +43,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_24xvk")
 
+[node name="Timer" type="Label" parent="Debug"]
+z_index = 10
+layout_mode = 0
+offset_left = -30.0
+offset_top = -432.507
+offset_right = 31.0
+offset_bottom = -409.507
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_p5cqw")
+
 [node name="Spawner_Resource" type="Node2D" parent="."]
 script = ExtResource("9_tbo5m")
 
 [node name="CloudBorder" type="Area2D" parent="." node_paths=PackedStringArray("edges")]
 script = ExtResource("10_8vbbq")
-edges = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
+edges = []
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
 scale = Vector2(0.9, 0.9)

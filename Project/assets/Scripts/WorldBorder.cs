@@ -5,8 +5,8 @@ using FireWARks.assets.Scripts;
 
 public partial class WorldBorder : Area2D
 {
-	[Export] private double timeSeconds = 300f;
-	private Timer countDown;
+	[Export] public double timeSeconds = 300f;
+	public Timer countDown;
 	private float scale;
 	private Vector2 colliderScale; // May be different than scale, pivots need to work with this
 	[Export] private float closingRate = .05f;
@@ -50,7 +50,6 @@ public partial class WorldBorder : Area2D
 			
 			// Top left corner
 			edgePosition = GetChild<CollisionPolygon2D>(0).Polygon[1].Abs() * scale;
-
 			
 			// Update position of edges
 			foreach (Marker2D edge in edges)

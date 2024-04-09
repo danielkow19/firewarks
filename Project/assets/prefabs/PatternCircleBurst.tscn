@@ -4,12 +4,11 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lf1ek")
-bulletPerWave = PackedInt32Array(30, 30, 15)
-spreadPerWave = PackedInt32Array(348, 348, 336)
-speedPerWave = PackedInt32Array(100, 100, 200)
-offsetPerWave = PackedInt32Array(0, 6, 9)
+bulletPerWave = PackedInt32Array(16, 16, 8)
+spreadPerWave = PackedInt32Array(338, 338, 315)
+speedPerWave = PackedInt32Array(120, 120, 180)
+offsetPerWave = PackedInt32Array(0, 11, 0)
 swirlMod = PackedInt32Array(0)
-fireAndForget = true
-initialCost = 60.0
-costPerSecond = 0.0
+initialCost = 70.0
+costPerSecond = 10.0
 recharge = 0.5
