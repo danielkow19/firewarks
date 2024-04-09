@@ -5,11 +5,13 @@ using FireWARks.assets.Scripts;
 public partial class randomizePatternPosition : Area2D
 {
 	private RandomNumberGenerator rng;
+	private GameManager manager;
 
 	public override void _Ready()
 	{
 		Node2D parent = GetParent<Node2D>();
 		rng = new RandomNumberGenerator();
+		manager = GetTree().Root.GetNode<GameManager>("Game2");
 		
 		bool doAgain = false;
 
@@ -33,6 +35,8 @@ public partial class randomizePatternPosition : Area2D
 
 	private Vector2 ChoosePosition()
 	{
-		return new Vector2(rng.RandfRange(-860, 860),rng.RandfRange(-480, 480));
+		
+		Vector2 range = manager.WorldBorder.edgePosition;
+		return new Vector2(rng.RandfRange(-range.X + 50, range.X - 50), rng.RandfRange(-range.Y + 50, range.Y - 50));
 	}
 }
