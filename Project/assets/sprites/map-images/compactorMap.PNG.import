@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr0bbxhc66ti6"
-path="res://.godot/imported/compactorMap.PNG-b8137cc55704621513385d1107838069.ctex"
+uid="uid://d1ka0w6viutfi"
+path="res://.godot/imported/compactorMap.png-8e65796f2a64cfa9e792eb14aaa9eaeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/map-images/compactorMap.PNG"
-dest_files=["res://.godot/imported/compactorMap.PNG-b8137cc55704621513385d1107838069.ctex"]
+source_file="res://assets/sprites/map-images/compactorMap.png"
+dest_files=["res://.godot/imported/compactorMap.png-8e65796f2a64cfa9e792eb14aaa9eaeb.ctex"]
 
 [params]
 

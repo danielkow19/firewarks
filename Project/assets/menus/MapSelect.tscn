@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://dn0xj8glxcnl4"]
 
 [ext_resource type="Script" path="res://assets/Scripts/MapSelect.cs" id="1_obw0t"]
-[ext_resource type="Texture2D" uid="uid://ba1mke33rbwpc" path="res://assets/sprites/map-images/blankMap.PNG" id="2_kevij"]
+[ext_resource type="Texture2D" uid="uid://b2sep43out5rb" path="res://assets/sprites/map-images/blankMap.png" id="2_fs217"]
 [ext_resource type="Texture2D" uid="uid://cki3qxwybk6k7" path="res://assets/sprites/ui/ui_arrowhead_left.png" id="3_gwrjm"]
 [ext_resource type="Texture2D" uid="uid://8dgeavfa6itq" path="res://assets/sprites/ui/ui_arrowhead.png" id="4_3edfk"]
 [ext_resource type="Script" path="res://assets/Scripts/ArrowMap.cs" id="4_d2g80"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x510b"]
 font_size = 32
-font_color = Color(0, 0, 0, 1)
+font_color = Color(0.980392, 0.980392, 0.980392, 1)
 
 [node name="MapSelect" type="Control"]
 layout_mode = 3
@@ -23,6 +23,7 @@ script = ExtResource("1_obw0t")
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+color = Color(0.478431, 0.478431, 0.478431, 0.529412)
 
 [node name="Image" type="TextureRect" parent="Background Color"]
 unique_name_in_owner = true
@@ -33,13 +34,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
+offset_left = -924.444
 offset_top = -250.0
-offset_right = 320.0
+offset_right = 924.444
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_kevij")
+texture = ExtResource("2_fs217")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="MapName" type="Label" parent="Background Color"]
 unique_name_in_owner = true
@@ -68,6 +71,10 @@ offset_right = 708.0
 offset_bottom = 250.0
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+focus_neighbor_left = NodePath("../Right")
+focus_neighbor_top = NodePath("../Ready")
+focus_neighbor_right = NodePath("../Right")
+focus_neighbor_bottom = NodePath("../Ready")
 icon = ExtResource("3_gwrjm")
 script = ExtResource("4_d2g80")
 name = "left"
@@ -80,13 +87,17 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -500.0
+offset_left = -450.0
 offset_top = 250.0
-offset_right = 8.0
+offset_right = 58.0
 offset_bottom = 250.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.5, 0.499)
+focus_neighbor_left = NodePath("../Left")
+focus_neighbor_top = NodePath("../Ready")
+focus_neighbor_right = NodePath("../Left")
+focus_neighbor_bottom = NodePath("../Ready")
 icon = ExtResource("4_3edfk")
 script = ExtResource("4_d2g80")
 name = "right"
@@ -106,6 +117,10 @@ offset_right = 160.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../Left")
+focus_neighbor_top = NodePath("../Right")
+focus_neighbor_right = NodePath("../Right")
+focus_neighbor_bottom = NodePath("../Left")
 text = "Ready"
 
 [connection signal="pressed" from="Background Color/Left" to="Background Color/Left" method="_on_pressed"]
