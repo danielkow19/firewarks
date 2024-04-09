@@ -37,6 +37,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="FireWARks"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/editoroverride/plugin.cfg")
+
 [input]
 
 ui_accept={
