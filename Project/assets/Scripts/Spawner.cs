@@ -25,8 +25,14 @@ public partial class Spawner : Node2D
 			instance.Set("position",
 				new Vector2(rng.RandfRange(-range.X + 50, range.X - 50), rng.RandfRange(-range.Y + 50, range.Y - 50)));
 			Array values = Enum.GetValues(typeof(PowerUpType));
-			//(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
-			(instance as Resource).type = PowerUpType.RandomFireworks;
+			(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
+
+			while (manager.WorldBorder.countDown.TimeLeft < 0 &&
+			       (instance as Resource).type == PowerUpType.RandomFireworks)
+			{
+				(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
+			}
+			
 			AddChild(instance);
 
 			GD.Print(("Spawned a " + (instance as Resource).ToString()));
