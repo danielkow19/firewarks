@@ -353,6 +353,7 @@ grow_vertical = 1
 
 [node name="Barrier" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+z_index = 2
 sprite_frames = SubResource("SpriteFrames_pnvig")
 autoplay = "default"
 frame_progress = 0.832578

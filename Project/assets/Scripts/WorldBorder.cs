@@ -50,7 +50,6 @@ public partial class WorldBorder : Area2D
 			
 			// Top left corner
 			edgePosition = GetChild<CollisionPolygon2D>(0).Polygon[1].Abs() * scale;
-
 			
 			// Update position of edges
 			foreach (Marker2D edge in edges)
