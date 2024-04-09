@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs6dbil364eee"]
+[gd_scene load_steps=7 format=3 uid="uid://cs6dbil364eee"]
 
-[ext_resource type="Script" path="res://GameManager.cs" id="1_wioir"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_w4u74"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_dxxvd"]
@@ -11,9 +10,7 @@
 font = ExtResource("3_dxxvd")
 font_size = 64
 
-[node name="GameOver" type="Node2D" node_paths=PackedStringArray("_players")]
-script = ExtResource("1_wioir")
-_players = []
+[node name="GameOver" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -48,10 +45,9 @@ text = "Game Over!"
 label_settings = SubResource("LabelSettings_uw0au")
 horizontal_alignment = 1
 
-[node name="PauseMenu" parent="." node_paths=PackedStringArray("_gameManager") instance=ExtResource("3_2c1t3")]
+[node name="PauseMenu" parent="." instance=ExtResource("3_2c1t3")]
 unique_name_in_owner = true
 visible = false
-_gameManager = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ptfvf")

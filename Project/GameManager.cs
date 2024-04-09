@@ -9,11 +9,6 @@ public partial class GameManager : Node2D
 {
 	[Export]
 	public Godot.Collections.Array<Player> _players;
-	[Export]
-	private bool isGame = false;
-	[Export]
-	private bool isStart = false;
-
 	private string[] scenePaths = { "res://StartMenu.tscn", "res://Game.tscn", "res://GameOver.tscn" };
 	private Control _pauseMenu;
 	private Button _resumeButton;
@@ -52,21 +47,10 @@ public partial class GameManager : Node2D
 		// Set current Scene
 		worldBorder = GetNode<WorldBorder>("CloudBorder");
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
-		if (isGame)
-		{
-			// Handle player spawning
-			LoadPlayers(settings);
-
-			// Handle Map Loading
-			LoadMap(settings.MapName);
-		}
-		else if(isStart)
-		{
-			settings.Clear();	
-			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
-			sceneManager.ReadyScene("res://assets/prefabs/SelectMenu.tscn");
-					
-		}
+		// Handle player spawning
+		LoadPlayers(settings);
+		// Handle Map Loading
+		LoadMap(settings.MapName);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

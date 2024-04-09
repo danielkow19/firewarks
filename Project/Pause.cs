@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class Pause : Control
 {
 	[Export]
-	private GameManager _gameManager;
+	private Node _manager;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -25,6 +25,6 @@ public partial class Pause : Control
 	}
 	public void _on_resume_pressed()
 	{
-		_gameManager.PauseMenu();
+		_manager.Call("PauseMenu");
 	}
 }
