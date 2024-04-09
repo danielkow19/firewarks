@@ -7,9 +7,11 @@ public partial class MapSelect : Control
 	private string mapName;
 	private TextureRect mapImage;
 	private Button readyButton;
+	private Button leftButton;
 
 	// script related variables
 	private int mapIndex;
+	private bool startFocus;
 
 	// Temp Variable
 	private Label mapLabel;
@@ -19,24 +21,31 @@ public partial class MapSelect : Control
 	{
 		// Assign References
 		readyButton = GetNode<Button>("%Ready");
+		mapImage = GetNode<TextureRect>("%Image");
+		leftButton = GetNode<Button>("%Left");
+
 		readyButton.Pressed += _on_ready_pressed;
 
 		// TEMP
-		mapLabel = GetNode<Label>("%MapName");
+		//mapLabel = GetNode<Label>("%MapName");
 
 		// Logic variables
 		mapIndex = 0;
+		startFocus = false;
 
 		// Default map name & default map image
 		mapName = "Blank";
-
-		// Assign arrow's on click functions
 
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(!startFocus)
+		{
+			leftButton.GrabFocus();
+			startFocus = true;
+		}
 	}
 
     public void _Change_Map(string direction)
@@ -58,36 +67,53 @@ public partial class MapSelect : Control
 			}
         }
         else { return; } // break out if something is wrong
-
+		// Create an Image & ImageTexture
+		// Default them to the blank ma
+		Image img = Image.LoadFromFile("res://assets/sprites/map-images/blankMap.png");
+		ImageTexture imageTexture = ImageTexture.CreateFromImage(img);
         // Update name & Update image
         switch (mapIndex)
         {
 			case 0: { 
 					mapName = "blank";
 					// change map image
-
+					// Create an image
+					img = Image.LoadFromFile("res://assets/sprites/map-images/blankMap.png");
+                    imageTexture.Update(img);
                     break;
 				}
 			case 1: {
-					mapName = "circle"; 
-					break;
+					mapName = "circle";
+                    img = Image.LoadFromFile("res://assets/sprites/map-images/circleMap.png");
+					imageTexture.Update(img);
+                    break;
 				}
             case 2: { 
-					mapName = "compactor"; 
-					break;
+					mapName = "compactor";
+                    img = Image.LoadFromFile("res://assets/sprites/map-images/compactorMap.png");
+                    imageTexture.Update(img);
+                    break;
 				}
             case 3: { 
 					mapName = "boxes";
-					break;
+                    img = Image.LoadFromFile("res://assets/sprites/map-images/boxesMap.png");
+					imageTexture.Update(img);
+                    break;
 				}
             case 4: { 
 					mapName = "bar";
-					break;
+                    img = Image.LoadFromFile("res://assets/sprites/map-images/barMap.png");
+					imageTexture.Update(img);
+                    break;
 				}
-			default: { mapName = "Error!"; break; }
+			default: { 
+					mapName = "Error!";
+					//img = Image.LoadFromFile("res://assets/sprites/bullets/warning mockup.png");
+
+                    break; }
         }
-		mapLabel.Text = mapName;
-		
+		//mapLabel.Text = mapName;
+		mapImage.Texture = imageTexture;
     }
 	private void _on_ready_pressed()
 	{
@@ -98,6 +124,6 @@ public partial class MapSelect : Control
 
 		// Change scenes
 		SceneManager scene = GetNode<SceneManager>("/root/SceneManager");
-		scene.GoToScene("res://Game.tscn");
+		scene.GoToScene("res://player_select.tscn");
 	}
 }
