@@ -1,36 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj32f1fr7nngi"]
+[gd_scene load_steps=5 format=3 uid="uid://cj32f1fr7nngi"]
 
 [ext_resource type="PackedScene" uid="uid://dl4rtusna28r0" path="res://assets/prefabs/FlyingSprite.tscn" id="1_0y3vj"]
-[ext_resource type="Script" path="res://assets/Scripts/AttackSwap.cs" id="2_3lkks"]
+[ext_resource type="Script" path="res://assets/Scripts/PlayerStats.cs" id="1_yk3ri"]
+[ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_e8i8u"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ggrtj"]
-font_size = 26
+[sub_resource type="LabelSettings" id="LabelSettings_jwk34"]
+font = ExtResource("3_e8i8u")
+font_size = 48
 
 [node name="GameOverStats" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 470.0
-offset_bottom = 800.0
+offset_right = 450.0
+offset_bottom = 675.0
+script = ExtResource("1_yk3ri")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 470.0
-offset_bottom = 800.0
+offset_right = 450.0
+offset_bottom = 675.0
 color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
-[node name="FlyingSprite" parent="ColorRect" instance=ExtResource("1_0y3vj")]
+[node name="FlyingSprite" parent="Background" instance=ExtResource("1_0y3vj")]
 unique_name_in_owner = true
-position = Vector2(235, 250)
+position = Vector2(225, 250)
 rotation = 1.5708
 scale = Vector2(0.4, 0.4)
 frame_progress = 0.890597
 
-[node name="Attack1Label" type="Label" parent="."]
-offset_top = 20.0
-offset_right = 470.0
-offset_bottom = 60.0
-text = "RANK"
-label_settings = SubResource("LabelSettings_ggrtj")
+[node name="RankLabel" type="Label" parent="Background"]
+offset_top = 5.0
+offset_right = 450.0
+offset_bottom = 84.0
+text = "Rank"
+label_settings = SubResource("LabelSettings_jwk34")
 horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_3lkks")

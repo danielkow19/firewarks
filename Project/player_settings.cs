@@ -2,6 +2,7 @@ using FireWARks.assets.Scripts;
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 public partial class player_settings : Node
@@ -11,10 +12,18 @@ public partial class player_settings : Node
 	private string lobbyScene = "res://player_select.tscn";
 	private string mapName;
 
+	
 
     private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
 	public Godot.Collections.Array<PlayerInfo> PlayerInfos { get { return _players; } }
 	public string MapName { get { return mapName; } }
+
+
+	public int numPlayers;
+	private int deathCount = 0;
+	private int[] playerPositions = new int[4];
+	public int[] PlayerPositions { get { return playerPositions; } }
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -63,4 +72,10 @@ public partial class player_settings : Node
 		mapName = name;
 	}
 
+	public void playerDeath(int playerID) {
+		Debug.Print($"{numPlayers - deathCount}");
+		playerPositions[playerID] = numPlayers - deathCount;
+		Debug.Print($"{playerPositions}");
+		deathCount++;
+	}
 }

@@ -20,7 +20,7 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_pkqq3")
 metadata/_edit_vertical_guides_ = [960.0]
 
-[node name="ControlsButton" type="Button" parent="." node_paths=PackedStringArray("_controlPop")]
+[node name="ControlsButton" type="Button" parent="."]
 offset_left = 817.0
 offset_top = 607.0
 offset_right = 1105.0
@@ -34,7 +34,6 @@ theme_override_font_sizes/font_size = 40
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
-_controlPop = NodePath("../Controls")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -80,14 +79,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_5ay5g")
 
-[node name="PauseMenu" parent="." node_paths=PackedStringArray("_manager") instance=ExtResource("3_h1xvh")]
+[node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
 visible = false
 offset_left = 960.0
 offset_top = 500.0
 offset_right = 960.0
 offset_bottom = 500.0
-_manager = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_kaxj3")
@@ -106,9 +104,6 @@ offset_left = 960.0
 offset_top = 550.0
 offset_right = 960.0
 offset_bottom = 550.0
-
-[node name="ControlsButton" parent="Controls/ColorRect" index="2" node_paths=PackedStringArray("_controlPop")]
-_controlPop = NodePath("../..")
 
 [connection signal="focus_exited" from="ControlsButton" to="SFXUp" method="play"]
 [connection signal="pressed" from="ControlsButton" to="ControlsButton" method="_on_pressed"]

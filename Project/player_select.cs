@@ -233,7 +233,8 @@ public partial class player_select : Control
 		// Game Start Code
 		if(numPlayers >=1 && numPlayers == readiedPlayers) {
 			//GetTree().ChangeSceneToFile("res://assets/cheatScenes/Game(2 Player).tscn");
-
+			player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+			settings.numPlayers = numPlayers;
 			// Pop up a button that will allow us to change scenes
 			startButton.Show();
 			startButton.GrabFocus();

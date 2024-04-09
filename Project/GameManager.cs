@@ -119,7 +119,7 @@ public partial class GameManager : Node2D
 		if (PlayersDead())
 		{
 			player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
-			settings.Clear();
+			settings.playerDeath(_players[0].player_id);
 			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 			sceneManager.GoToScene("res://GameOver.tscn");
 		}
@@ -140,7 +140,7 @@ public partial class GameManager : Node2D
 			for (int i = 0; i < _players.Count; i++)
 			{
 				if (_players[i]._isDead) { deathCount++; }
-				WorldBorder worldBorder = GetNode<WorldBorder>("/root/SceneManager/Game2/CloudBorder");
+				//WorldBorder worldBorder = GetNode<WorldBorder>("/root/SceneManager/Game2/CloudBorder");
 				if(worldBorder.timeSeconds > 0)
 				{
 					worldBorder.timeSeconds -= 30;

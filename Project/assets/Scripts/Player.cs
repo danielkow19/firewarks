@@ -512,6 +512,9 @@ public partial class Player : Area2D
 
 			if (health < 0)
 			{
+				player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+				settings.playerDeath(player_id);
+
 				_isDead = true;
 				_canMove = false;
 				ToggleHUD();

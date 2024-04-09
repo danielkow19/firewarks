@@ -25,6 +25,9 @@ public partial class PlayButton : Node
 	{
 		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
     	
+		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		settings.Clear();
+
 		if(scenePath == null)
 		{
 			
