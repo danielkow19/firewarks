@@ -18,7 +18,7 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 script = ExtResource("1_irs00")
 directions = PackedStringArray("None", "None", "None", "None")
 rotations = PackedFloat64Array(450, 360, 900, -900)
-timersHolder = PackedFloat64Array(10)
+timersHolder = PackedFloat64Array(100)
 
 [node name="Center Cloud Group" type="CollisionShape2D" parent="Cloud Wall"]
 shape = SubResource("RectangleShape2D_fsvmw")
