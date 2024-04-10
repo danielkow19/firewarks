@@ -8,7 +8,7 @@ public partial class CursorAlt : Node2D
 	bool infoAdded = false;
 	public int playerNum;
 	public int positionIndex;
-	private Godot.Vector2[] positions = {new Godot.Vector2(550, 100), new Godot.Vector2(550, 200), new Godot.Vector2(550, 300), new Godot.Vector2(565, 400)};
+	private Godot.Vector2[] positions = {new Godot.Vector2(556, 85), new Godot.Vector2(556, 185), new Godot.Vector2(556, 285), new Godot.Vector2(556, 380)};
 	private List<Button> ButtonList;
 	private List<PackedScene> patternsList;
 
