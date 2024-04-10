@@ -19,6 +19,7 @@ public partial class randomizePatternPosition : Area2D
 		do
 		{
 			parent.Position = ChoosePosition();
+			GlobalPosition = parent.GlobalPosition;
 
 			foreach (Area2D area in GetOverlappingAreas())
 			{
@@ -31,6 +32,8 @@ public partial class randomizePatternPosition : Area2D
 			
 			
 		} while (doAgain);
+
+		this.QueueFree();
 	}
 
 	private Vector2 ChoosePosition()

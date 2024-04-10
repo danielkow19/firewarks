@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dejnx82ib1u5"]
+[gd_scene load_steps=4 format=3 uid="uid://dnptwdh2tfwdq"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Pattern.cs" id="1_6iffk"]
 [ext_resource type="Script" path="res://assets/Scripts/randomizePatternPosition.cs" id="2_q8iml"]
@@ -8,11 +8,10 @@ radius = 75.6637
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6iffk")
-waves = 1
-bulletPerWave = PackedInt32Array(30, 30, 15)
-spreadPerWave = PackedInt32Array(348, 348, 336)
-speedPerWave = PackedInt32Array(100, 100, 200)
-offsetPerWave = PackedInt32Array(0, 6, 9)
+bulletPerWave = PackedInt32Array(10, 15, 10)
+spreadPerWave = PackedInt32Array(324, 336, 324)
+speedPerWave = PackedInt32Array(80, 80, 80)
+offsetPerWave = PackedInt32Array(0, 12, 18)
 swirlMod = PackedInt32Array(0)
 fireAndForget = true
 initialCost = 0.0

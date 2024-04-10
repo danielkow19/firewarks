@@ -8,7 +8,8 @@ public partial class LobbyButton : Button
 	public override void _Ready()
 	{
 		gameScene = "res://Game.tscn";
-
+		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		sceneManager.ReadyScene(gameScene);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,6 +19,6 @@ public partial class LobbyButton : Button
 	private void _on_pressed()
 	{
 		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
-		sceneManager.GoToScene(gameScene);
+		sceneManager.GotoReadyScene(gameScene);
 	}
 }
