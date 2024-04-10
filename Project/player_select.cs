@@ -333,8 +333,8 @@ public partial class player_select : Control
 		deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
 		EraseInputsByID(playerID);
 		Node menu = menus[playerID];
-		menu.QueueFree();
-		menus.SetValue(null, playerID);
+		menu.Free();
+		menus[playerID] = null;
 		int index = settings.GetPlayerInfoIndexFromID(playerID);
 		if(index != -1) settings.RemovePlayerInfoAt(index);
 		numPlayers--;
