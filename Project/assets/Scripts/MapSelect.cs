@@ -7,14 +7,11 @@ public partial class MapSelect : Control
 	private string mapName;
 	private TextureRect mapImage;
 	private Button readyButton;
-	private Button leftButton;
+	private ArrowMap leftButton;
+	private ArrowMap rightButton;
 
 	// script related variables
 	private int mapIndex;
-	private bool startFocus;
-
-	// Temp Variable
-	private Label mapLabel;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,29 +19,36 @@ public partial class MapSelect : Control
 		// Assign References
 		readyButton = GetNode<Button>("%Ready");
 		mapImage = GetNode<TextureRect>("%Image");
-		leftButton = GetNode<Button>("%Left");
+		leftButton = GetNode<ArrowMap>("%Left");
+		rightButton = GetNode<ArrowMap>("%Right");
 
 		readyButton.Pressed += _on_ready_pressed;
 
-		// TEMP
-		//mapLabel = GetNode<Label>("%MapName");
 
 		// Logic variables
 		mapIndex = 0;
-		startFocus = false;
 
 		// Default map name & default map image
 		mapName = "Blank";
 
-	}
+        SceneManager scene = GetNode<SceneManager>("/root/SceneManager");
+		scene.ReadyScene("res://player_select.tscn");
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(!startFocus)
+		if (Input.IsActionJustPressed("ui_left"))
 		{
-			leftButton.GrabFocus();
-			startFocus = true;
+			leftButton._on_pressed();
+		}
+		else if (Input.IsActionJustPressed("ui_right"))
+		{
+			rightButton._on_pressed();
+		}
+		else if (Input.IsActionJustPressed("ui_select"))
+		{
+			_on_ready_pressed();
 		}
 	}
 
@@ -113,7 +117,6 @@ public partial class MapSelect : Control
 
                     break; }
         }
-		//mapLabel.Text = mapName;
 		mapImage.Texture = imageTexture;
     }
 	private void _on_ready_pressed()
@@ -125,6 +128,6 @@ public partial class MapSelect : Control
 
 		// Change scenes
 		SceneManager scene = GetNode<SceneManager>("/root/SceneManager");
-		scene.GoToScene("res://player_select.tscn");
+		scene.GotoReadyScene("res://player_select.tscn");
 	}
 }
