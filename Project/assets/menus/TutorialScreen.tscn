@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://mlp2ibuhhhh3"]
+[gd_scene load_steps=9 format=3 uid="uid://mlp2ibuhhhh3"]
 
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="1_ydyd2"]
+[ext_resource type="FontFile" uid="uid://djhccx40lolkn" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Regular.ttf" id="2_2vhlg"]
 [ext_resource type="Texture2D" uid="uid://bqyifxl1ih8yb" path="res://assets/sprites/ui/ui_feather.png" id="2_xemgq"]
+[ext_resource type="FontFile" uid="uid://bs35640rh2ujj" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Bold.ttf" id="4_3383o"]
+[ext_resource type="FontFile" uid="uid://dxskowqktlbqb" path="res://assets/fonts/RobotoSerif_120pt-Italic.ttf" id="5_xgtay"]
+[ext_resource type="FontFile" uid="uid://brir60csc37tc" path="res://assets/fonts/RobotoSerif_120pt-BoldItalic.ttf" id="6_61gly"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_axihe"]
 font = ExtResource("1_ydyd2")
 font_size = 80
 
 [sub_resource type="LabelSettings" id="LabelSettings_b3ar1"]
-font = ExtResource("1_ydyd2")
-font_size = 24
+font = ExtResource("2_2vhlg")
+font_size = 36
 
 [node name="TutorialScreen" type="Control"]
 layout_mode = 3
@@ -135,16 +139,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -279.0
-offset_top = -100.0
-offset_right = 279.0
-offset_bottom = 100.0
+offset_left = -328.0
+offset_top = -82.0
+offset_right = 328.0
+offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("1_ydyd2")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_fonts/normal_font = ExtResource("2_2vhlg")
+theme_override_fonts/bold_font = ExtResource("4_3383o")
+theme_override_fonts/italics_font = ExtResource("5_xgtay")
+theme_override_fonts/bold_italics_font = ExtResource("6_61gly")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/bold_italics_font_size = 36
 bbcode_enabled = true
-text = "[center]Attacking spends [color=red]Heat[/color]. Refill it by grazing opposing attacks!
+text = "[center]Attacking spends [b]Heat[/b]. Refill it by grazing opposing attacks!
 
 [Insert video of player grazing attacks to refill meter][/center]"
 fit_content = true
@@ -165,14 +175,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -279.0
-offset_top = -100.0
-offset_right = 279.0
-offset_bottom = 100.0
+offset_left = -355.0
+offset_top = -155.5
+offset_right = 355.0
+offset_bottom = 155.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("1_ydyd2")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_fonts/normal_font = ExtResource("2_2vhlg")
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]Moving inside of clouds will slow you down and drain your heat gauge.
 
@@ -207,8 +217,8 @@ offset_right = 344.0
 offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("1_ydyd2")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_fonts/normal_font = ExtResource("2_2vhlg")
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]In a pinch? Use your smoke bomb (RB) to clear everything around you!
 
