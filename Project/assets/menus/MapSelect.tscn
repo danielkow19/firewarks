@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dn0xj8glxcnl4"]
 
 [ext_resource type="Script" path="res://assets/Scripts/MapSelect.cs" id="1_obw0t"]
-[ext_resource type="Texture2D" uid="uid://b2sep43out5rb" path="res://assets/sprites/map-images/blankMap.png" id="2_fs217"]
+[ext_resource type="Texture2D" uid="uid://b2sep43out5rb" path="res://assets/sprites/map-images/blankMap.PNG" id="2_fs217"]
 [ext_resource type="Texture2D" uid="uid://cki3qxwybk6k7" path="res://assets/sprites/ui/ui_arrowhead_left.png" id="3_gwrjm"]
 [ext_resource type="Texture2D" uid="uid://8dgeavfa6itq" path="res://assets/sprites/ui/ui_arrowhead.png" id="4_3edfk"]
 [ext_resource type="Script" path="res://assets/Scripts/ArrowMap.cs" id="4_d2g80"]

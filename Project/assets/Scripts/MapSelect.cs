@@ -67,10 +67,11 @@ public partial class MapSelect : Control
 			}
         }
         else { return; } // break out if something is wrong
-		// Create an Image & ImageTexture
-		// Default them to the blank ma
-		Image img = Image.LoadFromFile("res://assets/sprites/map-images/blankMap.png");
-		ImageTexture imageTexture = ImageTexture.CreateFromImage(img);
+						 // Create an Image & ImageTexture
+						 // Default them to the blank map
+		
+		Image img = ResourceLoader.Load<CompressedTexture2D>("res://assets/sprites/map-images/blankMap.PNG").GetImage();
+        ImageTexture imageTexture = ImageTexture.CreateFromImage(img);
         // Update name & Update image
         switch (mapIndex)
         {
@@ -78,32 +79,32 @@ public partial class MapSelect : Control
 					mapName = "blank";
 					// change map image
 					// Create an image
-					img = Image.LoadFromFile("res://assets/sprites/map-images/blankMap.png");
+					img = ResourceLoader.Load<CompressedTexture2D>("res://assets/sprites/map-images/blankMap.PNG").GetImage();
                     imageTexture.Update(img);
                     break;
 				}
 			case 1: {
 					mapName = "circle";
-                    img = Image.LoadFromFile("res://assets/sprites/map-images/circleMap.png");
-					imageTexture.Update(img);
+                    img = ResourceLoader.Load<CompressedTexture2D>("res://assets/sprites/map-images/circleMap.PNG").GetImage();
+                    imageTexture.Update(img);
                     break;
 				}
             case 2: { 
 					mapName = "compactor";
-                    img = Image.LoadFromFile("res://assets/sprites/map-images/compactorMap.png");
+                    img = ResourceLoader.Load<CompressedTexture2D>("res://assets/sprites/map-images/compactorMap.PNG").GetImage();
                     imageTexture.Update(img);
                     break;
 				}
             case 3: { 
 					mapName = "boxes";
-                    img = Image.LoadFromFile("res://assets/sprites/map-images/boxesMap.png");
-					imageTexture.Update(img);
+                    img = ResourceLoader.Load<CompressedTexture2D>("res://assets/sprites/map-images/boxesMap.PNG").GetImage();
+                    imageTexture.Update(img);
                     break;
 				}
             case 4: { 
 					mapName = "bar";
-                    img = Image.LoadFromFile("res://assets/sprites/map-images/barMap.png");
-					imageTexture.Update(img);
+                    img = ResourceLoader.Load<CompressedTexture2D>("res://assets/sprites/map-images/barMap.PNG").GetImage();
+                    imageTexture.Update(img);
                     break;
 				}
 			default: { 
