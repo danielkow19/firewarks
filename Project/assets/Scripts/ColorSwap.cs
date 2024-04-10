@@ -79,16 +79,16 @@ public partial class ColorSwap : ColorRect
 		childRect.Color = Colors.Red;
 		sprite.Modulate = Colors.Red;
 		//texture.Modulate = Colors.Red;
-		Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
-		Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
+		//Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
+		//Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
 		if(sceneController.colorIndices.Contains(colorIndex)) {
 			
 			_ChangeColor("right");
 		} else {
 			sceneController.colorIndices[playerNum] = colorIndex;
 		}
-		Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
-		Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
+		//Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
+		//Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
 		
 	}
 

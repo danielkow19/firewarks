@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 
 public partial class player_select : Control
@@ -10,24 +11,33 @@ public partial class player_select : Control
 	private Button button;
 	private int numPlayers;
 	private List<int> deviceNums;
-	bool keyboardPlayer;
+	int keyboardPlayer;
 	bool joinable;
 	PackedScene selectMenu;
 	private int readiedPlayers;
 
+	private int[] takenPostions = new int[4] {0,0,0,0};
+	private Node[] menus = new Node[4] {null, null, null, null};
+
 	private Button startButton;
+
+	private int currentPlayerID = -1;
+
+	private player_settings settings;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		EraseInputs();
 		numPlayers = 0;
 		deviceNums = new List<int>();
-		keyboardPlayer = false;
+		keyboardPlayer = -1;
 		joinable = true;
 		readiedPlayers = 0;
 		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		selectMenu =  sceneManager.GetReadyScene("res://assets/prefabs/SelectMenu.tscn");
 		startButton = GetNode<LobbyButton>("StartButton");
+		settings = (player_settings)GetNode("/root/PlayerSettings");
 	}
 
 
@@ -36,168 +46,193 @@ public partial class player_select : Control
 	{
 		base._GuiInput(@event);
 		// Make Sure Inputs are clear before reassigning
-		EraseInputs();
-		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && !keyboardPlayer && numPlayers < 4 && joinable)
+		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && keyboardPlayer == -1 && numPlayers < 4 && joinable)
 		{
+			currentPlayerID = -1;
+			for(int i = 0; i < 4; i++) {
+				if(menus[i] == null) {
+					currentPlayerID = i;
+					break;
+				}
+			}
+
 			// Slow
 			InputEventKey keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Shift;
-			InputMap.ActionAddEvent($"Slow_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Slow_{currentPlayerID}", keyEvent);
 
 			// Burst
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Ctrl;
-			InputMap.ActionAddEvent($"Burst_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Burst_{currentPlayerID}", keyEvent);
 
 			// Left Shoot
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Space;
-			InputMap.ActionAddEvent($"Shoot_L_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Shoot_L_{currentPlayerID}", keyEvent);
 
 			// Right Shoot
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.Enter;
-			InputMap.ActionAddEvent($"Shoot_R_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Shoot_R_{currentPlayerID}", keyEvent);
 
 			// Movement
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.D;
-			InputMap.ActionAddEvent($"Right_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Right_{currentPlayerID}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.A;
-			InputMap.ActionAddEvent($"Left_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Left_{currentPlayerID}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.W;
-			InputMap.ActionAddEvent($"Up_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Up_{currentPlayerID}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.S;
-			InputMap.ActionAddEvent($"Down_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"Down_{currentPlayerID}", keyEvent);
 
 			// Aiming
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.L;
-			InputMap.ActionAddEvent($"AimRight_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"AimRight_{currentPlayerID}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.J;
-			InputMap.ActionAddEvent($"AimLeft_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"AimLeft_{currentPlayerID}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.I;
-			InputMap.ActionAddEvent($"AimUp_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"AimUp_{currentPlayerID}", keyEvent);
 
 			keyEvent = new InputEventKey();
 			keyEvent.Keycode = Key.K;
-			InputMap.ActionAddEvent($"AimDown_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"AimDown_{currentPlayerID}", keyEvent);
 
             // UI Click Event
 			keyEvent = new InputEventKey(); 
 			keyEvent.Keycode = Key.Enter; 
-			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", keyEvent);
+			InputMap.ActionAddEvent($"UI_Click_{currentPlayerID}", keyEvent);
 
-            keyboardPlayer = true;
+			keyEvent = new InputEventKey();
+			keyEvent.Keycode = Key.Backspace;
+			InputMap.ActionAddEvent($"Back_{currentPlayerID}", keyEvent);
+
+            keyboardPlayer = currentPlayerID;
 			numPlayers++;
 
 			InstantiateSelectMenu();
 		}
 		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable)
 		{
+			currentPlayerID = -1;
+			for(int i = 0; i < 4; i++) {
+				if(menus[i] == null) {
+					currentPlayerID = i;
+					break;
+				}
+			}
+			Debug.Print($"{currentPlayerID}");
+
 			InputEventJoypadButton joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.LeftShoulder;
-			InputMap.ActionAddEvent($"Slow_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"Slow_{currentPlayerID}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.RightShoulder;
-			InputMap.ActionAddEvent($"Burst_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"Burst_{currentPlayerID}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadLeft;
-			InputMap.ActionAddEvent($"Left_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"Left_{currentPlayerID}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadRight;
-			InputMap.ActionAddEvent($"Right_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"Right_{currentPlayerID}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadUp;
-			InputMap.ActionAddEvent($"Up_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"Up_{currentPlayerID}", joyButton);
 
 			joyButton = new InputEventJoypadButton();
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.DpadDown;
-			InputMap.ActionAddEvent($"Down_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"Down_{currentPlayerID}", joyButton);
 
             // UI Click Event
 			joyButton = new InputEventJoypadButton(); 
 			joyButton.Device = jbe.Device;
 			joyButton.ButtonIndex = JoyButton.A;
-			InputMap.ActionAddEvent($"UI_Click_{numPlayers}", joyButton);
+			InputMap.ActionAddEvent($"UI_Click_{currentPlayerID}", joyButton);
+
+			joyButton = new InputEventJoypadButton();
+			joyButton.Device = jbe.Device;
+			joyButton.ButtonIndex = JoyButton.B;
+			InputMap.ActionAddEvent($"Back_{currentPlayerID}", joyButton);
 
             InputEventJoypadMotion joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.TriggerLeft;
-			InputMap.ActionAddEvent($"Shoot_L_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"Shoot_L_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.TriggerRight;
-			InputMap.ActionAddEvent($"Shoot_R_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"Shoot_R_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.LeftX;
 			joyAxis.AxisValue = 1;
-			InputMap.ActionAddEvent($"Right_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"Right_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.LeftX;
 			joyAxis.AxisValue = -1;
-			InputMap.ActionAddEvent($"Left_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"Left_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.LeftY;
 			joyAxis.AxisValue = -1;
-			InputMap.ActionAddEvent($"Up_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"Up_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.LeftY;
 			joyAxis.AxisValue = 1;
-			InputMap.ActionAddEvent($"Down_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"Down_{currentPlayerID}", joyAxis);
 			
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightX;
 			joyAxis.AxisValue = 1;
-			InputMap.ActionAddEvent($"AimRight_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"AimRight_{currentPlayerID}", joyAxis);
 			
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightX;
 			joyAxis.AxisValue = -1;
-			InputMap.ActionAddEvent($"AimLeft_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"AimLeft_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightY;
 			joyAxis.AxisValue = -1;
-			InputMap.ActionAddEvent($"AimUp_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"AimUp_{currentPlayerID}", joyAxis);
 
 			joyAxis = new InputEventJoypadMotion();
 			joyAxis.Device = jbe.Device;
 			joyAxis.Axis = JoyAxis.RightY;
 			joyAxis.AxisValue = 1;
-			InputMap.ActionAddEvent($"AimDown_{numPlayers}", joyAxis);
+			InputMap.ActionAddEvent($"AimDown_{currentPlayerID}", joyAxis);
 
 
 			deviceNums.Add(jbe.Device);
@@ -208,21 +243,26 @@ public partial class player_select : Control
 	}
 
 	public void InstantiateSelectMenu() {
-		var instance = selectMenu.Instantiate();
-			switch(numPlayers) {
-				case 1:
-					break;
-				case 2:
-					instance.Set("position", new Vector2(960,0));
-					break;
-				case 3:
-					instance.Set("position", new Vector2(0,540));
-					break;
-				case 4:
-					instance.Set("position", new Vector2(960,540));
-					break;
-			}
-			instance.GetNode<CursorAlt>("ColorRect/Cursor").Set("playerNum", numPlayers - 1);
+		Node instance = selectMenu.Instantiate();
+		switch(currentPlayerID) {
+			case 0:
+				break;
+			case 1:
+				instance.Set("position", new Vector2(960,0));
+				break;
+			case 2:
+				instance.Set("position", new Vector2(0,540));
+				break;
+			case 3:
+				instance.Set("position", new Vector2(960,540));
+				break;
+			default:
+				// Instantiated right in the center if something goes wrong
+				instance.Set("position", new Vector2(480,270));
+				break;
+		}
+		menus[currentPlayerID] = instance;
+		instance.GetNode<CursorAlt>("ColorRect/Cursor").Set("playerNum", currentPlayerID);
 		instance.GetNode<ReadyButton>("ColorRect/ReadyUp").Set("joinNode", this);
 		AddChild(instance);
 	}
@@ -238,6 +278,13 @@ public partial class player_select : Control
 			// Pop up a button that will allow us to change scenes
 			startButton.Show();
 			startButton.GrabFocus();
+		}
+
+		for(int i = 0; i < 4; i++) {
+			if(Input.IsActionPressed($"Back_{i}")) {
+				RemovePlayer(i);
+				Debug.Print($"Player {i} Pressed Back");
+			}
 		}
 	}
 
@@ -261,5 +308,36 @@ public partial class player_select : Control
         InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
         InputMap.ActionEraseEvents($"AimLeft_{numPlayers}");
         InputMap.ActionEraseEvents($"AimRight_{numPlayers}");
+		InputMap.ActionEraseEvents($"Back_{numPlayers}");
     }
+
+	public void EraseInputsByID(int playerID) {
+		InputMap.ActionEraseEvents($"UI_Click_{playerID}");
+        InputMap.ActionEraseEvents($"Slow_{playerID}");
+        InputMap.ActionEraseEvents($"Burst_{playerID}");
+        InputMap.ActionEraseEvents($"Up_{playerID}");
+        InputMap.ActionEraseEvents($"Down_{playerID}");
+        InputMap.ActionEraseEvents($"Left_{playerID}");
+        InputMap.ActionEraseEvents($"Right_{playerID}");
+        InputMap.ActionEraseEvents($"Shoot_R_{playerID}");
+        InputMap.ActionEraseEvents($"Shoot_L_{playerID}");
+        InputMap.ActionEraseEvents($"AimUp_{playerID}");
+        InputMap.ActionEraseEvents($"AimDown_{playerID}");
+        InputMap.ActionEraseEvents($"AimLeft_{playerID}");
+        InputMap.ActionEraseEvents($"AimRight_{playerID}");
+		InputMap.ActionEraseEvents($"Back_{playerID}");
+	}
+
+	public void RemovePlayer(int playerID) {
+		Input.ActionRelease($"Back_{playerID}");
+		deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
+		EraseInputsByID(playerID);
+		Node menu = menus[playerID];
+		menu.QueueFree();
+		menus.SetValue(null, playerID);
+		int index = settings.GetPlayerInfoIndexFromID(playerID);
+		if(index != -1) settings.RemovePlayerInfoAt(index);
+		numPlayers--;
+		if(playerID == keyboardPlayer) keyboardPlayer = -1;
+	}
 }

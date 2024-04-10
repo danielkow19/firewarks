@@ -20,7 +20,7 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_pkqq3")
 metadata/_edit_vertical_guides_ = [960.0]
 
-[node name="ControlsButton" type="Button" parent="." node_paths=PackedStringArray("_controlPop")]
+[node name="ControlsButton" type="Button" parent="."]
 offset_left = 817.0
 offset_top = 607.0
 offset_right = 1105.0
@@ -34,7 +34,6 @@ theme_override_font_sizes/font_size = 40
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
-_controlPop = NodePath("../Controls")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3

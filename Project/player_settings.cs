@@ -46,20 +46,24 @@ public partial class player_settings : Node
 		PlayerInfo player = new PlayerInfo(playerID, leftPattern, rightPattern, color, position);
 
 		// Make sure only there's only 1 player per ID
-		int index = -1;
-		for(int i = 0; i < _players.Count; i++)
-		{
-			if (_players[i].PlayerID == player.PlayerID)
-			{
-				index = i; break;
-			}
-		}
+		int index = GetPlayerInfoIndexFromID(player.PlayerID);
 		// If the index was changed, remove the previous player
 		if(index >-1) {
 			_players.RemoveAt(index);
 			GD.Print("Player Removed, and replaced");
 		}
 		_players.Add(player);
+	}
+
+	public int GetPlayerInfoIndexFromID(int playerID) {
+		for(int i = 0; i < _players.Count; i++) {
+			if(_players[i].PlayerID == playerID) return i;
+		}
+		return -1;
+	}
+
+	public void RemovePlayerInfoAt(int index) {
+		_players.RemoveAt(index);
 	}
 
 	public void Clear(){
