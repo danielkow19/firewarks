@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn0xj8glxcnl4"]
+[gd_scene load_steps=23 format=3 uid="uid://dn0xj8glxcnl4"]
 
 [ext_resource type="Script" path="res://assets/Scripts/MapSelect.cs" id="1_obw0t"]
-[ext_resource type="Texture2D" uid="uid://b2sep43out5rb" path="res://assets/sprites/map-images/blankMap.png" id="2_fs217"]
+[ext_resource type="Texture2D" uid="uid://b2sep43out5rb" path="res://assets/sprites/map-images/blankMap.PNG" id="2_fs217"]
 [ext_resource type="Texture2D" uid="uid://cki3qxwybk6k7" path="res://assets/sprites/ui/ui_arrowhead_left.png" id="3_gwrjm"]
 [ext_resource type="Texture2D" uid="uid://8dgeavfa6itq" path="res://assets/sprites/ui/ui_arrowhead.png" id="4_3edfk"]
 [ext_resource type="Script" path="res://assets/Scripts/ArrowMap.cs" id="4_d2g80"]
@@ -9,6 +9,58 @@
 [sub_resource type="LabelSettings" id="LabelSettings_x510b"]
 font_size = 32
 font_color = Color(0.980392, 0.980392, 0.980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8piph"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gupy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80ut2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osa0i"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vo1n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_3rx5j"]
+/styles/disabled = SubResource("StyleBoxFlat_8piph")
+/styles/focused = SubResource("StyleBoxFlat_4gupy")
+/styles/hover = SubResource("StyleBoxFlat_80ut2")
+/styles/normal = SubResource("StyleBoxFlat_osa0i")
+/styles/pressed = SubResource("StyleBoxFlat_1vo1n")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ni7m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h31sv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apyjo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hmjt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdf3d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0tk7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b548f"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxufj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du4gx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6sed5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MapSelect" type="Control"]
 layout_mode = 3
@@ -34,9 +86,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -924.444
-offset_top = -250.0
-offset_right = 924.444
+offset_left = -924.0
+offset_top = -291.0
+offset_right = 925.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -75,6 +127,12 @@ focus_neighbor_left = NodePath("../Right")
 focus_neighbor_top = NodePath("../Ready")
 focus_neighbor_right = NodePath("../Right")
 focus_neighbor_bottom = NodePath("../Ready")
+theme = SubResource("Theme_3rx5j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ni7m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h31sv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_apyjo")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8hmjt")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gdf3d")
 icon = ExtResource("3_gwrjm")
 script = ExtResource("4_d2g80")
 name = "left"
@@ -98,6 +156,11 @@ focus_neighbor_left = NodePath("../Left")
 focus_neighbor_top = NodePath("../Ready")
 focus_neighbor_right = NodePath("../Left")
 focus_neighbor_bottom = NodePath("../Ready")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c0tk7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b548f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nxufj")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_du4gx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6sed5")
 icon = ExtResource("4_3edfk")
 script = ExtResource("4_d2g80")
 name = "right"
@@ -121,7 +184,7 @@ focus_neighbor_left = NodePath("../Left")
 focus_neighbor_top = NodePath("../Right")
 focus_neighbor_right = NodePath("../Right")
 focus_neighbor_bottom = NodePath("../Left")
-text = "Ready"
+text = "Press SPACE or \"A\" to Start"
 
 [connection signal="pressed" from="Background Color/Left" to="Background Color/Left" method="_on_pressed"]
 [connection signal="pressed" from="Background Color/Right" to="Background Color/Right" method="_on_pressed"]

@@ -12,6 +12,7 @@ public partial class AttackSwap : Label
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//Set and show initial selected options
 		menuController = GetNode<SelectMenu>("../..");
 		if (this.Name.ToString().Contains("1")) {
 			attackNum = 1;
@@ -27,6 +28,7 @@ public partial class AttackSwap : Label
 
 	}
 
+	//called when adjusted left or right selects the adjacent attack and displays
 	public void _Change_Attack(string arrowName)
 	{
 		if (arrowName == "left")

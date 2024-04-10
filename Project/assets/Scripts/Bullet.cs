@@ -27,6 +27,7 @@ public partial class Bullet : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//grabs parent and sets colors to match
 		var parent = this.GetParent();
 		owner = (Player) parent.Get("owner");
 		trail = GetNode<Line2D>("%Trail");
@@ -34,42 +35,24 @@ public partial class Bullet : Area2D
 		if(owner != null){
 			Modulate = owner.Modulate;
 			trail.Modulate = owner.Modulate;
-			//switch (owner.player_id)
-			//{
-			//	case 0:
-			//		Modulate = Colors.Aquamarine;
-			//		trail.Modulate = Colors.Aquamarine;
-			//		break;
-			//	case 1:
-			//		Modulate = Colors.RebeccaPurple;
-			//		trail.Modulate = Colors.RebeccaPurple;
-			//		break;
-			//	case 2:
-			//		Modulate = Colors.Firebrick;
-			//		trail.Modulate = Colors.Firebrick;
-			//		break;
-			//	case 3:
-			//		Modulate = Colors.Lime;
-			//		trail.Modulate = Colors.Lime;
-			//		break;
-			//}
 		}
 		if(passer == "Camo"){
 			Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
 			trail.Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
 		}
-
 		// Sets the opacity of the trail 0 - 255
 		//trail.Modulate = trail.Modulate with { A8 = 255 };
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//increment timer
 		delay -= delta;
+		//when timer reaches zero start attack
 		if(delay <= 0)
 		{
+			//swirl logic for sharp turns after slight moving away from player
 			if (swirl && delay <= .5)
 			{
 				//GD.Print(speed);
@@ -80,10 +63,12 @@ public partial class Bullet : Area2D
 				}							
 				//GD.Print(speed);
 			}
+			//translate and rotate bullet by respective variables, adjust spin and life
 			Translate(speed.Rotated(Rotation) * (float)delta);
 			Rotate((float)(Math.PI*spin*delta/180));
 			spin += (float)(spinAccel*delta);		
 			lifetime -= delta;	
+			//when life goes to 0 delete
 			if(lifetime <= 0)
 			{
 				this.QueueFree();
@@ -99,10 +84,12 @@ public partial class Bullet : Area2D
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{
+			//check each collision make sure its a player
 			foreach (Area2D area in collisions)
 			{
 				if (area is not Resource)
 				{
+					//if its a different player reward owner, dmg enemy, delete bullet
 					if (area is Player player)
 					{
 						if(player != owner && player.Damageable)
@@ -115,6 +102,7 @@ public partial class Bullet : Area2D
 							QueueFree();
 						}
 					}
+					//if hit a cloud destroy
 					else
 					{
 						lifetime = 0;

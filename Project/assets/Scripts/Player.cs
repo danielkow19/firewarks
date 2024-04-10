@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Transactions;
 using Godot;
 using Godot.Collections;
@@ -103,6 +104,8 @@ public partial class Player : Area2D
 
 	public bool debuffSlow = false;
 	private double debuffTimer = 0;
+
+	private double puTimer;
 	
 	[Export]
 	PackedScene patternLeft = null;
@@ -247,6 +250,7 @@ public partial class Player : Area2D
 		// Assign trail
 		trail = GetNode<PlayerTrail>("PlayerTrail");
 		trail.Set("playerRef", this);
+		puTimer = 0;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -263,6 +267,16 @@ public partial class Player : Area2D
 			if(barrierTimer <= 0)
 			{
 			DeactivateBarrier();
+			}
+		}
+		if(powerUpPasser != ""){
+			puTimer -= delta;
+			if(puTimer < 0){
+				powerUpPasser = "";
+				if(firing){
+					Pattern wrkPattern = currentPattern as Pattern;
+					wrkPattern.Set("passer", powerUpPasser);
+				}
 			}
 		}
 
@@ -593,7 +607,6 @@ public partial class Player : Area2D
 			instance.Set("position", this.Position);
 			instance.Set("rotation", this.Rotation);
 			instance.Set("passer", powerUpPasser);
-			powerUpPasser = "";
 			instance.Set("owner", this);
 			currentPattern = instance;
 			cooldown = (float)currentPattern.Get("recharge");
@@ -703,10 +716,12 @@ public partial class Player : Area2D
 
 			case PowerUpType.BulletSpeed:
 				powerUpPasser = "BulletSpeed";
+				puTimer = 10;
 				break;
 			
 			case PowerUpType.Camo:
 				powerUpPasser = "Camo";
+				puTimer = 10;
 				break;
 
 			case PowerUpType.Slowdown:

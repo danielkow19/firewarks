@@ -232,8 +232,7 @@ public partial class Pattern : Node2D
 		if(passer == "RFW")
 		{
 			GD.Print("here");
-			instance.Set("position", new Vector2(rng.RandfRange(-500,500),rng.RandfRange(-500,500)));
-			AddSibling(instance);
+			AddChild(instance);
 		}
 		else if(!playerLocked)
 		{
