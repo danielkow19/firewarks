@@ -9,6 +9,6 @@ spreadPerWave = PackedInt32Array(338, 338, 315)
 speedPerWave = PackedInt32Array(120, 120, 180)
 offsetPerWave = PackedInt32Array(0, 11, 0)
 swirlMod = PackedInt32Array(0)
-initialCost = 70.0
+initialCost = 15.0
 costPerSecond = 10.0
 recharge = 0.5

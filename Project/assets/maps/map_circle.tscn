@@ -17,7 +17,7 @@ metadata/_edit_horizontal_guides_ = [540.0, -540.0, -460.0, 460.0]
 script = ExtResource("1_rtscf")
 directions = PackedStringArray("None", "None", "None", "None", "None", "None", "None", "None")
 rotations = PackedFloat64Array(180, 180, 180, 180, 180, 180, 180, 180)
-scaleHolder = PackedFloat64Array(1, 0.5, 0.5, 1, 1, 2, 2, 1)
+scaleHolder = PackedFloat64Array(0.5, 0.5, 0.5, 1, 1, 1)
 timersHolder = PackedFloat64Array(5)
 
 [node name="Center Cloud Group" type="CollisionShape2D" parent="Center Cloud"]
