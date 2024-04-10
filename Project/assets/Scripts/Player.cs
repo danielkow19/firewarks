@@ -244,7 +244,7 @@ public partial class Player : Area2D
 		}
 
 		// Set heat meter to the right color
-		followHud.Modulate = Modulate;
+		followHud.GetNode<TextureProgressBar>("EnergyMeterDynamic").Modulate = Modulate;
 
 
 		// Assign trail
