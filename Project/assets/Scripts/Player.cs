@@ -764,7 +764,7 @@ public partial class Player : Area2D
 				AddChild(instance);
 				break;
 			
-			case PowerUpType.RandomFireworks:
+			case PowerUpType.SupportingFire:
 				var instanceRandom = randomFireworks.Instantiate();
 				instanceRandom.Set("passer", "RFW");
 				instanceRandom.Set("owner", this);

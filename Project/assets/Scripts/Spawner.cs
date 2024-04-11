@@ -23,12 +23,12 @@ public partial class Spawner : Node2D
 			var instance = resource.Instantiate();
 			Vector2 range = manager.WorldBorder.edgePosition;
 			instance.Set("position",
-				new Vector2(rng.RandfRange(-range.X + 50, range.X - 50), rng.RandfRange(-range.Y + 50, range.Y - 50)));
+				new Vector2(rng.RandfRange(-range.X + 100, range.X - 100), rng.RandfRange(-range.Y + 100, range.Y - 100)));
 			Array values = Enum.GetValues(typeof(PowerUpType));
 			(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
 
 			while (manager.WorldBorder.countDown.TimeLeft < 0 &&
-			       (instance as Resource).type == PowerUpType.RandomFireworks)
+			       (instance as Resource).type == PowerUpType.SupportingFire)
 			{
 				(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
 			}
