@@ -46,7 +46,7 @@ public partial class MapSelect : Control
 		{
 			rightButton._on_pressed();
 		}
-		else if (Input.IsActionJustPressed("ui_select"))
+		else if (Input.IsActionJustPressed("ui_accept"))
 		{
 			_on_ready_pressed();
 		}

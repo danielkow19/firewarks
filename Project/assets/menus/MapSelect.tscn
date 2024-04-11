@@ -97,7 +97,6 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="MapName" type="Label" parent="Background Color"]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

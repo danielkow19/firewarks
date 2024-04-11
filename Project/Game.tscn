@@ -109,7 +109,7 @@ rotation = -1.5708
 scale = Vector2(1, -2)
 texture = ExtResource("7_hfr57")
 
-[node name="PauseMenu" parent="." instance=ExtResource("7_wexeu")]
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("_manager") instance=ExtResource("7_wexeu")]
 unique_name_in_owner = true
 visible = false
 z_index = 10
@@ -118,6 +118,7 @@ offset_top = -80.0
 offset_right = -90.0
 offset_bottom = -80.0
 scale = Vector2(3, 3)
+_manager = NodePath("..")
 
 [node name="PlayerNumbers" parent="." instance=ExtResource("14_2gti6")]
 visible = false
