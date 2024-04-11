@@ -6,6 +6,8 @@ public partial class Pause : Control
 {
 	[Export]
 	private Node _manager;
+	private Button lobbyButton;
+	private Button mainMenuButton;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -26,5 +28,18 @@ public partial class Pause : Control
 	public void _on_resume_pressed()
 	{
 		_manager.Call("PauseMenu");
+	}
+	public void _on_lobby_pressed()
+	{
+		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
+		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
+		scene.GoToScene("res://player_select.tscn");
+
+    }
+	public void _on_main_menu_pressed()
+	{
+		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
+		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
+		scene.GoToScene("res://StartMenu.tscn");
 	}
 }

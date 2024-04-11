@@ -1,15 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7s7plnuj4l5w"]
+[gd_scene load_steps=11 format=3 uid="uid://c7s7plnuj4l5w"]
 
 [ext_resource type="Script" path="res://Pause.cs" id="1_dm0uu"]
 [ext_resource type="Shader" path="res://Pause.gdshader" id="2_hlb4a"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_3lcw6"]
 [ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="3_tpbxb"]
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="4_cxguj"]
+[ext_resource type="Script" path="res://assets/Scripts/PauseControlButton.cs" id="4_ngvqx"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_jh2lq"]
+[ext_resource type="Texture2D" uid="uid://bwnkhx1wm4ynv" path="res://assets/sprites/ui/ui_controls_visual.png" id="8_bvu3k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p2157"]
 shader = ExtResource("2_hlb4a")
 shader_parameter/amount = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1h38j"]
+font = ExtResource("3_3lcw6")
+font_size = 64
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -30,9 +36,18 @@ offset_right = 637.0
 offset_bottom = 504.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -111.0
+offset_right = 56.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -47,19 +62,47 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
-focus_neighbor_bottom = NodePath("../Quit")
-focus_next = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Controls")
+focus_next = NodePath("../Controls")
 focus_previous = NodePath("../Quit")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 text = "Resume"
 
+[node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Lobby")
+focus_next = NodePath("../Lobby")
+focus_previous = NodePath("../Resume")
+theme_override_fonts/font = ExtResource("3_3lcw6")
+text = "Controls"
+script = ExtResource("4_ngvqx")
+
+[node name="Lobby" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Controls")
+focus_neighbor_bottom = NodePath("../Main Menu")
+focus_next = NodePath("../Main Menu")
+focus_previous = NodePath("../Controls")
+theme_override_fonts/font = ExtResource("3_3lcw6")
+text = "Lobby"
+
+[node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Lobby")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Lobby")
+theme_override_fonts/font = ExtResource("3_3lcw6")
+text = "Main Menu"
+
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_top = NodePath("../Main Menu")
 focus_neighbor_bottom = NodePath("../Resume")
 focus_next = NodePath("../Resume")
-focus_previous = NodePath("../Resume")
+focus_previous = NodePath("../Main Menu")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 text = "Quit
 "
@@ -70,9 +113,93 @@ text = "Quit
 
 [node name="SFXClick" parent="." instance=ExtResource("5_jh2lq")]
 
+[node name="Controls" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+
+[node name="ColorRect" type="ColorRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -732.5
+offset_top = -540.0
+offset_right = 732.5
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.121569, 0.121569, 0.976471)
+
+[node name="Title" type="Label" parent="Controls/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -156.0
+offset_top = 40.0
+offset_right = 156.0
+offset_bottom = 145.0
+grow_horizontal = 2
+text = "Controls"
+label_settings = SubResource("LabelSettings_1h38j")
+
+[node name="TextureRect" type="TextureRect" parent="Controls/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_bvu3k")
+
+[node name="Button" type="Button" parent="Controls/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -160.0
+offset_right = 90.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
+text = "Return
+"
+script = ExtResource("4_ngvqx")
+
 [connection signal="focus_exited" from="MarginContainer/VBoxContainer/Resume" to="SFXDown" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="SFXClick" method="play"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="MarginContainer/VBoxContainer/Controls" method="_control_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Lobby" to="." method="_on_lobby_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="focus_exited" from="MarginContainer/VBoxContainer/Quit" to="SFXUp" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="SFXClick" method="play"]
+[connection signal="pressed" from="Controls/ColorRect/Button" to="Controls/ColorRect/Button" method="_control_pressed"]
