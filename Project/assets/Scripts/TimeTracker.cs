@@ -18,7 +18,14 @@ public partial class TimeTracker : Label
         {
             float minutes = (int)(manager.WorldBorder.countDown.TimeLeft / 60) % 60;
 
-            Text = $"{minutes}:{(int)seconds}";
+            if (seconds < 10)
+            {
+                Text = $"{minutes}:0{(int)seconds}";
+            }
+            else
+            {
+                Text = $"{minutes}:{(int)seconds}";
+            }
         }
         else
         {
