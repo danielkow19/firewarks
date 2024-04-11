@@ -189,7 +189,7 @@ theme_override_fonts/font = ExtResource("6_lu72s")
 theme_override_font_sizes/font_size = 20
 text = "Press SPACE or \"A\" to Start"
 
-[node name="TextureRect" type="TextureRect" parent="Background Color/Ready"]
+[node name="CursorIcon" type="TextureRect" parent="Background Color/Ready"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
