@@ -266,7 +266,7 @@ public partial class Player : Area2D
 			barrierTimer -= delta;
 			if(barrierTimer <= 0)
 			{
-			DeactivateBarrier();
+				DeactivateBarrier();
 			}
 		}
 		if(powerUpPasser != ""){
@@ -277,6 +277,10 @@ public partial class Player : Area2D
 					Pattern wrkPattern = currentPattern as Pattern;
 					wrkPattern.Set("passer", powerUpPasser);
 				}
+				
+				// Could be either
+				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = false;
+				followHud.GetNode<TextureRect>("%CamoIcon").Visible = false;
 			}
 		}
 
@@ -408,12 +412,13 @@ public partial class Player : Area2D
 		
 		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) || debuffSlow ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
 		if(debuffTimer > 0){
-		debuffTimer -= delta;		
+			debuffTimer -= delta;		
 		}
 		else if(debuffTimer <= 0)
 		{
 			debuffSlow = false;
 			debuffTimer = 0;
+			followHud.GetNode<TextureRect>("%SlowedIcon").Visible = false;
 		}
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)
@@ -717,11 +722,13 @@ public partial class Player : Area2D
 			case PowerUpType.BulletSpeed:
 				powerUpPasser = "BulletSpeed";
 				puTimer = 10;
+				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = true;
 				break;
 			
 			case PowerUpType.Camo:
 				powerUpPasser = "Camo";
 				puTimer = 10;
+				followHud.GetNode<TextureRect>("%CamoIcon").Visible = true;
 				break;
 
 			case PowerUpType.Slowdown:
@@ -733,6 +740,7 @@ public partial class Player : Area2D
 						{
 							player.debuffSlow = true;
 							player.debuffTimer = 5;
+							followHud.GetNode<TextureRect>("%SlowedIcon").Visible = true;
 						}
 					}
 				}
