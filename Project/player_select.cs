@@ -46,7 +46,7 @@ public partial class player_select : Control
 	{
 		base._GuiInput(@event);
 		// Make Sure Inputs are clear before reassigning
-		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && keyboardPlayer == -1 && numPlayers < 4 && joinable)
+		if(@event is InputEventKey ke /*&& ke.Keycode == Key.Space*/ && ke.Pressed && keyboardPlayer == -1 && numPlayers < 4 && joinable && ke.Keycode != Key.Backspace)
 		{
 			currentPlayerID = -1;
 			for(int i = 0; i < 4; i++) {
@@ -124,7 +124,7 @@ public partial class player_select : Control
 
 			InstantiateSelectMenu();
 		}
-		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable)
+		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable && jbe.ButtonIndex != JoyButton.B)
 		{
 			currentPlayerID = -1;
 			for(int i = 0; i < 4; i++) {
