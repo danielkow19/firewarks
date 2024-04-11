@@ -1,10 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://dn0xj8glxcnl4"]
+[gd_scene load_steps=25 format=3 uid="uid://dn0xj8glxcnl4"]
 
 [ext_resource type="Script" path="res://assets/Scripts/MapSelect.cs" id="1_obw0t"]
 [ext_resource type="Texture2D" uid="uid://b2sep43out5rb" path="res://assets/sprites/map-images/blankMap.PNG" id="2_fs217"]
 [ext_resource type="Texture2D" uid="uid://cki3qxwybk6k7" path="res://assets/sprites/ui/ui_arrowhead_left.png" id="3_gwrjm"]
 [ext_resource type="Texture2D" uid="uid://8dgeavfa6itq" path="res://assets/sprites/ui/ui_arrowhead.png" id="4_3edfk"]
 [ext_resource type="Script" path="res://assets/Scripts/ArrowMap.cs" id="4_d2g80"]
+[ext_resource type="FontFile" uid="uid://djhccx40lolkn" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Regular.ttf" id="6_lu72s"]
+[ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="7_aqhu3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x510b"]
 font_size = 32
@@ -183,7 +185,26 @@ focus_neighbor_left = NodePath("../Left")
 focus_neighbor_top = NodePath("../Right")
 focus_neighbor_right = NodePath("../Right")
 focus_neighbor_bottom = NodePath("../Left")
+theme_override_fonts/font = ExtResource("6_lu72s")
+theme_override_font_sizes/font_size = 20
 text = "Press SPACE or \"A\" to Start"
+
+[node name="CursorIcon" type="TextureRect" parent="Background Color/Ready"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -43.0
+offset_right = 160.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_aqhu3")
+expand_mode = 5
+stretch_mode = 4
 
 [connection signal="pressed" from="Background Color/Left" to="Background Color/Left" method="_on_pressed"]
 [connection signal="pressed" from="Background Color/Right" to="Background Color/Right" method="_on_pressed"]

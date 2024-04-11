@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh407wp8gb70v"]
+[gd_scene load_steps=8 format=3 uid="uid://dh407wp8gb70v"]
 
 [ext_resource type="Texture2D" uid="uid://d3clxhs3ha0y3" path="res://assets/sprites/ui/ui_heat_empty.png" id="1_h64c4"]
 [ext_resource type="Texture2D" uid="uid://dnwwb0dyxnc61" path="res://assets/sprites/ui/ui_heat_overlay.png" id="2_6f62i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://36en038mujue" path="res://assets/sprites/ui/ui_icon_shot_speed.svg" id="4_5ka87"]
 [ext_resource type="Texture2D" uid="uid://50ldtkrmrsjr" path="res://assets/sprites/ui/ui_icon_camo.svg" id="5_rkgok"]
 [ext_resource type="Texture2D" uid="uid://8l2v4q8hs8mh" path="res://assets/sprites/ui/ui_icon_slow.svg" id="6_fr4rn"]
+[ext_resource type="Texture2D" uid="uid://c8xlv3qnqhyl6" path="res://assets/sprites/ui/ui_icon_mobile_attacker.svg" id="7_16t3w"]
 
 [node name="Follow_HUD" type="Control"]
 top_level = true
@@ -47,6 +48,7 @@ theme_override_constants/v_separation = 0
 alignment = 1
 
 [node name="ShotSpeedIcon" type="TextureRect" parent="StatusIconsContainer"]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -55,13 +57,23 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="CamoIcon" type="TextureRect" parent="StatusIconsContainer"]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("5_rkgok")
 expand_mode = 3
 
+[node name="MobileAttackerIcon" type="TextureRect" parent="StatusIconsContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("7_16t3w")
+expand_mode = 3
+
 [node name="SlowedIcon" type="TextureRect" parent="StatusIconsContainer"]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2

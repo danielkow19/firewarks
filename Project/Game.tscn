@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=11 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="2_imqba"]
 [ext_resource type="Script" path="res://assets/Scripts/TimeTracker.cs" id="4_p5cqw"]
-[ext_resource type="Texture2D" uid="uid://dhkbd8koy65o6" path="res://assets/sprites/bullets/temp-world-border.png" id="6_pm6ws"]
 [ext_resource type="Texture2D" uid="uid://haocm7nge708" path="res://assets/sprites/objects/Object_borderRight.PNG" id="7_hfr57"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_24xvk"]
@@ -60,15 +59,11 @@ script = ExtResource("9_tbo5m")
 [node name="CloudBorder" type="Area2D" parent="." node_paths=PackedStringArray("edges")]
 script = ExtResource("10_8vbbq")
 timeSeconds = 180.0
-edges = []
+edges = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CloudBorder"]
 scale = Vector2(0.9, 0.9)
 polygon = PackedVector2Array(-6000, -3375, -960, -540, -960, 540, 960, 540, 960, -540, -960, -540, -6000, -3375, 6000, -3375, 6000, 3375, -6000, 3375)
-
-[node name="Temp-world-border" type="Sprite2D" parent="CloudBorder"]
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("6_pm6ws")
 
 [node name="Marker2D" type="Marker2D" parent="CloudBorder"]
 top_level = true

@@ -90,6 +90,7 @@ public partial class Player : Area2D
 	private bool barrier = false;
 	private AnimatedSprite2D barrierMesh;
 	private double barrierTimer = 0;
+	private TextureRect mobileAttackLengthIcon;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
@@ -137,6 +138,8 @@ public partial class Player : Area2D
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
 		barrierMesh = GetNode<AnimatedSprite2D>("%Barrier");
+		mobileAttackLengthIcon = followHud.GetNode<TextureRect>("%MobileAttackerIcon");
+
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		switch(player_id)
 		{
@@ -266,7 +269,7 @@ public partial class Player : Area2D
 			barrierTimer -= delta;
 			if(barrierTimer <= 0)
 			{
-			DeactivateBarrier();
+				DeactivateBarrier();
 			}
 		}
 		if(powerUpPasser != ""){
@@ -277,6 +280,10 @@ public partial class Player : Area2D
 					Pattern wrkPattern = currentPattern as Pattern;
 					wrkPattern.Set("passer", powerUpPasser);
 				}
+				
+				// Could be either
+				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = false;
+				followHud.GetNode<TextureRect>("%CamoIcon").Visible = false;
 			}
 		}
 
@@ -405,15 +412,22 @@ public partial class Player : Area2D
 			Rotation += MathF.PI * 2;
 		}
 
+		// Theres no method for checking this on effect end so I'm doing it here instead
+		if (mobileAttackLength.TimeLeft <= 0)
+		{
+			mobileAttackLengthIcon.Visible = false;
+		}
+		
 		
 		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) || debuffSlow ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
 		if(debuffTimer > 0){
-		debuffTimer -= delta;		
+			debuffTimer -= delta;		
 		}
 		else if(debuffTimer <= 0)
 		{
 			debuffSlow = false;
 			debuffTimer = 0;
+			followHud.GetNode<TextureRect>("%SlowedIcon").Visible = false;
 		}
 		// Force player to stay in the world, will probably be changed
 		if (Position.X < -960)
@@ -706,6 +720,7 @@ public partial class Player : Area2D
 			
 			case PowerUpType.MobileAttacker:
 				mobileAttackLength.Start(15);
+				mobileAttackLengthIcon.Visible = true;
 				break;
 			
 			case PowerUpType.Barrier:
@@ -717,11 +732,15 @@ public partial class Player : Area2D
 			case PowerUpType.BulletSpeed:
 				powerUpPasser = "BulletSpeed";
 				puTimer = 10;
+				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = true;
+				followHud.GetNode<TextureRect>("%CamoIcon").Visible = false;
 				break;
 			
 			case PowerUpType.Camo:
 				powerUpPasser = "Camo";
 				puTimer = 10;
+				followHud.GetNode<TextureRect>("%CamoIcon").Visible = true;
+				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = false;
 				break;
 
 			case PowerUpType.Slowdown:
@@ -733,6 +752,7 @@ public partial class Player : Area2D
 						{
 							player.debuffSlow = true;
 							player.debuffTimer = 5;
+							followHud.GetNode<TextureRect>("%SlowedIcon").Visible = true;
 						}
 					}
 				}
@@ -746,7 +766,7 @@ public partial class Player : Area2D
 				AddChild(instance);
 				break;
 			
-			case PowerUpType.RandomFireworks:
+			case PowerUpType.SupportingFire:
 				var instanceRandom = randomFireworks.Instantiate();
 				instanceRandom.Set("passer", "RFW");
 				instanceRandom.Set("owner", this);

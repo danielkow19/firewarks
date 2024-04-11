@@ -343,6 +343,7 @@ script = ExtResource("5_tcvo2")
 
 [node name="Follow_HUD" parent="." instance=ExtResource("6_e5m8y")]
 unique_name_in_owner = true
+z_index = 3
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
