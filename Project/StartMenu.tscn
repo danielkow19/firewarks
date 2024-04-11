@@ -101,9 +101,9 @@ autoplay = false
 [node name="Controls" parent="." instance=ExtResource("11_u2ecx")]
 visible = false
 offset_left = 960.0
-offset_top = 550.0
+offset_top = 540.0
 offset_right = 960.0
-offset_bottom = 550.0
+offset_bottom = 540.0
 
 [connection signal="focus_exited" from="ControlsButton" to="SFXUp" method="play"]
 [connection signal="pressed" from="ControlsButton" to="ControlsButton" method="_on_pressed"]
