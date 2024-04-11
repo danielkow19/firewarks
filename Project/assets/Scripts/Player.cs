@@ -733,12 +733,14 @@ public partial class Player : Area2D
 				powerUpPasser = "BulletSpeed";
 				puTimer = 10;
 				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = true;
+				followHud.GetNode<TextureRect>("%CamoIcon").Visible = false;
 				break;
 			
 			case PowerUpType.Camo:
 				powerUpPasser = "Camo";
 				puTimer = 10;
 				followHud.GetNode<TextureRect>("%CamoIcon").Visible = true;
+				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = false;
 				break;
 
 			case PowerUpType.Slowdown:
