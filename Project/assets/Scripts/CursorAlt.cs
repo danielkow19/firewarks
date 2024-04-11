@@ -46,9 +46,13 @@ public partial class CursorAlt : Node2D
 		// Cursor movement Logic
 		if(Input.IsActionJustPressed($"Up_{playerNum}")) {
 			positionIndex -= 1;
+			this.Modulate = Colors.White;
 		} 
 		else if (Input.IsActionJustPressed($"Down_{playerNum}")) {
 			positionIndex += 1;
+			if(positionIndex == 3) {
+				this.Modulate = Colors.Black;
+			}
 		} 
 		else if (Input.IsActionJustPressed($"Left_{playerNum}")) {
 			switch(positionIndex) {
