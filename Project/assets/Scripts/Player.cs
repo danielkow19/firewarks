@@ -90,6 +90,7 @@ public partial class Player : Area2D
 	private bool barrier = false;
 	private AnimatedSprite2D barrierMesh;
 	private double barrierTimer = 0;
+	private TextureRect mobileAttackLengthIcon;
 	
 	[Export]
 	public int player_id = 0; //Player ID is what makes the different players have separate controls
@@ -137,6 +138,8 @@ public partial class Player : Area2D
 		_collider = GetNode<CollisionShape2D>("%Collider");
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
 		barrierMesh = GetNode<AnimatedSprite2D>("%Barrier");
+		mobileAttackLengthIcon = followHud.GetNode<TextureRect>("%MobileAttackerIcon");
+
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		switch(player_id)
 		{
@@ -409,6 +412,12 @@ public partial class Player : Area2D
 			Rotation += MathF.PI * 2;
 		}
 
+		// Theres no method for checking this on effect end so I'm doing it here instead
+		if (mobileAttackLength.TimeLeft <= 0)
+		{
+			mobileAttackLengthIcon.Visible = false;
+		}
+		
 		
 		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) || debuffSlow ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
 		if(debuffTimer > 0){
@@ -711,6 +720,7 @@ public partial class Player : Area2D
 			
 			case PowerUpType.MobileAttacker:
 				mobileAttackLength.Start(15);
+				mobileAttackLengthIcon.Visible = true;
 				break;
 			
 			case PowerUpType.Barrier:

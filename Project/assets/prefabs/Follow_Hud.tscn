@@ -65,6 +65,7 @@ texture = ExtResource("5_rkgok")
 expand_mode = 3
 
 [node name="MobileAttackerIcon" type="TextureRect" parent="StatusIconsContainer"]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
