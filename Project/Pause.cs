@@ -31,6 +31,8 @@ public partial class Pause : Control
 	}
 	public void _on_lobby_pressed()
 	{
+		// Un-Pause tree before moving?
+		GetTree().Paused = false;
 		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
 		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
 		scene.ReadyScene("res://player_select.tscn");
@@ -39,6 +41,7 @@ public partial class Pause : Control
     }
 	public void _on_main_menu_pressed()
 	{
+		GetTree().Paused = false;
 		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
 		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
 		scene.ReadyScene("res://StartMenu.tscn");
