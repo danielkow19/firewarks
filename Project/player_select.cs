@@ -330,7 +330,7 @@ public partial class player_select : Control
 
 	public void RemovePlayer(int playerID) {
 		Input.ActionRelease($"Back_{playerID}");
-		deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
+		if(keyboardPlayer != playerID) deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
 		EraseInputsByID(playerID);
 		Node menu = menus[playerID];
 		menu.Free();
