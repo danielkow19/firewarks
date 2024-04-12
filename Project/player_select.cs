@@ -339,5 +339,6 @@ public partial class player_select : Control
 		if(index != -1) settings.RemovePlayerInfoAt(index);
 		numPlayers--;
 		if(playerID == keyboardPlayer) keyboardPlayer = -1;
+		colorIndices[playerID] = -1;
 	}
 }
