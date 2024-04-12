@@ -33,13 +33,15 @@ public partial class Pause : Control
 	{
 		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
 		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
-		scene.GoToScene("res://player_select.tscn");
+		scene.ReadyScene("res://player_select.tscn");
+		scene.GotoReadyScene("res://player_select.tscn");
 
     }
 	public void _on_main_menu_pressed()
 	{
 		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
 		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
-		scene.GoToScene("res://StartMenu.tscn");
+		scene.ReadyScene("res://StartMenu.tscn");
+        scene.GotoReadyScene("res://StartMenu.tscn");
 	}
 }
