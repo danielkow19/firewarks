@@ -188,7 +188,7 @@ public partial class Pattern : Node2D
 			}
 		}
 	}
-
+	//instantiates given wave to spawn with needed varriables
 	public void SpawnWave(int waveToSpawn)
 	{
 		var instance = pattern.Instantiate();

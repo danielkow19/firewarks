@@ -35,8 +35,10 @@ public partial class Clouds : Area2D
 	{
 		if(moving)
 		{
+			//track starting position
 			start = Position;
 			step = 0;
+			//set all arrays to not break
 			if(directions.Length == 0)
 			{
 				directions = new string[1];
@@ -116,6 +118,7 @@ public partial class Clouds : Area2D
 				scaleHolder = update;
 			}
 			timers = new double[timersHolder.Length];
+			//set the timers being used
 			setTimers();
 		}
 	}
@@ -125,7 +128,7 @@ public partial class Clouds : Area2D
 	{
 		if(moving){
 			Vector2 movingVec = new Vector2(0,0);
-
+			//translate in the direction
 			if((directions[step] == "Up" && !reverseTracking) || (directions[step] == "Down" && reverseTracking)){
 				movingVec = new Vector2(0,-(float)speed[step] * (float)delta);
 			}
@@ -150,6 +153,7 @@ public partial class Clouds : Area2D
 			else if((directions[step] == "DownAndLeft" && !reverseTracking) || (directions[step] == "UpAndRight" && reverseTracking)){
 				movingVec = new Vector2(-MathF.Sqrt((float)speed[step])* (float)delta,MathF.Sqrt((float)speed[step])* (float)delta);
 			}		
+			//rotate back to zero when exceding 360 or -360 degrees
 			if(Rotation > 2*Math.PI)
 			{
 				Rotate(-2*(float)Math.PI);
@@ -162,12 +166,14 @@ public partial class Clouds : Area2D
 			//uncomment this line if translation is being rotated
 			//movingVec = movingVec.Rotated(Rotation);
 			Translate(movingVec);
+			//scale object
 			Scale = new Vector2(Scale.X+((float)(scaleHolder[step]-lastScale)/(float)timersHolder[step]*(float)delta),Scale.Y+((float)(scaleHolder[step]-lastScale)/(float)timersHolder[step]*(float)delta));
 			timers[step] -= delta;
-
+			//if timer for step finishes set scale to equal the held scale, hold this scale to scale by
 			if(timers[step] <= 0){
 				Scale = new Vector2((float)scaleHolder[step],(float)scaleHolder[step]);
 				lastScale = scaleHolder[step];
+				//if not going in reverse increment upward, looping, reseting or reversing as needed
 				if(!reverseTracking)
 				{
 					step += 1;
@@ -187,6 +193,7 @@ public partial class Clouds : Area2D
 					}
 
 				}
+				//if reversing increment backwards
 				else{
 					step -= 1;
 					if(step == 0)

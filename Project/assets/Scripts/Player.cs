@@ -272,6 +272,7 @@ public partial class Player : Area2D
 				DeactivateBarrier();
 			}
 		}
+		//if powered up lower timer or if timer is up set power up to none
 		if(powerUpPasser != ""){
 			puTimer -= delta;
 			if(puTimer < 0){
@@ -528,7 +529,7 @@ public partial class Player : Area2D
 			MakeTrail(2f);
 		}*/
 	}
-
+	//damage player by amount or hit barrier, if this would kill player take death effects
 	public void DamagePlayer(int amount)
 	{
 		if(_damageable && !barrier) 
@@ -568,7 +569,7 @@ public partial class Player : Area2D
 			DeactivateBarrier();
 		}
 	}
-
+	//drains amount energy from player and adds delay to recharge
 	public void DrainEnergy(float amount, float delayTime = 0)
 	{
 		energy -= amount;
@@ -584,7 +585,7 @@ public partial class Player : Area2D
 		freeze.WaitTime = freeze.TimeLeft + delayTime;
 		freeze.Start();
 	}
-	
+	//rewards amount energy to player
 	public void RewardEnergy(int amount)
 	{
 		energy += amount;
@@ -594,13 +595,13 @@ public partial class Player : Area2D
 			energy = 100;
 		}
 	}
-
+	//returns true if player has more than 1 energy
 	public bool HasEnergy()
 	{
 		// Because it works on float it isn't ==0
 		return energy >= 1;
 	}
-	
+	//returns true if player is in atleast 1 cloud
 	private bool InCloud()
 	{
 		return numClouds > 0;
@@ -628,7 +629,7 @@ public partial class Player : Area2D
 		}
 		
 	}
-
+	//Old implementation of player trail
 	private void MakeTrail(float lifetime = 1f) 
 	{
 		_trailTimer.WaitTime = _trailCD;
@@ -668,7 +669,7 @@ public partial class Player : Area2D
 			bullet.QueueFree();
 		}
 	}
-
+	//shows or hides the hud player and trail
 	public void ToggleHUD()
 	{
 		if (_uiVisible)
@@ -692,7 +693,7 @@ public partial class Player : Area2D
 		trail.ToggleTrail();
 		
 	}
-
+	//removes barrier from player
 	public void DeactivateBarrier()
 	{
 		barrier = false;
@@ -700,7 +701,7 @@ public partial class Player : Area2D
 		barrierTimer = 0;
 		_invTime = 0;
 	}
-
+	//on resource pickup check resource type and use that power up
 	public void ResourceCollected(PowerUpType power)
 	{
 		switch (power)
