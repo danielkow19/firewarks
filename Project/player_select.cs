@@ -24,6 +24,7 @@ public partial class player_select : Control
 	private int currentPlayerID = -1;
 
 	private player_settings settings;
+	private SceneManager sceneManager;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -34,7 +35,7 @@ public partial class player_select : Control
 		keyboardPlayer = -1;
 		joinable = true;
 		readiedPlayers = 0;
-		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
+		sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		selectMenu =  sceneManager.GetReadyScene("res://assets/prefabs/SelectMenu.tscn");
 		startButton = GetNode<LobbyButton>("StartButton");
 		settings = (player_settings)GetNode("/root/PlayerSettings");
@@ -239,6 +240,13 @@ public partial class player_select : Control
 			numPlayers++;
 
 			InstantiateSelectMenu();
+		}
+
+		if(@event is InputEventJoypadButton e && e.ButtonIndex == JoyButton.B && e.Pressed && !deviceNums.Contains(e.Device))
+		{
+			Debug.Print($"Changing Scene");
+			sceneManager.ReadyScene("res://StartMenu.tscn");
+			sceneManager.GotoReadyScene("res://StartMenu.tscn");
 		}
 	}
 
