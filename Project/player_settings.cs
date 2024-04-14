@@ -79,7 +79,7 @@ public partial class player_settings : Node
 	public void playerDeath(int playerID) {
 		Debug.Print($"{numPlayers - deathCount}");
 		playerPositions[playerID] = numPlayers - deathCount;
-		Debug.Print($"{playerPositions}");
+		Debug.Print($"{playerPositions[0]}, {playerPositions[1]}, {playerPositions[2]}, {playerPositions[3]}");
 		deathCount++;
 	}
 
