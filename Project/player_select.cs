@@ -343,4 +343,10 @@ public partial class player_select : Control
 		if(playerID == keyboardPlayer) keyboardPlayer = -1;
 		colorIndices[playerID] = -1;
 	}
+
+	public void ReleaseAllActions() {
+		foreach (String action in InputMap.GetActions()) {
+			Input.ActionRelease(action);
+		}
+	}
 }
