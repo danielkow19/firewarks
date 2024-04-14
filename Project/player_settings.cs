@@ -82,4 +82,8 @@ public partial class player_settings : Node
 		Debug.Print($"{playerPositions}");
 		deathCount++;
 	}
+
+	public void ResetDeaths() {
+		deathCount = 0;
+	}
 }

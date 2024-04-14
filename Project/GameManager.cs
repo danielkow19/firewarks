@@ -47,6 +47,7 @@ public partial class GameManager : Node2D
 		// Set current Scene
 		worldBorder = GetNode<WorldBorder>("CloudBorder");
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		settings.ResetDeaths();
 		// Handle player spawning
 		LoadPlayers(settings);
 		// Handle Map Loading

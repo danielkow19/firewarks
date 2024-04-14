@@ -50,7 +50,7 @@ public partial class PlayerStats : Control
 				rankLabel.Text = "4th";
 				break;
 			default:
-				Debug.Print("Something Probably Went Wrong");
+				Debug.Print($"Something Probably Went Wrong, Rank value of {position}");
 				break;
 		}
 	}
