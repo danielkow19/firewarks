@@ -308,20 +308,9 @@ public partial class player_select : Control
 
 	private void EraseInputs()
 	{
-		InputMap.ActionEraseEvents($"UI_Click_{numPlayers}");
-        InputMap.ActionEraseEvents($"Slow_{numPlayers}");
-        InputMap.ActionEraseEvents($"Burst_{numPlayers}");
-        InputMap.ActionEraseEvents($"Up_{numPlayers}");
-        InputMap.ActionEraseEvents($"Down_{numPlayers}");
-        InputMap.ActionEraseEvents($"Left_{numPlayers}");
-        InputMap.ActionEraseEvents($"Right_{numPlayers}");
-        InputMap.ActionEraseEvents($"Shoot_R_{numPlayers}");
-        InputMap.ActionEraseEvents($"Shoot_L_{numPlayers}");
-        InputMap.ActionEraseEvents($"AimUp_{numPlayers}");
-        InputMap.ActionEraseEvents($"AimDown_{numPlayers}");
-        InputMap.ActionEraseEvents($"AimLeft_{numPlayers}");
-        InputMap.ActionEraseEvents($"AimRight_{numPlayers}");
-		InputMap.ActionEraseEvents($"Back_{numPlayers}");
+		for(int i = 0; i < 4; i++) {
+			EraseInputsByID(i);
+		}
     }
 
 	public void EraseInputsByID(int playerID) {
