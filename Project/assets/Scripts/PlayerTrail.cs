@@ -80,7 +80,7 @@ public partial class PlayerTrail : Line2D
 		}
 		
 		// Time Culling
-		float timeAllowed = 1.0f / (playerRef.Health + 1);
+		float timeAllowed = 2.0f / (playerRef.Health + 1);
 		while(timeActive[0] > timeAllowed)
 		{
 			curve.RemovePoint(0);

@@ -292,8 +292,13 @@ public partial class player_select : Control
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
 				Debug.Print($"Player {i} Pressed Back");
+				readiedPlayers--;
 			}
 		}
+		if(numPlayers >=1 && numPlayers > readiedPlayers)
+		{
+            startButton.Hide();
+        }
 	}
 
 	public void ReadyPlayer()
