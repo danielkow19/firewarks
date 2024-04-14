@@ -69,7 +69,7 @@ public partial class ColorSwap : ColorRect
 	public override void _Ready()
 	{
 		sceneController = GetNode<player_select>("../..");
-		playerNum = GetNode<CursorAlt>("Cursor").playerNum;
+		playerNum = GetNode<CursorAlt>("%Cursor").playerNum;
 
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
