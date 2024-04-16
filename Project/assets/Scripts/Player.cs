@@ -47,6 +47,7 @@ public partial class Player : Area2D
 	private AnimatedSprite2D _playerSprite;
 	private Color _initialColor;
 	private Color _alternateColor;
+	private AnimationPlayer barAnim;
 
 	// Burst Variables
 	private Area2D _burstArea;
@@ -225,6 +226,8 @@ public partial class Player : Area2D
 		_leftCooldown.Start();
 		_rightCooldown.Start(); 
 		_grazeCooldown.Start();
+
+		barAnim = GetNode<AnimationPlayer>("Follow_HUD/BarAnimation");
 
 		_isDead = false;
 		_canMove = true;
@@ -515,16 +518,25 @@ public partial class Player : Area2D
 		}
 		
 		// Burst Logic
-		if(Input.IsActionPressed($"Burst_{player_id}") && energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0) 
+		if(Input.IsActionPressed($"Burst_{player_id}")) 
 		{
-			// If this ever gets transferred into a method in the future,
-			// it should be noted that ResourceCollected copies this code
-			_burstArea.Monitoring = true;
-			DrainEnergy(50);
-			_burstTimer.WaitTime = _burstCD;
-			_burstTimer.Start();
-			_burstAnimation.Play();
-			_burstSFX.Play();
+			if (energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0)
+			{
+				// If this ever gets transferred into a method in the future,
+				// it should be noted that ResourceCollected copies this code
+				_burstArea.Monitoring = true;
+				DrainEnergy(50);
+				_burstTimer.WaitTime = _burstCD;
+				_burstTimer.Start();
+				_burstAnimation.Play();
+				_burstSFX.Play();
+			}
+			else if (energy < 50)
+			{
+				// Didn't have enough heat to use move
+				barAnim.Play();
+				freeze.Start(2.5f);
+			}
 		} 
 		else if(_burstTimer.TimeLeft < 0.1f) 
 		{
@@ -636,6 +648,11 @@ public partial class Player : Area2D
 			currentPattern = instance;
 			cooldown = (float)currentPattern.Get("recharge");
 			AddSibling(instance);
+		}
+		else
+		{
+			barAnim.Play();
+			freeze.Start(2.5f);
 		}
 		
 	}
