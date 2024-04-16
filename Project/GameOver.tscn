@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_2c1t3"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_dxxvd"]
 [ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="4_1c3ud"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/SFXClick.tscn" id="5_scr21"]
+[ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_scr21"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
 font = ExtResource("3_dxxvd")

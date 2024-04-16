@@ -124,7 +124,6 @@ public partial class MapSelect : Control
 		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 		//make sure the name is lowercase
 		settings.SaveMap(mapName.ToLower());
-		GD.Print($"Map Name: {mapName}");
 
 		// Change scenes
 		SceneManager scene = GetNode<SceneManager>("/root/SceneManager");
