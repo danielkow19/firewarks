@@ -45,6 +45,9 @@ public partial class Pattern : Node2D
 	private float recharge = 2;
 	[Export]
 	private bool randomness = false;
+	[Export]
+	private bool playEachWave = false;
+	private bool playForWave = true;
 	private bool drained = false;
 	private float coolDown;
 	private string passer;
@@ -56,7 +59,6 @@ public partial class Pattern : Node2D
 	public override void _Ready()
 	{
 		rng = new RandomNumberGenerator();
-		AddChild(sfx.Instantiate());
 		PopulateWaves();
 		if(fireAndForget)
 		{
@@ -100,6 +102,16 @@ public partial class Pattern : Node2D
 			}
 		}
 
+		foreach(Node child in GetChildren())
+		{
+			if(child.IsClass("AudioStreamPlayer")){
+				if(!(child as AudioStreamPlayer).Playing)
+				{
+					child.QueueFree();
+				}
+			}
+		}
+
 		
 		//if attached follow player to continue to spawn from...
 		if(!released)
@@ -109,11 +121,13 @@ public partial class Pattern : Node2D
 		}
 		else
 		{
-			if(GetChildCount() < 2)
+			if(GetChildCount() < 1)
 			{
 				QueueFree();
 			}
 		}
+
+		
 	}
 
 	public void Release()
@@ -250,7 +264,14 @@ public partial class Pattern : Node2D
 			remote.UpdateRotation = false;
 			remote.UpdateScale = false;
 		}
-		
+		if(delay > .5){
+			AddChild(sfx.Instantiate());
+		}
+		else{
+			if(playForWave){AddChild(sfx.Instantiate());}
+			else{playForWave = !playForWave;}
+			
+			}
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
 	public void PopulateWaves()

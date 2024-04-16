@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
 [ext_resource type="Texture2D" uid="uid://b02bhxv5mvhnv" path="res://assets/sprites/effects/spritesheet_smoke_bomb.png" id="4_qsqd8"]
-[ext_resource type="PackedScene" uid="uid://b0m5h4hakr0fj" path="res://assets/prefabs/SFXWings.tscn" id="5_mxbu5"]
+[ext_resource type="PackedScene" path="res://assets/prefabs/SFXWings.tscn" id="5_mxbu5"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 [ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
-[ext_resource type="PackedScene" uid="uid://b6lqioejw8pha" path="res://assets/prefabs/SFXSmoke.tscn" id="8_2xq1s"]
+[ext_resource type="PackedScene" path="res://assets/prefabs/SFXSmoke.tscn" id="8_2xq1s"]
 [ext_resource type="Texture2D" uid="uid://dgobxqaaifoyd" path="res://assets/sprites/effects/spritesheet_barrier.png" id="9_einjs"]
 [ext_resource type="AudioStream" uid="uid://cj1o2aykcxmt" path="res://assets/SFX/powerUp.wav" id="13_0r8cm"]
 
@@ -362,6 +362,7 @@ frame_progress = 0.832578
 
 [node name="PowerUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_0r8cm")
+volume_db = 2.0
 
 [connection signal="animation_looped" from="FlyingSprite" to="FlyingSprite/AudioStreamPlayer" method="play"]
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]

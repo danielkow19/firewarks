@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="3_jqg0j"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="4_yx0w2"]
 [ext_resource type="Texture2D" uid="uid://dkyrhiwj1xlev" path="res://assets/sprites/environment/TEMP_background_splash.png" id="5_5ay5g"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/SFXClick.tscn" id="8_snqrk"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/SFXNavUp.tscn" id="9_xlatk"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
+[ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="8_snqrk"]
+[ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="9_xlatk"]
+[ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
 [ext_resource type="PackedScene" uid="uid://xcwra4xefee6" path="res://assets/prefabs/Controls.tscn" id="11_u2ecx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
