@@ -8,7 +8,7 @@ using System.Linq;
 public partial class player_select : Control
 {
 	public int[] colorIndices = new int[4] {-1,-1,-1,-1};
-	private Button button;
+	private Button button; // Remove?
 	private int numPlayers;
 	private List<int> deviceNums;
 	int keyboardPlayer;
@@ -235,6 +235,12 @@ public partial class player_select : Control
 			joyAxis.AxisValue = 1;
 			InputMap.ActionAddEvent($"AimDown_{currentPlayerID}", joyAxis);
 
+			// Start Game hook up
+			/*
+			joyButton = new InputEventJoypadButton();
+			joyButton.Device = jbe.Device;
+			joyButton.ButtonIndex = JoyButton.Start;
+			InputMap.ActionAddEvent("start_game", joyButton); */
 
 			deviceNums.Add(jbe.Device);
 			numPlayers++;
@@ -299,6 +305,13 @@ public partial class player_select : Control
 		{
             startButton.Hide();
         }
+
+		// Start button controller 
+		if(startButton.Visible && Input.IsActionJustPressed("start_game"))
+		{
+			LobbyButton button = (LobbyButton)startButton;
+			button._on_pressed();
+		}
 	}
 
 	public void ReadyPlayer()

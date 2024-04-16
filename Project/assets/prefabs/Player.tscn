@@ -305,6 +305,7 @@ scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_sbp86")
 
 [node name="BurstAnimation" type="AnimatedSprite2D" parent="BurstArea"]
+top_level = true
 sprite_frames = SubResource("SpriteFrames_uj170")
 frame = 21
 frame_progress = 1.0
@@ -355,6 +356,7 @@ grow_vertical = 1
 
 [node name="Barrier" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+top_level = true
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_pnvig")
 autoplay = "default"

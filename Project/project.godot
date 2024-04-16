@@ -328,3 +328,8 @@ Back_3={
 "deadzone": 0.5,
 "events": []
 }
+start_game={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+]
+}

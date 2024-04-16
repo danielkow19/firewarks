@@ -259,6 +259,9 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		_burstAnimation.Position = Position;
+		barrierMesh.Position = Position;
+		
 		if (!_canMove)
 		{
 			// Stops the player inputs from affecting the player object
@@ -267,6 +270,12 @@ public partial class Player : Area2D
 		if(barrier)
 		{
 			barrierTimer -= delta;
+
+			if (barrierTimer <= 1)
+			{
+				barrierMesh.Modulate = new Color(barrierMesh.Modulate.R, barrierMesh.Modulate.G, barrierMesh.Modulate.B, (float)barrierTimer);
+			}
+			
 			if(barrierTimer <= 0)
 			{
 				DeactivateBarrier();
@@ -700,7 +709,10 @@ public partial class Player : Area2D
 		barrier = false;
 		barrierMesh.Visible = false;
 		barrierTimer = 0;
-		_invTime = 0;
+		
+		// Resets opacity for next time it's active
+		barrierMesh.Modulate = new Color(barrierMesh.Modulate.R, barrierMesh.Modulate.G, barrierMesh.Modulate.B, 1);
+		//_invTime = 0;
 	}
 	//on resource pickup check resource type and use that power up
 	public void ResourceCollected(PowerUpType power)
