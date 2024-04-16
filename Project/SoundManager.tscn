@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bg6d0gcchelpf"]
+[gd_scene format=3 uid="uid://bungqpcb20ael"]
 
-[node name="Sound Manager" type="Node"]
+[node name="SoundManager" type="Node"]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+[connection signal="finished" from="Music" to="Music" method="play"]

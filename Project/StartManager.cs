@@ -27,6 +27,13 @@ public partial class StartManager : Node2D
 		settings.Clear();	
 		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		sceneManager.ReadyScene("res://assets/prefabs/SelectMenu.tscn");
+		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+		if(!music.Playing)
+		{
+		music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
+		music.Play();
+		}
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

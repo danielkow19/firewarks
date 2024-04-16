@@ -704,6 +704,7 @@ public partial class Player : Area2D
 	//on resource pickup check resource type and use that power up
 	public void ResourceCollected(PowerUpType power)
 	{
+		GetNode<AudioStreamPlayer2D>("PowerUp").Play();
 		switch (power)
 		{
 			case PowerUpType.Refill:

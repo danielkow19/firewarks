@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 Focus="*res://focus.gd"
 SceneManager="*res://SceneManager.cs"
 PlayerSettings="*res://player_settings.cs"
+SoundManager="*res://SoundManager.tscn"
 
 [display]
 

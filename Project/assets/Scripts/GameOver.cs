@@ -14,6 +14,9 @@ public partial class GameOver : Node2D
 		stats = sceneManager.GetReadyScene("res://assets/prefabs/PlayerStats.tscn");
 		settings = (player_settings)GetNode("/root/PlayerSettings");
 		InstantiateStats(settings.numPlayers);
+		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+		music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
+		music.Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

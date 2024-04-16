@@ -52,6 +52,9 @@ public partial class GameManager : Node2D
 		LoadPlayers(settings);
 		// Handle Map Loading
 		LoadMap(settings.MapName);
+
+		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+		music.Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
