@@ -74,11 +74,26 @@ public partial class ColorSwap : ColorRect
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
 		sprite = GetNode<AnimatedSprite2D>("%FlyingSprite");
-		colorIndex = 0;
 
-		// Assign childRects 0 color
-		childRect.Color = Colors.Red;
-		sprite.Modulate = Colors.Red;
+        //Load in info from player settings
+        player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		// Get player info
+		if(settings.PlayerInfos.Count > playerNum)
+		{
+            PlayerInfo info = settings.PlayerInfos[playerNum];
+            colorIndex = _getIndexFromColor(info.Color);
+
+			// Assign color info
+			childRect.Color = info.Color;
+			sprite.Modulate = info.Color;
+        }
+        else
+        {
+			// Assign childRects color 0
+			colorIndex = 0;
+            childRect.Color = Colors.Red;
+            sprite.Modulate = Colors.Red;
+        }
 		//texture.Modulate = Colors.Red;
 		//Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
 		//Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
@@ -142,5 +157,46 @@ public partial class ColorSwap : ColorRect
 		childRect.Color = newColor;
 		sprite.Modulate = newColor;
 		//texture.Modulate = newColor;
+	}
+
+	private int _getIndexFromColor(Color color)
+	{
+		// A Switch statement was causing problems with Color Constant Names
+		if(color == Colors.Red)
+		{
+			return 0;
+		}
+		else if(color == Colors.Orange)
+		{
+			return 1;
+		}
+		else if(color == Colors.Yellow)
+		{
+			return 2;
+		}
+		else if(color == Colors.Green)
+		{
+			return 3;
+		}
+		else if (color == Colors.Magenta)
+		{
+			return 4;
+		}
+		else if(color == Colors.MediumVioletRed)
+		{
+			return 5;
+		}
+		else if (color == Colors.Lavender)
+		{
+			return 6;
+		}
+		else if(color == Colors.Aquamarine)
+		{
+			return 7;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 }
