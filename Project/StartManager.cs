@@ -27,6 +27,7 @@ public partial class StartManager : Node2D
 		settings.Clear();	
 		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		sceneManager.ReadyScene("res://assets/prefabs/SelectMenu.tscn");
+		currentScene = sceneManager.currentScene.SceneFilePath;
 		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
 		if(!music.Playing)
 		{
