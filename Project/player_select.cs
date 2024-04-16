@@ -291,7 +291,7 @@ public partial class player_select : Control
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
-				Debug.Print($"Player {i} Pressed Back");
+				//Debug.Print($"Player {i} Pressed Back");
 				readiedPlayers--;
 			}
 		}
@@ -332,16 +332,22 @@ public partial class player_select : Control
 
 	public void RemovePlayer(int playerID) {
 		Input.ActionRelease($"Back_{playerID}");
-		if(keyboardPlayer != playerID) deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
-		EraseInputsByID(playerID);
 		Node menu = menus[playerID];
-		menu.Free();
-		menus[playerID] = null;
 		int index = settings.GetPlayerInfoIndexFromID(playerID);
 		if(index != -1) settings.RemovePlayerInfoAt(index);
-		numPlayers--;
-		if(playerID == keyboardPlayer) keyboardPlayer = -1;
-		colorIndices[playerID] = -1;
+		if(menu.GetNode<ColorRect>("ReadyRect").Visible == false) {
+			if(keyboardPlayer != playerID) deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
+			EraseInputsByID(playerID);
+			menu.Free();
+			menus[playerID] = null;
+			numPlayers--;
+			if(playerID == keyboardPlayer) keyboardPlayer = -1;
+			colorIndices[playerID] = -1;
+		} else {
+			menu.GetNode<ColorRect>("ReadyRect").Visible = false;
+			menu.GetNode<ColorRect>("ColorRect").Visible = true;
+		}
+		menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
 	}
 
 	public void ReleaseAllActions() {

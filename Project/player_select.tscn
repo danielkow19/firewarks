@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player_select.cs" id="1_77hbd"]
 [ext_resource type="Script" path="res://Load.cs" id="1_tj5iy"]
 [ext_resource type="Script" path="res://assets/Scripts/LobbyButton.cs" id="2_f1r4r"]
-[ext_resource type="Theme" uid="uid://tbtldqpa35ec" path="res://assets/Themes/ButtonTheme.tres" id="3_4c64v"]
+[ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="4_86i7b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5r35j"]
 font_size = 28
@@ -75,14 +75,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -15.5
-offset_right = 144.0
-offset_bottom = 46.5
+offset_left = -301.5
+offset_top = -51.5
+offset_right = 298.5
+offset_bottom = 48.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_4c64v")
-text = "Start Game"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_86i7b")
+theme_override_font_sizes/font_size = 48
+text = "Press Enter or Start"
+flat = true
 script = ExtResource("2_f1r4r")
 
 [connection signal="pressed" from="JoinNode/StartButton" to="JoinNode/StartButton" method="_on_pressed"]
