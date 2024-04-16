@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://mlp2ibuhhhh3"]
+[gd_scene load_steps=10 format=3 uid="uid://mlp2ibuhhhh3"]
 
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="1_ydyd2"]
 [ext_resource type="FontFile" uid="uid://djhccx40lolkn" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Regular.ttf" id="2_2vhlg"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bs35640rh2ujj" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Bold.ttf" id="4_3383o"]
 [ext_resource type="FontFile" uid="uid://dxskowqktlbqb" path="res://assets/fonts/RobotoSerif_120pt-Italic.ttf" id="5_xgtay"]
 [ext_resource type="FontFile" uid="uid://brir60csc37tc" path="res://assets/fonts/RobotoSerif_120pt-BoldItalic.ttf" id="6_61gly"]
+[ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="7_ud4dm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_axihe"]
 font = ExtResource("1_ydyd2")
@@ -227,3 +228,32 @@ text = "[center]In a pinch? Use your smoke bomb (RB) to clear everything around 
 Be careful though, it uses half of your heat gauge!
 [/center]"
 fit_content = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -107.0
+offset_right = 130.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ydyd2")
+theme_override_font_sizes/font_size = 48
+text = "Continue"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_left = -74.0
+offset_top = -13.0
+offset_right = 334.0
+offset_bottom = 91.0
+texture = ExtResource("7_ud4dm")
+expand_mode = 2
+stretch_mode = 5

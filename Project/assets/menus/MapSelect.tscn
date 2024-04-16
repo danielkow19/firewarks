@@ -185,9 +185,11 @@ focus_neighbor_left = NodePath("../Left")
 focus_neighbor_top = NodePath("../Right")
 focus_neighbor_right = NodePath("../Right")
 focus_neighbor_bottom = NodePath("../Left")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_lu72s")
 theme_override_font_sizes/font_size = 20
 text = "Press SPACE or \"A\" to Start"
+flat = true
 
 [node name="CursorIcon" type="TextureRect" parent="Background Color/Ready"]
 layout_mode = 1
