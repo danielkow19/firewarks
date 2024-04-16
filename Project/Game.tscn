@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_24xvk"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_tbo5m"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_8vbbq"]
-[ext_resource type="PackedScene" uid="uid://d145uhqaf8iiv" path="res://assets/prefabs/PlayerNumbers.tscn" id="14_2gti6"]
+[ext_resource type="PackedScene" path="res://assets/prefabs/PlayerNumbers.tscn" id="14_2gti6"]
 
 [node name="Game2" type="Node2D" node_paths=PackedStringArray("_players")]
 scale = Vector2(1, 0.996516)
@@ -16,7 +16,8 @@ script = ExtResource("1_py270")
 _players = []
 
 [node name="Temp-bkg-city1" type="Sprite2D" parent="."]
-position = Vector2(0, 1.0035)
+position = Vector2(0.462219, 0.0595474)
+scale = Vector2(1.00361, 1.00361)
 texture = ExtResource("2_imqba")
 
 [node name="Camera2D" type="Camera2D" parent="."]
