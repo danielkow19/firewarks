@@ -16,7 +16,7 @@ public partial class LobbyButton : Button
 	public override void _Process(double delta)
 	{
 	}
-	private void _on_pressed()
+	public void _on_pressed()
 	{
 		
 		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
