@@ -222,21 +222,21 @@ public partial class Pattern : Node2D
 				else{
 					instance.Set("speed", speedPerWave[waveToSpawn] + rng.RandfRange(-50,50));
 				}	
+		}
+		else{
+			instance.Set("spread", spreadPerWave[waveToSpawn]);
+			instance.Set("offset",offsetPerWave[waveToSpawn]);
+			instance.Set("spin",spinPerWave[waveToSpawn]);
+			instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
+			instance.Set("swirlMod", swirlMod[waveToSpawn]);
+			if(passer == "BulletSpeed")
+			{
+				instance.Set("speed", speedPerWave[waveToSpawn] * 1.5);
 			}
 			else{
-				instance.Set("spread", spreadPerWave[waveToSpawn]);
-				instance.Set("offset",offsetPerWave[waveToSpawn]);
-				instance.Set("spin",spinPerWave[waveToSpawn]);
-				instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
-				instance.Set("swirlMod", swirlMod[waveToSpawn]);
-				if(passer == "BulletSpeed")
-				{
-					instance.Set("speed", speedPerWave[waveToSpawn] * 1.5);
-				}
-				else{
-					instance.Set("speed", speedPerWave[waveToSpawn]);
-				}		
-			}
+				instance.Set("speed", speedPerWave[waveToSpawn]);
+			}		
+		}
 
 
 		instance.Set("numOfBullet", bulletPerWave[waveToSpawn]);

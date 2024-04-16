@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://c23q4ee4jarl7" path="res://assets/prefabs/PatternWillow.tscn" id="2_vldb0"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
+[ext_resource type="PackedScene" uid="uid://dl4rtusna28r0" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
 [ext_resource type="Texture2D" uid="uid://b02bhxv5mvhnv" path="res://assets/sprites/effects/spritesheet_smoke_bomb.png" id="4_qsqd8"]
 [ext_resource type="PackedScene" path="res://assets/prefabs/SFXWings.tscn" id="5_mxbu5"]
@@ -305,6 +305,7 @@ scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_sbp86")
 
 [node name="BurstAnimation" type="AnimatedSprite2D" parent="BurstArea"]
+top_level = true
 sprite_frames = SubResource("SpriteFrames_uj170")
 frame = 21
 frame_progress = 1.0
@@ -355,6 +356,7 @@ grow_vertical = 1
 
 [node name="Barrier" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+top_level = true
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_pnvig")
 autoplay = "default"

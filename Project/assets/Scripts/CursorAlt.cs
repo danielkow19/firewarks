@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 public partial class CursorAlt : Node2D
 {
-	bool infoAdded = false;
+	public bool infoAdded = false;
 	public int playerNum;
 	public int positionIndex;
 	private Godot.Vector2[] positions = {new Godot.Vector2(556, 85), new Godot.Vector2(556, 185), new Godot.Vector2(556, 285), new Godot.Vector2(556, 380)};
 	private List<Button> ButtonList;
 	private List<PackedScene> patternsList;
+	private ColorRect parent;
+	private ColorRect readiedRect;
 
 	// Reference to the info managing scripts (not arrows)
 	[Export]
@@ -38,6 +40,9 @@ public partial class CursorAlt : Node2D
 			GD.Load<PackedScene>("res://assets/prefabs/PatternSpreadShot.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternSwirl.tscn"),
 			GD.Load<PackedScene>("res://assets/prefabs/PatternWeave.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternWillow.tscn")
 		};
+
+		parent = GetNode<ColorRect>("..");
+		readiedRect = GetNode<ColorRect>("../../ReadyRect");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -139,6 +144,9 @@ public partial class CursorAlt : Node2D
 					// Call the on press
 					ReadyButton ready = (ReadyButton)ButtonList[6];
 					ready._on_pressed();
+
+					parent.Visible = false;
+					readiedRect.Visible = true;
 
 					infoAdded = true;
 				}

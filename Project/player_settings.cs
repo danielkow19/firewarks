@@ -77,9 +77,9 @@ public partial class player_settings : Node
 	}
 
 	public void playerDeath(int playerID) {
-		Debug.Print($"{numPlayers - deathCount}");
+		Debug.Print($"Player received rank of {numPlayers - deathCount}, which should appear as the {playerID} element of the array");
 		playerPositions[playerID] = numPlayers - deathCount;
-		Debug.Print($"{playerPositions[0]}, {playerPositions[1]}, {playerPositions[2]}, {playerPositions[3]}");
+		Debug.Print($"ARRAY: {playerPositions[0]}, {playerPositions[1]}, {playerPositions[2]}, {playerPositions[3]}");
 		deathCount++;
 	}
 
