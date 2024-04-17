@@ -39,6 +39,7 @@ public partial class PlayerInfo : Node
 		_id = -1;
 		_leftPattern = GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurst.tscn");
 		_rightPattern = GD.Load <PackedScene>("res://assets/prefabs/PatternFastSS.tscn");
+		_color = Colors.Beige;
 		_position.X = 0;
 		_position.Y = 0;
 	}

@@ -289,6 +289,17 @@ public partial class player_select : Control
 			//GetTree().ChangeSceneToFile("res://assets/cheatScenes/Game(2 Player).tscn");
 			player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 			settings.numPlayers = numPlayers;
+
+			// Code to remove players that didn't join
+			if(settings.PlayerInfos.Count > numPlayers) {
+				int playerDifference = (int)settings.PlayerInfos.Count - numPlayers;
+				GD.Print($"Player Difference: {playerDifference}");
+				for(int i = 0; i < playerDifference; i++)
+				{
+					RemovePlayer(numPlayers + i);
+				}
+			}
+
 			// Pop up a button that will allow us to change scenes
 			startButton.Show();
 			startButton.GrabFocus();
