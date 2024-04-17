@@ -19,7 +19,7 @@ script = ExtResource("1_yk3ri")
 layout_mode = 0
 offset_right = 450.0
 offset_bottom = 675.0
-color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+color = Color(1, 1, 1, 0)
 
 [node name="FlyingSprite" parent="Background" instance=ExtResource("1_0y3vj")]
 unique_name_in_owner = true
