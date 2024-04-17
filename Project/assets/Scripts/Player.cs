@@ -30,7 +30,11 @@ public partial class Player : Area2D
 	
 	// Movement and Aiming Variables
 	private float _speed;
-	private float _slowedSpeed;
+	private float _focusSpeed; // Speed while holding LB
+	private float _attackingSlowMultiplier;
+	private float _cloudSlowMultiplier;
+	private float _debuffSlowMultiplier;
+	private float _minimumSpeed;
 	private Vector2 _direction;
 	private Vector2 _rawDirection;
 	[Export]
@@ -163,7 +167,11 @@ public partial class Player : Area2D
 		
 		health = 2;
 		_speed = 300;
-		_slowedSpeed = _speed / 2;
+		_focusSpeed = _speed / 2;
+		_attackingSlowMultiplier = 0.50f;
+		_cloudSlowMultiplier = 0.25f;
+		_debuffSlowMultiplier = 0.50f;
+		_minimumSpeed = 50;
 		_direction = Vector2.Zero;
 		_rawDirection = Vector2.Zero;
 		_deadzone = 0.1f;
@@ -432,7 +440,12 @@ public partial class Player : Area2D
 		}
 		
 		
-		Translate(_direction * (Input.IsActionPressed($"Slow_{player_id}") || (firing && mobileAttackLength.TimeLeft <= 0) || debuffSlow ? _slowedSpeed : _speed) * ((InCloud() && _damageable) ? .25f : 1) * (float)delta);
+		Translate(_direction * 
+			Mathf.Max(_minimumSpeed,
+			((Input.IsActionPressed($"Slow_{player_id}") ? _focusSpeed : _speed)) *
+			((firing && mobileAttackLength.TimeLeft <= 0) ? _attackingSlowMultiplier : 1) *
+			(debuffSlow ? _debuffSlowMultiplier : 1) * ((InCloud() && _damageable) ? _cloudSlowMultiplier : 1))
+			* (float)delta);
 		if(debuffTimer > 0){
 			debuffTimer -= delta;		
 		}
@@ -534,8 +547,8 @@ public partial class Player : Area2D
 			else if (energy < 50)
 			{
 				// Didn't have enough heat to use move
-				barAnim.Play();
-				freeze.Start(2.5f);
+				//barAnim.Play();
+				//freeze.Start(2.5f);
 			}
 		} 
 		else if(_burstTimer.TimeLeft < 0.1f) 
@@ -651,8 +664,8 @@ public partial class Player : Area2D
 		}
 		else
 		{
-			barAnim.Play();
-			freeze.Start(2.5f);
+			//barAnim.Play();
+			//freeze.Start(2.5f);
 		}
 		
 	}
