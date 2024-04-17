@@ -35,24 +35,23 @@ public partial class ColorSwap : ColorRect
 					}
 				case 4:
 					{
-                        // Pure Copper
-                        // Maybe lighten the color
-                        return Colors.Magenta;
+						return Colors.Aquamarine;
                     }
 				case 5:
 					{
                         // Strontium + Copper
-                        return Colors.MediumVioletRed;
+                        return Colors.Purple;
 					}
 				case 6:
 					{
-						// Magnesium
-						return Colors.Lavender;
-
+                        // Pure Copper
+                        // Maybe lighten the color
+                        return Colors.Magenta;
                     }
 				case 7:
 					{
-						return Colors.Aquamarine;
+						// Magnesium
+						return Colors.Lavender;
 					}
 				default:
 					{
@@ -192,19 +191,19 @@ public partial class ColorSwap : ColorRect
 		{
 			return 3;
 		}
-		else if (color == Colors.Magenta)
+		else if(color == Colors.Aquamarine)
 		{
 			return 4;
 		}
-		else if(color == Colors.MediumVioletRed)
+		else if (color == Colors.Magenta)
 		{
 			return 5;
 		}
-		else if (color == Colors.Lavender)
+		else if(color == Colors.Purple)
 		{
 			return 6;
 		}
-		else if(color == Colors.Aquamarine)
+		else if (color == Colors.Lavender)
 		{
 			return 7;
 		}

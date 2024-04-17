@@ -22,6 +22,9 @@ public partial class SelectMenu : Control
 	private VideoStream weave = GD.Load<VideoStream>("res://assets/videos/weave.ogv");
 	private VideoStream willow = GD.Load<VideoStream>("res://assets/videos/willow.ogv");
 	private VideoStream newStream;
+	private Area2D attackPreview;
+	private int attackIndex1 = 0;
+	private int attackIndex2 = 1;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -35,6 +38,7 @@ public partial class SelectMenu : Control
 		cursorTexture = GetNode<TextureRect>("ColorRect/Cursor/TextureRect");
 		prevPos = (int)cursor.Get("positionIndex");
 		GetNode<ColorSwap>("ColorRect").sprite = displaySprite;
+		attackPreview = GetNode<Area2D>("ColorRect/PlayerAttackPreview");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,33 +50,75 @@ public partial class SelectMenu : Control
 			case 0:
 				displaySprite.Visible = true;
 				attackDisplay.Visible = false;
+				attackPreview.Visible = false;
 				break;
 			case 1:
 				displaySprite.Visible = false;
 				attackDisplay.Visible = true;
+				//attackPreview.Visible = true;
 				switch(attack1.Text) {
 					case "Circle Burst":
+						if(attackIndex1 != 0) {
+							attackPreview.Set("index", 0);
+							attackIndex1 = 0;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = circleBurst;
 						break;
 					case "Spreadshot":
+						if(attackIndex1 != 1) {
+							attackPreview.Set("index", 1);
+							attackIndex1 = 1;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = spreadShot;
 						break;
 					case "Fast Spreadshot":
+						if(attackIndex1 != 2) {
+							attackPreview.Set("index", 2);
+							attackIndex1 = 2;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = fastSS;
 						break;
 					case "Knot":
+						if(attackIndex1 != 3) {
+							attackPreview.Set("index", 3);
+							attackIndex1 = 3;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = knot;
 						break;
 					case "Swirl":
+						if(attackIndex1 != 4) {
+							attackPreview.Set("index", 4);
+							attackIndex1 = 4;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = swirl;
 						break;
 					case "Weave":
+						if(attackIndex1 != 5) {
+							attackPreview.Set("index", 5);
+							attackIndex1 = 5;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = weave;
 						break;
 					case "Willow":
+						if(attackIndex1 != 6) {
+							attackPreview.Set("index", 6);
+							attackIndex1 = 6;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = willow;
 						break;
 					default:
+						if(attackIndex1 != 0) {
+							attackPreview.Set("index", 0);
+							attackIndex1 = 0;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = circleBurst;
 						break;
 				}
@@ -85,30 +131,71 @@ public partial class SelectMenu : Control
 			case 3:
 				displaySprite.Visible = false;
 				attackDisplay.Visible = true;
+				//attackPreview.Visible = true;
 				switch(attack2.Text) {
 					case "Circle Burst":
+						if(attackIndex1 != 0) {
+							attackPreview.Set("index", 0);
+							attackIndex1 = 0;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = circleBurst;
 						break;
 					case "Spreadshot":
+						if(attackIndex1 != 1) {
+							attackPreview.Set("index", 1);
+							attackIndex1 = 1;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = spreadShot;
 						break;
 					case "Fast Spreadshot":
+						if(attackIndex1 != 2) {
+							attackPreview.Set("index", 2);
+							attackIndex1 = 2;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = fastSS;
 						break;
 					case "Knot":
+						if(attackIndex1 != 3) {
+							attackPreview.Set("index", 3);
+							attackIndex1 = 3;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = knot;
 						break;
 					case "Swirl":
+						if(attackIndex1 != 4) {
+							attackPreview.Set("index", 4);
+							attackIndex1 = 4;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = swirl;
 						break;
 					case "Weave":
+						if(attackIndex1 != 5) {
+							attackPreview.Set("index", 5);
+							attackIndex1 = 5;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = weave;
 						break;
 					case "Willow":
+						if(attackIndex1 != 6) {
+							attackPreview.Set("index", 6);
+							attackIndex1 = 6;
+							attackPreview.Set("startFiring", true);
+						}
 						newStream = willow;
 						break;
 					default:
-						newStream = spreadShot;
+						if(attackIndex1 != 1) {
+							attackPreview.Set("index", 1);
+							attackIndex1 = 1;
+							attackPreview.Set("startFiring", true);
+						}
+						newStream = circleBurst;
 						break;
 				}
 				if(attackDisplay.Stream != newStream) {
