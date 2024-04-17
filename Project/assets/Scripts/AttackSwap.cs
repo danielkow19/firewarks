@@ -57,6 +57,7 @@ public partial class AttackSwap : Label
                 attackNum = 2;
                 menuController.attackIndices[attackNum - 1] = 1;
 				attackIndex = getIndexFromPattern(info.RightPattern);
+				this.Text = attackName;
             }
             else
             {
