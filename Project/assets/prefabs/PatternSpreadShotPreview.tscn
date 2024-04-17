@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0ltjtdxvm5fm"]
+
+[ext_resource type="Script" path="res://assets/Scripts/PatternPreview.cs" id="1_m7xfq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_m7xfq")

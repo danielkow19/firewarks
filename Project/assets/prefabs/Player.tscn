@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
-[ext_resource type="PackedScene" uid="uid://c23q4ee4jarl7" path="res://assets/prefabs/PatternWillow.tscn" id="2_vldb0"]
+[ext_resource type="PackedScene" uid="uid://c23q4ee4jarl7" path="res://assets/prefabs/PatternWillowPreview.tscn" id="2_vldb0"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
 [ext_resource type="PackedScene" uid="uid://dl4rtusna28r0" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
 [ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
