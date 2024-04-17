@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_h1xvh"]
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="3_jqg0j"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="4_yx0w2"]
-[ext_resource type="Texture2D" uid="uid://dkyrhiwj1xlev" path="res://assets/sprites/environment/TEMP_background_splash.png" id="5_5ay5g"]
+[ext_resource type="Texture2D" uid="uid://bpx2if76f3icx" path="res://assets/sprites/environment/TEMP_2_background_splash.PNG" id="5_ulako"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="8_snqrk"]
 [ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="9_xlatk"]
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
@@ -76,7 +76,7 @@ z_index = -5
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("5_5ay5g")
+texture = ExtResource("5_ulako")
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
