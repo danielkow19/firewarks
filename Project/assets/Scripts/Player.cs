@@ -520,7 +520,7 @@ public partial class Player : Area2D
 		// Burst Logic
 		if(Input.IsActionJustPressed($"Burst_{player_id}")) 
 		{
-			if (energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0)
+			if (energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0 && !_burstAnimation.IsPlaying())
 			{
 				// If this ever gets transferred into a method in the future,
 				// it should be noted that ResourceCollected copies this code
