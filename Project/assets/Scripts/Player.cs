@@ -534,8 +534,8 @@ public partial class Player : Area2D
 			else if (energy < 50)
 			{
 				// Didn't have enough heat to use move
-				barAnim.Play();
-				freeze.Start(2.5f);
+				//barAnim.Play();
+				//freeze.Start(2.5f);
 			}
 		} 
 		else if(_burstTimer.TimeLeft < 0.1f) 
@@ -651,8 +651,8 @@ public partial class Player : Area2D
 		}
 		else
 		{
-			barAnim.Play();
-			freeze.Start(2.5f);
+			//barAnim.Play();
+			//freeze.Start(2.5f);
 		}
 		
 	}
