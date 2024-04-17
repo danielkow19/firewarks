@@ -518,7 +518,7 @@ public partial class Player : Area2D
 		}
 		
 		// Burst Logic
-		if(Input.IsActionPressed($"Burst_{player_id}")) 
+		if(Input.IsActionJustPressed($"Burst_{player_id}")) 
 		{
 			if (energy >= 50 && !InCloud() && _burstTimer.TimeLeft == 0)
 			{
