@@ -80,20 +80,34 @@ public partial class ColorSwap : ColorRect
 		// Get player info
 		if(settings.PlayerInfos.Count > playerNum)
 		{
-            PlayerInfo info = settings.PlayerInfos[playerNum];
-            colorIndex = _getIndexFromColor(info.Color);
+			try
+			{
+				PlayerInfo info = new PlayerInfo();
+                for (int i =0; i < settings.PlayerInfos.Count; i++)
+				{
+					if(playerNum == settings.PlayerInfos[i].PlayerID)
+					{
+						info = settings.PlayerInfos[i];
+					}
+				}
+                colorIndex = _getIndexFromColor(info.Color);
+            }
+            catch (Exception e)
+			{
+				GD.Print($"Had an exception: {e}");
+				colorIndex = 0;
+			}
 
 			// Assign color info
-			childRect.Color = info.Color;
-			sprite.Modulate = info.Color;
         }
         else
         {
 			// Assign childRects color 0
 			colorIndex = 0;
-            childRect.Color = Colors.Red;
-            sprite.Modulate = Colors.Red;
         }
+
+		childRect.Color = ColorChoice;
+		sprite.Modulate = ColorChoice;
 		//texture.Modulate = Colors.Red;
 		//Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
 		//Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
