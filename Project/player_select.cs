@@ -39,6 +39,14 @@ public partial class player_select : Control
 		selectMenu =  sceneManager.GetReadyScene("res://assets/prefabs/SelectMenu.tscn");
 		startButton = GetNode<LobbyButton>("StartButton");
 		settings = (player_settings)GetNode("/root/PlayerSettings");
+		/*if(settings.PlayerInfos.Count > 0)
+		{
+			GD.Print("Trying to load player");
+			for(int i = 0; i < settings.PlayerInfos.Count; i++)
+			{
+				InstantiateSelectMenu();
+			}
+		}*/
 	}
 
 
