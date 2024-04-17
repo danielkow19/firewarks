@@ -286,29 +286,6 @@ public partial class player_select : Control
 
 			deviceNums.Add(jbe.Device);
 			numPlayers++;
-            switch (currentPlayerID)
-            {
-                case 0:
-                    {
-                        label0.Hide();
-                        break;
-                    }
-                case 1:
-                    {
-                        label1.Hide();
-                        break;
-                    }
-                case 2:
-                    {
-                        label2.Hide();
-                        break;
-                    }
-                case 3:
-                    {
-                        label3.Hide();
-                        break;
-                    }
-            }
 
             InstantiateSelectMenu();
 		}
@@ -322,7 +299,30 @@ public partial class player_select : Control
 	}
 
 	public void InstantiateSelectMenu() {
-		Node instance = selectMenu.Instantiate();
+        switch (currentPlayerID)
+        {
+            case 0:
+                {
+                    label0.Hide();
+                    break;
+                }
+            case 1:
+                {
+                    label1.Hide();
+                    break;
+                }
+            case 2:
+                {
+                    label2.Hide();
+                    break;
+                }
+            case 3:
+                {
+                    label3.Hide();
+                    break;
+                }
+        }
+        Node instance = selectMenu.Instantiate();
 		switch(currentPlayerID) {
 			case 0:
 				break;
@@ -373,6 +373,29 @@ public partial class player_select : Control
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
+                switch (currentPlayerID)
+                {
+                    case 0:
+                        {
+                            label0.Show();
+                            break;
+                        }
+                    case 1:
+                        {
+                            label1.Show();
+                            break;
+                        }
+                    case 2:
+                        {
+                            label2.Show();
+                            break;
+                        }
+                    case 3:
+                        {
+                            label3.Show();
+                            break;
+                        }
+                }
                 //Debug.Print($"Player {i} Pressed Back");
                 readiedPlayers--;
 			}
@@ -437,29 +460,6 @@ public partial class player_select : Control
 			menu.GetNode<ColorRect>("ColorRect").Visible = true;
 		}
 		menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
-        switch (currentPlayerID)
-        {
-            case 0:
-                {
-                    label0.Show();
-                    break;
-                }
-            case 1:
-                {
-                    label1.Show();
-                    break;
-                }
-            case 2:
-                {
-                    label2.Show();
-                    break;
-                }
-            case 3:
-                {
-                    label3.Show();
-                    break;
-                }
-        }
     }
 
 	public void ReleaseAllActions() {
