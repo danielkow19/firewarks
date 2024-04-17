@@ -35,24 +35,23 @@ public partial class ColorSwap : ColorRect
 					}
 				case 4:
 					{
-                        // Pure Copper
-                        // Maybe lighten the color
-                        return Colors.Magenta;
+						return Colors.Aquamarine;
                     }
 				case 5:
 					{
                         // Strontium + Copper
-                        return Colors.MediumVioletRed;
+                        return Colors.Purple;
 					}
 				case 6:
 					{
-						// Magnesium
-						return Colors.Lavender;
-
+                        // Pure Copper
+                        // Maybe lighten the color
+                        return Colors.Magenta;
                     }
 				case 7:
 					{
-						return Colors.Aquamarine;
+						// Magnesium
+						return Colors.Lavender;
 					}
 				default:
 					{
