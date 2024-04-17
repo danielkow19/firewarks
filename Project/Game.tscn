@@ -1,24 +1,24 @@
 [gd_scene load_steps=10 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
-[ext_resource type="Texture2D" uid="uid://bmfjgvedjvo0i" path="res://assets/sprites/environment/temp-bkg-city1.JPG" id="2_imqba"]
+[ext_resource type="Texture2D" uid="uid://r615qv4s524m" path="res://assets/sprites/environment/Background_wip.PNG" id="2_uyk3e"]
 [ext_resource type="Script" path="res://assets/Scripts/TimeTracker.cs" id="4_p5cqw"]
 [ext_resource type="Texture2D" uid="uid://haocm7nge708" path="res://assets/sprites/objects/Object_borderRight.PNG" id="7_hfr57"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="7_wexeu"]
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_24xvk"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_tbo5m"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_8vbbq"]
-[ext_resource type="PackedScene" uid="uid://d145uhqaf8iiv" path="res://assets/prefabs/PlayerNumbers.tscn" id="14_2gti6"]
+[ext_resource type="PackedScene" path="res://assets/prefabs/PlayerNumbers.tscn" id="14_2gti6"]
 
 [node name="Game2" type="Node2D" node_paths=PackedStringArray("_players")]
 scale = Vector2(1, 0.996516)
 script = ExtResource("1_py270")
 _players = []
 
-[node name="Temp-bkg-city1" type="Sprite2D" parent="."]
+[node name="BackgroundArt" type="Sprite2D" parent="."]
 position = Vector2(0.462219, 0.0595474)
 scale = Vector2(1.00361, 1.00361)
-texture = ExtResource("2_imqba")
+texture = ExtResource("2_uyk3e")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
