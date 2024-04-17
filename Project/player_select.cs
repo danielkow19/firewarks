@@ -26,6 +26,11 @@ public partial class player_select : Control
 	private player_settings settings;
 	private SceneManager sceneManager;
 
+	private Label label0;
+	private Label label1;
+	private Label label2;
+	private Label label3;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -47,6 +52,12 @@ public partial class player_select : Control
 				InstantiateSelectMenu();
 			}
 		}*/
+
+		// Get label references
+		label0 = GetNode<Label>("Label0");
+		label1 = GetNode<Label>("Label1");
+		label2 = GetNode<Label>("Label2");
+		label3 = GetNode<Label>("Label3");
 	}
 
 
@@ -131,6 +142,29 @@ public partial class player_select : Control
             keyboardPlayer = currentPlayerID;
 			numPlayers++;
 
+			switch (currentPlayerID)
+			{
+				case 0:
+					{
+						label0.Hide();
+						break;
+					}
+				case 1:
+					{
+						label1.Hide();
+						break;
+					}
+				case 2:
+					{
+						label2.Hide();
+						break;
+					}
+				case 3:
+					{
+						label3.Hide();
+						break;
+					}
+			}
 			InstantiateSelectMenu();
 		}
 		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable && jbe.ButtonIndex != JoyButton.B)
@@ -252,8 +286,31 @@ public partial class player_select : Control
 
 			deviceNums.Add(jbe.Device);
 			numPlayers++;
+            switch (currentPlayerID)
+            {
+                case 0:
+                    {
+                        label0.Hide();
+                        break;
+                    }
+                case 1:
+                    {
+                        label1.Hide();
+                        break;
+                    }
+                case 2:
+                    {
+                        label2.Hide();
+                        break;
+                    }
+                case 3:
+                    {
+                        label3.Hide();
+                        break;
+                    }
+            }
 
-			InstantiateSelectMenu();
+            InstantiateSelectMenu();
 		}
 
 		if(@event is InputEventJoypadButton e && e.ButtonIndex == JoyButton.B && e.Pressed && !deviceNums.Contains(e.Device))
@@ -316,8 +373,8 @@ public partial class player_select : Control
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
-				//Debug.Print($"Player {i} Pressed Back");
-				readiedPlayers--;
+                //Debug.Print($"Player {i} Pressed Back");
+                readiedPlayers--;
 			}
 		}
 		if(numPlayers >=1 && numPlayers > readiedPlayers)
@@ -380,7 +437,30 @@ public partial class player_select : Control
 			menu.GetNode<ColorRect>("ColorRect").Visible = true;
 		}
 		menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
-	}
+        switch (currentPlayerID)
+        {
+            case 0:
+                {
+                    label0.Show();
+                    break;
+                }
+            case 1:
+                {
+                    label1.Show();
+                    break;
+                }
+            case 2:
+                {
+                    label2.Show();
+                    break;
+                }
+            case 3:
+                {
+                    label3.Show();
+                    break;
+                }
+        }
+    }
 
 	public void ReleaseAllActions() {
 		foreach (String action in InputMap.GetActions()) {
