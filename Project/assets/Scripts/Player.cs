@@ -784,7 +784,7 @@ public partial class Player : Area2D
 						{
 							player.debuffSlow = true;
 							player.debuffTimer = 5;
-							followHud.GetNode<TextureRect>("%SlowedIcon").Visible = true;
+							player.followHud.GetNode<TextureRect>("%SlowedIcon").Visible = true;
 						}
 					}
 				}
