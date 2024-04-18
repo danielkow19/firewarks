@@ -142,29 +142,6 @@ public partial class player_select : Control
             keyboardPlayer = currentPlayerID;
 			numPlayers++;
 
-			switch (currentPlayerID)
-			{
-				case 0:
-					{
-						label0.Hide();
-						break;
-					}
-				case 1:
-					{
-						label1.Hide();
-						break;
-					}
-				case 2:
-					{
-						label2.Hide();
-						break;
-					}
-				case 3:
-					{
-						label3.Hide();
-						break;
-					}
-			}
 			InstantiateSelectMenu();
 		}
 		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable && jbe.ButtonIndex != JoyButton.B)
@@ -377,22 +354,22 @@ public partial class player_select : Control
                 {
                     case 0:
                         {
-                            label0.Show();
+                            label0.Hide();
                             break;
                         }
                     case 1:
                         {
-                            label1.Show();
+                            label1.Hide();
                             break;
                         }
                     case 2:
                         {
-                            label2.Show();
+                            label2.Hide();
                             break;
                         }
                     case 3:
                         {
-                            label3.Show();
+                            label3.Hide();
                             break;
                         }
                 }
@@ -443,7 +420,30 @@ public partial class player_select : Control
 	}
 
 	public void RemovePlayer(int playerID) {
-		Input.ActionRelease($"Back_{playerID}");
+        switch (currentPlayerID)
+        {
+            case 0:
+                {
+                    label0.Show();
+                    break;
+                }
+            case 1:
+                {
+                    label1.Show();
+                    break;
+                }
+            case 2:
+                {
+                    label2.Show();
+                    break;
+                }
+            case 3:
+                {
+                    label3.Show();
+                    break;
+                }
+        }
+        Input.ActionRelease($"Back_{playerID}");
 		Node menu = menus[playerID];
 		int index = settings.GetPlayerInfoIndexFromID(playerID);
 		if(index != -1) settings.RemovePlayerInfoAt(index);
