@@ -30,10 +30,10 @@ script = ExtResource("1_dm0uu")
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_p2157")
 layout_mode = 0
-offset_left = -600.0
-offset_top = -397.0
-offset_right = 637.0
-offset_bottom = 504.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -42,19 +42,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -111.0
-offset_right = 56.0
-offset_bottom = 111.0
+offset_left = -154.5
+offset_top = -306.0
+offset_right = 154.5
+offset_bottom = 306.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
 text = "Paused"
 horizontal_alignment = 1
 
@@ -66,6 +68,7 @@ focus_neighbor_bottom = NodePath("../Controls")
 focus_next = NodePath("../Controls")
 focus_previous = NodePath("../Quit")
 theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
 text = "Resume"
 
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -75,6 +78,7 @@ focus_neighbor_bottom = NodePath("../Lobby")
 focus_next = NodePath("../Lobby")
 focus_previous = NodePath("../Resume")
 theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
 text = "Controls"
 script = ExtResource("4_ngvqx")
 
@@ -85,6 +89,7 @@ focus_neighbor_bottom = NodePath("../Main Menu")
 focus_next = NodePath("../Main Menu")
 focus_previous = NodePath("../Controls")
 theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
 text = "Lobby"
 
 [node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -94,6 +99,7 @@ focus_neighbor_bottom = NodePath("../Quit")
 focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Lobby")
 theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -104,6 +110,7 @@ focus_neighbor_bottom = NodePath("../Resume")
 focus_next = NodePath("../Resume")
 focus_previous = NodePath("../Main Menu")
 theme_override_fonts/font = ExtResource("3_3lcw6")
+theme_override_font_sizes/font_size = 40
 text = "Quit
 "
 
@@ -116,6 +123,7 @@ text = "Quit
 [node name="Controls" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 20
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -128,7 +136,6 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.4, 0.4)
 
 [node name="ColorRect" type="ColorRect" parent="Controls"]
 layout_mode = 1

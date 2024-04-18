@@ -23,8 +23,8 @@ public partial class StartManager : Node2D
 		_paused = false;
 
 		// Set current Scene
-		player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
-		settings.Clear();	
+		//player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
+		//settings.Clear();	
 		SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 		sceneManager.ReadyScene("res://assets/prefabs/SelectMenu.tscn");
 		currentScene = sceneManager.currentScene.SceneFilePath;

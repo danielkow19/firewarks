@@ -26,6 +26,11 @@ public partial class player_select : Control
 	private player_settings settings;
 	private SceneManager sceneManager;
 
+	private Label label0;
+	private Label label1;
+	private Label label2;
+	private Label label3;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -39,6 +44,20 @@ public partial class player_select : Control
 		selectMenu =  sceneManager.GetReadyScene("res://assets/prefabs/SelectMenu.tscn");
 		startButton = GetNode<LobbyButton>("StartButton");
 		settings = (player_settings)GetNode("/root/PlayerSettings");
+		/*if(settings.PlayerInfos.Count > 0)
+		{
+			GD.Print("Trying to load player");
+			for(int i = 0; i < settings.PlayerInfos.Count; i++)
+			{
+				InstantiateSelectMenu();
+			}
+		}*/
+
+		// Get label references
+		label0 = GetNode<Label>("Label0");
+		label1 = GetNode<Label>("Label1");
+		label2 = GetNode<Label>("Label2");
+		label3 = GetNode<Label>("Label3");
 	}
 
 
@@ -245,7 +264,7 @@ public partial class player_select : Control
 			deviceNums.Add(jbe.Device);
 			numPlayers++;
 
-			InstantiateSelectMenu();
+            InstantiateSelectMenu();
 		}
 
 		if(@event is InputEventJoypadButton e && e.ButtonIndex == JoyButton.B && e.Pressed && !deviceNums.Contains(e.Device))
@@ -257,7 +276,30 @@ public partial class player_select : Control
 	}
 
 	public void InstantiateSelectMenu() {
-		Node instance = selectMenu.Instantiate();
+        switch (currentPlayerID)
+        {
+            case 0:
+                {
+                    label0.Hide();
+                    break;
+                }
+            case 1:
+                {
+                    label1.Hide();
+                    break;
+                }
+            case 2:
+                {
+                    label2.Hide();
+                    break;
+                }
+            case 3:
+                {
+                    label3.Hide();
+                    break;
+                }
+        }
+        Node instance = selectMenu.Instantiate();
 		switch(currentPlayerID) {
 			case 0:
 				break;
@@ -289,6 +331,17 @@ public partial class player_select : Control
 			//GetTree().ChangeSceneToFile("res://assets/cheatScenes/Game(2 Player).tscn");
 			player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 			settings.numPlayers = numPlayers;
+
+			// Code to remove players that didn't join
+			if(settings.PlayerInfos.Count > numPlayers) {
+				int playerDifference = (int)settings.PlayerInfos.Count - numPlayers;
+				GD.Print($"Player Difference: {playerDifference}");
+				for(int i = 0; i < playerDifference; i++)
+				{
+					RemovePlayer(numPlayers + i);
+				}
+			}
+
 			// Pop up a button that will allow us to change scenes
 			startButton.Show();
 			startButton.GrabFocus();
@@ -297,8 +350,31 @@ public partial class player_select : Control
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
-				//Debug.Print($"Player {i} Pressed Back");
-				readiedPlayers--;
+                switch (currentPlayerID)
+                {
+                    case 0:
+                        {
+                            label0.Hide();
+                            break;
+                        }
+                    case 1:
+                        {
+                            label1.Hide();
+                            break;
+                        }
+                    case 2:
+                        {
+                            label2.Hide();
+                            break;
+                        }
+                    case 3:
+                        {
+                            label3.Hide();
+                            break;
+                        }
+                }
+                //Debug.Print($"Player {i} Pressed Back");
+                readiedPlayers--;
 			}
 		}
 		if(numPlayers >=1 && numPlayers > readiedPlayers)
@@ -344,7 +420,30 @@ public partial class player_select : Control
 	}
 
 	public void RemovePlayer(int playerID) {
-		Input.ActionRelease($"Back_{playerID}");
+        switch (currentPlayerID)
+        {
+            case 0:
+                {
+                    label0.Show();
+                    break;
+                }
+            case 1:
+                {
+                    label1.Show();
+                    break;
+                }
+            case 2:
+                {
+                    label2.Show();
+                    break;
+                }
+            case 3:
+                {
+                    label3.Show();
+                    break;
+                }
+        }
+        Input.ActionRelease($"Back_{playerID}");
 		Node menu = menus[playerID];
 		int index = settings.GetPlayerInfoIndexFromID(playerID);
 		if(index != -1) settings.RemovePlayerInfoAt(index);
@@ -361,7 +460,7 @@ public partial class player_select : Control
 			menu.GetNode<ColorRect>("ColorRect").Visible = true;
 		}
 		menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
-	}
+    }
 
 	public void ReleaseAllActions() {
 		foreach (String action in InputMap.GetActions()) {
