@@ -4,6 +4,6 @@
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_m3i8a")
-volume_db = -1.01
+volume_db = 3.0
 pitch_scale = 2.23
 autoplay = true
