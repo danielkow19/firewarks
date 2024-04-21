@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=61 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
@@ -314,6 +314,8 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8p56t"]
+
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_pxkww")
 patternLeft = ExtResource("2_vldb0")
@@ -432,12 +434,24 @@ stream = ExtResource("13_0r8cm")
 volume_db = 2.0
 
 [node name="HurtboxIndicator" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 z_index = 10
 position = Vector2(-0.499999, -5.96046e-08)
 scale = Vector2(0.253333, 0.32)
 sprite_frames = SubResource("SpriteFrames_a0a1a")
 autoplay = "default"
 frame_progress = 0.961917
+
+[node name="VisibleHeartArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+light_mask = 2
+visibility_layer = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleHeartArea"]
+scale = Vector2(12.855, 12.855)
+shape = SubResource("CircleShape2D_8p56t")
+debug_color = Color(0.956863, 0, 0.533333, 0.419608)
 
 [connection signal="animation_looped" from="FlyingSprite" to="FlyingSprite/AudioStreamPlayer" method="play"]
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]

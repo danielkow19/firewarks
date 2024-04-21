@@ -107,6 +107,8 @@ public partial class Player : Area2D
 	private Node currentPattern;
 	private string powerUpPasser = "";
 	private float cooldown;
+	private AnimatedSprite2D heart;
+	private Area2D heartArea;
 
 	public bool debuffSlow = false;
 	private double debuffTimer = 0;
@@ -144,6 +146,8 @@ public partial class Player : Area2D
 		playerDamaged = GetNode<GpuParticles2D>("%PlayerDamaged");
 		barrierMesh = GetNode<AnimatedSprite2D>("%Barrier");
 		mobileAttackLengthIcon = followHud.GetNode<TextureRect>("%MobileAttackerIcon");
+		heart = GetNode<AnimatedSprite2D>("%HurtboxIndicator");
+		heartArea = GetNode<Area2D>("%VisibleHeartArea");
 
 		//Sprite2D playerSprite = GetNode<Sprite2D>("%PlayerTexture");
 		switch(player_id)
@@ -271,6 +275,29 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		Color changeHeartOpacity = new Color(heart.Modulate.R, heart.Modulate.G, heart.Modulate.B, heart.Modulate.A);
+		float targetA = 0;
+
+		// heart should be less opaque the closer a bullet gets
+		foreach (Area2D area in heartArea.GetOverlappingAreas())
+		{
+			if (area is Bullet bullet && bullet.owner != this)
+			{
+				float newAlpha =
+					Mathf.Cos(Mathf.Pi * heart.Position.DistanceTo(bullet.Position) / (2 * bullet.Scale.X));
+
+
+				if (newAlpha > targetA)
+				{
+					targetA = newAlpha;
+				}
+			}
+		}
+
+		changeHeartOpacity.A = targetA;
+		heart.Modulate = changeHeartOpacity;
+		
+		
 		_burstAnimation.Position = Position;
 		barrierMesh.Position = Position;
 		
@@ -677,13 +704,8 @@ public partial class Player : Area2D
 				if (barAnim.CurrentAnimation != "Bar Blink")
 				{
 					barAnim.Play();
-					//freeze.Start(2.5f);
 				}
 			}
-		}
-		else
-		{
-			//firing = false;
 		}
 	}
 	//Old implementation of player trail
