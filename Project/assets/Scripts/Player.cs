@@ -236,6 +236,7 @@ public partial class Player : Area2D
 		_grazeCooldown.Start();
 
 		barAnim = GetNode<AnimationPlayer>("Follow_HUD/BarAnimation");
+		barAnim.AssignedAnimation = "Bar Blink";
 
 		_isDead = false;
 		_canMove = true;
@@ -323,6 +324,9 @@ public partial class Player : Area2D
 		//_direction = Input.GetVector($"Left_{player_id}", $"Right_{player_id}", $"Up_{player_id}", $"Down_{player_id}").Normalized();
 		_rightStickInput = Input.GetVector($"AimLeft_{player_id}", $"AimRight_{player_id}", $"AimUp_{player_id}", $"AimDown_{player_id}").Normalized();
 		// Update cool down timers
+		
+		// The method of updating the firing variable directly before firing makes it so that its hard to prevent firing
+		// It should likely be handled before here to prevent errors
 		if (Input.IsActionJustPressed($"Shoot_L_{player_id}") && _leftCooldown.TimeLeft == 0)
 		{
 			if (!InCloud() && !firing)
@@ -546,9 +550,12 @@ public partial class Player : Area2D
 			}
 			else if (energy < 50)
 			{
-				// Didn't have enough heat to use move
-				//barAnim.Play();
-				//freeze.Start(2.5f);
+				// Didn't have enough heat to use move and penalty isn't currently active
+				if (barAnim.CurrentAnimation != "Bar Blink")
+				{
+					barAnim.Play();
+					freeze.Start(2.5f);
+				}
 			}
 		} 
 		else if(_burstTimer.TimeLeft < 0.1f) 
@@ -644,30 +651,40 @@ public partial class Player : Area2D
 	
 	//takes in pattern and sets properties then spawns
 	private void FirePattern(PackedScene pToFire)
-	{	
-		var instance = pToFire.Instantiate();
-		if((float)instance.Get("initialCost") <= energy)
+	{
+		if (barAnim.CurrentAnimation != "Bar Blink")
 		{
-			if((bool)instance.Get("fireAndForget") == true)
+			var instance = pToFire.Instantiate();
+			if ((float)instance.Get("initialCost") <= energy)
 			{
-				firing = false;
-				fireLeft = false;
-				fireRight = false;
+				if ((bool)instance.Get("fireAndForget") == true)
+				{
+					firing = false;
+					fireLeft = false;
+					fireRight = false;
+				}
+
+				instance.Set("position", this.Position);
+				instance.Set("rotation", this.Rotation);
+				instance.Set("passer", powerUpPasser);
+				instance.Set("owner", this);
+				currentPattern = instance;
+				cooldown = (float)currentPattern.Get("recharge");
+				AddSibling(instance);
 			}
-			instance.Set("position", this.Position);
-			instance.Set("rotation", this.Rotation);
-			instance.Set("passer", powerUpPasser);
-			instance.Set("owner", this);
-			currentPattern = instance;
-			cooldown = (float)currentPattern.Get("recharge");
-			AddSibling(instance);
+			else
+			{
+				if (barAnim.CurrentAnimation != "Bar Blink")
+				{
+					barAnim.Play();
+					freeze.Start(2.5f);
+				}
+			}
 		}
 		else
 		{
-			//barAnim.Play();
-			//freeze.Start(2.5f);
+			//firing = false;
 		}
-		
 	}
 	//Old implementation of player trail
 	private void MakeTrail(float lifetime = 1f) 
