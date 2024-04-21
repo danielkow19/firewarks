@@ -17,8 +17,10 @@ public partial class ColorSwap : ColorRect
 					{
 						// Strontium
 						return Colors.Red;
-					}
-				case 1:
+                        //return Colors.Red; Bisque? LightSteelBlue, LightSeaGreen, OrangeRed, PaleVioletRed, Peru, RosyBrown, RoyalBlue, Salmon, SpringGreen
+                        // Camo Question? LightSkyBlue,
+                    }
+                case 1:
 					{
 						// Calcium
 						return Colors.Orange;

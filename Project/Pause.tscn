@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7s7plnuj4l5w"]
+[gd_scene load_steps=18 format=3 uid="uid://c7s7plnuj4l5w"]
 
 [ext_resource type="Script" path="res://Pause.cs" id="1_dm0uu"]
 [ext_resource type="Shader" path="res://Pause.gdshader" id="2_hlb4a"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_3lcw6"]
 [ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="3_tpbxb"]
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="4_cxguj"]
+[ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="4_ki8nt"]
 [ext_resource type="Script" path="res://assets/Scripts/PauseControlButton.cs" id="4_ngvqx"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_jh2lq"]
 [ext_resource type="Texture2D" uid="uid://bwnkhx1wm4ynv" path="res://assets/sprites/ui/ui_controls_visual.png" id="8_bvu3k"]
@@ -13,9 +14,27 @@
 shader = ExtResource("2_hlb4a")
 shader_parameter/amount = 3.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpppx"]
+texture = ExtResource("4_ki8nt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_70yti"]
+texture = ExtResource("4_ki8nt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kfwf"]
+texture = ExtResource("4_ki8nt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_efbbg"]
+texture = ExtResource("4_ki8nt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rvtyl"]
+texture = ExtResource("4_ki8nt")
+
 [sub_resource type="LabelSettings" id="LabelSettings_1h38j"]
 font = ExtResource("3_3lcw6")
 font_size = 64
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_if1jn"]
+texture = ExtResource("4_ki8nt")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -69,6 +88,7 @@ focus_next = NodePath("../Controls")
 focus_previous = NodePath("../Quit")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_rpppx")
 text = "Resume"
 
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -79,6 +99,7 @@ focus_next = NodePath("../Lobby")
 focus_previous = NodePath("../Resume")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_70yti")
 text = "Controls"
 script = ExtResource("4_ngvqx")
 
@@ -90,6 +111,7 @@ focus_next = NodePath("../Main Menu")
 focus_previous = NodePath("../Controls")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_8kfwf")
 text = "Lobby"
 
 [node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -100,6 +122,7 @@ focus_next = NodePath("../Quit")
 focus_previous = NodePath("../Lobby")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_efbbg")
 text = "Main Menu"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -111,6 +134,7 @@ focus_next = NodePath("../Resume")
 focus_previous = NodePath("../Main Menu")
 theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_rvtyl")
 text = "Quit
 "
 
@@ -196,6 +220,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_if1jn")
 text = "Return
 "
 script = ExtResource("4_ngvqx")
