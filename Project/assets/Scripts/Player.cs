@@ -475,7 +475,8 @@ public partial class Player : Area2D
 			Mathf.Max(_minimumSpeed,
 			((Input.IsActionPressed($"Slow_{player_id}") ? _focusSpeed : _speed)) *
 			((firing && mobileAttackLength.TimeLeft <= 0) ? _attackingSlowMultiplier : 1) *
-			(debuffSlow ? _debuffSlowMultiplier : 1) * ((InCloud() && _damageable) ? _cloudSlowMultiplier : 1))
+			(debuffSlow ? _debuffSlowMultiplier : 1) *
+			((InCloud() && _damageable) ? _cloudSlowMultiplier : 1))
 			* (float)delta);
 		if(debuffTimer > 0){
 			debuffTimer -= delta;		

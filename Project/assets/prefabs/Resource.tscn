@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://assets/Scripts/Resource.cs" id="1_n8aem"]
 [ext_resource type="Texture2D" uid="uid://bjv5vahvvdenj" path="res://assets/sprites/objects/Object_envelope.png" id="2_06y6k"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcuqv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkkow"]
+radius = 40.0
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_n8aem")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_pcuqv")
+shape = SubResource("CircleShape2D_kkkow")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_06y6k")

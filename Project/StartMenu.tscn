@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://eyxvn7yqditg"]
+[gd_scene load_steps=15 format=3 uid="uid://eyxvn7yqditg"]
 
 [ext_resource type="Script" path="res://StartManager.cs" id="1_pkqq3"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_5ljtf"]
+[ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="3_eohr8"]
 [ext_resource type="PackedScene" uid="uid://c7s7plnuj4l5w" path="res://Pause.tscn" id="3_h1xvh"]
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="3_jqg0j"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="4_yx0w2"]
@@ -11,9 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
 [ext_resource type="PackedScene" uid="uid://xcwra4xefee6" path="res://assets/prefabs/Controls.tscn" id="11_u2ecx"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3krb"]
+texture = ExtResource("3_eohr8")
+
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
 font_size = 128
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3dtm2"]
+texture = ExtResource("3_eohr8")
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_pkqq3")
@@ -30,6 +37,7 @@ focus_next = NodePath("../Menu/PlayButton")
 focus_previous = NodePath("../Menu/PlayButton")
 theme_override_fonts/font = ExtResource("4_yx0w2")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_p3krb")
 text = "Controls
 "
 script = ExtResource("3_jqg0j")
@@ -69,6 +77,7 @@ focus_next = NodePath("../../ControlsButton")
 focus_previous = NodePath("../../ControlsButton")
 theme_override_fonts/font = ExtResource("4_yx0w2")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_3dtm2")
 text = "Play Game"
 
 [node name="TextureRect" type="TextureRect" parent="Menu"]
