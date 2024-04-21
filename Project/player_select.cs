@@ -350,7 +350,7 @@ public partial class player_select : Control
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
-                switch (currentPlayerID)
+                switch (i)
                 {
                     case 0:
                         {
@@ -420,7 +420,7 @@ public partial class player_select : Control
 	}
 
 	public void RemovePlayer(int playerID) {
-        switch (currentPlayerID)
+        switch (playerID)
         {
             case 0:
                 {
