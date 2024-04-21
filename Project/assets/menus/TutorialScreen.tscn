@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://mlp2ibuhhhh3"]
+[gd_scene load_steps=11 format=3 uid="uid://mlp2ibuhhhh3"]
 
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="1_ydyd2"]
 [ext_resource type="FontFile" uid="uid://djhccx40lolkn" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Regular.ttf" id="2_2vhlg"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dxskowqktlbqb" path="res://assets/fonts/RobotoSerif_120pt-Italic.ttf" id="5_xgtay"]
 [ext_resource type="FontFile" uid="uid://brir60csc37tc" path="res://assets/fonts/RobotoSerif_120pt-BoldItalic.ttf" id="6_61gly"]
 [ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="7_ud4dm"]
+[ext_resource type="Texture2D" uid="uid://dwwil16tg1upp" path="res://assets/sprites/environment/TEMP_background_birdless.PNG" id="8_g8qdd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_axihe"]
 font = ExtResource("1_ydyd2")
@@ -240,7 +241,7 @@ theme_override_font_sizes/font_size = 48
 text = "Continue"
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="Button"]
+[node name="CursorSprite" type="TextureRect" parent="Button"]
 layout_mode = 0
 offset_left = -74.0
 offset_top = -13.0
@@ -249,3 +250,10 @@ offset_bottom = 91.0
 texture = ExtResource("7_ud4dm")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -10
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_g8qdd")
