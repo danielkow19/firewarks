@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=60 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b6lqioejw8pha" path="res://assets/prefabs/SFXSmoke.tscn" id="8_2xq1s"]
 [ext_resource type="Texture2D" uid="uid://dgobxqaaifoyd" path="res://assets/sprites/effects/spritesheet_barrier.png" id="9_einjs"]
 [ext_resource type="AudioStream" uid="uid://cj1o2aykcxmt" path="res://assets/SFX/powerUp.wav" id="13_0r8cm"]
+[ext_resource type="Texture2D" uid="uid://c2dqq7k31p4dx" path="res://assets/sprites/phoenix/spritesheet_heart_flame.png" id="14_s4jiv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -249,6 +250,70 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5ro3"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(0, 0, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwg84"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(75, 0, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgkbf"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(150, 0, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaqlx"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(225, 0, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6qio"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(0, 25, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wrke"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(75, 25, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8yh1"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(150, 25, 75, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7jk3"]
+atlas = ExtResource("14_s4jiv")
+region = Rect2(225, 25, 75, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a0a1a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5ro3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwg84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgkbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaqlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6qio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wrke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8yh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7jk3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="Player_1" type="Area2D"]
 script = ExtResource("1_pxkww")
 patternLeft = ExtResource("2_vldb0")
@@ -365,6 +430,14 @@ frame_progress = 0.832578
 [node name="PowerUp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_0r8cm")
 volume_db = 2.0
+
+[node name="HurtboxIndicator" type="AnimatedSprite2D" parent="."]
+z_index = 10
+position = Vector2(-0.499999, -5.96046e-08)
+scale = Vector2(0.253333, 0.32)
+sprite_frames = SubResource("SpriteFrames_a0a1a")
+autoplay = "default"
+frame_progress = 0.961917
 
 [connection signal="animation_looped" from="FlyingSprite" to="FlyingSprite/AudioStreamPlayer" method="play"]
 [connection signal="area_exited" from="GrazeBox" to="." method="_on_graze"]
