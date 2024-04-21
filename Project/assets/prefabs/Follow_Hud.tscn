@@ -10,7 +10,7 @@
 
 [sub_resource type="Animation" id="Animation_bcfk8"]
 resource_name = "Bar Blink"
-length = 2.5
+length = 0.5
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -43,10 +43,10 @@ tracks/2/path = NodePath("EnergyMeterDynamic:tint_progress")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.51, 1, 1.01, 1.5, 1.51, 2, 2.01, 2.49, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.49, 0.5, 1, 1.01, 1.5, 1.51, 2, 2.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.226707, 0.226707, 0.226707, 1), Color(0.227451, 0.227451, 0.227451, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -55,10 +55,10 @@ tracks/3/path = NodePath("EnergyMeterDynamic:tint_under")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.51, 1, 1.01, 1.5, 1.51, 2, 2.01, 2.49, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.49, 0.5, 1, 1.01, 1.5, 1.51, 2, 2.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xg38r"]
@@ -88,6 +88,7 @@ offset_right = 250.5
 offset_bottom = 250.5
 scale = Vector2(0.5, 0.5)
 value = 50.0
+fill_mode = 4
 texture_under = ExtResource("1_h64c4")
 texture_over = ExtResource("2_6f62i")
 texture_progress = ExtResource("3_3gaef")

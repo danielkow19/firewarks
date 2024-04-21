@@ -554,7 +554,7 @@ public partial class Player : Area2D
 				if (barAnim.CurrentAnimation != "Bar Blink")
 				{
 					barAnim.Play();
-					freeze.Start(2.5f);
+					//freeze.Start(2.5f);
 				}
 			}
 		} 
@@ -677,7 +677,7 @@ public partial class Player : Area2D
 				if (barAnim.CurrentAnimation != "Bar Blink")
 				{
 					barAnim.Play();
-					freeze.Start(2.5f);
+					//freeze.Start(2.5f);
 				}
 			}
 		}
