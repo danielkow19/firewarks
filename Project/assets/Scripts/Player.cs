@@ -270,6 +270,10 @@ public partial class Player : Area2D
 		trail = GetNode<PlayerTrail>("PlayerTrail");
 		trail.Set("playerRef", this);
 		puTimer = 0;
+
+		if(player_id % 2 == 1) {
+			Rotation = MathF.PI;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -278,15 +282,19 @@ public partial class Player : Area2D
 		Color changeHeartOpacity = new Color(heart.Modulate.R, heart.Modulate.G, heart.Modulate.B, heart.Modulate.A);
 		float targetA = 0;
 
+		var areas = heartArea.GetOverlappingAreas();
+		
 		// heart should be less opaque the closer a bullet gets
 		foreach (Area2D area in heartArea.GetOverlappingAreas())
 		{
-			if (area is Bullet bullet && bullet.owner != this)
+			if (area is Bullet bullet /*&& bullet.owner != this*/)
 			{
-				float newAlpha =
-					Mathf.Cos(Mathf.Pi * heart.Position.DistanceTo(bullet.Position) / (2 * bullet.Scale.X));
+				var numerator = Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)));
+				
+				var denominator = (2 * heartArea.GlobalScale.X);
+				//float newAlpha = Mathf.Cos(Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(bullet.Position)) / (2 * heartArea.Scale.X));
 
-
+				float newAlpha = Mathf.Cos(numerator / denominator);
 				if (newAlpha > targetA)
 				{
 					targetA = newAlpha;
@@ -294,8 +302,10 @@ public partial class Player : Area2D
 			}
 		}
 
+		//GD.Print(targetA);
 		changeHeartOpacity.A = targetA;
 		heart.Modulate = changeHeartOpacity;
+		_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, targetA);
 		
 		
 		_burstAnimation.Position = Position;

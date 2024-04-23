@@ -13,14 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
 [ext_resource type="PackedScene" uid="uid://xcwra4xefee6" path="res://assets/prefabs/Controls.tscn" id="11_u2ecx"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3krb"]
-texture = ExtResource("3_eohr8")
-
 [sub_resource type="LabelSettings" id="LabelSettings_43tf6"]
 font_size = 128
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3dtm2"]
+texture = ExtResource("3_eohr8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p3krb"]
 texture = ExtResource("3_eohr8")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kf78q"]
@@ -30,27 +30,11 @@ texture = ExtResource("3_eohr8")
 script = ExtResource("1_pkqq3")
 metadata/_edit_vertical_guides_ = [960.0]
 
-[node name="ControlsButton" type="Button" parent="."]
-offset_left = 817.0
-offset_top = 607.0
-offset_right = 1105.0
-offset_bottom = 706.0
-focus_neighbor_top = NodePath("../Menu/PlayButton")
-focus_neighbor_bottom = NodePath("../Menu/Quit")
-focus_next = NodePath("../Menu/Quit")
-focus_previous = NodePath("../Menu/PlayButton")
-theme_override_fonts/font = ExtResource("4_yx0w2")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/focus = SubResource("StyleBoxTexture_p3krb")
-text = "Controls
-"
-script = ExtResource("3_jqg0j")
-
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 script = ExtResource("2_5ljtf")
 scenePath = "res://assets/menus/MapSelect.tscn"
 
@@ -67,22 +51,76 @@ horizontal_alignment = 1
 
 [node name="PlayButton" type="Button" parent="Menu"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 20.425
-anchor_top = 11.8
-anchor_right = 27.6
-anchor_bottom = 14.275
-offset_left = -6.10352e-05
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
 grow_horizontal = 2
-grow_vertical = 0
-focus_neighbor_top = NodePath("../../ControlsButton")
-focus_neighbor_bottom = NodePath("../../ControlsButton")
-focus_next = NodePath("../../ControlsButton")
-focus_previous = NodePath("../../ControlsButton")
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../ControlsButton")
+focus_next = NodePath("../ControlsButton")
+focus_previous = NodePath("../Quit")
 theme_override_fonts/font = ExtResource("4_yx0w2")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_3dtm2")
 text = "Play Game"
+flat = true
+
+[node name="ControlsButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../PlayButton")
+theme_override_fonts/font = ExtResource("4_yx0w2")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_p3krb")
+text = "Controls
+"
+flat = true
+script = ExtResource("3_jqg0j")
+
+[node name="Quit" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 170.0
+offset_right = 200.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../ControlsButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../ControlsButton")
+theme_override_fonts/font = ExtResource("4_yx0w2")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_kf78q")
+text = "Quit
+"
+flat = true
+script = ExtResource("7_jldi8")
 
 [node name="TextureRect" type="TextureRect" parent="Menu"]
 z_index = -5
@@ -91,23 +129,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_ulako")
 
-[node name="Quit" type="Button" parent="Menu"]
-layout_mode = 0
-offset_left = 817.0
-offset_top = 737.0
-offset_right = 1104.0
-offset_bottom = 836.0
-focus_neighbor_top = NodePath("../../ControlsButton")
-focus_neighbor_bottom = NodePath("../PlayButton")
-focus_next = NodePath("../PlayButton")
-focus_previous = NodePath("../../ControlsButton")
-theme_override_fonts/font = ExtResource("4_yx0w2")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/focus = SubResource("StyleBoxTexture_kf78q")
-text = "Quit
-"
-script = ExtResource("7_jldi8")
-
 [node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
 visible = false
@@ -115,6 +136,9 @@ offset_left = 960.0
 offset_top = 500.0
 offset_right = 960.0
 offset_bottom = 500.0
+
+[node name="Blur" parent="PauseMenu/Controls" index="2"]
+layout_mode = 0
 
 [node name="SFXClick" parent="." instance=ExtResource("8_snqrk")]
 autoplay = false
@@ -130,15 +154,17 @@ offset_top = 540.0
 offset_right = 960.0
 offset_bottom = 540.0
 
-[connection signal="focus_exited" from="ControlsButton" to="SFXUp" method="play"]
-[connection signal="pressed" from="ControlsButton" to="ControlsButton" method="_on_pressed"]
-[connection signal="pressed" from="ControlsButton" to="SFXClick" method="play"]
-[connection signal="pressed" from="ControlsButton" to="Controls/ColorRect/ControlsButton" method="grab_focus"]
+[node name="ColorRect" parent="Controls" index="0"]
+z_index = 1
+
 [connection signal="focus_exited" from="Menu/PlayButton" to="SFXDown" method="play"]
 [connection signal="pressed" from="Menu/PlayButton" to="SFXClick" method="play"]
+[connection signal="focus_exited" from="Menu/ControlsButton" to="SFXUp" method="play"]
+[connection signal="pressed" from="Menu/ControlsButton" to="Menu/ControlsButton" method="_on_pressed"]
+[connection signal="pressed" from="Menu/ControlsButton" to="SFXClick" method="play"]
+[connection signal="focus_exited" from="Menu/Quit" to="SFXDown" method="play"]
 [connection signal="pressed" from="Menu/Quit" to="Menu/Quit" method="_on_pressed"]
 [connection signal="hidden" from="PauseMenu" to="Menu/PlayButton" method="grab_focus"]
-[connection signal="pressed" from="Controls/ColorRect/ControlsButton" to="Menu/PlayButton" method="grab_focus"]
 
 [editable path="PauseMenu"]
 [editable path="Controls"]
