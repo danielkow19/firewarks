@@ -10,6 +10,7 @@ public partial class ColorSwap : ColorRect
 	private player_select sceneController;
 	private ColorRect childRect;
 	private int colorIndex;
+	private Area2D attackPreview;
 	public int ColorIndex {  get { return colorIndex; } }
 	public Color ColorChoice { get { switch (colorIndex)
 			{
@@ -75,6 +76,7 @@ public partial class ColorSwap : ColorRect
 		// Assign references on load
 		childRect = GetNode<ColorRect>("%Color");
 		sprite = GetNode<AnimatedSprite2D>("%FlyingSprite");
+		attackPreview = GetNode<Area2D>("PlayerAttackPreview");
 
         //Load in info from player settings
         player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
@@ -109,6 +111,7 @@ public partial class ColorSwap : ColorRect
 
 		childRect.Color = ColorChoice;
 		sprite.Modulate = ColorChoice;
+		attackPreview.Modulate = ColorChoice;
 		//texture.Modulate = Colors.Red;
 		//Debug.Print($"Hello? {sceneController.colorIndices[playerNum]}");
 		//Debug.Print($"Hello? {sceneController.colorIndices.Contains(colorIndex)}");
