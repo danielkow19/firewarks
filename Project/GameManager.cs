@@ -54,6 +54,7 @@ public partial class GameManager : Node2D
 		LoadMap(settings.MapName);
 
 		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+		music.VolumeDb = -1;
 		music.Play();
 	}
 
@@ -126,6 +127,8 @@ public partial class GameManager : Node2D
 			for(int i = 0; i < _players.Count; i++) {
 				if(!_players[i]._isDead) settings.playerDeath(_players[i].player_id);
 			}
+			AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+			music.VolumeDb = 0;
 			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 			sceneManager.GoToScene("res://GameOver.tscn");
 		}
