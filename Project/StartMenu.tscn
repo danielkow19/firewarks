@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://eyxvn7yqditg"]
+[gd_scene load_steps=17 format=3 uid="uid://eyxvn7yqditg"]
 
 [ext_resource type="Script" path="res://StartManager.cs" id="1_pkqq3"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_5ljtf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="3_jqg0j"]
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="4_yx0w2"]
 [ext_resource type="Texture2D" uid="uid://bpx2if76f3icx" path="res://assets/sprites/environment/TEMP_2_background_splash.PNG" id="5_ulako"]
+[ext_resource type="Script" path="res://assets/Scripts/QuitButton.cs" id="7_jldi8"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="8_snqrk"]
 [ext_resource type="PackedScene" uid="uid://b3gf7t8jkovvp" path="res://assets/prefabs/SFXNavUp.tscn" id="9_xlatk"]
 [ext_resource type="PackedScene" uid="uid://dgergdaqf8ts6" path="res://assets/prefabs/SFXNavDown.tscn" id="10_5mufp"]
@@ -22,6 +23,9 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3dtm2"]
 texture = ExtResource("3_eohr8")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kf78q"]
+texture = ExtResource("3_eohr8")
+
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_pkqq3")
 metadata/_edit_vertical_guides_ = [960.0]
@@ -32,8 +36,8 @@ offset_top = 607.0
 offset_right = 1105.0
 offset_bottom = 706.0
 focus_neighbor_top = NodePath("../Menu/PlayButton")
-focus_neighbor_bottom = NodePath("../Menu/PlayButton")
-focus_next = NodePath("../Menu/PlayButton")
+focus_neighbor_bottom = NodePath("../Menu/Quit")
+focus_next = NodePath("../Menu/Quit")
 focus_previous = NodePath("../Menu/PlayButton")
 theme_override_fonts/font = ExtResource("4_yx0w2")
 theme_override_font_sizes/font_size = 40
@@ -87,6 +91,23 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_ulako")
 
+[node name="Quit" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 817.0
+offset_top = 737.0
+offset_right = 1104.0
+offset_bottom = 836.0
+focus_neighbor_top = NodePath("../../ControlsButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../../ControlsButton")
+theme_override_fonts/font = ExtResource("4_yx0w2")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_kf78q")
+text = "Quit
+"
+script = ExtResource("7_jldi8")
+
 [node name="PauseMenu" parent="." instance=ExtResource("3_h1xvh")]
 unique_name_in_owner = true
 visible = false
@@ -115,6 +136,7 @@ offset_bottom = 540.0
 [connection signal="pressed" from="ControlsButton" to="Controls/ColorRect/ControlsButton" method="grab_focus"]
 [connection signal="focus_exited" from="Menu/PlayButton" to="SFXDown" method="play"]
 [connection signal="pressed" from="Menu/PlayButton" to="SFXClick" method="play"]
+[connection signal="pressed" from="Menu/Quit" to="Menu/Quit" method="_on_pressed"]
 [connection signal="hidden" from="PauseMenu" to="Menu/PlayButton" method="grab_focus"]
 [connection signal="pressed" from="Controls/ColorRect/ControlsButton" to="Menu/PlayButton" method="grab_focus"]
 
