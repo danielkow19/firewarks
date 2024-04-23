@@ -175,6 +175,7 @@ public partial class ColorSwap : ColorRect
 		childRect.Color = newColor;
 		sprite.Modulate = newColor;
 		//texture.Modulate = newColor;
+		attackPreview.Modulate = ColorChoice;
 	}
 
 	private int _getIndexFromColor(Color color)
