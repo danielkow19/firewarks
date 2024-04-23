@@ -33,6 +33,10 @@ public partial class Pause : Control
 	{
 		// Un-Pause tree before moving?
 		GetTree().Paused = false;
+		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+		music.VolumeDb = 0;
+		music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
+		music.Play();
 		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
 		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
 		scene.ReadyScene("res://player_select.tscn");
@@ -42,6 +46,10 @@ public partial class Pause : Control
 	public void _on_main_menu_pressed()
 	{
 		GetTree().Paused = false;
+		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+		music.VolumeDb = 0;
+		music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
+		music.Play();
 		// CHECK WITH CONNOR THAT WE CAN GO TO NON-READIED SCENES
 		SceneManager scene = (SceneManager)GetNode("/root/SceneManager");
 		scene.ReadyScene("res://StartMenu.tscn");
