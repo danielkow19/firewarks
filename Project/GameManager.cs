@@ -128,7 +128,9 @@ public partial class GameManager : Node2D
 				if(!_players[i]._isDead) settings.playerDeath(_players[i].player_id);
 			}
 			AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
+			music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
 			music.VolumeDb = 0;
+			music.Play();
 			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 			sceneManager.GoToScene("res://GameOver.tscn");
 		}
