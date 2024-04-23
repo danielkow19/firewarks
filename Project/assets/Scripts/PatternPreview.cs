@@ -7,8 +7,6 @@ using System.Collections.Generic;
 
 public partial class PatternPreview : Node2D
 {
-	private List<Node> waveArray;
-
 	private PlayerAttackPreview owner;
 	[Export]
 	public int waves = 3;
@@ -61,8 +59,6 @@ public partial class PatternPreview : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		waveArray = new List<Node>();
-
 		rng = new RandomNumberGenerator();
 		PopulateWaves();
 		if(fireAndForget)
@@ -195,8 +191,6 @@ public partial class PatternPreview : Node2D
 				remote.UpdateRotation = false;
 				remote.UpdateScale = false;
 			}
-
-			waveArray.Add(instance);
 		}
 	}
 	//instantiates given wave to spawn with needed varriables
@@ -261,16 +255,15 @@ public partial class PatternPreview : Node2D
 			remote.UpdateRotation = false;
 			remote.UpdateScale = false;
 		}
-		if(delay > .5){
-			AddChild(sfx.Instantiate());
-		}
-		else{
-			if(playForWave){AddChild(sfx.Instantiate());}
-			else{playForWave = !playForWave;}
+		//if(delay > .5){
+			//AddChild(sfx.Instantiate());
+		//}
+		//else{
+			//if(playForWave){AddChild(sfx.Instantiate());}
+			//else{playForWave = !playForWave;}
 			
-			}
+			//}
 
-		waveArray.Add(instance);
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
 	public void PopulateWaves()
@@ -420,7 +413,6 @@ public partial class PatternPreview : Node2D
 
 	public void FreeWaves() {
 		Node parent = GetParent();
-		//Node[] sibling = parent.GetChildren()
 		foreach(Node sibling in parent.GetChildren()) {
 			if(sibling is WavePreview) {
 				sibling.Free();
