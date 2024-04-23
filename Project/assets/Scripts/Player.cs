@@ -270,6 +270,10 @@ public partial class Player : Area2D
 		trail = GetNode<PlayerTrail>("PlayerTrail");
 		trail.Set("playerRef", this);
 		puTimer = 0;
+
+		if(player_id % 2 == 1) {
+			Rotation = MathF.PI;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
