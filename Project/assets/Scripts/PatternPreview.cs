@@ -422,7 +422,6 @@ public partial class PatternPreview : Node2D
 		Node parent = GetParent();
 		//Node[] sibling = parent.GetChildren()
 		foreach(Node sibling in parent.GetChildren()) {
-			Debug.Print($"{sibling.GetType()}");
 			if(sibling is WavePreview) {
 				sibling.Free();
 			}
