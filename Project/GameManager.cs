@@ -31,6 +31,9 @@ public partial class GameManager : Node2D
 	
 	private WorldBorder worldBorder;
 
+
+	public bool viewedTutorial;
+
 	public WorldBorder WorldBorder
 	{
 		get { return worldBorder; }
@@ -56,11 +59,18 @@ public partial class GameManager : Node2D
 		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
 		music.VolumeDb = -1;
 		music.Play();
+
+		viewedTutorial = false;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{	
+		if(!viewedTutorial)
+		{
+			GetTree().Paused = true;
+		}
+
 		if (Input.IsActionPressed("Exit")) 
 		{
 			GetTree().Quit();

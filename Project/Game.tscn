@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://23buby1ymt3d"]
+[gd_scene load_steps=15 format=3 uid="uid://23buby1ymt3d"]
 
 [ext_resource type="Script" path="res://GameManager.cs" id="1_py270"]
 [ext_resource type="Texture2D" uid="uid://r615qv4s524m" path="res://assets/sprites/environment/Background_wip.PNG" id="2_uyk3e"]
@@ -9,7 +9,14 @@
 [ext_resource type="Script" path="res://assets/Scripts/FrameCounter.cs" id="8_24xvk"]
 [ext_resource type="Script" path="res://assets/Scripts/Spawner.cs" id="9_tbo5m"]
 [ext_resource type="Script" path="res://assets/Scripts/WorldBorder.cs" id="10_8vbbq"]
+[ext_resource type="Shader" path="res://Pause.gdshader" id="11_c5erk"]
+[ext_resource type="Script" path="res://assets/Scripts/Tutorial.cs" id="12_bi67e"]
+[ext_resource type="PackedScene" uid="uid://mlp2ibuhhhh3" path="res://assets/menus/TutorialScreen.tscn" id="12_tp3nn"]
 [ext_resource type="PackedScene" uid="uid://d145uhqaf8iiv" path="res://assets/prefabs/PlayerNumbers.tscn" id="14_2gti6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oo3l1"]
+shader = ExtResource("11_c5erk")
+shader_parameter/amount = 2.256
 
 [node name="Game2" type="Node2D" node_paths=PackedStringArray("_players")]
 scale = Vector2(1, 0.996516)
@@ -138,7 +145,29 @@ offset_bottom = 41.0
 [node name="Button" parent="PlayerNumbers/MarginContainer/VBoxContainer" index="2" node_paths=PackedStringArray("_gameManager")]
 _gameManager = NodePath("../../../..")
 
+[node name="Tutorial" type="ColorRect" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+z_index = 17
+material = SubResource("ShaderMaterial_oo3l1")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_bi67e")
+
+[node name="TutorialScreen" parent="Tutorial" instance=ExtResource("12_tp3nn")]
+layout_mode = 1
+
 [connection signal="area_entered" from="CloudBorder" to="CloudBorder" method="_on_area_entered"]
 [connection signal="area_exited" from="CloudBorder" to="CloudBorder" method="_on_area_exited"]
 
 [editable path="PlayerNumbers"]
+[editable path="Tutorial/TutorialScreen"]
