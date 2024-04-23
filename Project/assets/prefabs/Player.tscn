@@ -444,12 +444,12 @@ frame_progress = 0.961917
 
 [node name="VisibleHeartArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-light_mask = 2
-visibility_layer = 2
+scale = Vector2(13, 13)
+collision_layer = 2
+collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleHeartArea"]
-scale = Vector2(12.855, 12.855)
 shape = SubResource("CircleShape2D_8p56t")
 debug_color = Color(0.956863, 0, 0.533333, 0.419608)
 
