@@ -3,9 +3,12 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using FireWARks.assets.Scripts;
+using System.Collections.Generic;
 
 public partial class PatternPreview : Node2D
 {
+	private List<Node> waveArray;
+
 	private PlayerAttackPreview owner;
 	[Export]
 	public int waves = 3;
@@ -58,6 +61,8 @@ public partial class PatternPreview : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		waveArray = new List<Node>();
+
 		rng = new RandomNumberGenerator();
 		PopulateWaves();
 		if(fireAndForget)
@@ -176,7 +181,7 @@ public partial class PatternPreview : Node2D
 			}		
 			else if(!playerLocked)
 			{
-				instance.Set("position", owner.Get("position"));
+				//instance.Set("position", owner.Get("position"));
 				instance.Set("rotation", owner.Get("rotation"));
 				AddSibling(instance);
 			}
@@ -190,6 +195,8 @@ public partial class PatternPreview : Node2D
 				remote.UpdateRotation = false;
 				remote.UpdateScale = false;
 			}
+
+			waveArray.Add(instance);
 		}
 	}
 	//instantiates given wave to spawn with needed varriables
@@ -240,7 +247,7 @@ public partial class PatternPreview : Node2D
 		}
 		else if(!playerLocked)
 		{
-			instance.Set("position", owner.Get("position"));
+			instance.Set("position", new Vector2(0.5f, 0f));
 			instance.Set("rotation", owner.Get("rotation"));
 			AddSibling(instance);
 		}
@@ -262,6 +269,8 @@ public partial class PatternPreview : Node2D
 			else{playForWave = !playForWave;}
 			
 			}
+
+		waveArray.Add(instance);
 	}
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
 	public void PopulateWaves()
@@ -407,5 +416,16 @@ public partial class PatternPreview : Node2D
 			swirlMod = waveUpdate;
 		}
 		//initial bullet rotation not wave rotation needs to be added here
+	}
+
+	public void FreeWaves() {
+		Node parent = GetParent();
+		//Node[] sibling = parent.GetChildren()
+		foreach(Node sibling in parent.GetChildren()) {
+			Debug.Print($"{sibling.GetType()}");
+			if(sibling is WavePreview) {
+				sibling.Free();
+			}
+		}
 	}
 }

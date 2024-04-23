@@ -4,3 +4,14 @@
 
 [node name="Node2D2" type="Node2D"]
 script = ExtResource("1_pkgy6")
+waves = 6
+delay = 0.33
+bulletPerWave = PackedInt32Array(3)
+spreadPerWave = PackedInt32Array(45)
+speedPerWave = PackedInt32Array(300)
+offsetPerWave = PackedInt32Array(-30, 30, -30, 30, -30, 30)
+spinPerWave = PackedFloat32Array(10, -10, 10, -10, 10, -10)
+spinAccelPerWave = PackedFloat32Array(0)
+swirlMod = PackedInt32Array(6, -6, 6, -6, 6, -6)
+costPerSecond = 20.0
+recharge = 0.5

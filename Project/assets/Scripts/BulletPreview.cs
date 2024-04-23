@@ -87,10 +87,9 @@ public partial class BulletPreview : Area2D
 			//check each collision make sure its a player
 			foreach (Area2D area in collisions)
 			{
-				if (area is not Resource)
+				if (area is not Resource && area is not PlayerAttackPreview)
 				{
-						//lifetime = 0;
-						//QueueFree();
+					QueueFree();
 				}
 			}
 		}

@@ -20,7 +20,7 @@ public partial class PlayerAttackPreview : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//if(this.Visible && startFiring) FirePattern(patterns[index]);
+		if(this.Visible && startFiring) FirePattern(patterns[index]);
 	}
 
 	private void FirePattern(PackedScene pToFire)
@@ -29,7 +29,18 @@ public partial class PlayerAttackPreview : Area2D
 		instance.Set("position", this.Position);
 		instance.Set("rotation", this.Rotation);
 		instance.Set("owner", this);
+		ReleaseCurrentPattern();
 		currentPattern = instance;
-		AddSibling(instance);
+		AddChild(instance);
+		startFiring = false;
+	}
+
+	public void ReleaseCurrentPattern() {
+		if(currentPattern != null) {
+			PatternPreview pattern = currentPattern as PatternPreview;
+			pattern.FreeWaves();
+			currentPattern.Free();
+			currentPattern = null;
+		}
 	}
 }

@@ -25,6 +25,7 @@ public partial class SelectMenu : Control
 	private Area2D attackPreview;
 	private int attackIndex1 = 0;
 	private int attackIndex2 = 1;
+	private PlayerAttackPreview previewScript;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -39,6 +40,7 @@ public partial class SelectMenu : Control
 		prevPos = (int)cursor.Get("positionIndex");
 		GetNode<ColorSwap>("ColorRect").sprite = displaySprite;
 		attackPreview = GetNode<Area2D>("ColorRect/PlayerAttackPreview");
+		previewScript = attackPreview as PlayerAttackPreview;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,73 +53,82 @@ public partial class SelectMenu : Control
 				displaySprite.Visible = true;
 				attackDisplay.Visible = false;
 				attackPreview.Visible = false;
+				previewScript.ReleaseCurrentPattern();
 				break;
 			case 1:
 				displaySprite.Visible = false;
-				attackDisplay.Visible = true;
-				//attackPreview.Visible = true;
+				//attackDisplay.Visible = true;
+				attackPreview.Visible = true;
 				switch(attack1.Text) {
 					case "Circle Burst":
-						if(attackIndex1 != 0) {
+						if(attackIndex1 != 0 || currentPos != prevPos) {
 							attackPreview.Set("index", 0);
 							attackIndex1 = 0;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = circleBurst;
 						break;
 					case "Spreadshot":
-						if(attackIndex1 != 1) {
+						if(attackIndex1 != 1 || currentPos != prevPos) {
 							attackPreview.Set("index", 1);
 							attackIndex1 = 1;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = spreadShot;
 						break;
 					case "Fast Spreadshot":
-						if(attackIndex1 != 2) {
+						if(attackIndex1 != 2 || currentPos != prevPos) {
 							attackPreview.Set("index", 2);
 							attackIndex1 = 2;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = fastSS;
 						break;
 					case "Knot":
-						if(attackIndex1 != 3) {
+						if(attackIndex1 != 3 || currentPos != prevPos) {
 							attackPreview.Set("index", 3);
 							attackIndex1 = 3;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = knot;
 						break;
 					case "Swirl":
-						if(attackIndex1 != 4) {
+						if(attackIndex1 != 4 || currentPos != prevPos) {
 							attackPreview.Set("index", 4);
 							attackIndex1 = 4;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = swirl;
 						break;
 					case "Weave":
-						if(attackIndex1 != 5) {
+						if(attackIndex1 != 5 || currentPos != prevPos) {
 							attackPreview.Set("index", 5);
 							attackIndex1 = 5;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = weave;
 						break;
 					case "Willow":
-						if(attackIndex1 != 6) {
+						if(attackIndex1 != 6 || currentPos != prevPos) {
 							attackPreview.Set("index", 6);
 							attackIndex1 = 6;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(180,250));
 						}
 						newStream = willow;
 						break;
 					default:
-						if(attackIndex1 != 0) {
+						if(attackIndex1 != 0 || currentPos != prevPos) {
 							attackPreview.Set("index", 0);
 							attackIndex1 = 0;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = circleBurst;
 						break;
@@ -130,70 +141,78 @@ public partial class SelectMenu : Control
 			case 2:
 			case 3:
 				displaySprite.Visible = false;
-				attackDisplay.Visible = true;
-				//attackPreview.Visible = true;
+				//attackDisplay.Visible = true;
+				attackPreview.Visible = true;
 				switch(attack2.Text) {
 					case "Circle Burst":
-						if(attackIndex1 != 0) {
+						if(attackIndex1 != 0 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 0);
 							attackIndex1 = 0;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = circleBurst;
 						break;
 					case "Spreadshot":
-						if(attackIndex1 != 1) {
+						if(attackIndex1 != 1 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 1);
 							attackIndex1 = 1;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = spreadShot;
 						break;
 					case "Fast Spreadshot":
-						if(attackIndex1 != 2) {
+						if(attackIndex1 != 2 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 2);
 							attackIndex1 = 2;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = fastSS;
 						break;
 					case "Knot":
-						if(attackIndex1 != 3) {
+						if(attackIndex1 != 3 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 3);
 							attackIndex1 = 3;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = knot;
 						break;
 					case "Swirl":
-						if(attackIndex1 != 4) {
+						if(attackIndex1 != 4 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 4);
 							attackIndex1 = 4;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(250,250));
 						}
 						newStream = swirl;
 						break;
 					case "Weave":
-						if(attackIndex1 != 5) {
+						if(attackIndex1 != 5 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 5);
 							attackIndex1 = 5;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = weave;
 						break;
 					case "Willow":
-						if(attackIndex1 != 6) {
+						if(attackIndex1 != 6 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 6);
 							attackIndex1 = 6;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(180,250));
 						}
 						newStream = willow;
 						break;
 					default:
-						if(attackIndex1 != 1) {
+						if(attackIndex1 != 1 || currentPos != prevPos && currentPos != 3 && prevPos != 3) {
 							attackPreview.Set("index", 1);
 							attackIndex1 = 1;
 							attackPreview.Set("startFiring", true);
+							attackPreview.Set("position", new Vector2(120,250));
 						}
 						newStream = circleBurst;
 						break;
@@ -205,6 +224,6 @@ public partial class SelectMenu : Control
 				break;
 			}
 		//}
-		//prevPos = currentPos;
+		prevPos = currentPos;
 	}
 }

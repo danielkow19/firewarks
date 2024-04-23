@@ -4,3 +4,8 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2vtrn")
+waves = 2
+bulletPerWave = PackedInt32Array(5, 4)
+spreadPerWave = PackedInt32Array(75, 60)
+speedPerWave = PackedInt32Array(400)
+recharge = 0.5
