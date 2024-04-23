@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://xcwra4xefee6"]
+[gd_scene load_steps=11 format=3 uid="uid://xcwra4xefee6"]
 
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="1_buo02"]
 [ext_resource type="Script" path="res://assets/Scripts/ControlsButton.cs" id="1_cp0m4"]
+[ext_resource type="Texture2D" uid="uid://cxawovjlayqy2" path="res://assets/sprites/ui/ui_settings_background.png" id="1_j0vln"]
 [ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="2_08fur"]
 [ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="2_o4uu5"]
 [ext_resource type="Texture2D" uid="uid://bwnkhx1wm4ynv" path="res://assets/sprites/ui/ui_controls_visual.png" id="3_mq5im"]
+[ext_resource type="Shader" path="res://Pause.gdshader" id="7_2dvss"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_amicp"]
 font = ExtResource("1_buo02")
@@ -12,6 +14,10 @@ font_size = 64
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tmfes"]
 texture = ExtResource("2_08fur")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0vle"]
+shader = ExtResource("7_2dvss")
+shader_parameter/amount = 3.0
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -22,6 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,49 +43,36 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.121569, 0.121569, 0.121569, 0.976471)
 
+[node name="Frame" type="TextureRect" parent="ColorRect"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -732.5
+offset_top = -540.0
+offset_right = 732.5
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_j0vln")
+
 [node name="Title" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -80.0
-offset_top = 40.0
-offset_right = 80.0
-offset_bottom = 100.0
+offset_left = -156.0
+offset_top = 240.0
+offset_right = 156.0
+offset_bottom = 345.0
 grow_horizontal = 2
 text = "Controls"
 label_settings = SubResource("LabelSettings_amicp")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -430.0
-offset_top = 120.0
-offset_right = 430.0
-offset_bottom = 507.0
-grow_horizontal = 2
-bbcode_enabled = true
-text = "[b]Movement:[/b] Use [i] WASD [/i] keys for keyboard or [i]Left Joystick[/i] for controllers.
-[b]Shoot Left Pattern:[/b] Press [i] SPACE Key[/i] or [i] Left trigger[/i] for controller
-[b]Shoot Right Pattern:[/b] Press [i]Enter Key[/i] or [i] Right trigger[/i] for controller
-[b]Slow Movement:[/b] Hold [i]SHIFT Key[/i] or [i]Left Shoulder[/i] for controller, combined with a movement input.
-[b]Smoke Bomb:[/b] Press [i]CTRL Key[/i] or [i]Right Shoulder[/i] for controller
-[b]UI Input:[/b] Press [i]Enter Key[/i] or [i] A/X button[/i] for Xbox or Playstation controller
-[b]Pause:[/b] Press [i]Backspace Key[/i] or [i] Start Button[/i] for controllers
-
-																							[b]Controller Aiming[/b]
-[b]Aiming:[/b] Use the [i]Right Joystick[/i] for controllers
-
-																							[b]Keyboard Aiming[/b]
-[b]Aiming Left:[/b] Use the [i]J Key[/i]
-[b]Aiming Right:[/b] Use the [i]L Key[/i]
-[b]Aiming Up:[/b] Use the [i]I Key[/i]
-[b]Aiming Down:[/b] Use the [i] K Key[/i]"
 
 [node name="ControlsButton" type="Button" parent="ColorRect"]
 layout_mode = 1
@@ -87,35 +81,46 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -147.0
-offset_right = 90.0
-offset_bottom = -85.0
+offset_left = -200.0
+offset_top = -220.0
+offset_right = 200.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_buo02")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_tmfes")
 text = "Return"
+flat = true
 script = ExtResource("1_cp0m4")
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+[node name="ControlsGuide" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -330.0
+offset_right = 700.0
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mq5im")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("2_o4uu5")]
+autoplay = false
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_h0vle")
+layout_mode = 0
 offset_left = -960.0
 offset_top = -540.0
 offset_right = 960.0
 offset_bottom = 540.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_mq5im")
-
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("2_o4uu5")]
-autoplay = false
 
 [connection signal="pressed" from="ColorRect/ControlsButton" to="ColorRect/ControlsButton" method="_on_pressed"]
 [connection signal="pressed" from="ColorRect/ControlsButton" to="AudioStreamPlayer" method="play"]
