@@ -257,6 +257,7 @@ autoplay = false
 
 [node name="Blur" type="ColorRect" parent="Controls"]
 material = SubResource("ShaderMaterial_ato5e")
+layout_mode = 0
 offset_left = -960.0
 offset_top = -540.0
 offset_right = 960.0
@@ -265,9 +266,15 @@ offset_bottom = 540.0
 [connection signal="focus_exited" from="MarginContainer/VBoxContainer/Resume" to="SFXDown" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="SFXClick" method="play"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/Controls" to="SFXDown" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="MarginContainer/VBoxContainer/Controls" method="_control_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="SFXClick" method="play"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/Lobby" to="SFXDown" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Lobby" to="." method="_on_lobby_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Lobby" to="SFXClick" method="play"]
+[connection signal="focus_exited" from="MarginContainer/VBoxContainer/Main Menu" to="SFXDown" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="SFXClick" method="play"]
 [connection signal="focus_exited" from="MarginContainer/VBoxContainer/Quit" to="SFXUp" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="SFXClick" method="play"]
