@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mlp2ibuhhhh3"]
+[gd_scene load_steps=15 format=3 uid="uid://mlp2ibuhhhh3"]
 
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="1_ydyd2"]
 [ext_resource type="FontFile" uid="uid://djhccx40lolkn" path="res://assets/fonts/RobotoSerif_120pt_Expanded-Regular.ttf" id="2_2vhlg"]
@@ -7,7 +7,10 @@
 [ext_resource type="FontFile" uid="uid://dxskowqktlbqb" path="res://assets/fonts/RobotoSerif_120pt-Italic.ttf" id="5_xgtay"]
 [ext_resource type="FontFile" uid="uid://brir60csc37tc" path="res://assets/fonts/RobotoSerif_120pt-BoldItalic.ttf" id="6_61gly"]
 [ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="7_ud4dm"]
+[ext_resource type="Texture2D" uid="uid://br4hvpmy7ksbd" path="res://assets/sprites/tutorial-images/tutorial_grazing.png" id="7_xj4os"]
+[ext_resource type="Texture2D" uid="uid://cpyh01jufe8j5" path="res://assets/sprites/tutorial-images/tutorial_cloud.png" id="8_aoqum"]
 [ext_resource type="Texture2D" uid="uid://dwwil16tg1upp" path="res://assets/sprites/environment/TEMP_background_birdless.PNG" id="8_g8qdd"]
+[ext_resource type="Texture2D" uid="uid://cnl2gq81p4p1r" path="res://assets/sprites/tutorial-images/tutorial_smoke_bomb.png" id="9_xgnsa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_axihe"]
 font = ExtResource("1_ydyd2")
@@ -57,10 +60,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -183.0
-offset_top = -81.0
-offset_right = 190.0
-offset_bottom = -55.0
+offset_left = -435.5
+offset_top = -90.0
+offset_right = 442.5
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "When you lose all your lives, you are eliminated"
@@ -144,9 +147,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -328.0
-offset_top = -82.0
+offset_top = -90.0
 offset_right = 328.0
-offset_bottom = 133.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_2vhlg")
@@ -158,10 +161,24 @@ theme_override_font_sizes/bold_font_size = 36
 theme_override_font_sizes/italics_font_size = 36
 theme_override_font_sizes/bold_italics_font_size = 36
 bbcode_enabled = true
-text = "[center]Attacking spends [b]Heat[/b]. Refill it by grazing opposing attacks!
-
-[Insert video of player grazing attacks to refill meter][/center]"
+text = "[center]Attacking spends [b]Heat[/b]. Refill it by grazing opposing attacks![/center]"
 fit_content = true
+
+[node name="GrazeImage" type="TextureRect" parent="HeatPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -354.167
+offset_top = -240.0
+offset_right = 354.166
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_xj4os")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="CloudPanel" type="Control" parent="."]
 layout_mode = 1
@@ -178,19 +195,40 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -355.0
+offset_top = 50.0
 offset_right = 355.0
-offset_bottom = 311.0
+offset_bottom = 361.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("2_2vhlg")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]Moving inside of clouds will slow you down and drain your heat gauge.
 
-[Insert video of player running out of heat in a cloud and taking damage]
+
+
+
+
 
 Don't let it run out inside one!
 [/center]"
 fit_content = true
+
+[node name="CloudImage" type="TextureRect" parent="CloudPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.667
+offset_top = -125.0
+offset_right = 166.666
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_aoqum")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="SmokeBombPanel" type="Control" parent="."]
 layout_mode = 1
@@ -210,19 +248,41 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -344.0
+offset_top = 50.0
 offset_right = 344.0
-offset_bottom = 344.0
+offset_bottom = 394.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("2_2vhlg")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]In a pinch? Use your smoke bomb (RB) to clear everything around you!
 
-[Insert video smoke bomb being used to clear stuff]
 
-Be careful though, it uses half of your heat gauge!
+
+
+
+
+Be careful though, it uses
+half of your heat gauge!
 [/center]"
 fit_content = true
+
+[node name="SmokeBombImage" type="TextureRect" parent="SmokeBombPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.667
+offset_top = -125.0
+offset_right = 166.666
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_xgnsa")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="TutorialButton" type="Button" parent="."]
 unique_name_in_owner = true
