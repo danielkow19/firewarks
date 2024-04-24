@@ -287,14 +287,16 @@ public partial class Player : Area2D
 		// heart should be less opaque the closer a bullet gets
 		foreach (Area2D area in heartArea.GetOverlappingAreas())
 		{
-			if (area is Bullet bullet /*&& bullet.owner != this*/)
+			if (area is Bullet bullet && bullet.owner != this)
 			{
-				var numerator = Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)));
+				//var numerator = Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)));
 				
-				var denominator = (2 * heartArea.GlobalScale.X);
+				//var denominator = (2 * heartArea.GlobalScale.X);
 				//float newAlpha = Mathf.Cos(Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(bullet.Position)) / (2 * heartArea.Scale.X));
 
-				float newAlpha = Mathf.Cos(numerator / denominator);
+				//float newAlpha = Mathf.Cos(numerator / denominator);
+				float newAlpha = 1/(Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)/100)));
+				Debug.Print("" + newAlpha);
 				if (newAlpha > targetA)
 				{
 					targetA = newAlpha;
@@ -306,6 +308,12 @@ public partial class Player : Area2D
 		changeHeartOpacity.A = targetA;
 		heart.Modulate = changeHeartOpacity;
 		_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, targetA);
+
+		if (Input.IsActionPressed($"Slow_{player_id}")) {
+			changeHeartOpacity.A = 1;
+			heart.Modulate = changeHeartOpacity;
+			_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, 1);
+		}
 		
 		
 		_burstAnimation.Position = Position;
