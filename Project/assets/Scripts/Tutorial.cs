@@ -44,31 +44,40 @@ public partial class Tutorial : ColorRect
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(this.Visible) { _tutorialButton.GrabFocus(); }
-		// Show the feather for each player that just pressed continue
-		for(int i =0; i < _playerCount; i++)
-		{
-			if(Input.IsActionJustPressed("UI_Click_" +  i))
-			{
-				if(i == 0)
-				{
-					_p1_Confirm.Show();
-				}
-				else if(i == 1)
-				{
-					_p2_Confirm.Show();
-				}
-				else if(i == 2)
-				{
-					_p3_Confirm.Show();
-				}
-				else if (i == 3)
-				{
-					_p4_Confirm.Show();
-				}
-			}
-		}
-		_readTutorial = allConfirmed();
+		// Only process if the tutorial is visible
+		if(this.Visible) { 
+			_tutorialButton.GrabFocus();
+            // Show the feather for each player that just pressed continue
+            for (int i = 0; i < _playerCount; i++)
+            {
+                if (Input.IsActionJustPressed("UI_Click_" + i))
+                {
+                    if (i == 0)
+                    {
+                        _p1_Confirm.Show();
+                    }
+                    else if (i == 1)
+                    {
+                        _p2_Confirm.Show();
+                    }
+                    else if (i == 2)
+                    {
+                        _p3_Confirm.Show();
+                    }
+                    else if (i == 3)
+                    {
+                        _p4_Confirm.Show();
+                    }
+                }
+            }
+            _readTutorial = allConfirmed();
+            if (settings.tutorialViewed)
+            {
+                _readTutorial = true;
+                tutorialButtonPressed();
+            }
+        }
+		
 	}
 	private void tutorialButtonPressed()
 	{
@@ -76,6 +85,7 @@ public partial class Tutorial : ColorRect
 		{
             GetTree().Paused = false;
 			_gameManager.viewedTutorial = true;
+			settings.tutorialViewed = true;
             this.Hide();
         }
 	}

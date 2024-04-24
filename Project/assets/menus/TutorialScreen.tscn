@@ -61,10 +61,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -435.5
-offset_top = -90.0
-offset_right = 442.5
-offset_bottom = -47.0
+offset_left = -183.0
+offset_top = -81.0
+offset_right = 190.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "When you lose all your lives, you are eliminated"
@@ -150,7 +150,7 @@ anchor_bottom = 0.5
 offset_left = -328.0
 offset_top = -90.0
 offset_right = 328.0
-offset_bottom = 15.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_2vhlg")
@@ -165,16 +165,16 @@ bbcode_enabled = true
 text = "[center]Attacking spends [b]Heat[/b]. Refill it by grazing opposing attacks![/center]"
 fit_content = true
 
-[node name="GrazeImage" type="TextureRect" parent="HeatPanel"]
+[node name="CloudImage" type="TextureRect" parent="HeatPanel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -354.167
+offset_left = -166.667
 offset_top = -240.0
-offset_right = 354.166
+offset_right = 166.667
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_xj4os")
@@ -263,8 +263,7 @@ text = "[center]In a pinch? Use your smoke bomb (RB) to clear everything around 
 
 
 
-Be careful though, it uses
-half of your heat gauge!
+Be careful though, it uses half of your heat gauge!
 [/center]"
 fit_content = true
 
@@ -293,10 +292,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -107.0
-offset_right = 130.0
-offset_bottom = -20.0
+offset_left = -200.0
+offset_top = -110.0
+offset_right = 200.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -319,6 +318,7 @@ offset_right = 206.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="P1_Confirm" type="TextureRect" parent="TutorialButton/HBoxContainer"]
 visible = false

@@ -12,6 +12,8 @@ public partial class player_settings : Node
 	private string lobbyScene = "res://player_select.tscn";
 	private string mapName;
 
+	// Tutorial stuff
+	public bool tutorialViewed;
 	
 
     private Godot.Collections.Array<PlayerInfo> _players = new Array<PlayerInfo>();
@@ -33,6 +35,8 @@ public partial class player_settings : Node
         if (currentScene == lobbyScene) { _players.Clear(); }
         //Connect(TreeEntered, Player_settings_TreeEntered);
         mapName = "boxes";
+
+		tutorialViewed = false;
     }
 
     public void CheckScene()
