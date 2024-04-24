@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://de8u82cvmyvri"
-path="res://.godot/imported/boxesMap.PNG-7b9509e708929e90124eee777db4fbd0.ctex"
+path="res://.godot/imported/boxesMap.png-0491885e51810de0aa7aa40011319dee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/map-images/boxesMap.PNG"
-dest_files=["res://.godot/imported/boxesMap.PNG-7b9509e708929e90124eee777db4fbd0.ctex"]
+source_file="res://assets/sprites/map-images/boxesMap.png"
+dest_files=["res://.godot/imported/boxesMap.png-0491885e51810de0aa7aa40011319dee.ctex"]
 
 [params]
 
