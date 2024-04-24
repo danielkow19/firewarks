@@ -33,7 +33,7 @@ public partial class Tutorial : ColorRect
 
         settings = (player_settings)GetNode("/root/PlayerSettings");
 		_playerCount = settings.PlayerInfos.Count;
-		//assignColors(_playerCount);
+		assignColors(_playerCount);
 
 
 
@@ -84,19 +84,19 @@ public partial class Tutorial : ColorRect
 	{
 		if (count > 0)
 		{
-            _p1_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(1)].Color;
+            _p1_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(0)].Color;
         }
 		if(count > 1)
 		{
-            _p2_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(2)].Color;
+            _p2_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(1)].Color;
         }
 		if(count > 2)
 		{
-            _p3_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(3)].Color;
+            _p3_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(2)].Color;
         }
 		if( count > 3)
 		{
-            _p4_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(4)].Color;
+            _p4_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(3)].Color;
         }
 	}
 	private bool allConfirmed()
