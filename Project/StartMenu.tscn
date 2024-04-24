@@ -138,7 +138,10 @@ offset_right = 960.0
 offset_bottom = 500.0
 
 [node name="Blur" parent="PauseMenu/Controls" index="2"]
-layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="SFXClick" parent="." instance=ExtResource("8_snqrk")]
 autoplay = false
@@ -153,9 +156,6 @@ offset_left = 960.0
 offset_top = 540.0
 offset_right = 960.0
 offset_bottom = 540.0
-
-[node name="ColorRect" parent="Controls" index="0"]
-z_index = 1
 
 [connection signal="focus_exited" from="Menu/PlayButton" to="SFXDown" method="play"]
 [connection signal="pressed" from="Menu/PlayButton" to="SFXClick" method="play"]
