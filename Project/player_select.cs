@@ -350,29 +350,29 @@ public partial class player_select : Control
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
 				RemovePlayer(i);
-                switch (i)
-                {
-                    case 0:
-                        {
-                            label0.Hide();
-                            break;
-                        }
-                    case 1:
-                        {
-                            label1.Hide();
-                            break;
-                        }
-                    case 2:
-                        {
-                            label2.Hide();
-                            break;
-                        }
-                    case 3:
-                        {
-                            label3.Hide();
-                            break;
-                        }
-                }
+                // switch (i)
+                // {
+                //     case 0:
+                //         {
+                //             //label0.Show();
+                //             break;
+                //         }
+                //     case 1:
+                //         {
+                //             //label1.Show();
+                //             break;
+                //         }
+                //     case 2:
+                //         {
+                //             //label2.Show();
+                //             break;
+                //         }
+                //     case 3:
+                //         {
+                //             //label3.Show();
+                //             break;
+                //         }
+                // }
                 //Debug.Print($"Player {i} Pressed Back");
                 readiedPlayers--;
 			}
@@ -420,34 +420,36 @@ public partial class player_select : Control
 	}
 
 	public void RemovePlayer(int playerID) {
-        switch (playerID)
-        {
-            case 0:
-                {
-                    //label0.Show();
-                    break;
-                }
-            case 1:
-                {
-                    //label1.Show();
-                    break;
-                }
-            case 2:
-                {
-                    //label2.Show();
-                    break;
-                }
-            case 3:
-                {
-                    //label3.Show();
-                    break;
-                }
-        }
+        // switch (playerID)
+        // {
+        //     case 0:
+        //         {
+        //             //label0.Show();
+        //             break;
+        //         }
+        //     case 1:
+        //         {
+        //             //label1.Show();
+        //             break;
+        //         }
+        //     case 2:
+        //         {
+        //             //label2.Show();
+        //             break;
+        //         }
+        //     case 3:
+        //         {
+        //             //label3.Show();
+        //             break;
+        //         }
+        // }
         Input.ActionRelease($"Back_{playerID}");
 		Node menu = menus[playerID];
+		Label joinLabel = GetNode<Label>($"Label{playerID}");
 		int index = settings.GetPlayerInfoIndexFromID(playerID);
 		if(index != -1) settings.RemovePlayerInfoAt(index);
 		if(menu.GetNode<ColorRect>("ReadyRect").Visible == false) {
+			joinLabel.Show();
 			if(keyboardPlayer != playerID) deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
 			EraseInputsByID(playerID);
 			menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
@@ -457,7 +459,6 @@ public partial class player_select : Control
 			if(playerID == keyboardPlayer) keyboardPlayer = -1;
 			colorIndices[playerID] = -1;
 		} else {
-			Label joinLabel = GetNode<Label>($"Label{playerID}");
 			joinLabel.Hide();
 			menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
 			menu.GetNode<ColorRect>("ReadyRect").Visible = false;
