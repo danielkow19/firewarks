@@ -303,7 +303,7 @@ public partial class Player : Area2D
 
 					//float newAlpha = Mathf.Cos(numerator / denominator);
 					float newAlpha = 1/(Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)/100)));
-					Debug.Print("" + newAlpha);
+					//Debug.Print("" + newAlpha);
 					if (newAlpha > targetA)
 					{
 						targetA = newAlpha;
@@ -311,15 +311,17 @@ public partial class Player : Area2D
 				}
 			}
 
+			if(targetA > 1) targetA = 1;
+
 			//GD.Print(targetA);
 			changeHeartOpacity.A = targetA;
 			heart.Modulate = changeHeartOpacity;
-			_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, targetA);
+			_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, targetA * 0.75f);
 
 			if (Input.IsActionPressed($"Slow_{player_id}")) {
 				changeHeartOpacity.A = 1;
 				heart.Modulate = changeHeartOpacity;
-				_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, 1);
+				_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, 0.75f);
 			}
 			performanceTimer = 1/60;
 		}
