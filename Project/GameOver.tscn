@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cs6dbil364eee"]
+[gd_scene load_steps=10 format=3 uid="uid://cs6dbil364eee"]
 
 [ext_resource type="Script" path="res://assets/Scripts/GameOver.cs" id="1_a05qw"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayButton.cs" id="2_w4u74"]
@@ -6,7 +6,10 @@
 [ext_resource type="FontFile" uid="uid://dcrwu0oiaadja" path="res://assets/fonts/EagleLake-Regular.ttf" id="3_dxxvd"]
 [ext_resource type="Texture2D" uid="uid://dtnwpml51g687" path="res://assets/sprites/ui/ui_button_4x1.png" id="4_1c3ud"]
 [ext_resource type="Texture2D" uid="uid://dwwil16tg1upp" path="res://assets/sprites/environment/TEMP_background_birdless.PNG" id="5_qnfh4"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/SFXClick.tscn" id="5_scr21"]
+[ext_resource type="PackedScene" uid="uid://c54p1tb4dmpdt" path="res://assets/prefabs/SFXClick.tscn" id="5_scr21"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_padgt"]
+texture = ExtResource("4_1c3ud")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uw0au"]
 font = ExtResource("3_dxxvd")
@@ -19,43 +22,29 @@ metadata/_edit_vertical_guides_ = [960.0]
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 script = ExtResource("2_w4u74")
 scenePath = "res://StartMenu.tscn"
 
 [node name="PlayButton" type="Button" parent="Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 20.725
-anchor_top = 12.275
-anchor_right = 24.225
-anchor_bottom = 13.05
-offset_left = -29.0
-offset_top = 409.0
-offset_right = 151.0
-offset_bottom = 471.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -130.0
+offset_right = 200.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_dxxvd")
 theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxTexture_padgt")
 text = "Play Again"
 flat = true
-
-[node name="CursorIcon" type="TextureRect" parent="Control/PlayButton"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -165.0
-offset_top = -42.5
-offset_right = 165.0
-offset_bottom = 42.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_1c3ud")
-expand_mode = 5
-stretch_mode = 4
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0

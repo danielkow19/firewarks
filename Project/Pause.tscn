@@ -80,7 +80,7 @@ alignment = 1
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3lcw6")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "Paused"
 horizontal_alignment = 1
 
@@ -95,6 +95,7 @@ theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_rpppx")
 text = "Resume"
+flat = true
 
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -106,6 +107,7 @@ theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_70yti")
 text = "Controls"
+flat = true
 script = ExtResource("4_ngvqx")
 
 [node name="Lobby" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -118,6 +120,7 @@ theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_8kfwf")
 text = "Lobby"
+flat = true
 
 [node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -129,6 +132,7 @@ theme_override_fonts/font = ExtResource("3_3lcw6")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_efbbg")
 text = "Main Menu"
+flat = true
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -142,6 +146,7 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_rvtyl")
 text = "Quit
 "
+flat = true
 
 [node name="SFXUp" parent="." instance=ExtResource("3_tpbxb")]
 
