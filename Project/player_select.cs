@@ -424,22 +424,22 @@ public partial class player_select : Control
         {
             case 0:
                 {
-                    label0.Show();
+                    //label0.Show();
                     break;
                 }
             case 1:
                 {
-                    label1.Show();
+                    //label1.Show();
                     break;
                 }
             case 2:
                 {
-                    label2.Show();
+                    //label2.Show();
                     break;
                 }
             case 3:
                 {
-                    label3.Show();
+                    //label3.Show();
                     break;
                 }
         }
@@ -450,16 +450,20 @@ public partial class player_select : Control
 		if(menu.GetNode<ColorRect>("ReadyRect").Visible == false) {
 			if(keyboardPlayer != playerID) deviceNums.Remove(InputMap.ActionGetEvents($"Back_{playerID}")[0].Device);
 			EraseInputsByID(playerID);
+			menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
 			menu.Free();
 			menus[playerID] = null;
 			numPlayers--;
 			if(playerID == keyboardPlayer) keyboardPlayer = -1;
 			colorIndices[playerID] = -1;
 		} else {
+			Label joinLabel = GetNode<Label>($"Label{playerID}");
+			joinLabel.Hide();
+			menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
 			menu.GetNode<ColorRect>("ReadyRect").Visible = false;
 			menu.GetNode<ColorRect>("ColorRect").Visible = true;
 		}
-		menu.GetNode<Node2D>("ColorRect/Cursor").Set("infoAdded", false);
+		
     }
 
 	public void ReleaseAllActions() {

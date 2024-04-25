@@ -628,6 +628,7 @@ public partial class Player : Area2D
 
 			if (health < 0)
 			{
+				Position = new Vector2(-100000, -100000);
 				player_settings settings = (player_settings)GetNode("/root/PlayerSettings");
 				Debug.Print($"Player with ID of {player_id} has died");
 				settings.playerDeath(player_id);
