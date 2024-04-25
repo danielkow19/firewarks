@@ -126,6 +126,8 @@ public partial class Player : Area2D
 	PackedScene orbitPU = GD.Load<PackedScene>("res://assets/prefabs/SparkRingPU.tscn");
 	PackedScene randomFireworks =  GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurstPowerup.tscn");
 
+	private float performanceTimer;
+
 
 	// Trail reference for pausing
 	private PlayerTrail trail;
@@ -274,45 +276,52 @@ public partial class Player : Area2D
 		if(player_id % 2 == 1) {
 			Rotation = MathF.PI;
 		}
+
+		performanceTimer = 1/60;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Color changeHeartOpacity = new Color(heart.Modulate.R, heart.Modulate.G, heart.Modulate.B, heart.Modulate.A);
-		float targetA = 0;
+		performanceTimer -= (float)delta;
 
-		var areas = heartArea.GetOverlappingAreas();
-		
-		// heart should be less opaque the closer a bullet gets
-		foreach (Area2D area in heartArea.GetOverlappingAreas())
-		{
-			if (area is Bullet bullet && bullet.owner != this)
+		if(performanceTimer <= 0){
+			Color changeHeartOpacity = new Color(heart.Modulate.R, heart.Modulate.G, heart.Modulate.B, heart.Modulate.A);
+			float targetA = 0;
+
+			var areas = heartArea.GetOverlappingAreas();
+
+			// heart should be less opaque the closer a bullet gets
+			foreach (Area2D area in heartArea.GetOverlappingAreas())
 			{
-				//var numerator = Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)));
-				
-				//var denominator = (2 * heartArea.GlobalScale.X);
-				//float newAlpha = Mathf.Cos(Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(bullet.Position)) / (2 * heartArea.Scale.X));
-
-				//float newAlpha = Mathf.Cos(numerator / denominator);
-				float newAlpha = 1/(Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)/100)));
-				Debug.Print("" + newAlpha);
-				if (newAlpha > targetA)
+				if (area is Bullet bullet && bullet.owner != this)
 				{
-					targetA = newAlpha;
+					//var numerator = Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)));
+
+					//var denominator = (2 * heartArea.GlobalScale.X);
+					//float newAlpha = Mathf.Cos(Mathf.Pi * Mathf.Abs(heart.Position.DistanceTo(bullet.Position)) / (2 * heartArea.Scale.X));
+
+					//float newAlpha = Mathf.Cos(numerator / denominator);
+					float newAlpha = 1/(Mathf.Abs(heart.Position.DistanceTo(ToLocal(bullet.GlobalPosition)/100)));
+					Debug.Print("" + newAlpha);
+					if (newAlpha > targetA)
+					{
+						targetA = newAlpha;
+					}
 				}
 			}
-		}
 
-		//GD.Print(targetA);
-		changeHeartOpacity.A = targetA;
-		heart.Modulate = changeHeartOpacity;
-		_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, targetA);
-
-		if (Input.IsActionPressed($"Slow_{player_id}")) {
-			changeHeartOpacity.A = 1;
+			//GD.Print(targetA);
+			changeHeartOpacity.A = targetA;
 			heart.Modulate = changeHeartOpacity;
-			_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, 1);
+			_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, targetA);
+
+			if (Input.IsActionPressed($"Slow_{player_id}")) {
+				changeHeartOpacity.A = 1;
+				heart.Modulate = changeHeartOpacity;
+				_playerSprite.Modulate = _initialColor.Lerp(_alternateColor, 1);
+			}
+			performanceTimer = 1/60;
 		}
 		
 		
