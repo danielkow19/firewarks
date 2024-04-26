@@ -7,6 +7,7 @@ public partial class ReadyButton : Button
 {
 	private Button button;
 	public player_select joinNode;
+	public int playerID;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,7 +29,7 @@ public partial class ReadyButton : Button
 	{
 		if(joinNode != null)
 		{
-			joinNode.ReadyPlayer();
+			joinNode.ReadyPlayer(playerID);
 		}
 	}
 }

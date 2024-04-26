@@ -31,6 +31,11 @@ public partial class player_select : Control
 	private Label label2;
 	private Label label3;
 
+	private bool p0Ready;
+	private bool p1Ready;
+	private bool p2Ready;
+	private bool p3Ready;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -320,6 +325,7 @@ public partial class player_select : Control
 		menus[currentPlayerID] = instance;
 		instance.GetNode<CursorAlt>("ColorRect/Cursor").Set("playerNum", currentPlayerID);
 		instance.GetNode<ReadyButton>("ColorRect/ReadyUp").Set("joinNode", this);
+		instance.GetNode<ReadyButton>("ColorRect/ReadyUp").Set("playerID", currentPlayerID);
 		AddChild(instance);
 	}
 
@@ -349,7 +355,46 @@ public partial class player_select : Control
 
 		for(int i = 0; i < 4; i++) {
 			if(Input.IsActionPressed($"Back_{i}")) {
-				RemovePlayer(i);
+				switch (i)
+				{
+					case 0:
+						{
+							if (p0Ready)
+							{
+								p0Ready = false;
+								readiedPlayers--;
+							}
+							break;
+						}
+					case 1:
+						{
+							if (p1Ready)
+							{
+								p1Ready = false;
+								readiedPlayers--;
+							}
+							break;
+						}
+					case 2:
+						{
+							if(p2Ready)
+							{
+								p2Ready = false;
+								readiedPlayers--;
+							}
+							break;
+						}
+					case 3:
+						{
+							if (p3Ready)
+							{
+								p2Ready = false;
+								readiedPlayers--;
+							}
+							break;
+						}
+				}
+                RemovePlayer(i);
                 // switch (i)
                 // {
                 //     case 0:
@@ -374,7 +419,6 @@ public partial class player_select : Control
                 //         }
                 // }
                 //Debug.Print($"Player {i} Pressed Back");
-                readiedPlayers--;
 			}
 		}
 		if(numPlayers >=1 && numPlayers > readiedPlayers)
@@ -390,8 +434,15 @@ public partial class player_select : Control
 		}
 	}
 
-	public void ReadyPlayer()
+	public void ReadyPlayer(int playerID)
 	{
+		switch (playerID)
+		{
+			case 0: { p0Ready = true; break; }
+			case 1: { p1Ready = true; break; }
+			case 2: { p2Ready = true; break; }
+			case 3: { p3Ready = true; break; }
+		}
 		readiedPlayers++;
 	}
 
