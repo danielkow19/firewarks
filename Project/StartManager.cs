@@ -31,8 +31,8 @@ public partial class StartManager : Node2D
 		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
 		if(!music.Playing)
 		{
-		music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
-		music.Play();
+			music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
+			music.Play();
 		}
 		
 	}
@@ -61,7 +61,7 @@ public partial class StartManager : Node2D
 
 		if (Input.IsKeyPressed(Key.Key9))
 		{
-			// Change to Gameplay Scenevvvv
+			// Change to Gameplay Scene
 			SceneManager sceneManager = GetNode<SceneManager>("/root/SceneManager");
 			sceneManager.GoToScene(scenePaths[1]);
 		}

@@ -23,6 +23,10 @@ public partial class Bullet : Area2D
 	private bool swirl = false;
 	public int swirlMod;
 	private Line2D trail;
+	private double grazeTimer;
+	private bool grazeStart = false;
+	private Color bulletColor; // Believe this is needed in case player is in the middle of other animation
+	private const float grazeLength = 0.5f;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -40,6 +44,11 @@ public partial class Bullet : Area2D
 			Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
 			trail.Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
 		}
+
+		bulletColor = Modulate;
+		grazeTimer = 0;
+
+
 		// Sets the opacity of the trail 0 - 255
 		//trail.Modulate = trail.Modulate with { A8 = 255 };
 	}
@@ -47,6 +56,30 @@ public partial class Bullet : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		grazeTimer -= delta;
+		if (grazeTimer < 0)
+		{
+			grazeTimer = 0;
+		} 
+		
+		// Transition from bullet color to white
+		if (grazeStart)
+		{
+			Modulate = Colors.White.Lerp(bulletColor, (float)grazeTimer / grazeLength);
+
+			if (grazeTimer == 0)
+			{
+				// Start latter loop where white decreasess
+				grazeStart = false;
+				grazeTimer = grazeLength;
+			}
+		}
+		else // Transition from white to bullet color, or just stay bullet color
+		{
+			Modulate = bulletColor.Lerp(Colors.White, (float)grazeTimer / grazeLength);
+		}
+		
+		
 		//increment timer
 		delay -= delta;
 		//when timer reaches zero start attack
@@ -78,18 +111,18 @@ public partial class Bullet : Area2D
 		
 	}
 
-	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
+	//checks collision for the bullets if non-player stops bullet, if player checks player and dmgs if not owner
 	private void CheckCollisions()
 	{
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{
-			//check each collision make sure its a player
+			//check each collision make sure it's a player
 			foreach (Area2D area in collisions)
 			{
 				if (area is not Resource)
 				{
-					//if its a different player reward owner, dmg enemy, delete bullet
+					//if it's a different player reward owner, dmg enemy, delete bullet
 					if (area is Player player)
 					{
 						if(player != owner && player.Damageable)
@@ -111,5 +144,11 @@ public partial class Bullet : Area2D
 				}
 			}
 		}
+	}
+
+	public void StartGrazeAnim()
+	{
+		grazeStart = true;
+		grazeTimer = grazeLength;
 	}
 }

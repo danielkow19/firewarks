@@ -65,7 +65,7 @@ public partial class player_select : Control
 		label3 = GetNode<Label>("Label3");
 	}
 
-
+	// TODO: see statement
 	//!! Move this to its own global class(future)
 		public override void _UnhandledInput(InputEvent @event)
 	{
@@ -473,7 +473,7 @@ public partial class player_select : Control
 	public void RemovePlayer(int playerID) {
         // switch (playerID)
         // {
-        //     case 0:
+        //     case 0: sddsa
         //         {
         //             //label0.Show();
         //             break;

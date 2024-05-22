@@ -758,6 +758,7 @@ public partial class Player : Area2D
 		if (area is not Bullet bullet) return;
 		if (bullet.owner != this)
 		{
+			bullet.StartGrazeAnim();
 			_grazeCooldown.Start(1.25f);
 			if(!firing)
 			{

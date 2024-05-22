@@ -41,6 +41,7 @@ public partial class PlayerTrail : Line2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Possibilities, todo statements are only to bring notice to them in ide
 		// TODO: Additional possible changes: 1. Add int to delete a value every few frames regardless of time to prevent still trail when player stops moving
 		// TODO: 2. Make collisions only be on ~80% of the line to define hit box as it thins out at the end 
 		
