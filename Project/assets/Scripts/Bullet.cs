@@ -65,18 +65,24 @@ public partial class Bullet : Area2D
 		// Transition from bullet color to white
 		if (grazeStart)
 		{
+			// alpha needs to be saved to maintain camo power-up
+			float alpha = Modulate.A;
 			Modulate = Colors.White.Lerp(bulletColor, (float)grazeTimer / grazeLength);
+			Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, alpha);
 
 			if (grazeTimer == 0)
 			{
-				// Start latter loop where white decreasess
+				// Start latter loop, where white decreases
 				grazeStart = false;
 				grazeTimer = grazeLength;
 			}
 		}
 		else // Transition from white to bullet color, or just stay bullet color
 		{
+			// alpha needs to be saved to maintain camo power-up
+			float alpha = Modulate.A;
 			Modulate = bulletColor.Lerp(Colors.White, (float)grazeTimer / grazeLength);
+			Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, alpha);
 		}
 		
 		

@@ -52,6 +52,10 @@ public partial class Player : Area2D
 	private Color _initialColor;
 	private Color _alternateColor;
 	private AnimationPlayer barAnim;
+	
+	private double grazeAnimTimer;
+	private bool grazeStart = false;
+	private const float grazeLength = 0.5f;
 
 	// Burst Variables
 	private Area2D _burstArea;
@@ -90,7 +94,7 @@ public partial class Player : Area2D
 	// Interaction variable
 	public int numClouds;
 	
-	// Things for Powerups
+	// Things for Power-ups
 	private Timer mobileAttackLength;
 	private bool barrier = false;
 	private AnimatedSprite2D barrierMesh;
@@ -283,6 +287,36 @@ public partial class Player : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		grazeAnimTimer -= delta;
+		if (grazeAnimTimer < 0)
+		{
+			grazeAnimTimer = 0;
+		} 
+		
+		// Transition from player color to white for energy meter
+		if (grazeStart)
+		{
+			// Transition to keep transparency the same for barAnim
+			Color transitionColor = Colors.White.Lerp(Modulate, (float)grazeAnimTimer / grazeLength);
+			energyDynamic.Modulate = new Color(transitionColor.R, transitionColor.G, transitionColor.B,
+				energyDynamic.Modulate.A);
+
+			if (grazeAnimTimer == 0)
+			{
+				// Start latter loop, where white decreases
+				grazeStart = false;
+				grazeAnimTimer = grazeLength;
+			}
+		}
+		else // Transition from white to player color
+		{
+			// Transition to keep transparency the same for barAnim
+			Color transitionColor = Modulate.Lerp(Colors.White, (float)grazeAnimTimer / grazeLength);
+			energyDynamic.Modulate = new Color(transitionColor.R, transitionColor.G, transitionColor.B,
+				energyDynamic.Modulate.A);
+		}
+		
+		
 		performanceTimer -= (float)delta;
 
 		if(performanceTimer <= 0){
@@ -493,7 +527,7 @@ public partial class Player : Area2D
 			Rotation += MathF.PI * 2;
 		}
 
-		// Theres no method for checking this on effect end so I'm doing it here instead
+		// Theres no method for checking this on effect end, so I'm doing it here instead
 		if (mobileAttackLength.TimeLeft <= 0)
 		{
 			mobileAttackLengthIcon.Visible = false;
@@ -760,6 +794,9 @@ public partial class Player : Area2D
 		{
 			bullet.StartGrazeAnim();
 			_grazeCooldown.Start(1.25f);
+			grazeAnimTimer = grazeLength;
+			grazeStart = true;
+			
 			if(!firing)
 			{
 				RewardEnergy(10);
