@@ -55,7 +55,7 @@ public partial class Player : Area2D
 	
 	private double grazeAnimTimer;
 	private bool grazeStart = false;
-	private const float grazeLength = 0.5f;
+	private const float grazeLength = 0.125f;
 
 	// Burst Variables
 	private Area2D _burstArea;

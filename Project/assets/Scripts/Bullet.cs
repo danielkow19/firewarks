@@ -26,7 +26,7 @@ public partial class Bullet : Area2D
 	private double grazeTimer;
 	private bool grazeStart = false;
 	private Color bulletColor; // Believe this is needed in case player is in the middle of other animation
-	private const float grazeLength = 0.5f;
+	private const float grazeLength = 0.125f;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
