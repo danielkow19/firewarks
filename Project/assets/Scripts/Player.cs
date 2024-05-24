@@ -53,6 +53,7 @@ public partial class Player : Area2D
 	private Color _alternateColor;
 	private AnimationPlayer barAnim;
 	
+	private float _grazeReward = 5f;
 	private double grazeAnimTimer;
 	private bool grazeStart = false;
 	private const float grazeLength = 0.125f;
@@ -720,7 +721,7 @@ public partial class Player : Area2D
 		freeze.Start();
 	}
 	//rewards amount energy to player
-	public void RewardEnergy(int amount)
+	public void RewardEnergy(float amount)
 	{
 		energy += amount;
 
@@ -799,11 +800,11 @@ public partial class Player : Area2D
 			
 			if(!firing)
 			{
-				RewardEnergy(10);
+				RewardEnergy(_grazeReward);
 			}
 			else
 			{
-				RewardEnergy(5);
+				RewardEnergy(_grazeReward/2f);
 			}
 			
 		}
