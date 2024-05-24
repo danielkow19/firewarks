@@ -42,7 +42,7 @@ public partial class Bullet : Area2D
 		}
 		if(passer == "Camo"){
 			Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
-			trail.Modulate = new Color(Modulate.R,Modulate.G,Modulate.B, .15f);
+			trail.Modulate = owner.Modulate; // Don't double dip on transparency
 		}
 
 		bulletColor = Modulate;
@@ -69,7 +69,9 @@ public partial class Bullet : Area2D
 			float alpha = Modulate.A;
 			Modulate = Colors.White.Lerp(bulletColor, (float)grazeTimer / grazeLength);
 			Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, alpha);
-
+			trail.Modulate = Modulate;
+			
+			
 			if (grazeTimer == 0)
 			{
 				// Start latter loop, where white decreases
@@ -83,6 +85,7 @@ public partial class Bullet : Area2D
 			float alpha = Modulate.A;
 			Modulate = bulletColor.Lerp(Colors.White, (float)grazeTimer / grazeLength);
 			Modulate = new Color(Modulate.R, Modulate.G, Modulate.B, alpha);
+			trail.Modulate = Modulate;
 		}
 		
 		

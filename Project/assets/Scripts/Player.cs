@@ -793,7 +793,7 @@ public partial class Player : Area2D
 		if (bullet.owner != this)
 		{
 			bullet.StartGrazeAnim();
-			_grazeCooldown.Start(1.25f);
+			_grazeCooldown.Start(.125f);
 			grazeAnimTimer = grazeLength;
 			grazeStart = true;
 			
