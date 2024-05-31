@@ -16,9 +16,9 @@ public partial class LobbyButton : Button
 	public override void _Process(double delta)
 	{
 	}
+	
 	public void _on_pressed()
 	{
-		
 		AudioStreamPlayer music = GetNode<AudioStreamPlayer>("/root/SoundManager/Music");
 		music.Stop();
 		music.Set("stream", GD.Load<AudioStream>("res://assets/Music/battlemusicDraft.wav"));

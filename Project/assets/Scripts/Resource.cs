@@ -9,12 +9,12 @@ public enum PowerUpType
 {
 	Refill,
 	Barrier,
-	OrbitRing,
-	BulletSpeed,
-	SupportingFire,
-	MobileAttacker,
+	Orbit_Ring,
+	Bullet_Speed,
+	Supporting_Fire,
+	Mobile_Attacker,
 	Slowdown,
-	SmokeBomb,
+	Smoke_Bomb,
 	Camo,
 }
 
@@ -74,6 +74,9 @@ public partial class Resource : Area2D
 
 	public override string ToString()
 	{
-		return type + " PowerUp";
+		string output = type.ToString();
+		output = output.Replace("_", " ");
+		
+		return output + " PowerUp";
 	}
 }

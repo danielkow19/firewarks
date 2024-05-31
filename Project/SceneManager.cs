@@ -4,6 +4,7 @@ using System;
 public partial class SceneManager : Node
 {
 	public Node currentScene {get; set;}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -26,7 +27,6 @@ public partial class SceneManager : Node
 
 	public PackedScene GetReadyScene(string path)
 	{
-		
 		if(ResourceLoader.LoadThreadedGetStatus(path) == ResourceLoader.ThreadLoadStatus.Loaded)
 		{
 			return (PackedScene)ResourceLoader.LoadThreadedGet(path);

@@ -29,8 +29,6 @@ public partial class randomizePatternPosition : Area2D
 					break;
 				}   
 			}
-			
-			
 		} while (doAgain);
 
 		this.QueueFree();
@@ -38,7 +36,6 @@ public partial class randomizePatternPosition : Area2D
 
 	private Vector2 ChoosePosition()
 	{
-		
 		Vector2 range = manager.WorldBorder.edgePosition;
 		return new Vector2(rng.RandfRange(-range.X + 50, range.X - 50), rng.RandfRange(-range.Y + 50, range.Y - 50));
 	}

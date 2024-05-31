@@ -76,7 +76,7 @@ public partial class PatternPreview : Node2D
 	public override void _Process(double delta)
 	{
 		//spawn a wave/waves every x seconds while not released
-		//if end of waves start from beggining		
+		//if end of waves start from beginning		
 		if(!fireAndForget && !drained)
 		{
 			timeAlive += (float)delta;
@@ -88,8 +88,6 @@ public partial class PatternPreview : Node2D
 						lastFire += 1;
 						coolDown += (float)delay;
 				}
-				
-				
 			}
 		}
 
@@ -117,8 +115,6 @@ public partial class PatternPreview : Node2D
 				QueueFree();
 			}
 		}
-
-		
 	}
 
 	public void Release()
@@ -142,7 +138,7 @@ public partial class PatternPreview : Node2D
 				instance.Set("spin",spinPerWave[i] * rng.RandfRange(.9f,1.1f));
 				instance.Set("spinAccel",spinAccelPerWave[i] * rng.RandfRange(.9f,1.1f));
 				instance.Set("swirlMod", swirlMod[i] * rng.RandfRange(.9f,1.1f));
-				if(passer == "BulletSpeed")
+				if(passer == "Bullet_Speed")
 				{
 					instance.Set("speed", (speedPerWave[i] * 1.5)* rng.RandfRange(.9f,1.1f));
 				}
@@ -156,7 +152,7 @@ public partial class PatternPreview : Node2D
 				instance.Set("spin",spinPerWave[i]);
 				instance.Set("spinAccel",spinAccelPerWave[i]);
 				instance.Set("swirlMod", swirlMod[i]);
-				if(passer == "BulletSpeed")
+				if(passer == "Bullet_Speed")
 				{
 					instance.Set("speed", speedPerWave[i] * 1.5);
 				}
@@ -170,9 +166,8 @@ public partial class PatternPreview : Node2D
 
 			if(passer == "RFW")
 			{
-			GD.Print("here");
-			instance.Set("position", new Vector2(rng.RandfRange(-500,500),rng.RandfRange(-500,500)));
-			AddSibling(instance);
+				instance.Set("position", new Vector2(rng.RandfRange(-500,500),rng.RandfRange(-500,500)));
+				AddSibling(instance);
 			
 			}		
 			else if(!playerLocked)
@@ -193,7 +188,7 @@ public partial class PatternPreview : Node2D
 			}
 		}
 	}
-	//instantiates given wave to spawn with needed varriables
+	//instantiates given wave to spawn with needed variables
 	public void SpawnWave(int waveToSpawn)
 	{
 		var instance = pattern.Instantiate();
@@ -206,7 +201,7 @@ public partial class PatternPreview : Node2D
 				instance.Set("spin",spinPerWave[waveToSpawn] + rng.RandfRange(-5,5));
 				instance.Set("spinAccel",spinAccelPerWave[waveToSpawn] + rng.RandfRange(-5,5));
 				instance.Set("swirlMod", swirlMod[waveToSpawn] + rng.RandfRange(-5,5));
-				if(passer == "BulletSpeed")
+				if(passer == "Bullet_Speed")
 				{
 					instance.Set("speed", (speedPerWave[waveToSpawn] * 1.5)+ rng.RandfRange(-50,50));
 				}
@@ -220,7 +215,7 @@ public partial class PatternPreview : Node2D
 			instance.Set("spin",spinPerWave[waveToSpawn]);
 			instance.Set("spinAccel",spinAccelPerWave[waveToSpawn]);
 			instance.Set("swirlMod", swirlMod[waveToSpawn]);
-			if(passer == "BulletSpeed")
+			if(passer == "Bullet_Speed")
 			{
 				instance.Set("speed", speedPerWave[waveToSpawn] * 1.5);
 			}
@@ -265,6 +260,7 @@ public partial class PatternPreview : Node2D
 			//}
 
 	}
+	
 	//checks arrays for wave values before spawning waves, setting unfilled values to a default
 	public void PopulateWaves()
 	{

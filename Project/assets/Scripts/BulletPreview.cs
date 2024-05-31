@@ -78,7 +78,7 @@ public partial class BulletPreview : Area2D
 		
 	}
 
-	//checks collision for the bullets if nonplayer stops bullet, if player checks player and dmgs if not owner
+	//checks collision for the bullets if non-player stops bullet, if player checks player and dmgs if not owner
 	private void CheckCollisions()
 	{
 		Array<Area2D> collisions = GetOverlappingAreas();

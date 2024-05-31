@@ -128,7 +128,6 @@ public partial class GameManager : Node2D
 		if (Input.IsKeyPressed(Key.Slash))
 		{
 			//GetTree().ChangeSceneToFile("res://Pause.tscn");
-
 		}
 
 		if (PlayersDead())
@@ -145,6 +144,7 @@ public partial class GameManager : Node2D
 			sceneManager.GoToScene("res://GameOver.tscn");
 		}
 	}
+    
 	private bool PlayersDead()
 	{
 		//if(!_hasSpawned){
@@ -186,6 +186,7 @@ public partial class GameManager : Node2D
 			return false; 
 		}
 	}
+	
 	public void PauseMenu()
 	{
 		if (!_paused)
@@ -201,6 +202,7 @@ public partial class GameManager : Node2D
 		}
 		_paused = !_paused;
 	}
+	
 	public void SpawnPlayer(int playerID, PackedScene patternLeft, PackedScene patternRight, Color color, float x, float y)
 	{
 		Player instance = (Player)_playerPrefab.Instantiate();
@@ -215,6 +217,7 @@ public partial class GameManager : Node2D
 		this.AddChild(instance);
 		//_hasSpawned = true;
 	}
+	
 	private void LoadPlayers(player_settings settings)
 	{
 		for(int i =0; i < settings.PlayerInfos.Count; i++)

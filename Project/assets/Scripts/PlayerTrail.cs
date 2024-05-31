@@ -93,9 +93,7 @@ public partial class PlayerTrail : Line2D
 			tailSegments.RemoveAt(0);
 			deleteThis1.QueueFree();
 			deleteThis2.QueueFree();
-			
 		}
-		
 	}
 	
 	private void OnAreaEntered(Area2D area)

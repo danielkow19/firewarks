@@ -27,6 +27,7 @@ public partial class AttackSwap : Label
 			}
 		}
 	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -86,8 +87,6 @@ public partial class AttackSwap : Label
                 Debug.Print("Ah this broke!");
             }
         }
-		
-
 	}
 
 	//called when adjusted left or right selects the adjacent attack and displays

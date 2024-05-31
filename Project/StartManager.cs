@@ -34,7 +34,6 @@ public partial class StartManager : Node2D
 			music.Set("stream", GD.Load<AudioStream>("res://assets/Music/menusongfirstdraft.wav"));
 			music.Play();
 		}
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,6 +72,7 @@ public partial class StartManager : Node2D
 			sceneManager.GoToScene(scenePaths[2]);
 		}
 	}
+	
 	public void PauseMenu()
 	{
 		if (!_paused)

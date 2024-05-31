@@ -4,7 +4,6 @@ using System;
 
 public partial class Tutorial : ColorRect
 {
-
 	private Button _tutorialButton;
 	private bool _readTutorial;
 	private int _playerCount;
@@ -77,8 +76,8 @@ public partial class Tutorial : ColorRect
                 tutorialButtonPressed();
             }
         }
-		
 	}
+	
 	private void tutorialButtonPressed()
 	{
 		if (_readTutorial)
@@ -109,6 +108,7 @@ public partial class Tutorial : ColorRect
             _p4_Confirm.Modulate = settings.PlayerInfos[settings.GetPlayerInfoIndexFromID(3)].Color;
         }
 	}
+	
 	private bool allConfirmed()
 	{
 		switch(_playerCount)

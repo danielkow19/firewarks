@@ -17,7 +17,7 @@ public partial class Spawner : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//increments timer, when 10s has passed spawn a random powerup at a random position
+		//increments timer, when 10s has passed spawn a random power-up at a random position
 		timer+=delta;
 		if (timer>10){
 			timer = 0;
@@ -29,7 +29,7 @@ public partial class Spawner : Node2D
 			(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
 
 			while (manager.WorldBorder.countDown.TimeLeft < 0 &&
-			       (instance as Resource).type == PowerUpType.SupportingFire)
+			       (instance as Resource).type == PowerUpType.Supporting_Fire)
 			{
 				(instance as Resource).type = (PowerUpType)values.GetValue(rng.RandiRange(0, 8));
 			}

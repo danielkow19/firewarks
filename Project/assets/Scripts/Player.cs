@@ -384,7 +384,7 @@ public partial class Player : Area2D
 				DeactivateBarrier();
 			}
 		}
-		//if powered up lower timer or if timer is up set power up to none
+		//if powered up lower timer or if timer is up, set power up to none
 		if(powerUpPasser != ""){
 			puTimer -= delta;
 			if(puTimer < 0){
@@ -864,7 +864,7 @@ public partial class Player : Area2D
 				RewardEnergy(100);
 				return;
 			
-			case PowerUpType.SmokeBomb:
+			case PowerUpType.Smoke_Bomb:
 				_burstArea.Monitoring = true;
 				_burstTimer.WaitTime = _burstCD;
 				_burstTimer.Start();
@@ -872,7 +872,7 @@ public partial class Player : Area2D
 				_burstSFX.Play();
 				break;
 			
-			case PowerUpType.MobileAttacker:
+			case PowerUpType.Mobile_Attacker:
 				mobileAttackLength.Start(15);
 				mobileAttackLengthIcon.Visible = true;
 				break;
@@ -883,8 +883,8 @@ public partial class Player : Area2D
 				barrierTimer = 20;
 				break;
 
-			case PowerUpType.BulletSpeed:
-				powerUpPasser = "BulletSpeed";
+			case PowerUpType.Bullet_Speed:
+				powerUpPasser = "Bullet_Speed";
 				puTimer = 10;
 				followHud.GetNode<TextureRect>("%ShotSpeedIcon").Visible = true;
 				followHud.GetNode<TextureRect>("%CamoIcon").Visible = false;
@@ -912,7 +912,7 @@ public partial class Player : Area2D
 				}
 				break;
 			
-			case PowerUpType.OrbitRing:
+			case PowerUpType.Orbit_Ring:
 				var instance = orbitPU.Instantiate();
 				instance.Set("rotation", this.Rotation);
 				instance.Set("passer", powerUpPasser);
@@ -920,7 +920,7 @@ public partial class Player : Area2D
 				AddChild(instance);
 				break;
 			
-			case PowerUpType.SupportingFire:
+			case PowerUpType.Supporting_Fire:
 				var instanceRandom = randomFireworks.Instantiate();
 				instanceRandom.Set("passer", "RFW");
 				instanceRandom.Set("owner", this);

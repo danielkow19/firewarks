@@ -19,11 +19,11 @@ public partial class PlayerStats : Control
 		settings = (player_settings)GetNode("/root/PlayerSettings");
 		for(int i = 0; i < 4; i++) {
 			try {
-			if(settings.PlayerInfos[i].PlayerID == playerNum) {
-				playerSprite.Modulate = settings.PlayerInfos[i].Color;
-			}
+				if(settings.PlayerInfos[i].PlayerID == playerNum) {
+					playerSprite.Modulate = settings.PlayerInfos[i].Color;
+				}
 			} catch (Exception e) {
-
+				// Not sure why this is empty, but I don't want to break anything - Donovan
 			}
 		}
 		position = settings.PlayerPositions[playerNum];

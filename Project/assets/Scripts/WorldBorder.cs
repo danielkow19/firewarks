@@ -8,7 +8,7 @@ public partial class WorldBorder : Area2D
 	[Export] public double timeSeconds = 300f;
 	public Timer countDown;
 	private float scale;
-	private Vector2 colliderScale; // May be different than scale, pivots need to work with this
+	private Vector2 colliderScale; // May be different from scale, pivots need to work with this
 	[Export] private float closingRate = .05f;
 	[Export] private Marker2D[] edges; // Pivots for the actual edges
 	public Vector2 edgePosition;

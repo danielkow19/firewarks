@@ -14,7 +14,16 @@ public partial class PlayerAttackPreview : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		patterns = new PackedScene[] {GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurstPreview.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternSpreadShotPreview.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternFastSSPreview.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternKnotPreview.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternSwirlPreview.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternWeavePreview.tscn"), GD.Load<PackedScene>("res://assets/prefabs/PatternWillowPreview.tscn")};
+		patterns = new PackedScene[]
+		{
+			GD.Load<PackedScene>("res://assets/prefabs/PatternCircleBurstPreview.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternSpreadShotPreview.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternFastSSPreview.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternKnotPreview.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternSwirlPreview.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternWeavePreview.tscn"),
+			GD.Load<PackedScene>("res://assets/prefabs/PatternWillowPreview.tscn")
+		};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +47,7 @@ public partial class PlayerAttackPreview : Area2D
 	public void ReleaseCurrentPattern() {
 		if(currentPattern != null) {
 			PatternPreview pattern = currentPattern as PatternPreview;
-			pattern.FreeWaves();
+			pattern?.FreeWaves();
 			currentPattern.Free();
 			currentPattern = null;
 		}

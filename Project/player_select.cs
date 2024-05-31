@@ -149,7 +149,9 @@ public partial class player_select : Control
 
 			InstantiateSelectMenu();
 		}
-		if(@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed && !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable && jbe.ButtonIndex != JoyButton.B)
+
+		if (@event is InputEventJoypadButton jbe /*&& jbe.ButtonIndex == JoyButton.A*/ && jbe.Pressed &&
+		    !deviceNums.Contains(jbe.Device) && numPlayers < 4 && joinable && jbe.ButtonIndex != JoyButton.B)
 		{
 			currentPlayerID = -1;
 			for(int i = 0; i < 4; i++) {

@@ -117,7 +117,6 @@ public partial class Bullet : Area2D
 			}		
 			CheckCollisions();
 		}
-		
 	}
 
 	//checks collision for the bullets if non-player stops bullet, if player checks player and dmgs if not owner

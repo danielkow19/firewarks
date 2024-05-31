@@ -48,7 +48,9 @@ public partial class WavePreview : Node
 			{				
 				var instance = pattern.Instantiate();
 				instance.Set("passer",passer);
-				instance.Set("rotation", (-(Math.PI*spread/180)/2) + (i)*(Math.PI*(spread/(numOfBullet-1))/180) + (offset * Math.PI/180));
+				instance.Set("rotation",
+					(-(Math.PI * spread / 180) / 2) + (i) * (Math.PI * (spread / (numOfBullet - 1)) / 180) +
+					(offset * Math.PI / 180));
 				instance.Set("delay", wait);
 				instance.Set("speed", new Vector2(speed, 0));
 				instance.Set("spin",spin);

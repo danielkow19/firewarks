@@ -21,14 +21,17 @@ public partial class Pause : Control
 	{
 
 	}
+	
 	public void _on_quit_pressed()
 	{
 		GetTree().Quit();
 	}
+	
 	public void _on_resume_pressed()
 	{
 		_manager.Call("PauseMenu");
 	}
+	
 	public void _on_lobby_pressed()
 	{
 		// Un-Pause tree before moving?
@@ -43,6 +46,7 @@ public partial class Pause : Control
 		scene.GotoReadyScene("res://player_select.tscn");
 
     }
+	
 	public void _on_main_menu_pressed()
 	{
 		GetTree().Paused = false;

@@ -23,5 +23,4 @@ public partial class ArrowColor : Button
 	public void _on_pressed() {
 		swap._ChangeColor(name);
 	}
-
 }

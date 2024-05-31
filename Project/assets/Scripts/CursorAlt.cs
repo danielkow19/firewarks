@@ -153,6 +153,7 @@ public partial class CursorAlt : Node2D
 			}
 		}
 	}
+	
 	public void addPlayerInfo()
 	{
 		// get a reference to the player_settings singleton
@@ -163,6 +164,7 @@ public partial class CursorAlt : Node2D
 
 		settings.AddPlayerInfo(playerNum, patternsList[attack1Swap.AttackIndex], patternsList[attack2Swap.AttackIndex], colorSwap.ColorChoice, getSpawnPosition());
 	}
+	
 	private float getSpawnX()
 	{
 		switch(playerNum)
@@ -191,6 +193,7 @@ public partial class CursorAlt : Node2D
 				}
 		}
 	}
+	
 	private float getSpawnY()
 	{
 		switch(playerNum)

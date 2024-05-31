@@ -33,8 +33,6 @@ public partial class TrailBullet : Area2D
 					break;
 			}
 		}
-		
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
