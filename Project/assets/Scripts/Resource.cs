@@ -29,12 +29,18 @@ public partial class Resource : Area2D
 
 	private PackedScene popup;
 	private AnimationPlayer animator;
+	private bool fullyTransitioned;
+	private bool startedIdle;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Hopefully stops the frame one visibility bug on the animations
+		GetChild<Sprite2D>(1).Visible = false;
+		
 		// Resource Spawner determines power-up type  instead of this class
 		popup = GD.Load<PackedScene>("res://assets/prefabs/MessagePopup.tscn");
+		
 		animator = GetChild<AnimationPlayer>(2);
 		
 		// Play the spawn animation immediately
@@ -47,7 +53,7 @@ public partial class Resource : Area2D
 		lifetime -= delta;
 		
 		// destroy after animation finishes playing
-		if(lifetime <= 0 && !animator.IsPlaying())
+		if(lifetime <= 0 && fullyTransitioned && !animator.IsPlaying())
 		{
 			QueueFree();
 		}
@@ -56,6 +62,17 @@ public partial class Resource : Area2D
 		if (lifetime <= 1 && !animator.IsPlaying())
 		{
 			animator.Play("PowerUp Despawn");
+			fullyTransitioned = true;
+		}
+		else if (!animator.IsPlaying() && startedIdle)
+		{
+			// Idle animation if nothing else is playing
+			animator.Play("Idle");
+		}
+		else if (!animator.IsPlaying() && !startedIdle)
+		{
+			animator.Play("BeginIdle");
+			startedIdle = true;
 		}
 		
 		CheckCollisions();
