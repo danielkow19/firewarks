@@ -31,6 +31,7 @@ public partial class Resource : Area2D
 	private AnimationPlayer animator;
 	private bool fullyTransitioned;
 	private bool startedIdle;
+	private bool noCollision;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -80,6 +81,12 @@ public partial class Resource : Area2D
 
 	private void CheckCollisions()
 	{
+		// Early out, final animation is playing
+		if (noCollision)
+		{
+			return;
+		}
+		
 		Array<Area2D> collisions = GetOverlappingAreas();
 		if (collisions.Count != 0)
 		{
@@ -95,9 +102,14 @@ public partial class Resource : Area2D
 						p.Popup(ToString(), GlobalPosition);
 						
 						player.ResourceCollected(type);
+						
+						// Switch to grab animation no matter what
 						animator.Stop();
+						animator.Play("Grabbed");
+						
+						// Will allow it to be dequeued when animation finishes
 						lifetime = 0;
-						QueueFree();
+						noCollision = true;
 					}	
 				}
 			}
