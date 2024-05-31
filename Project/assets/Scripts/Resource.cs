@@ -28,22 +28,36 @@ public partial class Resource : Area2D
 	public PowerUpType type;
 
 	private PackedScene popup;
+	private AnimationPlayer animator;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// Resource Spawner determines power-up type  instead of this class
 		popup = GD.Load<PackedScene>("res://assets/prefabs/MessagePopup.tscn");
+		animator = GetChild<AnimationPlayer>(2);
+		
+		// Play the spawn animation immediately
+		animator.Play("PowerUp Spawn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		lifetime -= delta;
-		if(lifetime <= 0)
+		
+		// destroy after animation finishes playing
+		if(lifetime <= 0 && !animator.IsPlaying())
 		{
 			QueueFree();
 		}
+
+		// Condition to start the despawn animation
+		if (lifetime <= 1 && !animator.IsPlaying())
+		{
+			animator.Play("PowerUp Despawn");
+		}
+		
 		CheckCollisions();
 	}
 
@@ -64,6 +78,7 @@ public partial class Resource : Area2D
 						p.Popup(ToString(), GlobalPosition);
 						
 						player.ResourceCollected(type);
+						animator.Stop();
 						lifetime = 0;
 						QueueFree();
 					}	
