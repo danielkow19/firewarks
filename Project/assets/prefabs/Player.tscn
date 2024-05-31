@@ -1,19 +1,26 @@
-[gd_scene load_steps=61 format=3 uid="uid://c1rsifuaq4gih"]
+[gd_scene load_steps=69 format=3 uid="uid://c1rsifuaq4gih"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_pxkww"]
 [ext_resource type="Texture2D" uid="uid://cdnsqyiobucr2" path="res://assets/sprites/phoenix/Phoenix Sketch D.png" id="2_ogaot"]
 [ext_resource type="PackedScene" uid="uid://c23q4ee4jarl7" path="res://assets/prefabs/PatternWillowPreview.tscn" id="2_vldb0"]
 [ext_resource type="PackedScene" uid="uid://b4rrocm5vcmmq" path="res://assets/prefabs/Player_HUD.tscn" id="3_r83a8"]
-[ext_resource type="PackedScene" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
-[ext_resource type="Texture2D" uid="uid://doupxyws340s8" path="res://assets/sprites/bullets/temp-sprite-bullet-trail.png" id="4_he0d1"]
+[ext_resource type="PackedScene" uid="uid://dl4rtusna28r0" path="res://assets/prefabs/FlyingSprite.tscn" id="4_5apw0"]
 [ext_resource type="Texture2D" uid="uid://b02bhxv5mvhnv" path="res://assets/sprites/effects/spritesheet_smoke_bomb.png" id="4_qsqd8"]
 [ext_resource type="PackedScene" uid="uid://b0m5h4hakr0fj" path="res://assets/prefabs/SFXWings.tscn" id="5_mxbu5"]
 [ext_resource type="Script" path="res://assets/Scripts/PlayerTrail.cs" id="5_tcvo2"]
 [ext_resource type="PackedScene" uid="uid://dh407wp8gb70v" path="res://assets/prefabs/Follow_Hud.tscn" id="6_e5m8y"]
 [ext_resource type="PackedScene" uid="uid://b6lqioejw8pha" path="res://assets/prefabs/SFXSmoke.tscn" id="8_2xq1s"]
+[ext_resource type="Texture2D" uid="uid://cxyaomdmcyj60" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_0.png" id="9_3q6hb"]
 [ext_resource type="Texture2D" uid="uid://dgobxqaaifoyd" path="res://assets/sprites/effects/spritesheet_barrier.png" id="9_einjs"]
+[ext_resource type="Texture2D" uid="uid://bjcahdtq5egk6" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_1.png" id="10_xperw"]
+[ext_resource type="Texture2D" uid="uid://dsyvbkunf7tji" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_2.png" id="11_sq3lt"]
+[ext_resource type="Texture2D" uid="uid://hg3lg6oivg2b" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_3.png" id="12_m6qlk"]
 [ext_resource type="AudioStream" uid="uid://cj1o2aykcxmt" path="res://assets/SFX/powerUp.wav" id="13_0r8cm"]
+[ext_resource type="Texture2D" uid="uid://bae738iqhottq" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_4.png" id="13_u6js2"]
 [ext_resource type="Texture2D" uid="uid://c2dqq7k31p4dx" path="res://assets/sprites/phoenix/spritesheet_heart_flame.png" id="14_s4jiv"]
+[ext_resource type="Texture2D" uid="uid://cb23rxlqvm6wj" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_5.png" id="14_x61d1"]
+[ext_resource type="Texture2D" uid="uid://dlfsal6remhna" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_6.png" id="15_rxm3w"]
+[ext_resource type="Texture2D" uid="uid://cd72fchmjg7d1" path="res://assets/sprites/phoenix/player_fire_trail/player_fire_trail_7.png" id="16_4f3c2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcfy7"]
 radius = 4.0
@@ -214,6 +221,25 @@ color_ramp = SubResource("GradientTexture1D_l3dgi")
 turbulence_enabled = true
 turbulence_noise_strength = 13.43
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_myd65"]
+frames = 8
+speed_scale = 12.0
+frame_0/texture = ExtResource("9_3q6hb")
+frame_1/texture = ExtResource("10_xperw")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_sq3lt")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("12_m6qlk")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("13_u6js2")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("14_x61d1")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("15_rxm3w")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("16_4f3c2")
+frame_7/duration = 1.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_f86ha"]
 atlas = ExtResource("9_einjs")
 region = Rect2(0, 0, 120, 120)
@@ -405,7 +431,7 @@ trail_enabled = true
 top_level = true
 points = PackedVector2Array(-66, 0, -1, 0)
 width = 30.0
-texture = ExtResource("4_he0d1")
+texture = SubResource("AnimatedTexture_myd65")
 texture_mode = 2
 joint_mode = 2
 script = ExtResource("5_tcvo2")
