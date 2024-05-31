@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1q27pmjqirjd"]
+[gd_scene load_steps=7 format=3 uid="uid://dk2qhdd7ch0u5"]
 
 [ext_resource type="Script" path="res://assets/Scripts/MessagePopup.cs" id="1_j57ve"]
+[ext_resource type="FontFile" uid="uid://brir60csc37tc" path="res://assets/fonts/RobotoSerif_120pt-BoldItalic.ttf" id="2_open7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1x6j"]
+font = ExtResource("2_open7")
 
 [sub_resource type="Animation" id="Animation_dnf30"]
 resource_name = "Popup"
@@ -78,7 +82,7 @@ _data = {
 }
 
 [node name="MessagePopup" type="Marker2D"]
-z_index = 2
+z_index = 4
 script = ExtResource("1_j57ve")
 
 [node name="Label" type="Label" parent="."]
@@ -96,6 +100,7 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 text = "Power"
+label_settings = SubResource("LabelSettings_l1x6j")
 horizontal_alignment = 1
 vertical_alignment = 1
 
